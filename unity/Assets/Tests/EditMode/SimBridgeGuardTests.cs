@@ -33,6 +33,7 @@ public class SimBridgeGuardTests
         [typeof(StopWork)] = new StopWork(1),
         [typeof(StartProject)] = new StartProject("housing", "tel_aviv", 1, 0),
         [typeof(CancelProject)] = new CancelProject(1),
+        [typeof(Move)] = new Move(1, 2, 0),
     };
 
     static IEnumerable<Type> CommandTypes() =>

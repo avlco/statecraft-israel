@@ -22,7 +22,7 @@ namespace Statecraft.Sim
     /// Kinds: set_policy (policy, level), allocate_budget (shares: {office: share}), choose_event_option (event, option),
     /// set_mobilization (level), security_order (delta), appoint (office, person), map_action (action, q, r), assign_workers
     /// (city, role, count), train (city, track, count), cancel_training (cohort), pioneer_work (unit, action, site), stop_work
-    /// (unit; GDD content only). A turn with no
+    /// (unit), move (unit, q, r; GDD content only). A turn with no
     /// scripted command passes; events nobody answered are delegated, as in the game. A command the sim rejects fails the run.</summary>
     public sealed class Scenario
     {
@@ -66,6 +66,7 @@ namespace Statecraft.Sim
             ["train"] = new[] { "city", "track", "count" }, ["cancel_training"] = new[] { "cohort" },
             ["pioneer_work"] = new[] { "unit", "action", "site" }, ["stop_work"] = new[] { "unit" },
             ["start_project"] = new[] { "project", "city", "q", "r" }, ["cancel_project"] = new[] { "project" },
+            ["move"] = new[] { "unit", "q", "r" },
         };
 
         public static IReadOnlyCollection<string> Kinds => Allowed.Keys;
@@ -97,6 +98,7 @@ namespace Statecraft.Sim
                 case "stop_work": return new StopWork(Whole(c, "unit"));
                 case "start_project": return new StartProject(Str(c, "project"), Str(c, "city"), Whole(c, "q"), Whole(c, "r"));
                 case "cancel_project": return new CancelProject(Whole(c, "project"));
+                case "move": return new Move(Whole(c, "unit"), Whole(c, "q"), Whole(c, "r"));
                 default: throw new InvalidDataException($"command kind '{kind}' has no builder");
             }
         }
@@ -137,6 +139,7 @@ namespace Statecraft.Sim
             AssignWorkers w => $"{w.City} {w.Role} {w.Count}", Train t => $"{t.City} {t.Track} {t.Count}", CancelTraining t => t.Cohort.ToString(CultureInfo.InvariantCulture),
             PioneerWork p => FormattableString.Invariant($"{p.Unit} {p.Action} {p.Site}"), StopWork w => w.Unit.ToString(CultureInfo.InvariantCulture),
             StartProject p => FormattableString.Invariant($"{p.ProjectKind} {p.City} {p.Q},{p.R}"), CancelProject p => p.Project.ToString(CultureInfo.InvariantCulture),
+            Move m => FormattableString.Invariant($"{m.Unit} {m.Q},{m.R}"),
             _ => c.Kind,
         };
     }

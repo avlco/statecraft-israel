@@ -121,6 +121,15 @@ namespace Statecraft.Sim
         public CancelProject(int project) { Project = project; }
     }
 
+    /// <summary>Moves unit <see cref="Unit"/> to hex (<see cref="Q"/>, <see cref="R"/>) along the cheapest path, within the
+    /// movement points it has left this turn (Movement.Move, R-MOVE-001 to R-MOVE-006). GDD v0.1 loop only.</summary>
+    public sealed class Move : Command
+    {
+        public override string Kind => Movement.Kind;
+        public int Unit { get; } public int Q { get; } public int R { get; }
+        public Move(int unit, int q, int r) { Unit = unit; Q = q; R = r; }
+    }
+
     public sealed class Rejection
     {
         public Command Command { get; } public string Reason { get; }
@@ -156,6 +165,7 @@ namespace Statecraft.Sim
                     case StopWork _: break;
                     case StartProject p: Text(p.ProjectKind, "ProjectKind"); Text(p.City, "City"); break;
                     case CancelProject _: break;
+                    case Move _: break;
                     case SetMobilization _: case SecurityOrder _: break;
                     default: throw new ArgumentException("unknown command type " + cmd.GetType().Name, "commands");
                 }
