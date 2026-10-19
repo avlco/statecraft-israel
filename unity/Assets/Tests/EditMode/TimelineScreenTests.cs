@@ -53,6 +53,8 @@ public class TimelineScreenTests
         {
             Assert.IsNotEmpty(row.Q<Label>("timeline-title").text);
             Assert.AreEqual(row.Q<Label>("timeline-yours").text, row.Q<Label>("timeline-record").text);
+            foreach (var marker in new[] { "timeline-attribution", "timeline-design", "timeline-rejoined", "timeline-difference" })
+                Assert.IsNull(row.Q<Label>(marker), "the recorded path must not acquire a false marker: " + marker);
         }
     }
 
@@ -71,6 +73,7 @@ public class TimelineScreenTests
         using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
         var row = Rows(ui.Root).Single(r => (string)r.userData == e.Id);
         Assert.IsTrue(row.ClassListContains("timeline-diverged"));
+        Assert.AreEqual("≠", row.Q<Label>("timeline-difference").text, "difference is visible without relying on colour");
         StringAssert.Contains(alternative.Text, row.Q<Label>("timeline-yours").text);
         StringAssert.Contains(e.Options.Single(o => o.Historical).Text, row.Q<Label>("timeline-record").text);
         Assert.AreNotEqual(row.Q<Label>("timeline-yours").text, row.Q<Label>("timeline-record").text);
@@ -126,6 +129,7 @@ public class TimelineScreenTests
         Assert.AreEqual(text["timeline.rejoined"], rows[0].Q<Label>("timeline-rejoined").text);
         Assert.AreEqual(text["timeline.no_record"], rows[1].Q<Label>("timeline-record").text);
         Assert.AreEqual(hebrew ? "15 במאי 1948" : "15 May 1948", rows[0].Q<Label>("timeline-date").text);
+        Assert.AreEqual(hebrew ? "16 במאי 1948" : "16 May 1948", rows[1].Q<Label>("timeline-date").text, "use each event window, not the current game date");
     }
 
     [Test]
@@ -225,7 +229,7 @@ public class TimelineScreenTests
         var c = ContentLoader.Load(Paths.Content); var g = GameSession.New(c, GoldenRun.Seed, Mode.Historical);
         var option = new EventOption { Id = "road", Text = "Fixture answer", Alternative = basis == "none" ? null : new OptionAlternative {
             Basis = basis, By = basis == OptionAlternative.Design ? "" : "Fixture body",
-            Date = basis == OptionAlternative.Design ? (DateTime?)null : new DateTime(1948, 5, 15) } };
+            Date = basis == OptionAlternative.Design ? (DateTime?)null : new DateTime(1948, 5, 16) } };
         c.Events.Add(new GameEvent { Id = "fixture_attribution", Title = "Fixture attribution", From = new DateTime(1948, 5, 15),
             Options = { new EventOption { Id = "record", Text = "Fixture recorded answer", Historical = true }, option } });
         // One separate pending alternative must never disclose an attribution before the player chooses it.
@@ -238,7 +242,12 @@ public class TimelineScreenTests
         using var screen = Presenter(ui.Root, bridge, text); using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
         Assert.AreEqual(1, Rows(ui.Root).Length, "pending attribution is not shown as history");
         var label = Rows(ui.Root)[0].Q<Label>("timeline-attribution");
-        if (basis == "none") { Assert.IsNull(label, "no invented attribution for old content with no metadata"); return; }
+        if (basis == "none")
+        {
+            Assert.IsNull(label, "no invented attribution for old content with no metadata");
+            Assert.IsNull(Rows(ui.Root)[0].Q<Label>("timeline-design"), "no invented design classification for metadata-free content");
+            return;
+        }
         if (basis == OptionAlternative.Design)
         {
             Assert.IsNull(label, "design cannot be represented as a documented proposal");
@@ -247,13 +256,14 @@ public class TimelineScreenTests
             Assert.IsFalse(design.focusable); return;
         }
         Assert.IsNotNull(label, "the chosen considered alternative needs its recorded attribution (Q-ALT-7)");
+        Assert.IsNull(Rows(ui.Root)[0].Q<Label>("timeline-design"), "a considered alternative is not a design-only assumption");
         if (!hebrew) Assert.AreEqual(basis == OptionAlternative.Proposed
-            ? "Not adopted. Proposed by Fixture body, 15 May 1948."
-            : "Not adopted. Debated by Fixture body, 15 May 1948.", label.text);
+            ? "Not adopted. Proposed by Fixture body, 16 May 1948."
+            : "Not adopted. Debated by Fixture body, 16 May 1948.", label.text);
         else
         {
             StringAssert.Contains(basis == OptionAlternative.Proposed ? "הוצע בידי" : "נדון בידי", label.text);
-            StringAssert.Contains("Fixture body", label.text); StringAssert.Contains("15 במאי 1948", label.text);
+            StringAssert.Contains("Fixture body", label.text); StringAssert.Contains("16 במאי 1948", label.text);
         }
         Assert.IsFalse(label.focusable, "attribution adds no keyboard stop");
     }
