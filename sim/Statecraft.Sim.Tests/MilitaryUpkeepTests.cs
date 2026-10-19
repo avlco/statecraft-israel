@@ -26,15 +26,27 @@ public class MilitaryUpkeepTests
     }
 
     // R-UNIT-006, R-MONEY-003: production can fund upkeep; housing still happens after payment.
-    [Fact]
-    public void ProductionFundsUpkeepBeforeHousingAndAShortfallBorrows()
+    [Theory]
+    [InlineData(false, 2, 0)]
+    [InlineData(true, 5, 2)]
+    public void ProductionFundsUpkeepBeforeHousingAndAShortfallBorrows(bool mappedAbsorption, int refugees, int waiting)
     {
         var files = Fixture.Gdd();
         files["rules.yaml"] = files["rules.yaml"].Replace("military_upkeep_per_turn: 0.1", "military_upkeep_per_turn: 2");
+        // Isolate step 8's existing residents from step 9's later arrivals.
+        files["aliyah.yaml"] = Fixture.Files["aliyah.yaml"].Replace("europe: 230", "europe: 0");
+        if (mappedAbsorption)
+        {
+            // R-MIN-001, R-MIN-002: a vacant Immigration office with the full budget houses floor(5 * 0.75) = 3.
+            files["offices.yaml"] = Fixture.Files["offices.yaml"] + "  - id: immigration_minister\n    title: Minister of Immigration\n";
+            files["rules.yaml"] = files["rules.yaml"]
+                .Replace("budget_start: { finance_minister: 1.0 }", "budget_start: { immigration_minister: 1.0, finance_minister: 0.0 }")
+                + "  minister_systems:\n    absorption: immigration_minister\n";
+        }
         var c = ContentLoader.Load(Fixture.Write(files));
         var s = Simulation.NewGame(c, 1, Mode.Historical);
         s.Treasury = 0;
-        s.Cities["town_a"] = s.Cities["town_a"].WithCounts(10, 6, 2);
+        s.Cities["town_a"] = s.Cities["town_a"].WithCounts(10, 6, refugees);
         s.Units.Add(1, new Unit(1, "recruit", 1, 0, side: "israel", strength: 3));
         var debt = s.Debt;
         var arms = s.Arms;
@@ -45,6 +57,10 @@ public class MilitaryUpkeepTests
         Assert.Equal(debt + 2 - 6 * 1.2 * 0.25, s.Debt, 9);
         Assert.Equal(arms, s.Arms);
         Assert.Equal(3, s.Units[1].Strength); // No silent attrition or disbanding to hide the shortfall.
+        Assert.Equal(waiting, s.Cities["town_a"].Refugees);
+        Assert.Equal(10 + refugees - waiting, s.Cities["town_a"].Civilians);
+        Assert.Equal(refugees - waiting,
+            Assert.Single(why, x => x.Message.Contains("immigrants housed")).Delta);
         var production = why.FindIndex(x => x.Message.Contains("jobs paid"));
         var upkeep = why.FindIndex(x => x.Message.EndsWith("(military upkeep)"));
         var housing = why.FindIndex(x => x.Message.Contains("immigrants housed"));
