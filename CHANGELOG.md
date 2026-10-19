@@ -8,6 +8,12 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 ## [Unreleased]
 
 ### Added
+- Standing orders (GDD Phase 5 PR 7): `UnitOrder(unit, fortify / hold)` gives one of the player's military units a
+  standing order that stays until the player changes it. Fortify is free, is set by the end of the turn it is given and
+  is lost when the unit leaves its hex (Q-HOLD-1); hold acts on the unit's own hex only and intercepts nothing (Q-HOLD-2).
+  `Orders.DefencePercent` gives combat (PR 8) the defence: fortify 125% (owner-decided, 19 Oct 2026) and hold 100% of strength (design
+  values; the balance pass #813 may tune both). Orders are free (D-A6). No golden moves: nothing gives an order yet
+  (R-ORDER-001 to R-ORDER-003; fixes #746, refs #385).
 - The Cabinet disc in the side menu shows a small gold badge while a post is vacant that the player can fill this turn,
   and its tip says so in English and Hebrew. The sim's `Cabinet.Vacancies` decides it (a vacant seat, someone may be
   appointed, no appointment to it queued, the game not over, and enough Attention left after this turn's queued orders,
