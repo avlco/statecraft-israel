@@ -112,6 +112,9 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
 .meter-caption-row { flex-direction: row; align-items: flex-end; }
 /* In the bar a long caption wraps rather than widen its meter; on the roomy bar it keeps one line, as in the promo (B8). */
 .meter .meter-name { max-width: 120px; }
+/* Nine meters: let the longest caption use its natural width before wrapping, so its two-line body stays clear of
+   the 70 px bar's edge. The other tiers still wrap it to the room their meter provides. */
+.hud-pools #meter-standing .meter-name { max-width: none; }
 .top-bar--roomy .meter .meter-name { max-width: none; white-space: nowrap; }
 #security-level { font-size: 15px; color: var(--ink-dim); margin-left: 6px; white-space: nowrap; flex-shrink: 0; }
 .meter-row { flex-direction: row; align-items: flex-end; }
@@ -165,6 +168,7 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
 .hud-pools.hud-two-row .nav { flex-basis: 50%; flex-grow: 1; }
 .hud-pools.hud-two-row .meter { flex-basis: 20%; min-width: 160px; }
 .hud-pools.hud-two-row .meter .meter-name { max-width: 170px; }
+.hud-pools.hud-two-row #meter-standing .meter-name { max-width: 170px; }
 .hud-two-row .right-column, .hud-two-row .left-column, .hud-two-row .event-gutter, .hud-two-row .event-layer, .hud-two-row .screen, .hud-two-row .toast { top: 232px; }
 /* #380's re-tier gives a square window (1024x1024) the two-row bar: the event layer keeps the 92 px the bar grew by free at its
    bottom (padding: the backdrop still reaches the window's bottom), so the centred card stays where the stacked bar left it,
@@ -846,6 +850,11 @@ Button.settings-choice-selected { -unity-font-definition: url("project://databas
 .lang-he .info-gdd { margin-left: 0; padding-left: 0; border-left-width: 0; margin-right: 14px; padding-right: 14px; border-right-width: 1px; }
 .lang-he .info-gdd Button { margin: 2px 0 2px 6px; }
 .hud-two-row .info-panel.info-gdd-shown { width: 520px; flex-wrap: wrap; }
+/* The pools move medium windows to the two-row tier: the taller city panel sits beside the rail, not under its discs. */
+.hud-pools.hud-two-row .info-panel.info-gdd-shown { left: 88px; }
+/* Upright phones keep the original bottom-left placement: their rail ends far above the panel, and the minimap needs
+   the space beside it. */
+.hud-pools.hud-three-row .info-panel.info-gdd-shown { left: 16px; }
 .hud-two-row .info-gdd { width: 100%; margin: 8px 0 0 0; padding: 8px 0 0 0; border-left-width: 0; border-right-width: 0; border-top-width: 1px; }
 
 .arms-controls { flex-wrap: wrap; align-items: center; }
