@@ -26,8 +26,8 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 - Standing orders (GDD Phase 5 PR 7): `UnitOrder(unit, fortify / hold)` gives one of the player's military units a
   standing order that stays until the player changes it. Fortify is free, is set by the end of the turn it is given and
   is lost when the unit leaves its hex (Q-HOLD-1); hold acts on the unit's own hex only and intercepts nothing (Q-HOLD-2).
-  `Orders.DefencePercent` gives combat (PR 8) the defence: fortify 110% and hold 100% of strength, design values proposed
-  here for the owner to accept or change. Orders are free (D-A6). No golden moves: nothing gives an order yet
+  `Orders.DefencePercent` gives combat (PR 8) the defence: fortify 125% (owner-decided, 19 Oct 2026) and hold 100% of strength (design
+  values; the balance pass #813 may tune both). Orders are free (D-A6). No golden moves: nothing gives an order yet
   (R-ORDER-001 to R-ORDER-003; fixes #746, refs #385).
 - Objectives can complete on absorbing the immigrants: `completes_when: { absorbed: ... }` holds once the Jewish
   population has reached a stated number and then the cities' overflow and employed shares are inside stated bounds

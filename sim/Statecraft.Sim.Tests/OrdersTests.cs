@@ -134,14 +134,14 @@ public class OrdersTests
         Assert.Equal("That order is not available in this game", Assert.Single(Simulation.Step(legacy, g, new Command[] { new UnitOrder(1, Orders.Hold) }).Rejected).Reason);
     }
 
-    // R-ORDER-002, R-ORDER-003: the real game's values, design values this PR proposes (avlco's option 1 on #746): fortify
-    // a tenth more in defence, hold nothing; the order is free (D-A6).
+    // R-ORDER-002, R-ORDER-003: the real game's values, design values; fortify 125 is owner-decided (19 Oct 2026, #1071), hold 100 is
+    // this PR's proposal: fortify a quarter more in defence, hold nothing; the order is free (D-A6).
     [Fact]
-    public void TheRealGameProposesFortifyATenthAndHoldNothing()
+    public void TheRealGameSetsFortifyAtOneQuarterMoreAndHoldNothing()
     {
         var c = ContentLoader.Load(RealContentTests.ContentRoot());
         var m = c.Rules.Mvp!;
-        Assert.Equal((110, 100), (m.FortifyDefencePercent, m.HoldDefencePercent));
+        Assert.Equal((125, 100), (m.FortifyDefencePercent, m.HoldDefencePercent));
         Assert.Equal(0, c.Rules.AttentionCost[Orders.Kind]);
     }
 
