@@ -68,10 +68,17 @@ namespace Statecraft.Sim
             spent.TryGetValue(unitId, out var used);
             var (dist, _) = Search(c, s, u, points - used);
             if (!dist.TryGetValue((q, r), out var cost)) return "That hex is out of reach this turn";
-            s.Units[unitId] = new Unit(u.Id, u.Type, q, r, u.Service, u.Side, u.Strength, u.Order, u.OrderTarget);
+            // Moving clears fortify at once (Q-HOLD-1, "lost on move"; the standing orders' "fortify", or "fortifying" the turn it
+            // is given, with the hex it names), so a unit that goes out and comes back the same turn is not fortified; hold moves with
+            // the unit. The order step at the end of the turn only sees the final hex.
+            var fortified = u.Order == "fortify" || u.Order == "fortifying";
+            s.Units[unitId] = new Unit(u.Id, u.Type, q, r, u.Service, u.Side, u.Strength, fortified ? "" : u.Order, fortified ? "" : u.OrderTarget);
             spent[unitId] = used + cost;
             why.Add(new Cause("map", unitId.ToString(CultureInfo.InvariantCulture), cost,
                 FormattableString.Invariant($"Unit {unitId} moved to hex {q},{r} for {cost} movement points")));
+            if (u.Order == "fortify")
+                why.Add(new Cause("map", unitId.ToString(CultureInfo.InvariantCulture), 0,
+                    $"Unit {unitId} left hex {u.OrderTarget} and is no longer fortified"));
             return null;
         }
 

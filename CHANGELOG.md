@@ -23,6 +23,8 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   Movement points per military type and a cost per land biome are owner-accepted design values (Q-MOVE-1, 19 October 2026); lake and sea are
   impassable; a hex holds at most three units of a side (Q-MOVE-3); no zone of control, and no entry to an enemy unit's
   hex or to an enemy-held locality (Q-MOVE-4, Q-CIV-1; the list is an owner-accepted draft: acre, nazareth, lod, ramla, gaza, beersheba, unchecked until research task #1096). Orders are free (D-A6).
+  A Move that goes through clears fortify (set or given this turn) at once, even out and back to the same hex; hold
+  moves with the unit (Q-HOLD-1).
   No golden moves: nothing issues a Move yet (R-MOVE-001 to R-MOVE-006; fixes #744, refs #385).
 
 ## [0.1.2] - 2026-10-19

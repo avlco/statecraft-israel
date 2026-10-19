@@ -247,6 +247,27 @@ public class MovementTests
         Assert.Empty(Step(c, r.State, new Move(1, 5, 1)).Rejected);
     }
 
+    // R-MOVE-006, Q-HOLD-1 ("lost on move"): a move that goes through clears fortify, set or given this turn, and the hex it
+    // names, even when the unit comes back to that hex in the same turn; hold moves with the unit; a refused move changes
+    // nothing. The order values are the standing orders' (Phase 5 PR 7, #746), written here as records.
+    [Theory]
+    [InlineData("fortify", "0,1", "", "")]
+    [InlineData("fortifying", "0,1", "", "")]
+    [InlineData("hold", "", "hold", "")]
+    public void AMoveOutAndBackClearsFortifyAndKeepsHold(string order, string target, string afterOrder, string afterTarget)
+    {
+        var c = Plain();
+        var s = With(c, new Unit(1, "soldier", 0, 1, side: "israel", order: order, orderTarget: target));
+        var r = Step(c, s, new Move(1, 1, 1), new Move(1, 0, 1));
+        Assert.Empty(r.Rejected);
+        Assert.Equal((0, 1, afterOrder, afterTarget), (r.State.Units[1].Q, r.State.Units[1].R, r.State.Units[1].Order, r.State.Units[1].OrderTarget));
+        Assert.Equal(order == "fortify" ? 1 : 0, r.Why.Count(x => x.System == "map" && x.Message == "Unit 1 left hex 0,1 and is no longer fortified"));
+
+        var refused = Step(c, s, new Move(1, 5, 1));   // refused by the last check before the move
+        Assert.Equal("That hex is out of reach this turn", Assert.Single(refused.Rejected).Reason);
+        Assert.Equal(Step(c, s).State.Hash(), refused.State.Hash());   // as a turn with no Move: the order is the turn's own
+    }
+
     // R-MOVE-001: the loader refuses a military type with no movement points, a population type with some, a land biome
     // with no cost, a cost for water, a stack limit below 1 and an unknown locality.
     [Theory]
