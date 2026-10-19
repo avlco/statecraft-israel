@@ -67,14 +67,14 @@ public class OrdersTests
     }
 
     // R-ORDER-001, R-ORDER-002: a fortified unit that leaves its hex loses fortify by the end of the turn, and has no bonus
-    // from the moment it has left. Move (Phase 5 PR 5) keeps a unit's order fields, as a moved record does here.
+    // from the moment it has left. This is the Settle backstop for a changed unit record that still carries its old order.
     [Fact]
     public void MovingClearsFortify()
     {
         var c = Load();
         var s = Simulation.Step(c, With(c, Soldier(1, 2, 1)), new Command[] { new UnitOrder(1, Orders.Fortify) }).State;
         var u = s.Units[1];
-        s.Units[1] = new Unit(u.Id, u.Type, 3, 1, u.Service, u.Side, u.Strength, u.Order, u.OrderTarget);   // what a Move leaves
+        s.Units[1] = new Unit(u.Id, u.Type, 3, 1, u.Service, u.Side, u.Strength, u.Order, u.OrderTarget);   // a changed record still carrying its old order
         Assert.Equal(100, Defence(c, s, 1));
         var r = Simulation.Step(c, s, new Command[0]);
         Assert.Equal(("", ""), (r.State.Units[1].Order, r.State.Units[1].OrderTarget));

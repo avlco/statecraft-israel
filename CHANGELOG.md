@@ -8,6 +8,38 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 ## [Unreleased]
 
 ### Added
+- Standing orders (GDD Phase 5 PR 7): `UnitOrder(unit, fortify / hold)` gives one of the player's military units a
+  standing order that stays until the player changes it. Fortify is free, is set by the end of the turn it is given and
+  is lost when the unit leaves its hex (Q-HOLD-1); hold acts on the unit's own hex only and intercepts nothing (Q-HOLD-2).
+  `Orders.DefencePercent` gives combat (PR 8) the defence: fortify 125% (owner-decided, 19 Oct 2026) and hold 100% of strength (design
+  values; the balance pass #813 may tune both). Orders are free (D-A6). No golden moves: nothing gives an order yet
+  (R-ORDER-001 to R-ORDER-003; fixes #746, refs #385).
+- The Cabinet disc in the side menu shows a small gold badge while a post is vacant that the player can fill this turn,
+  and its tip says so in English and Hebrew. The sim's `Cabinet.Vacancies` decides it (a vacant seat, someone may be
+  appointed, no appointment to it queued, the game not over, and enough Attention left after this turn's queued orders,
+  priced by the sim's new `AttentionSystem.Price`/`Left`, which `SimBridge` now uses too); the UI only reads it (refs #1109).
+- Unit cards show the sourced Hebrew unit name in the Hebrew UI, with an English fallback. INS Haganah gains its
+  sourced Hebrew name, still flagged for a native speaker's review (#902).
+### Fixed
+- The Cabinet, Budget, Defence, Why, How to play and Settings screens each gain an X in the header that closes
+  them (the same close as Escape): a phone has no Escape key, and re-tapping the lit rail button was the only way
+  out (v0.1.1 playtest feedback).
+- The national Arms pool in the GDD loop (R-ARMS-001 to R-ARMS-003; fixes #781): one Arms is the equipment package for a
+  1,000-person recruit group, and the state holds 12 on 15 May 1948. A `BuyArms(count)` order pays IL 1m an Arms,
+  borrows a short Treasury and costs 1 Attention whatever the count; recruit training takes 1 Arms a group when it
+  starts and is refused with a reason without one; cancelling the group gives those Arms back (#1047). The owner
+  approved all four values (#781); they are labelled design values. An event option can also move the stock with an
+  `arms` effect, in whole units and never below 0, and the no-gain rule for sensitive events covers it (R-EFX-001,
+  R-EFX-002); no event uses it yet. The goldens move only by the new `arms=12` line.
+
+## [0.1.2] - 2026-10-19
+
+### Added
+- Ten more models by Tal Heuberger, offered only in #336, are imported into the 1948 Collection and stream after the
+  first frame: the eight figures of #708 (an Arab villager, a builder, an elder immigrant, an immigrant child, an
+  immigrant woman, a kibbutz woman, a 1948 soldier and a Yemenite immigrant) and #886's pioneer farmer in the people
+  bundle, and a second Jerusalem town in the towns bundle, beside the first. They are slimmed like the earlier figures,
+  nothing is in `Resources/`, and the first download does not grow. Nothing places them yet (refs #708, #886).
 - A short How to play screen in the side menu explains the monthly loop, Attention, cities, training, event decisions,
   the top bar, End turn and delegation, and the Why screen in English and Hebrew (refs #1041, #42).
 - After End Turn, a short turn report names each top-bar number that changed, with the change the bar shows and its main
@@ -19,33 +51,46 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   only sourced `arab_town` rows of `settlements_1948.yaml` and ships empty until a person and the sensitivity review
   have checked its rows. The state is written into the state hash only when set, so no golden moves (R-CTRL-001 to
   R-CTRL-003; refs #795).
+- Tal Heuberger's shikun housing model stands at Ramat HaHayal, Tel Aviv (Wikidata Q2776362), from 1 January 1951: most
+  families moved in during 1950 (Balslev, Iyunim Bitkumat Israel 23, p. 247), and the owner ruled on 18 October 2026
+  that the year-level date starts after that year. Like the other #707 buildings it draws only close up, streams after
+  the first frame in `collection-special-buildings`, and keeps clear of the towns, routes, unit tokens, civilians and
+  wildlife (refs #707, #1068).
+- Tal Heuberger's 1948 Collection ships and C-54 are on the map, at the steam train's 24x scale: the immigrant steamer off Haifa,
+  a fishing boat off Jaffa and one off Acre, the Altalena off Tel Aviv on the Altalena card's turn (15 June 1948), and a
+  C-54 at Lod Airport from July 1949 to September 1950, during Operation Magic Carpet. They stream after the first frame,
+  keep clear of the surf, the harbour works, the other boats and the labels, and a model that does not stream is left out
+  (#669).
+- The map editor's override file (#1009 step 1): `content/map/overrides.yaml`, shipped empty, with its schema, loader and
+  checks. Applied after the generated map data, so regenerating keeps it: a land hex's terrain, one period of a hex's
+  control (owner, "One period at a time") and a settlement's or map location's hex (its id, names and sources stay). The
+  sim applies terrain and location moves, the map draws them and applies control. Bad input fails the load naming the file
+  and field. Nothing moves and no golden changes; the content hash does (the file is new content).
 - The military unit record (GDD Phase 5 PR 2): a unit can hold a side, a strength and a standing order with its target,
   each written into the state hash only when set, so a halutz hashes as before and no golden moves. `unit_types.yaml`
   gains Israel's `veteran_soldier` (infantry), `artillery` and `armoured_car` (armour) with a `side` and a `class`; the
   loader refuses a military type without both (R-UNIT-001, R-UNIT-002; refs #741, #385). Nothing uses them yet.
-- Standing orders (GDD Phase 5 PR 7): `UnitOrder(unit, fortify / hold)` gives one of the player's military units a
-  standing order that stays until the player changes it. Fortify is free, is set by the end of the turn it is given and
-  is lost when the unit leaves its hex (Q-HOLD-1); hold acts on the unit's own hex only and intercepts nothing (Q-HOLD-2).
-  `Orders.DefencePercent` gives combat (PR 8) the defence: fortify 125% (owner-decided, 19 Oct 2026) and hold 100% of strength (design
-  values; the balance pass #813 may tune both). Orders are free (D-A6). No golden moves: nothing gives an order yet
-  (R-ORDER-001 to R-ORDER-003; fixes #746, refs #385).
 - Objectives can complete on absorbing the immigrants: `completes_when: { absorbed: ... }` holds once the Jewish
   population has reached a stated number and then the cities' overflow and employed shares are inside stated bounds
   (R-OBJ-004; owner's option (a) on #738). The real objective and its card come with a person's source check, so no
   content uses it yet and no golden moves (refs #738, #383).
-- Farm and village life from MATKOT's 1948 Collection: three tractors by kibbutz fields, three horse wagons and three
+- The real "absorb the immigrants" objective and its card "One million": it completes once the Jewish population has
+  reached 1,000,000 with the cities' overflow at most 10% and their employed at least 40% (design values), with 20 December
+  1949, Ingathering of the Exiles Day, as its reference date. Both JTA sources were checked by Beri on 18 October 2026.
+  No photograph (refs #1039, #738, #383).
+- Farm and village life from Tal Heuberger's 1948 Collection: three tractors by kibbutz fields, three horse wagons and three
   draught horses by moshav and moshava fields, three flocks of five sheep and three donkeys by villages, and three camels
   by Bedouin camp areas, each anchor chosen by a fixed hash and kept clear of the kits, routes, unit tokens, water,
   civilians (#666) and wildlife (#670), with the kit trees over them left out.
   They stand at the #700 buildings' one world scale (24x real: a tractor about a third of the steam train's locomotive,
   a sheep about a seventh), stream after the first frame, and play their idle clip only at close zoom (40 km) (#667).
-- MATKOT's Tegart fort, military barracks and factory models stand at their sourced places from their sourced days,
+- Tal Heuberger's Tegart fort, military barracks and factory models stand at their sourced places from their sourced days,
   close up only (#700's switch): the Latrun police fort from 15 May 1948, the Tzrifin camp from 19 May 1948, Camp 80
   from 13 July 1948 and Netanya's industrial zone from 28 July 1950, clear of the towns, routes, unit tokens, civilians
   (#666) and wildlife (#670), with the kit trees on them left out. They are sized at the #700 buildings' one world
   scale (24x real, an 8.5 m house as long as the steam train's locomotive), and stream after the first frame in a new
-  `collection-special-buildings` bundle with the shikun and the workshop, which stay unplaced until a place and date are
-  sourced (refs #707).
+  `collection-special-buildings` bundle with the shikun and the workshop; the workshop stays unplaced until a place and
+  date are sourced (refs #707).
 - The craftsman and the job default (GDD Phase 3 PR 5; R-CRAFT-001, R-CRAFT-002, R-CITY-009; #736): a civilian trains
   as a craftsman in a city with a completed industry project (3 turns, IL 0.5m a group), fills an ordinary job slot and
   earns twice the job income, all labelled design values (Q-CRAFT-1 to Q-CRAFT-3). Each city's free jobs now fill on the
@@ -92,11 +137,11 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 - Release gate: consequence cards and variants need a person's sign-off (`reviewed_by`) before a build is shared;
   `Statecraft.Cli --timeline-report` lists each road not taken and what follows it, and `Timeline.Entries` /
   `Timeline.Origin` give the timeline screen its rows (R-ALT-011; refs #939, #953).
-- Map: MATKOT's Nubian ibex and striped hyena from The 1948 Collection, three of each, at close zoom (from 40 km in):
+- Map: Tal Heuberger's Nubian ibex and striped hyena from The 1948 Collection, three of each, at close zoom (from 40 km in):
   the ibex on level ledges of the Judean Desert west of the Dead Sea, the hyenas in the hills of Mount Carmel and the
   central hill country, the ranges their sources give. Seeded, so the same spots every game; streamed after the first
   frame (refs #670, #663).
-- Map: MATKOT's five civilian figures from The 1948 Collection stand in small seeded groups beside the cities, towns,
+- Map: Tal Heuberger's five civilian figures from The 1948 Collection stand in small seeded groups beside the cities, towns,
   kibbutzim and the moshav (a townsman, a smith and a nurse), and an arriving man and woman beside each transit camp from
   the day it is placed. They are scenery, never units; the static figures stream after the first frame and the animated
   ones only at close zoom (refs #666, #663).
@@ -111,9 +156,20 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   goldens do not move (refs #107).
 
 ### Changed
+- Hebrew vote text (`budget.no_vote`, `budget.vote_advisory`, `cabinet.legislature_advisory`) is reworded so it needs
+  no grammatical gender for the Knesset or the Provisional State Council, and legislatures get no gender field (owner,
+  18 October 2026: "Neutral wording"); a native speaker still reads it (refs #564).
+- Hatzohar's Hebrew name is "התנועה הרוויזיוניסטית" (owner, 18 October 2026), the form its cited he.wiki article uses
+  in its text, not the acronym הצה״ר; it stays flagged `agent-checked` for a native speaker (refs #875, #564).
 - The Burma Road convoy truck and lorry stop on 7 December 1948, the approximate boundary when the Road of Valour
   replaced the Burma Road for regular Jerusalem traffic; the Burma Road itself stays drawn (refs #1040, #1051).
-- MATKOT's whole-town models now stand on their towns far off, and the towns draw no procedural houses at any zoom
+- Up close, the unit tokens' figures are Tal Heuberger's skinned 1948 Collection figures playing their idle clip: below the town
+  models' 40 km switch, back to the still far mesh beyond 45 km. The near figures are asked for only once the camera first
+  comes close, streamed like the far ones, and the far mesh stays when one is missing. C05, the pioneer veteran, has no
+  idle clip and keeps his still model (owner, 18 October 2026: "Keep its still model") (refs #665).
+- Credits for The 1948 Collection now name its artist, Tal Heuberger, throughout the game, website and repository
+  documentation (refs #1078).
+- Tal Heuberger's whole-town models now stand on their towns far off, and the towns draw no procedural houses at any zoom
   (refs #663, #917, #659; owner, 18 October 2026: "Whole model far, buildings near"). Each mapped town's model stands
   on the town's core (where most of its building models stand, inside its kit footprint, clear of the next town and of
   the sea, so Tel Aviv's no longer covers Jaffa and Haifa's stays out of the bay), as wide as that core, upright,
@@ -134,13 +190,13 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   checked every row against the Village Statistics 1945 scan and #490 applied the corrections. No other field changes.
   Open from #488, not touched here: the six split-or-merge rows, Dayr al-Qassi's landmark, 'Ilut. The localities are
   outside the content hash, so no golden moves (#200).
-- MATKOT's road vehicles from The 1948 Collection stand on the 1948 roads up close: the intercity bus and the citrus
+- Tal Heuberger's road vehicles from The 1948 Collection stand on the 1948 roads up close: the intercity bus and the citrus
   truck on the Tel Aviv–Haifa road, the sandwich-armoured convoy truck and the canvas-tilt lorry on the Burma Road from
   14 June 1948. They stand only on ground Israel held on the game date, half as long as the steam train's locomotive,
   and stream after the first frame (#725).
 
 ### Fixed
-- MATKOT's townspeople (#666) and wildlife (#670) stand at the same 24x train scale as the building models
+- Tal Heuberger's townspeople (#666) and wildlife (#670) stand at the same 24x train scale as the building models
   (`SettlementKits.ModelScale`, #1030): a man is about 43 m tall, an ibex about 31 m and a striped hyena about 26 m
   long, all smaller than a house and about a fifth of the locomotive's car or less. Before, a man was about 2.5 km and
   an animal about 1.9 km, sized like the unit pieces, which keep their symbolic size (#1033).
@@ -149,7 +205,10 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   follows Remez's, row 3860), and `education_registration_1951` opens on 12 February 1951, its first cited plenum record
   (was 29 November 1950). The card now fires on 15 February 1951, so `hash1952`, `mvp-end` and `scenario-mvp-defeat`
   move (coalition stability only) and are re-pinned (`docs/determinism.md`).
-- MATKOT's building models up close (#700) stand at one world scale, set by the steam train the map runs: a typical
+- A decision card the turn's Attention can't pay for no longer looks frozen (#1034, #1043): each option shows its
+  Attention cost and is greyed out, the card says that ending the turn hands the decision to the minister
+  (the one `EventSystem.Delegate` names), in English and Hebrew, and End turn is highlighted while such a card waits.
+- Tal Heuberger's building models up close (#700) stand at one world scale, set by the steam train the map runs: a typical
   8.5 m house is as long as the locomotive's car (about 204 m), so every model is 24x its building's real size
   (`SettlementKits.ModelScale`), keeps its own proportions and no longer fills the kit's plot; a plot holds a small
   grid of them instead (up to four a side), so the towns stay dense. In v0.1.1 they filled the

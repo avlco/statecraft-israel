@@ -123,16 +123,14 @@ public class UnitsInPlayTests
         Assert.AreEqual(LastArmistice, UnitData.FrontArmistice["syria"]);
     }
 
-    /// <summary>#902: 20 Hebrew names, each from a cited IDF, Palmach, Haganah Heritage or other Israeli page. INS Haganah's
-    /// name stays absent until a reviewer settles its spelling; every agent-checked value carries its own dated source
-    /// pending the native-speaker review in #564.</summary>
+    /// <summary>#902: every Hebrew unit name has a dated source and stays agent-checked pending the native-speaker
+    /// review in #564.</summary>
     [Test]
     public void HebrewUnitNamesAreSourcedAndAgentChecked()
     {
         var units = Units;
-        CollectionAssert.AreEquivalent(new[] { "ins_haganah" },
-            units.Where(u => string.IsNullOrEmpty(u.NameHe)).Select(u => u.Id));
-        foreach (var u in units.Where(u => !string.IsNullOrEmpty(u.NameHe)))
+        CollectionAssert.IsEmpty(units.Where(u => string.IsNullOrEmpty(u.NameHe)).Select(u => u.Id));
+        foreach (var u in units)
         {
             StringAssert.IsMatch("[א-ת]", u.NameHe, u.Id);
             Assert.AreEqual("agent-checked", u.NameHeReview, u.Id);
@@ -218,7 +216,7 @@ public class UnitsInPlayTests
 
     /// <summary>Owner, 17 October 2026 (#740): "Data only. PR 1 adds the sourced Arab rows to units_1948.yaml and filters
     /// them off the map in UnitRoster until Phase 5 PR 17's figures land ... Nothing is drawn with IDF figures, and there is
-    /// no placeholder art." MATKOT's figures have landed for two forces (issue #665; owner, 17 October 2026, #756: MATKOT's
+    /// no placeholder art." Tal Heuberger's figures have landed for two forces (issue #665; owner, 17 October 2026, #756: Tal Heuberger's
     /// unit models count as reviewed and approved): the Arab Legion and the Arab Liberation Army. Every other side's rows
     /// stay data only, on every day of the war, and the placer gives them no spot (so the kits clear no ground for them).
     /// The two forces are drawn only once their own figure has arrived, with three of it and nothing else: until then the
@@ -811,6 +809,33 @@ public class UnitsInPlayTests
         }
         finally { UnityEngine.Object.DestroyImmediate(map.gameObject); }
         CollectionAssert.DoesNotContain(VisualToggles.Names, UnitLayer.ToggleName, "the map's teardown removes the switch");
+    }
+
+    [Test]
+    public void TheHebrewUnitCardShowsTheSourcedNameAndEnglishKeepsItsName()
+    {
+        var he = UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(UiPaths.StringsHebrew).text, "strings.he.yaml");
+        var state = StateAt(C.Rules.Start, 5, 0.8);
+        foreach (var u in Units)
+        {
+            // Hidden rows can have no sourced anchor; the card formatter still reads their names.
+            var anchor = u.Anchors.FirstOrDefault() ?? new UnitAnchor { Place = "test position" };
+            var placed = new PlacedToken(new UnitToken(u, anchor, 0, "", false), default);
+            Assert.AreEqual(u.NameHe, UnitCard.For(placed, state, he).Title, u.Id + ": Hebrew title");
+            Assert.AreEqual(u.Name, UnitCard.For(placed, state, Text).Title, u.Id + ": English title");
+            StringAssert.Contains(u.Sector, UnitCard.For(placed, state, he).Body, u.Id + ": sourced biography retained");
+        }
+    }
+
+    [Test]
+    public void AUnitWithNoHebrewNameKeepsItsEnglishNameInTheHebrewCard()
+    {
+        var he = UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(UiPaths.StringsHebrew).text, "strings.he.yaml");
+        var u = Units.First(x => x.Id == "golani");
+        u.NameHe = "";
+        var placed = new PlacedToken(new UnitToken(u, u.Anchors[0], 0, "", false), default);
+        var state = StateAt(C.Rules.Start, 5, 0.8);
+        Assert.AreEqual(u.Name, UnitCard.For(placed, state, he).Title);
     }
 
     /// <summary>Review I1: "since" only from a sourced start; never the game's first day.</summary>

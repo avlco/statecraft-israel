@@ -361,6 +361,7 @@ namespace Statecraft.Sim
             c.Objectives = ReadOptional<ObjectivesFile>(readFile, ObjectivesFileName)?.Objectives
                 .OrderBy(o => o.Id, StringComparer.Ordinal).ToList() ?? new List<Objective>();
             Validate(c, settlementIds);
+            ApplyMapOverrides(readFile, c, settlementIds);   // after the map's own checks, before the GDD records that read it
             if (c.IsGdd)
             {
                 // GDD v0.1 city data (Phase 1 PR 3), read once eras.yaml is known to be valid. Only the GDD loop reads it, so
@@ -375,6 +376,20 @@ namespace Statecraft.Sim
             c.BuildWindows();
             c.Hash = HashOf(read);
             return c;
+        }
+
+        /// <summary>The map editor's overrides (#1009), applied last, once the generated map inputs have been read and
+        /// checked: terrain and location moves here, so every caller of the sim sees them; control in the map, the only
+        /// reader of the control file. The file is optional (no file, no overrides) and is in the content hash.</summary>
+        static void ApplyMapOverrides(Func<string, string?> readFile, Content c, List<string> settlementIds)
+        {
+            string? text;
+            try { text = readFile(MapOverrides.FileName); }
+            catch (IOException e) { throw new ContentException(MapOverrides.FileName, "(file)", e.Message); }
+            catch (UnauthorizedAccessException e) { throw new ContentException(MapOverrides.FileName, "(file)", e.Message); }
+            var overrides = MapOverrides.Parse(text);
+            overrides.ValidateMap(c.Hexes, settlementIds.Concat(c.MapLocations.Select(l => l.Id)));
+            overrides.ApplyTo(c);
         }
 
         /// <summary>SHA-256 over "path\nlength\ntext" for each file, CRLF normalised to LF (a Windows checkout hashes alike).</summary>
@@ -1137,6 +1152,13 @@ namespace Statecraft.Sim
                 if (!(m.KFood >= 0 && m.KFood <= 1)) throw new ContentException(file, "mvp.k_food", "must be between 0 and 1");
                 if (m.CoverMonths == null) throw new ContentException(file, "mvp.cover_months", "required when eras.yaml systems.loop is gdd");
                 if (m.CoverMonths < 1) throw new ContentException(file, "mvp.cover_months", "must be >= 1");
+                // R-ARMS-001 to R-ARMS-003: required, so a missing key is never read as 0 (no stock, free Arms, or training without them).
+                if (m.ArmsStart == null) throw new ContentException(file, "mvp.arms_start", "required when eras.yaml systems.loop is gdd");
+                if (m.ArmsStart < 0) throw new ContentException(file, "mvp.arms_start", "must be >= 0");
+                if (m.ArmsPrice == null) throw new ContentException(file, "mvp.arms_price", "required when eras.yaml systems.loop is gdd");
+                if (!(m.ArmsPrice >= 0 && IsFinite(m.ArmsPrice.Value))) throw new ContentException(file, "mvp.arms_price", "must be a finite number >= 0");
+                if (m.ArmsPerRecruitGroup == null) throw new ContentException(file, "mvp.arms_per_recruit_group", "required when eras.yaml systems.loop is gdd");
+                if (m.ArmsPerRecruitGroup < 0) throw new ContentException(file, "mvp.arms_per_recruit_group", "must be >= 0");
                 // R-VET-001, R-VET-002: required, so a missing key is not read as 0 (a veteran after no work, or one that builds nothing).
                 foreach (var (key, v) in new[] { ("veteran_halutz_service", m.VeteranHalutzService), ("veteran_progress", m.VeteranProgress) })
                 {
