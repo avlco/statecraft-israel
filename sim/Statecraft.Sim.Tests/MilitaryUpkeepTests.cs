@@ -59,7 +59,7 @@ public class MilitaryUpkeepTests
     public void OnlyIsraeliMilitaryFormationsPay(int strength, double yearFraction)
     {
         var files = Fixture.Gdd();
-        files["unit_types.yaml"] += "  - { id: enemy, kind: unit, side: egypt, class: infantry }\n";
+        files["unit_types.yaml"] += "  - { id: enemy, kind: unit, side: egypt, class: infantry, movement_points: 3 }\n";
         var c = ContentLoader.Load(Fixture.Write(files));
         var s = Simulation.NewGame(c, 1, Mode.Historical);
         s.Units.Add(1, new Unit(1, "recruit", 1, 0, side: "israel", strength: strength));

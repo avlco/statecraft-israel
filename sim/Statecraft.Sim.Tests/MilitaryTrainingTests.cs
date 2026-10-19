@@ -72,7 +72,27 @@ public class MilitaryTrainingTests
         Assert.Equal(unit.Canonical(), Assert.Single(loaded.State.Units.Values).Canonical());
     }
 
-    // R-UNIT-004: six service turns is the labelled proposal; training time is not service.
+    // #1130 owner decision: a new recruit has three movement points; movement and service replay together.
+    [Fact]
+    public void AGraduatedRecruitMovesWithinItsBudgetAndReplays()
+    {
+        var g = GameSession.New(Mvp, GoldenRun.Seed, Mode.Historical);
+        Assert.Empty(g.Step(new Command[] { new Train("tel_aviv", "recruit", 3) }).Rejected);
+        for (int turn = 1; turn < Mvp.UnitTypes.Single(t => t.Id == "recruit").TrainingTurns; turn++) g.Step(new Command[0]);
+        var recruit = Assert.Single(g.State.Units.Values);
+        var target = Movement.Reachable(Mvp, g.State, recruit.Id).First(h => h.Value == 3).Key;
+
+        var step = g.Step(new Command[] { new Move(recruit.Id, target.Q, target.R), new Move(recruit.Id, recruit.Q, recruit.R) });
+        Assert.Equal("That hex is out of reach this turn", Assert.Single(step.Rejected).Reason);
+        var moved = g.State.Units[recruit.Id];
+        Assert.Equal((target.Q, target.R, "recruit", 3, 1), (moved.Q, moved.R, moved.Type, moved.Strength, moved.Service));
+        var loaded = GameSession.Load(Mvp, g.Save.Write(), out var warnings);
+        Assert.Empty(warnings);
+        Assert.Equal(g.State.Hash(), loaded.State.Hash());
+        Assert.Equal(moved.Canonical(), loaded.State.Units[recruit.Id].Canonical());
+    }
+
+    // R-UNIT-004: six service turns is owner accepted; training time is not service.
     [Fact]
     public void ARecruitPromotesAfterServiceAndKeepsItsFormation()
     {
@@ -114,7 +134,7 @@ public class MilitaryTrainingTests
     // R-UNIT-001, R-UNIT-004: content must not create a recruit that cannot pay upkeep or promotes to an unknown type.
     [Theory]
     [InlineData("side: israel, class: infantry, facility: military_camp", "facility: military_camp", "types[recruit].side")]
-    [InlineData("  - { id: veteran_soldier, kind: unit, side: israel, class: infantry }\n", "", "types[veteran_soldier]")]
+    [InlineData("  - { id: veteran_soldier, kind: unit, side: israel, class: infantry, movement_points: 3 }\n", "", "types[veteran_soldier]")]
     public void TrainingRequiresTheMilitaryTypes(string oldText, string newText, string field)
     {
         var files = Fixture.Gdd();

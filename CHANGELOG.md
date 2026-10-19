@@ -10,8 +10,16 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 ### Added
 - Completed recruit cohorts become one military formation each, conserving their population strength. Israeli military
   formations pay Money upkeep in step 7, borrowing a shortfall without ongoing Arms consumption; recruits promote after
-  service, preserving their identity and orders. The proposed upkeep and service threshold are labelled design values
-  for owner acceptance in review (refs #742).
+  service, preserving their identity and orders. Initial upkeep IL 0.05m per formation per turn, six service turns, and
+  recruit movement 3 are owner-accepted design values; military event grants await a separate strength/side/source schema
+  (19 October 2026; refs #742, #1130).
+
+- Standing orders (GDD Phase 5 PR 7): `UnitOrder(unit, fortify / hold)` gives one of the player's military units a
+  standing order that stays until the player changes it. Fortify is free, is set by the end of the turn it is given and
+  is lost when the unit leaves its hex (Q-HOLD-1); hold acts on the unit's own hex only and intercepts nothing (Q-HOLD-2).
+  `Orders.DefencePercent` gives combat (PR 8) the defence: fortify 125% (owner-decided, 19 Oct 2026) and hold 100% of strength (design
+  values; the balance pass #813 may tune both). Orders are free (D-A6). No golden moves: nothing gives an order yet
+  (R-ORDER-001 to R-ORDER-003; fixes #746, refs #385).
 - The Cabinet disc in the side menu shows a small gold badge while a post is vacant that the player can fill this turn,
   and its tip says so in English and Hebrew. The sim's `Cabinet.Vacancies` decides it (a vacant seat, someone may be
   appointed, no appointment to it queued, the game not over, and enough Attention left after this turn's queued orders,
@@ -22,6 +30,14 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 - The Cabinet, Budget, Defence, Why, How to play and Settings screens each gain an X in the header that closes
   them (the same close as Escape): a phone has no Escape key, and re-tapping the lit rail button was the only way
   out (v0.1.1 playtest feedback).
+- Unit movement (GDD Phase 5 PR 5): `Move(unit, q, r)` moves a player unit at command time along the cheapest path
+  within the movement points it has left this turn, and `Movement.Reachable` and `Movement.Path` give the preview.
+  Movement points per military type and a cost per land biome are owner-accepted design values (Q-MOVE-1, 19 October 2026); lake and sea are
+  impassable; a hex holds at most three units of a side (Q-MOVE-3); no zone of control, and no entry to an enemy unit's
+  hex or to an enemy-held locality (Q-MOVE-4, Q-CIV-1; the list is an owner-accepted draft: acre, nazareth, lod, ramla, gaza, beersheba, unchecked until research task #1096). Orders are free (D-A6).
+  A Move that goes through clears fortify (set or given this turn) at once, even out and back to the same hex; hold
+  moves with the unit (Q-HOLD-1).
+  No golden moves: nothing issues a Move yet (R-MOVE-001 to R-MOVE-006; fixes #744, refs #385).
 - The national Arms pool in the GDD loop (R-ARMS-001 to R-ARMS-003; fixes #781): one Arms is the equipment package for a
   1,000-person recruit group, and the state holds 12 on 15 May 1948. A `BuyArms(count)` order pays IL 1m an Arms,
   borrows a short Treasury and costs 1 Attention whatever the count; recruit training takes 1 Arms a group when it
