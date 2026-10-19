@@ -220,11 +220,12 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
    full height (the bar draws over its top), shown and taking the pointer only while the decision card is open. */
 .event-gutter { display: none; position: absolute; left: 0; top: 112px; bottom: 0; width: 72px; background-color: rgba(5, 9, 18, 0.55); }
 .event-modal .event-gutter { display: flex; }
-.left-column .rail-button { width: 48px; height: 48px; margin: 0 0 0px 0; padding: 0; font-size: 1px; color: rgba(0, 0, 0, 0); }
+.left-column .rail-button { width: 48px; height: 48px; margin: 0 0 1px 0; padding: 0; font-size: 1px; color: rgba(0, 0, 0, 0); }
 .left-column .rail-button:hover, .left-column .rail-button:focus, .left-column .nav-open { color: rgba(0, 0, 0, 0); }
-/* Seven discs with Timeline (#955): 48 px, without a gap, so their 336 px column keeps the previous six-button height.
+/* Seven discs with Timeline (#955): 48 px with a 1 px gap, retaining a map gutter between buttons while
+   fitting the short-window city panels.
    The 56 px column width stays fixed; glyph content keeps its previous size through the smaller padding. The phone's
-   60 px targets below stay unchanged. LeftColumnTests and InfoPanelLayoutTests cover all window shapes and both languages. */
+   60 px targets below stay unchanged. LeftColumnTests and InfoPanelLayoutTests cover all window shapes and both languages; GameSceneTests guards the map gutter. */
 .left-column .rail-button .nav-disc { top: 0; left: 0; width: 48px; height: 48px; padding: 10px; border-radius: 24px; }
 /* A screen with something to do this turn (#1109, HudPresenter.ActionClass): a small gold dot on the disc's upper right,
    ringed in the column's navy so it reads against the rim; the gold-light of End Turn's waiting highlight (#1034). */
