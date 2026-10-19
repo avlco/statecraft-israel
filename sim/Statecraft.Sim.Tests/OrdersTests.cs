@@ -150,6 +150,7 @@ public class OrdersTests
     [InlineData("  fortify_defence_percent: 150\n", "", "mvp.fortify_defence_percent", "required when eras.yaml systems.loop is gdd")]
     [InlineData("  hold_defence_percent: 120\n", "", "mvp.hold_defence_percent", "required when eras.yaml systems.loop is gdd")]
     [InlineData("  hold_defence_percent: 120\n", "  hold_defence_percent: 0\n", "mvp.hold_defence_percent", "must be >= 1")]
+    [InlineData("  fortify_defence_percent: 150\n", "  fortify_defence_percent: 0\n", "mvp.fortify_defence_percent", "must be >= 1")]
     public void ThePercentsAreRequired(string from, string to, string field, string message)
     {
         var files = Fixture.Gdd(new Dictionary<string, string> { ["unit_types.yaml"] = Types });
