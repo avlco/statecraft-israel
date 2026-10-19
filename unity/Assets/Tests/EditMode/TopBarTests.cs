@@ -256,7 +256,8 @@ public class TopBarTests
     /// <summary>Review of #624: the one-row bar's edge. 4:3 (1646 logical px) and 1662 keep the one-row bar with its icons; a
     /// fullscreen 5:4 (1585) and 1610 or 1612 take the stacked bar with its icons (the one-row bar does not hold the widest
     /// values there); just above NarrowBelowPx (1642) one row, just below (1635) stacked; a square window (1382) the stacked
-    /// bar without icons. The logical widths are logged, the numbers HudPresenter's notes quote.</summary>
+    /// bar without icons. #731 preserves the one-row edge but drops the icons at these boundary windows for nine meters.
+    /// The logical widths are logged, the numbers HudPresenter's notes quote.</summary>
     [UnityTest]
     public IEnumerator TheOneRowBarReachesFiveByFour()
     {
@@ -268,7 +269,7 @@ public class TopBarTests
                 bool narrow = r.ClassListContains(HudPresenter.NarrowClass);
                 TestContext.WriteLine($"{w}x{h}: panel {root.worldBound.width:0.0} x {root.worldBound.height:0.0}, bar {root.Q("top-bar").worldBound.width:0.0}; narrow {narrow}, compact {root.Q("top-bar").ClassListContains(HudPresenter.CompactClass)}, two rows {r.ClassListContains(HudPresenter.TwoRowClass)}");
                 if (narrow == oneRow) problems.Add($"{w}x{h} ({root.Q("top-bar").worldBound.width:0} px): {(oneRow ? "not the one-row bar" : "the one-row bar")}");
-                if (oneRow && root.Q("top-bar").ClassListContains(HudPresenter.CompactClass)) problems.Add($"{w}x{h}: the one-row bar dropped its icons");
+                if (!root.Q("top-bar").ClassListContains(HudPresenter.CompactClass)) problems.Add($"{w}x{h}: the nine-meter boundary bar must drop its icons to keep the text clear");
             });
         Assert.IsEmpty(problems, string.Join("\n", problems));
     }
@@ -388,7 +389,7 @@ public class TopBarTests
                     labels.Add(root.Q<Label>("attention"));   // the captions' query also holds security-level (class meter-name)
                     labels.Add(root.Q<Label>("turn")); labels.Add(root.Q<Label>("date"));   // the plate's date line
                     labels = labels.Distinct().ToList();
-                    if (labels.Count != 11) problems.Add($"{at}: precondition: 11 small labels (Social cohesion's caption with #380), found {labels.Count}");
+                    if (labels.Count != 13) problems.Add($"{at}: precondition: 13 small labels (Food and Arms added by #731), found {labels.Count}");
                     foreach (var l in labels)
                     {
                         if (string.IsNullOrEmpty(l.text) || !(l.worldBound.height > 0)) { problems.Add($"{at}: precondition: {l.name} '{l.text}' shows"); continue; }

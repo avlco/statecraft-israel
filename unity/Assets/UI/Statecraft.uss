@@ -117,6 +117,8 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
 .meter-row { flex-direction: row; align-items: flex-end; }
 .meter-value { font-size: 21px; color: var(--ink); }
 .meter-delta { font-size: 16px; margin-left: 7px; }
+.top-bar--compact .meter-pool .meter-row { flex-direction: column; align-items: flex-start; }
+.top-bar--compact .meter-pool .meter-delta { margin-left: 0; }
 /* The screen buttons: a round, gold-rimmed icon with its name under it (the name keeps them legible without tooltips). */
 .nav { flex-direction: row; flex-shrink: 0; align-items: center; }
 .nav-button {
@@ -159,6 +161,10 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
    (78% of the bar, so they always take the first row) above, the screen buttons and End Turn below; the panels move down. */
 .hud-two-row .top-bar { height: 216px; padding-top: 6px; padding-bottom: 4px; flex-wrap: wrap; justify-content: space-between; align-content: space-around; }
 .hud-two-row .meters { width: 78%; flex-grow: 1; }
+.hud-pools.hud-two-row .meters { flex-wrap: wrap; }
+.hud-pools.hud-two-row .nav { flex-basis: 50%; flex-grow: 1; }
+.hud-pools.hud-two-row .meter { flex-basis: 20%; min-width: 160px; }
+.hud-pools.hud-two-row .meter .meter-name { max-width: 170px; }
 .hud-two-row .right-column, .hud-two-row .left-column, .hud-two-row .event-gutter, .hud-two-row .event-layer, .hud-two-row .screen, .hud-two-row .toast { top: 232px; }
 /* #380's re-tier gives a square window (1024x1024) the two-row bar: the event layer keeps the 92 px the bar grew by free at its
    bottom (padding: the backdrop still reaches the window's bottom), so the centred card stays where the stacked bar left it,
@@ -175,10 +181,10 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
    its rows' height when that is more than 440 px, and the panels under it move down by what it grew (HudPresenter.PlaceUnderBar). */
 .hud-three-row .top-bar { height: 440px; }
 .hud-three-row .meters { width: 100%; flex-wrap: wrap; }
-/* Each meter a quarter of the row, so the seven always take two lines (four, then three) and the bar's second line is
+/* Each meter a quarter of the row: seven take two lines, and the nine GDD meters take three (four, four, one). The second line is
    never an empty band (a phone's turn-1 values would otherwise fit one line). A quarter (~190 px) is wider than the widest
    meter there (~154 px). */
-.hud-three-row .meter { flex-basis: 25%; flex-grow: 0; flex-shrink: 0; }
+.hud-three-row .meter, .hud-pools.hud-three-row .meter { flex-basis: 25%; flex-grow: 0; flex-shrink: 0; }
 /* At the floor's 25 px (#642) a caption may take most of its quarter, not the 120 px that would break "Immigration" inside the
    word (170 px: a phone's quarter, about 193 px, keeps 5% free, PromoHudTests), and "Security" and its level, too wide for a
    quarter side by side, wrap the level under the caption. */
@@ -800,6 +806,8 @@ Button.settings-choice-selected { -unity-font-definition: url("project://databas
 .lang-he .cabinet-house, .lang-he .party-group, .lang-he .party-chip, .lang-he .defence-row, .lang-he .leaders, .lang-he .rung,
 .lang-he .defence-budget, .lang-he #cabinet-seats .unity-scroll-view__content-container { flex-direction: row-reverse; }
 .lang-he.hud-narrow .meter-row { flex-direction: column; align-items: flex-end; }
+.lang-he .top-bar--compact .meter-pool .meter-row { align-items: flex-end; }
+.lang-he .top-bar--compact .meter-pool .meter-delta { margin-right: 0; }
 .lang-he .turn-box { align-items: flex-start; }
 .lang-he .top-bar { padding: 0 8px 0 14px; }
 .lang-he .date-box { margin-right: 0; margin-left: 10px; padding: 0 12px 0 10px; }
@@ -839,3 +847,10 @@ Button.settings-choice-selected { -unity-font-definition: url("project://databas
 .lang-he .info-gdd Button { margin: 2px 0 2px 6px; }
 .hud-two-row .info-panel.info-gdd-shown { width: 520px; flex-wrap: wrap; }
 .hud-two-row .info-gdd { width: 100%; margin: 8px 0 0 0; padding: 8px 0 0 0; border-left-width: 0; border-right-width: 0; border-top-width: 1px; }
+
+.arms-controls { flex-wrap: wrap; align-items: center; }
+.arms-count { flex-grow: 1; min-width: 200px; margin: 4px; }
+.arms-count .unity-base-field__label { min-width: 0; width: auto; margin-right: 12px; color: var(--ink); font-size: 18px; }
+.arms-count .unity-base-field__input { min-width: 80px; min-height: 34px; color: var(--ink); background-color: var(--navy-deep); font-size: 20px; border-width: 1px; border-color: var(--gold-dim); }
+.lang-he .arms-count { flex-direction: row-reverse; }
+.lang-he .arms-count .unity-base-field__label { margin-right: 0; margin-left: 12px; }

@@ -50,6 +50,10 @@ namespace Statecraft.Game.UI
         /// wrapped to two lines, #380), then the screen buttons and End Turn (Statecraft.uss .hud-three-row; #210).</summary>
         public const float ThreeRowBelowPx = 1100f;
         public const string ThreeRowClass = "hud-three-row";
+        // #731: in compact mode the stock changes stack within their own meters. Keep the 70 px one-row bar at 1920, dropping icons
+        // sooner; raised captions and narrower windows wrap the nine meters instead of squeezing their text.
+        const float PoolIconRoomPx = 500f, PoolTwoRowRoomPx = 400f;
+        const string PoolsClass = "hud-pools";
         /// <summary>On the one-row bar, when the meters leave enough room, the bar gets RoomyClass: promo-sized icons (38 px)
         /// and values (25 px) (Statecraft.uss .top-bar--roomy). It turns on only when the measured spare room covers the
         /// predicted growth (RoomyGrowth) plus SpareShare, and off when the spare room falls below SpareShare, so it never
@@ -111,13 +115,13 @@ namespace Statecraft.Game.UI
         /// <summary>The meters' explanations under the bar (#1037): their words and the turn's causes.</summary>
         readonly MeterTip? meterTip;
 
-        /// <summary>The panels under the bar (Statecraft.uss: top 456 px under the three-row bar), which PlaceUnderBar moves
-        /// down by what the three-row bar grows past its 440 px.</summary>
+        /// <summary>The panels under the bar, moved down by the extra height of wrapping rows (the GDD two-row bar starts
+        /// at 216 px, the three-row bar at 440 px; Statecraft.uss).</summary>
         readonly List<VisualElement> underBar;
         /// <summary>The bar's items, whose rows set the three-row bar's height (RowsHeight).</summary>
         readonly List<VisualElement> barItems;
-        /// <summary>Statecraft.uss .hud-three-row .top-bar height.</summary>
-        const float ThreeRowBarPx = 440f;
+        /// <summary>Statecraft.uss .hud-two-row / .hud-three-row .top-bar heights.</summary>
+        const float TwoRowBarPx = 216f, ThreeRowBarPx = 440f;
 
         public HudPresenter(VisualElement root, SimBridge bridge, UiText text)
         {
@@ -190,6 +194,7 @@ namespace Statecraft.Game.UI
             dateRow?.parent?.UnregisterCallback<GeometryChangedEvent>(OnPlateGeometry);
             foreach (var m in meters) m.UnregisterCallback<GeometryChangedEvent>(OnMeterGeometry);
             bar.RemoveFromClassList(RoomyClass);
+            hudRoot.RemoveFromClassList(PoolsClass);
             bar.RemoveFromClassList(CompactClass); hudRoot.RemoveFromClassList(NarrowClass); hudRoot.RemoveFromClassList(TwoRowClass); hudRoot.RemoveFromClassList(ThreeRowClass);
             ScreenNav.DisableCovered(hudRoot);
         }
@@ -331,7 +336,7 @@ namespace Statecraft.Game.UI
             plate.style.paddingLeft = Px(PlateSidePx); plate.style.paddingRight = Px(PlateSidePx);
         }
 
-        /// <summary>The three-row bar takes its rows' height when that is more than its 440 px (Statecraft.uss), so the raised
+        /// <summary>A wrapping bar takes its rows' height when that is more than its base height (Statecraft.uss), so the raised
         /// text of a smaller phone fits it (#642, the owner: "down to 375x667"), and the panels under it move down by what it
         /// grew: a top margin, not a top, so the stylesheet's other placements (the toast at the bottom beside a wide screen)
         /// still apply. Set here, not as height: auto in the stylesheet: there Yoga sized the wrapping bar as if each quarter-width
@@ -339,8 +344,10 @@ namespace Statecraft.Game.UI
         void PlaceUnderBar()
         {
             // A hidden bar (the start screen) moves nothing: the start screen's toast keeps its own top (review of #859).
-            var rows = hudRoot.ClassListContains(ThreeRowClass) && bar.resolvedStyle.display != DisplayStyle.None ? RowsHeight() : 0f;
-            var grown = rows - ThreeRowBarPx;
+            var three = hudRoot.ClassListContains(ThreeRowClass);
+            var wraps = three || bridge.Content.IsGdd && hudRoot.ClassListContains(TwoRowClass);
+            var rows = wraps && bar.resolvedStyle.display != DisplayStyle.None ? RowsHeight() : 0f;
+            var grown = rows - (three ? ThreeRowBarPx : TwoRowBarPx);
             bar.style.height = grown > 0.5f ? new StyleLength(rows) : new StyleLength(StyleKeyword.Null);
             var margin = grown > 0.5f ? new StyleLength(grown) : new StyleLength(StyleKeyword.Null);
             foreach (var e in underBar) e.style.marginTop = margin;
@@ -378,9 +385,10 @@ namespace Statecraft.Game.UI
             if (!(width > 0)) return;   // NaN before layout: wait for it
             var raised = FloorRaises(width);
             var tierWidth = raised ? width - FloorGrowth() : width;   // the owner's text floor needs room (#624)
-            bar.EnableInClassList(CompactClass, tierWidth < CompactBelowPx);
+            var poolRoom = bridge.Content.IsGdd ? PoolIconRoomPx : 0f;
+            bar.EnableInClassList(CompactClass, tierWidth < CompactBelowPx + poolRoom);
             hudRoot.EnableInClassList(NarrowClass, tierWidth < NarrowBelowPx || raised && smallTextSize > OneRowSmallMaxPx);
-            hudRoot.EnableInClassList(TwoRowClass, width < TwoRowBelowPx);
+            hudRoot.EnableInClassList(TwoRowClass, (bridge.Content.IsGdd ? tierWidth : width) < TwoRowBelowPx + (bridge.Content.IsGdd ? PoolTwoRowRoomPx : 0f));
             hudRoot.EnableInClassList(ThreeRowClass, width < ThreeRowBelowPx);
             StyleSmallText(raised);
             PlaceUnderBar();
@@ -413,6 +421,8 @@ namespace Statecraft.Game.UI
         public void Render()
         {
             var m = HudModel.From(bridge, text);
+            var poolsChanged = hudRoot.ClassListContains(PoolsClass) != m.ShowsPools;
+            hudRoot.EnableInClassList(PoolsClass, m.ShowsPools);
             Set("year", m.Year); Set("turn", m.Turn); Set("date", m.Date); Set("attention", m.Attention);
             Set("security-level", m.SecurityLevel);
             var score = root.Q<Label>("score");   // the GDD loop only (#380): hidden when HudModel gives none
@@ -420,6 +430,10 @@ namespace Statecraft.Game.UI
             score.style.display = m.Score.Length == 0 ? DisplayStyle.None : DisplayStyle.Flex;
             Set("treasury", m.Treasury); Set("immigration", m.Immigration); Set("security", m.Security);
             Set("support", m.Support); Set("standing", m.Standing); Set("fx", m.Fx);
+            Set("food", m.Food); Set("arms", m.Arms);
+            said["food"].element.style.display = m.ShowsPools ? DisplayStyle.Flex : DisplayStyle.None;
+            said["arms"].element.style.display = m.ShowsPools ? DisplayStyle.Flex : DisplayStyle.None;
+            if (poolsChanged) SetCompact(bar.layout.width);
             // Social cohesion: the GDD loop only (#380), as the score; a hidden meter takes no room in the bar.
             Set("cohesion", m.Cohesion);
             said["cohesion"].element.style.display = m.ShowsCohesion ? DisplayStyle.Flex : DisplayStyle.None;
