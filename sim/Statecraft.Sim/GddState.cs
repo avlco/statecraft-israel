@@ -49,8 +49,8 @@ namespace Statecraft.Sim
         /// Craftsmen take the jobs first (R-CRAFT-002).</summary>
         public int Employed { get; }
         public int Refugees { get; }
-        /// <summary>The recruits who finished basic training here (GDD "Progression"; R-TRAIN-003). A count until Phase 5 makes
-        /// soldiers units.</summary>
+        /// <summary>Legacy city recruit count, retained for canonical compatibility. New training completes into
+        /// State.Units (R-TRAIN-003), never this field; saves replay their command log rather than city snapshots.</summary>
         public int Recruits { get; }
         /// <summary>The craftsmen trained here (D-D4; R-CRAFT-001): a count, not movable units (D-A2), and not part of
         /// <see cref="Civilians"/>.</summary>

@@ -49,6 +49,8 @@ public class DesignValuesTests
         ("rules.yaml", "mvp.cover_months"),
         ("rules.yaml", "mvp.veteran_halutz_service"),
         ("rules.yaml", "mvp.veteran_progress"),
+        ("rules.yaml", "mvp.military_upkeep_per_turn"),
+        ("rules.yaml", "mvp.veteran_soldier_service"),
         ("rules.yaml", "mvp.housing_start_condition"),
         ("rules.yaml", "mvp.overflow_condition_loss"),
         ("rules.yaml", "mvp.defeat_turns"),
@@ -217,6 +219,7 @@ public class DesignValuesTests
         Assert.Equal((0.35, 0.15), (m.HousingStartCondition, m.OverflowConditionLoss));   // Q-START-3, Q-HOUSE-1 (D-D1)
         Assert.Equal((5, 0.5), (m.DelegationLoyaltyFloor, m.DisloyalEffectShare));   // R-EVT-003, #107 (D-H1)
         Assert.Equal((12, 1.0, 1, 1.0), (m.ArmsStart, m.ArmsPrice, m.ArmsPerRecruitGroup, c.Rules.AttentionCost["buy_arms"]));   // #781 (D-G6)
+        Assert.Equal((0.05, 6), (m.MilitaryUpkeepPerTurn, m.VeteranSoldierService)); // Q-GEN-1: proposals for owner review, not history.
         Assert.Equal(12, c.Cities.Count);
         foreach (var x in c.Cities)   // the listed housing and job values are the ones Cities.Init starts from
             Assert.Equal(((int)x.Housing!.Value, (int)x.Jobs!.Value), (x.HousingCapacity, x.JobSlots));

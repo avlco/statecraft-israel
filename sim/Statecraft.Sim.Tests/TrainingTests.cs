@@ -213,7 +213,8 @@ public class TrainingTests
         var late = Step(c, done, new CancelTraining(id));
         Assert.Equal("There is no such training group", Assert.Single(late.Rejected).Reason);
         Assert.Equal(Step(c, done).State.Hash(), late.State.Hash());
-        Assert.Equal(1, late.State.Cities["town_a"].Recruits);
+        Assert.Equal(0, late.State.Cities["town_a"].Recruits);
+        Assert.Equal(1, Assert.Single(late.State.Units.Values).Strength);
     }
 
     // R-TRAIN-001, R-TRAIN-002
@@ -250,8 +251,8 @@ public class TrainingTests
             s = Step(Mvp, s).State;
         }
         Assert.Empty(s.Cohorts);
-        Assert.Equal(3, s.Cities["tel_aviv"].Recruits);
-        Assert.Empty(s.Units);   // a recruit is a count until Phase 5
+        Assert.Equal(0, s.Cities["tel_aviv"].Recruits);
+        Assert.Equal(3, Assert.Single(s.Units.Values).Strength); // Phase 5: one formation per completed cohort.
     }
 
     /// <summary>The timing rule, the plan's reading of D-A6 (Task 4.3) and not part of the owner's ruling: the turn a cohort is ordered in is its first training turn, so a cohort
@@ -269,7 +270,8 @@ public class TrainingTests
         Assert.Single(t1.Cohorts);
         Assert.Equal(0, t1.Cities["tel_aviv"].Recruits);
         Assert.Empty(t2.Cohorts);
-        Assert.Equal(2, t2.Cities["tel_aviv"].Recruits);
+        Assert.Equal(0, t2.Cities["tel_aviv"].Recruits);
+        Assert.Equal(2, Assert.Single(t2.Units.Values).Strength);
 
         var u0 = Step(Mvp, start, new Train("tel_aviv", "halutz", 2)).State;     // halutz: 4 turns, done at the end of T+3
         var u2 = Step(Mvp, Step(Mvp, u0).State).State;

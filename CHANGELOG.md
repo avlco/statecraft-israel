@@ -8,6 +8,10 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 ## [Unreleased]
 
 ### Added
+- Completed recruit cohorts become one military formation each, conserving their population strength. Israeli military
+  formations pay Money upkeep in step 7, borrowing a shortfall without ongoing Arms consumption; recruits promote after
+  service, preserving their identity and orders. The proposed upkeep and service threshold are labelled design values
+  for owner acceptance in review (refs #742).
 - The Cabinet disc in the side menu shows a small gold badge while a post is vacant that the player can fill this turn,
   and its tip says so in English and Hebrew. The sim's `Cabinet.Vacancies` decides it (a vacant seat, someone may be
   appointed, no appointment to it queued, the game not over, and enough Attention left after this turn's queued orders,
