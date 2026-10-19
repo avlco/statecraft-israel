@@ -1,6 +1,6 @@
 # Food and Arms HUD capture evidence
 
-Refs #731, the owner-released Food/Arms HUD and buy-Arms slice. These are actual WebGL screenshots captured on 19 October 2026, not generated mockups. The capture build was made with source commit `0aa34ce7db1d4e3af9771c9676652563ab57c85d` checked out. It precedes this evidence-only addition; later commits' gate results belong in the PR with their exact SHA.
+Refs #731, the owner-released Food/Arms HUD and buy-Arms slice. These are actual WebGL screenshots captured on 19 October 2026, not generated mockups. The capture build was made with source commit `95e5afd33058345290a11ac7171cd852a76e6b29` checked out. It includes the HUD integration fixes and current main c5771d9e. It precedes this evidence-only refresh; later commits' gate results belong in the PR with their exact SHA.
 
 | State | English | Hebrew |
 |---|---|---|
@@ -18,7 +18,7 @@ uv run tools/machine_lock.py --shared --wait-unity -- "$UNITY" \
   -batchmode -CI false -GITHUB_ACTIONS false -TF_BUILD false -quit \
   -projectPath unity -buildTarget WebGL \
   -executeMethod Statecraft.Game.EditorTools.Build.Web \
-  -compression disabled -out Builds/731-food-arms-preview -logFile "$BUILD_LOG"
+  -compression disabled -out Builds/731-food-arms-c577-preview -logFile "$BUILD_LOG"
 ```
 
 `tools/headed.py`'s `Browser` drove the built game with `golden&navlog&lang=en` / `he`, at a fixed 1920x1080 CSS viewport and DPR 1, in temporary profiles deleted on exit. Its existing `keep_awake` option prevented background/covered-window throttling. All eight current manifest golden lines were awaited separately from this fresh game's seed. The UI path hides the initial card, opens Defence, scrolls the real panel, then uses its quantity-1 purchase, withdrawal and End turn buttons. No game state was injected and no product diagnostic hook was added.

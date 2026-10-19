@@ -1,9 +1,9 @@
 {
-  "source_commit": "0aa34ce7db1d4e3af9771c9676652563ab57c85d",
+  "source_commit": "95e5afd33058345290a11ac7171cd852a76e6b29",
   "capture_date": "2026-10-19",
-  "build": "Build.Web, compression disabled, Builds/731-food-arms-preview",
+  "build": "Build.Web, compression disabled, Builds/731-food-arms-c577-preview",
   "unity": "6000.3.25f1",
-  "browser": "Google Chrome155.0.8059.80, isolated temporary profiles removed after capture",
+  "browser": "Google Chrome 155.0.8059.80, isolated temporary profiles removed after capture",
   "viewport_css_px": [
     1920,
     1080
@@ -21,31 +21,31 @@
   "files": [
     {
       "file": "hud-en.jpg",
-      "bytes": 730784,
-      "sha256": "41611cca509650280c556c4f1ea9443c55e8b6594899833706bd8d7e1248ad80",
-      "captured_utc": "2026-10-19T15:43:05.739092+00:00",
-      "adjacent_native_png_sha256": "1abad37d8ef8dcaad1c3cb1f0e3bbc7a4e9698e41e90d5e4d6785a01fd7c6014"
-    },
-    {
-      "file": "hud-he.jpg",
-      "bytes": 727093,
-      "sha256": "1eaba6dfccbee2e5aa3684dbe2786c241128a68e6910e47cf60b4c53b5414f29",
-      "captured_utc": "2026-10-19T15:43:41.792600+00:00",
-      "adjacent_native_png_sha256": "f84d59c5d5131c9a29e149a276ae49dfea87ed7d105fcdf71f9973df47f80ef5"
+      "bytes": 730930,
+      "sha256": "26bd30409ade819d36d948ba0ebae874f254ff554c0cd41306b58b3247c6524c",
+      "captured_utc": "2026-10-19T16:39:42.295049+00:00",
+      "adjacent_native_png_sha256": "8b89d2e1896ee58a0d0fb5f1fd00bde60e8a678e50d4e649c0778f21fbe5a879"
     },
     {
       "file": "queued-arms-en.jpg",
-      "bytes": 434292,
-      "sha256": "00a40e7616369776100232eca3b7e4d51382576fbedd2c0ab0bec62e678216c3",
-      "captured_utc": "2026-10-19T15:43:20.556466+00:00",
-      "adjacent_native_png_sha256": "e469403539d709c6e7941766f502536a948818229705798ef71cdc61029d3653"
+      "bytes": 434722,
+      "sha256": "1d411543fc0fe21ab6ffbea0e7e0b67502056497f479cc97a0d3036ac14fa39e",
+      "captured_utc": "2026-10-19T16:39:56.656521+00:00",
+      "adjacent_native_png_sha256": "61690b2497fad13d3fefa31915b86327b95b6aa8f4c81b7bae3273037c8c99bf"
+    },
+    {
+      "file": "hud-he.jpg",
+      "bytes": 727187,
+      "sha256": "7c26e5d0c7361a1bf5285b5f9ca8331f5b07d120d6c89e4baa70e2587ca47ea8",
+      "captured_utc": "2026-10-19T16:40:20.032804+00:00",
+      "adjacent_native_png_sha256": "780b89c6f8e5eb1310b8525ab2f28227fcea58fee6d3ddccbfc28738168531d0"
     },
     {
       "file": "queued-arms-he.jpg",
-      "bytes": 432972,
-      "sha256": "8a6384afe7c42ffd1304a5dcd9a1f3f5c20d251ba7d84b943a1db5374c1a64f8",
-      "captured_utc": "2026-10-19T15:43:56.561241+00:00",
-      "adjacent_native_png_sha256": "dcfaf1a1cf993272f8d6f1e1b81cb8c562d39347840f75afa77c5d25fdbc56de"
+      "bytes": 433065,
+      "sha256": "5f6ae2fe047e19ca408183b79d38bff6528631d1f59dafb0c16072be49c4227f",
+      "captured_utc": "2026-10-19T16:40:34.985400+00:00",
+      "adjacent_native_png_sha256": "b76f4ae3cd0fee8d258992ddcc7f256711f14495874a2ec6f5b303a7d42cdfd3"
     }
   ]
 }
