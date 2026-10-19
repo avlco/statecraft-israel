@@ -15,7 +15,7 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   exist on the date reads its named successor's multiplier. In the historical run every build and absorption moves:
   the reference player builds Mefalsim on 15 February 1951 (was 15 March 1950), the camps are never started, and every
   golden is re-pinned.
-- A timeline screen shows the player’s course beside the record (refs #955, #939).
+- A timeline screen shows the player’s course beside the record, including considered alternatives and design assumptions (refs #955, #939).
 
 ### Fixed
 - Fractional site and city-project carry is hashed as IEEE bits on every runtime, avoiding different decimal spellings on .NET and Unity Mono; gameplay progress is unchanged.

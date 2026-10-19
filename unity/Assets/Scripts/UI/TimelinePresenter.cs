@@ -55,6 +55,13 @@ namespace Statecraft.Game.UI
                 columns.Add(Line("timeline-yours", Answer(entry.Chosen)));
                 columns.Add(Line("timeline-record", entry.Historical == "" ? text["timeline.no_record"] : Answer(entry.Historical)));
                 row.Add(columns);
+                var alternative = ev.Options.First(o => o.Id == entry.Chosen).Alternative;
+                if (alternative?.Basis == OptionAlternative.Design)
+                    row.Add(Line("timeline-design", text["timeline.alt_design"]));
+                else if (alternative != null && alternative.IsConsidered && alternative.Date.HasValue)
+                    row.Add(Line("timeline-attribution", text.Format(
+                        alternative.Basis == OptionAlternative.Proposed ? "timeline.alt_proposed" : "timeline.alt_debated",
+                        alternative.By, Statecraft.Game.Map.Control1948.DateText(alternative.Date.Value, k => text[k]))));
                 // A visible sign supplements the rim: the difference is not conveyed by colour alone.
                 if (entry.Diverged) row.Add(Line("timeline-difference", "≠"));
                 if (entry.RejoinedBy != "") row.Add(Line("timeline-rejoined", text["timeline.rejoined"]));

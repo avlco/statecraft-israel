@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Statecraft.Game.UI
 {
-    /// <summary>The side-menu buttons open the Cabinet, Budget, Defence, Why, How to play and Settings screens, one at a time; pressing the open
+    /// <summary>The side-menu buttons open the Cabinet, Budget, Defence, Why, Timeline, How to play and Settings screens, one at a time; pressing the open
     /// screen's button again closes it. Every press toggles, synchronously, with no debounce: two presses in one frame (a
     /// double click, or a click plus Enter) open and close again, so the result depends only on the number of presses
     /// (HudTests.TwoPressesInOneFrameToggleTwice; playtest 1, item 11).</summary>
@@ -13,7 +13,7 @@ namespace Statecraft.Game.UI
         public static readonly string[] Screens = { "cabinet", "budget", "defence", "why", "timeline", "how-to-play", "settings" };
         /// <summary>The class on the open screen's button (Statecraft.uss lights its ring).</summary>
         public const string OpenClass = "nav-open";
-        /// <summary>The class on the "root" element while a wide screen (class <see cref="WideClass"/>: Cabinet, Defence) is
+        /// <summary>The class on the "root" element while a wide screen (class <see cref="WideClass"/>: Cabinet, Defence, Timeline) is
         /// open: Statecraft.uss hides the info panel it covers, so its buttons take no focus and no clicks.</summary>
         public const string WideOpenClass = "wide-screen-open", WideClass = "screen-wide";
         /// <summary>The class on the "root" element while any screen is open: Statecraft.uss hides the decision layer under it,

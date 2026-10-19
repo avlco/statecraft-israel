@@ -17,10 +17,10 @@ public class TimelineScreenTests
     static readonly Content C = ContentLoader.Load(Paths.Content);
     static UiText Text(bool hebrew = false) => UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(hebrew ? UiPaths.StringsHebrew : UiPaths.Strings).text);
     static IDisposable Presenter(VisualElement root, SimBridge bridge, UiText text) => new TimelinePresenter(root, bridge, text);
-    static GameSession Historical(int turns)
+    static GameSession Historical(int turns, Content? content = null)
     {
-        var g = GameSession.New(C, GoldenRun.Seed, Mode.Historical);
-        for (int i = 0; i < turns; i++) g.Step(GoldenRun.Orders(C, g.State).ToArray());
+        var c = content ?? C; var g = GameSession.New(c, GoldenRun.Seed, Mode.Historical);
+        for (int i = 0; i < turns; i++) g.Step(GoldenRun.Orders(c, g.State).ToArray());
         return g;
     }
     static VisualElement[] Rows(VisualElement root) => root.Query<VisualElement>(className: "timeline-row").ToList().ToArray();
@@ -79,8 +79,10 @@ public class TimelineScreenTests
     [Test]
     public void PendingAndQueuedAnswersAreAbsentAndReadingChangesNoStateOrSave()
     {
-        using var ui = new UiTestKit(); var text = Text(); var g = GameSession.New(C, GoldenRun.Seed, Mode.Historical);
-        if (g.State.PendingEvents.Count == 0) g.Step(Array.Empty<Command>());
+        using var ui = new UiTestKit(); var text = Text(); var g = Historical(6);
+        for (int i = 0; i < 12 && g.State.PendingEvents.Count == 0; i++) g.Step(GoldenRun.Orders(C, g.State).ToArray());
+        Assert.Greater(Timeline.Entries(C, g.State).Count, 0, "readonly checks must exercise resolved rows");
+        Assert.Greater(g.State.PendingEvents.Count, 0, "real pending choice needed for the queue guard");
         var e = C.Events.Single(x => x.Id == g.State.PendingEvents.First());
         var bridge = new SimBridge(g, text); bridge.Queue(new ChooseEventOption(e.Id, e.Options.First().Id));
         Assert.AreEqual(1, bridge.Queued.Count);
@@ -101,7 +103,7 @@ public class TimelineScreenTests
         Assert.Greater(Rows(ui.Root).Length, before);
         CollectionAssert.AreEqual(Timeline.Entries(C, bridge.State).Select(e => e.Event), Rows(ui.Root).Select(r => r.userData));
         screen.Dispose(); var rows = Rows(ui.Root);
-        bridge.EndTurn(); Assert.AreSame(rows[0], Rows(ui.Root)[0], "disposed presenter cannot rebuild the tree");
+        bridge.EndTurn(); nav.Close(); nav.Open("timeline"); Assert.AreSame(rows[0], Rows(ui.Root)[0], "disposed presenter cannot rebuild the tree");
     }
 
     [Test]
@@ -164,7 +166,14 @@ public class TimelineScreenTests
                 doc.visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UiPaths.GameUxml); go.SetActive(true);
                 var root = doc.rootVisualElement; root.Q("root").RemoveFromClassList("loading");
                 if (hebrew) root.Q("root").AddToClassList(UiLanguage.HebrewClass);
-                var text = Text(hebrew); var bridge = new SimBridge(Historical(12), text);
+                var text = Text(hebrew); var content = ContentLoader.Load(Paths.Content); var game = Historical(12, content);
+                // UI-only long attribution fixture; never added to shipped content or factual review records.
+                content.Events.Add(new GameEvent { Id = "fixture_long_attribution", Title = "Fixture attribution wrapping", From = new DateTime(1948, 5, 15),
+                    Options = { new EventOption { Id = "record", Text = "Fixture recorded answer", Historical = true }, new EventOption {
+                        Id = "road", Text = "Fixture alternative answer", Alternative = new OptionAlternative { Basis = OptionAlternative.Debated,
+                            By = string.Join(" ", Enumerable.Repeat("Fixture body with a long name", 8)), Date = new DateTime(1948, 5, 15) } } } });
+                game.State.ChosenOptions["fixture_long_attribution"] = "road";
+                var bridge = new SimBridge(game, text);
                 var hud = new HudPresenter(root, bridge, text);
                 var screen = Presenter(root, bridge, text);
                 var nav = new ScreenNav(root); nav.Open("timeline");
@@ -206,4 +215,47 @@ public class TimelineScreenTests
                 }
             }
     }
+
+    [Test]
+    public void AConsideredChosenAlternativeShowsItsOwnAttributionOnlyAfterTheChoice(
+        [Values(OptionAlternative.Proposed, OptionAlternative.Debated, OptionAlternative.Design, "none")] string basis,
+        [Values(false, true)] bool hebrew)
+    {
+        // Entirely test-only metadata: "Fixture body" is not a real institution or an assertion about history.
+        var c = ContentLoader.Load(Paths.Content); var g = GameSession.New(c, GoldenRun.Seed, Mode.Historical);
+        var option = new EventOption { Id = "road", Text = "Fixture answer", Alternative = basis == "none" ? null : new OptionAlternative {
+            Basis = basis, By = basis == OptionAlternative.Design ? "" : "Fixture body",
+            Date = basis == OptionAlternative.Design ? (DateTime?)null : new DateTime(1948, 5, 15) } };
+        c.Events.Add(new GameEvent { Id = "fixture_attribution", Title = "Fixture attribution", From = new DateTime(1948, 5, 15),
+            Options = { new EventOption { Id = "record", Text = "Fixture recorded answer", Historical = true }, option } });
+        // One separate pending alternative must never disclose an attribution before the player chooses it.
+        c.Events.Add(new GameEvent { Id = "fixture_pending", Title = "Fixture pending", From = new DateTime(1948, 5, 15),
+            Options = { new EventOption { Id = "record", Text = "Fixture record", Historical = true }, new EventOption {
+                Id = "road", Text = "Fixture pending answer", Alternative = new OptionAlternative { Basis = OptionAlternative.Proposed,
+                    By = "Pending fixture body", Date = new DateTime(1948, 5, 15) } } } });
+        g.State.ChosenOptions["fixture_attribution"] = "road"; g.State.PendingEvents.Add("fixture_pending");
+        using var ui = new UiTestKit(); var text = Text(hebrew); var bridge = new SimBridge(g, text);
+        using var screen = Presenter(ui.Root, bridge, text); using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
+        Assert.AreEqual(1, Rows(ui.Root).Length, "pending attribution is not shown as history");
+        var label = Rows(ui.Root)[0].Q<Label>("timeline-attribution");
+        if (basis == "none") { Assert.IsNull(label, "no invented attribution for old content with no metadata"); return; }
+        if (basis == OptionAlternative.Design)
+        {
+            Assert.IsNull(label, "design cannot be represented as a documented proposal");
+            var design = Rows(ui.Root)[0].Q<Label>("timeline-design"); Assert.IsNotNull(design, "GDD195 requires identifying a design assumption");
+            Assert.AreEqual(hebrew ? "הנחת תכנון." : "Design assumption.", design.text);
+            Assert.IsFalse(design.focusable); return;
+        }
+        Assert.IsNotNull(label, "the chosen considered alternative needs its recorded attribution (Q-ALT-7)");
+        if (!hebrew) Assert.AreEqual(basis == OptionAlternative.Proposed
+            ? "Not adopted. Proposed by Fixture body, 15 May 1948."
+            : "Not adopted. Debated by Fixture body, 15 May 1948.", label.text);
+        else
+        {
+            StringAssert.Contains(basis == OptionAlternative.Proposed ? "הוצע בידי" : "נדון בידי", label.text);
+            StringAssert.Contains("Fixture body", label.text); StringAssert.Contains("15 במאי 1948", label.text);
+        }
+        Assert.IsFalse(label.focusable, "attribution adds no keyboard stop");
+    }
+
 }

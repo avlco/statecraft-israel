@@ -396,3 +396,8 @@ timeline.record: "הרצף ההיסטורי"
 timeline.no_record: "אין תשובה מתועדת אחת"
 timeline.rejoined: "חזרה לרצף ההיסטורי"
 nav.timeline: "ציר הזמן"
+
+# Q-ALT-7: after the choice only; GDD195 identifies design assumptions. Hebrew drafts: agent-checked; native review pending (#564).
+timeline.alt_proposed: "לא אומץ. הוצע בידי {0}, {1}."
+timeline.alt_debated: "לא אומץ. נדון בידי {0}, {1}."
+timeline.alt_design: "הנחת תכנון."
