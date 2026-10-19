@@ -144,7 +144,7 @@ R-UNIT-002: A unit's side, strength, order and order target are written into the
 
 ## Movement
 
-Phase 5 PR 5 (#744). The numbers are design values this PR proposes (Q-MOVE-1, Q-MOVE-3; owner, 15 October 2026, #375: "Take all recommendations"); the owner may override them.
+Phase 5 PR 5 (#744). The numbers are design values this PR proposed (Q-MOVE-1, Q-MOVE-3; owner, 15 October 2026, #375: "Take all recommendations") and the owner accepted them on 19 October 2026 (https://github.com/eyalgolan/statecraft-israel/pull/1073#issuecomment-6259021508).
 
 R-MOVE-001: Each unit type that moves has an integer `movement_points` a turn (`unit_types.yaml`; required, at least 1, on a military type; refused on a population type), and each land biome of `map/hexes.json` an integer cost to enter (`rules.yaml` `mvp.move_cost`, at least 1; the loader refuses a land biome with no cost and a cost for a water biome, so lake and sea are impassable). A path's cost is the sum of the costs of the hexes it enters. A unit's Moves in one turn share its points: a second Move has what the first left, and the next turn has them all again. A type with no movement points (the halutz types) cannot move. Real values: veteran soldier 3, artillery 2, armoured car 5; coastal plain, valley and lowland 1, hills and desert 2, mountains 3.
 
@@ -154,7 +154,7 @@ R-MOVE-003: A hex holds at most `mvp.stack_limit` units of one side (Q-MOVE-3; r
 
 R-MOVE-004: There is no zone of control (Q-MOVE-4): a unit passes next to an enemy unit at the terrain's cost, but no path enters or passes through an enemy unit's hex. Units may enter any land hex on the board; the 1948 control layer stays display-only. There is no transport (Q-MOVE-5).
 
-R-MOVE-005: Before Phase 6 a player unit cannot enter the hex of an enemy-held locality, and no path passes through one (Q-CIV-1, owner, 15 October 2026: "No entry until Phase 6"). The localities are the settlements listed in `rules.yaml` `mvp.enemy_held_localities` (`settlements_1948.yaml` ids; the loader refuses an unknown one). The list is the owner's to set; the real content lists none until then, and PR 5 proposes one in its description.
+R-MOVE-005: Before Phase 6 a player unit cannot enter the hex of an enemy-held locality, and no path passes through one (Q-CIV-1, owner, 15 October 2026: "No entry until Phase 6"). The localities are the settlements listed in `rules.yaml` `mvp.enemy_held_localities` (`settlements_1948.yaml` ids; the loader refuses an unknown one). The real list is the owner-accepted DRAFT (19 October 2026, https://github.com/eyalgolan/statecraft-israel/pull/1073#issuecomment-6259083180): acre, nazareth, lod, ramla, gaza, beersheba. It is unchecked: no person has yet checked each place's control on 15 May 1948; research task #1096 will check it.
 
 R-MOVE-006: `Move` is refused with the state unchanged and a reason when the unit does not exist, is not the player's (a unit of a side other than Israel), cannot move or is already on the hex, when the hex is water or off the board, holds an enemy unit, is an enemy-held locality or is full of the unit's side, or when no path reaches it within the points the unit has left this turn. It costs no Attention (D-A6).
 

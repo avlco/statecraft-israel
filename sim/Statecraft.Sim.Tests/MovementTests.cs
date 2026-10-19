@@ -168,7 +168,8 @@ public class MovementTests
     }
 
     // R-MOVE-005 (Q-CIV-1, "No entry until Phase 6"): a player unit cannot enter the hex of a locality listed in
-    // mvp.enemy_held_localities, and no path passes through one. The real list is empty until the owner sets it.
+    // mvp.enemy_held_localities, and no path passes through one. The real list is the owner-accepted DRAFT (19 October 2026,
+    // #1073): unchecked until research task #1096 checks each place's 15 May 1948 control.
     [Fact]
     public void NoEntryToEnemyHeldLocalities()
     {
@@ -181,7 +182,10 @@ public class MovementTests
         var r = Step(c, s, new Move(1, 1, 0));
         Assert.Equal("Units may not enter an enemy-held locality before its capture is possible", Assert.Single(r.Rejected).Reason);
         Assert.Equal((0, 0), (r.State.Units[1].Q, r.State.Units[1].R));
-        Assert.Empty(ContentLoader.Load(RealContentTests.ContentRoot()).Rules.Mvp!.EnemyHeldLocalities);
+        var real = ContentLoader.Load(RealContentTests.ContentRoot());
+        var draft = real.Rules.Mvp!.EnemyHeldLocalities;
+        Assert.Equal(new[] { "acre", "nazareth", "lod", "ramla", "gaza", "beersheba" }, draft);
+        Assert.All(draft, id => Assert.Contains(real.SettlementHexes, h => h.Id == id));
     }
 
     // R-MOVE-006 and the preview: every hex Reachable lists can be reached with Move, at the listed cost, and no other hex

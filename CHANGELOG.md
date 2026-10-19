@@ -20,9 +20,9 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   out (v0.1.1 playtest feedback).
 - Unit movement (GDD Phase 5 PR 5): `Move(unit, q, r)` moves a player unit at command time along the cheapest path
   within the movement points it has left this turn, and `Movement.Reachable` and `Movement.Path` give the preview.
-  Movement points per military type and a cost per land biome are proposed design values (Q-MOVE-1); lake and sea are
+  Movement points per military type and a cost per land biome are owner-accepted design values (Q-MOVE-1, 19 October 2026); lake and sea are
   impassable; a hex holds at most three units of a side (Q-MOVE-3); no zone of control, and no entry to an enemy unit's
-  hex or to an enemy-held locality (Q-MOVE-4, Q-CIV-1; the owner sets that list, empty for now). Orders are free (D-A6).
+  hex or to an enemy-held locality (Q-MOVE-4, Q-CIV-1; the list is an owner-accepted draft: acre, nazareth, lod, ramla, gaza, beersheba, unchecked until research task #1096). Orders are free (D-A6).
   No golden moves: nothing issues a Move yet (R-MOVE-001 to R-MOVE-006; fixes #744, refs #385).
 
 ## [0.1.2] - 2026-10-19
