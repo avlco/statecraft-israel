@@ -67,6 +67,7 @@ namespace Statecraft.Sim
             ["pioneer_work"] = new[] { "unit", "action", "site" }, ["stop_work"] = new[] { "unit" },
             ["start_project"] = new[] { "project", "city", "q", "r" }, ["cancel_project"] = new[] { "project" },
             ["move"] = new[] { "unit", "q", "r" },
+            ["buy_arms"] = new[] { "count" },
         };
 
         public static IReadOnlyCollection<string> Kinds => Allowed.Keys;
@@ -99,6 +100,7 @@ namespace Statecraft.Sim
                 case "start_project": return new StartProject(Str(c, "project"), Str(c, "city"), Whole(c, "q"), Whole(c, "r"));
                 case "cancel_project": return new CancelProject(Whole(c, "project"));
                 case "move": return new Move(Whole(c, "unit"), Whole(c, "q"), Whole(c, "r"));
+                case "buy_arms": return new BuyArms(Whole(c, "count"));
                 default: throw new InvalidDataException($"command kind '{kind}' has no builder");
             }
         }
@@ -140,6 +142,7 @@ namespace Statecraft.Sim
             PioneerWork p => FormattableString.Invariant($"{p.Unit} {p.Action} {p.Site}"), StopWork w => w.Unit.ToString(CultureInfo.InvariantCulture),
             StartProject p => FormattableString.Invariant($"{p.ProjectKind} {p.City} {p.Q},{p.R}"), CancelProject p => p.Project.ToString(CultureInfo.InvariantCulture),
             Move m => FormattableString.Invariant($"{m.Unit} {m.Q},{m.R}"),
+            BuyArms a => a.Count.ToString(CultureInfo.InvariantCulture),
             _ => c.Kind,
         };
     }

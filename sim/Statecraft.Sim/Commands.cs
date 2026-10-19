@@ -130,6 +130,14 @@ namespace Statecraft.Sim
         public Move(int unit, int q, int r) { Unit = unit; Q = q; R = r; }
     }
 
+    /// <summary>Buys <see cref="Count"/> Arms with Money (Pools.BuyArms, R-ARMS-002, D-G6). GDD v0.1 loop only.</summary>
+    public sealed class BuyArms : Command
+    {
+        public override string Kind => Pools.BuyArmsKind;
+        public int Count { get; }
+        public BuyArms(int count) { Count = count; }
+    }
+
     public sealed class Rejection
     {
         public Command Command { get; } public string Reason { get; }
@@ -166,6 +174,7 @@ namespace Statecraft.Sim
                     case StartProject p: Text(p.ProjectKind, "ProjectKind"); Text(p.City, "City"); break;
                     case CancelProject _: break;
                     case Move _: break;
+                    case BuyArms _: break;
                     case SetMobilization _: case SecurityOrder _: break;
                     default: throw new ArgumentException("unknown command type " + cmd.GetType().Name, "commands");
                 }
