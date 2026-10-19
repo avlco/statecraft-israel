@@ -1,0 +1,162 @@
+{
+  "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+  "base": "2d3e13c098e147493ab034ab2ff20f0b04765fab",
+  "unity": "6000.3.25f1",
+  "browser_installed_metadata": "155.0.8059.80",
+  "method": "Headless Chrome with temporary profiles: the project five-turn UI smoke and eight source golden values on each page, followed by actual Timeline pointer and keyboard input (End, Home, Escape and reopen). This driver injects no game state.",
+  "capture_script_sha256": "cef84eef7442f77e9044d034f42f43eb167803626562a8418274d0c8643082a7",
+  "product_files_unchanged_from_source": true,
+  "generated_captures": 12,
+  "published_agent_inspected_jpegs": 8,
+  "pages": [
+    {
+      "language": "en",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "confirmed_timeline_openings": 2,
+      "escape_and_reopen": true
+    },
+    {
+      "language": "en",
+      "viewport": [
+        1280,
+        720
+      ],
+      "confirmed_timeline_openings": 2,
+      "escape_and_reopen": true
+    },
+    {
+      "language": "en",
+      "viewport": [
+        390,
+        844
+      ],
+      "confirmed_timeline_openings": 2,
+      "escape_and_reopen": true
+    },
+    {
+      "language": "he",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "confirmed_timeline_openings": 2,
+      "escape_and_reopen": true
+    },
+    {
+      "language": "he",
+      "viewport": [
+        1280,
+        720
+      ],
+      "confirmed_timeline_openings": 2,
+      "escape_and_reopen": true
+    },
+    {
+      "language": "he",
+      "viewport": [
+        390,
+        844
+      ],
+      "confirmed_timeline_openings": 2,
+      "escape_and_reopen": true
+    }
+  ],
+  "images": [
+    {
+      "file": "en-1920x1080-top.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:49:12.569465+00:00",
+      "sha256": "117c5e8c17418234a8289d780f6da54a92989353502aff811459958a965a343d",
+      "bytes": 387458,
+      "original_png_sha256": "b046a964927a6784d8df56b2f9403194e10f96d3f5ef657882c42dbc02577b28",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "en-1280x720-top.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:49:30.188220+00:00",
+      "sha256": "7dc8c2e68a2c5b920b407c04ff646e9162e20939fe4ec842ee922aecf7effa0c",
+      "bytes": 210004,
+      "original_png_sha256": "5293ad25a26bce5ff4a3a5bb44291f80608fc03cf911276f6e5119cf415aae92",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "en-390x844-top.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:49:45.699850+00:00",
+      "sha256": "4da4e41c3934d00851472708a4e677aef4f4ab0134043af3ae4703793c0df2b2",
+      "bytes": 84677,
+      "original_png_sha256": "d961565a5f1ec3482649a9b9bee16a589aca197afed945b4632d1364b1377446",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "en-390x844-end.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:49:47.264808+00:00",
+      "sha256": "f39008ec8e4b8f4673ae999868dd09af3c6cccd777dae85b5345d22a57750cdb",
+      "bytes": 86532,
+      "original_png_sha256": "eb3a73fc3998f9009999ea966b9b3e7d81eb86ee203e812cec23732452ef5247",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "he-1920x1080-top.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:50:04.608281+00:00",
+      "sha256": "d70bcb48478b350ddf57fbe6d49efe92b60794330174467c07f92b602a0cbd7b",
+      "bytes": 397085,
+      "original_png_sha256": "86ca34ccec9b678678c3657efaae70fe3b2da77eb437a1f57d419b61b1432b8c",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "he-1280x720-top.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:50:22.690555+00:00",
+      "sha256": "8d1556cadbf19a8218919792e65c02e3dba603de3e2f1e333dc25f15f03d261a",
+      "bytes": 215679,
+      "original_png_sha256": "b916ffef07b482ab230feede46270bbd0f9631b3c42f277283c6df8365900a01",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "he-390x844-top.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:50:38.357445+00:00",
+      "sha256": "95a7997f30b4fdd0d81e03ffe4c0e090d279b5a581d5790a9dbe3144f02f6755",
+      "bytes": 88013,
+      "original_png_sha256": "ceaf0a36eaa597d6fc2ceb8344673dffa329f2341157897c7b92588fbb52f6e1",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    },
+    {
+      "file": "he-390x844-end.jpg",
+      "source_commit": "c031a3989375322dd3a842b976a0c5ff638a26f5",
+      "captured_utc": "2026-10-19T22:50:39.940274+00:00",
+      "sha256": "6588b1bf9037b501a9316493a5f5d6d8f77a1977b8a71c285e2789d4b203b0ac",
+      "bytes": 93119,
+      "original_png_sha256": "ff027c729cc933ea60e09f53489d7081a017233026989a2062b93e1aa512155e",
+      "pixels_edited": false,
+      "agent_visual_inspection": true,
+      "human_visual_acceptance": "pending"
+    }
+  ],
+  "human_visual_acceptance": "pending",
+  "native_hebrew_review": "pending",
+  "safari_voiceover_physical_touch": "not run",
+  "licence": "CC-BY-SA-4.0",
+  "credit": "Statecraft: Israel contributors"
+}
