@@ -852,3 +852,16 @@ Button.settings-choice-selected { -unity-font-definition: url("project://databas
 .lang-he .info-gdd Button { margin: 2px 0 2px 6px; }
 .hud-two-row .info-panel.info-gdd-shown { width: 520px; flex-wrap: wrap; }
 .hud-two-row .info-gdd { width: 100%; margin: 8px 0 0 0; padding: 8px 0 0 0; border-left-width: 0; border-right-width: 0; border-top-width: 1px; }
+
+/* #955: paired answers remain side by side, wrapping within equal columns. */
+.timeline-columns { flex-direction: row; align-items: stretch; }
+.timeline-columns > Label { flex-basis: 0; flex-grow: 1; min-width: 0; padding-left: 8px; padding-right: 8px; white-space: normal; }
+.lang-he .timeline-columns { flex-direction: row-reverse; }
+.timeline-headings { flex-shrink: 0; margin-bottom: 8px; color: var(--gold-light); }
+.timeline-row { flex-shrink: 0; border-bottom-width: 1px; border-color: var(--gold-dim); padding: 10px 4px; }
+.timeline-line { white-space: normal; }
+#timeline-title { color: var(--gold-light); margin-bottom: 6px; }
+#timeline-date { font-size: 16px; }
+.timeline-diverged { border-left-width: 3px; padding-left: 8px; }
+.lang-he .timeline-diverged { border-left-width: 0; border-right-width: 3px; padding-left: 4px; padding-right: 8px; }
+#timeline-difference, #timeline-rejoined { color: var(--gold-light); }

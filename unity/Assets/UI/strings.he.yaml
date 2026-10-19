@@ -388,3 +388,11 @@ site.building: "בבנייה בידי {0}: עוד {1}"
 site.stop: "עצירת הבנייה (הכסף שהוצא לא יוחזר)"
 site.built: "נוסד ב־{0}"
 site.ordered: "הוזמן"
+
+# Timeline screen (#955). Hebrew drafts: agent-checked, native review pending (#564).
+timeline.title: "הדרך שלך והרצף ההיסטורי"
+timeline.yours: "הדרך שלך"
+timeline.record: "הרצף ההיסטורי"
+timeline.no_record: "אין תשובה מתועדת אחת"
+timeline.rejoined: "חזרה לרצף ההיסטורי"
+nav.timeline: "ציר הזמן"

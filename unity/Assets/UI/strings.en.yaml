@@ -378,3 +378,11 @@ site.building: "Being built by {0}: {1} left"
 site.stop: "Stop building (the money spent is lost)"
 site.built: "Founded on {0}"
 site.ordered: "Ordered"
+
+# Timeline screen (#955).
+timeline.title: "Your course and the record"
+timeline.yours: "Your course"
+timeline.record: "The record"
+timeline.no_record: "No single recorded answer"
+timeline.rejoined: "Rejoined the record"
+nav.timeline: "Timeline"
