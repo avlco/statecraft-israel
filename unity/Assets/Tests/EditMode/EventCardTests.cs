@@ -22,6 +22,85 @@ public class EventCardTests
         return new SimBridge(g, Text);
     }
 
+    // #1125 / R-EVT-005: render actual helper entries, with synthetic option values on real loaded content.
+    // These are fixture-only values, not new event content, design rules or authored history.
+    static (Content c, GameSession g, GameEvent e) PreviewFixture()
+    {
+        var c = ContentLoader.Load(Paths.Content);
+        var e = c.Events.First(x => x.Id == "altalena");
+        var option = e.Options[0];
+        option.Effects = new System.Collections.Generic.List<OptionEffect>
+        {
+            new OptionEffect { Target = "morale", Delta = .041 }, new OptionEffect { Target = "treasury", Delta = -1.25 },
+            new OptionEffect { Target = "food", Delta = 2.5 }, new OptionEffect { Target = "arms", Delta = -1 },
+        };
+        var city = c.Cities.First().Id;
+        option.GrantUnits = new System.Collections.Generic.List<UnitGrant> { new UnitGrant { Type = "halutz", N = 2, At = city } };
+        option.CityEffects = new System.Collections.Generic.List<CityEffect>
+        {
+            new CityEffect { City = city, Field = EventSystem.HousingField, Delta = 3 },
+            new CityEffect { City = city, Field = EventSystem.JobsField, Delta = -2 },
+            new CityEffect { City = city, Field = EventSystem.ConditionField, Delta = .051 },
+        };
+        option.UnlockProjects = new System.Collections.Generic.List<string> { c.ProjectKinds.First().Id };
+        option.SetPolicy = new System.Collections.Generic.Dictionary<string, double> { ["rationing"] = .75 };
+        option.SetRung = 4; option.Rejoin = "first_new_yishuv";
+        var g = GameSession.New(c, GoldenRun.Seed, Mode.Historical);
+        g.State.Date = e.From; g.State.PendingEvents.Clear(); g.State.PendingEvents.Add(e.Id);
+        return (c, g, e);
+    }
+
+    [TestCase("en")]
+    [TestCase("he")]
+    public void ShowsStructuredEffects(string lang)
+    {
+        var text = lang == "he" ? He : Text;
+        var (c, g, e) = PreviewFixture();
+        var bridge = new SimBridge(g, text);
+        var hash = g.State.Hash();
+        using var ui = new UiTestKit();
+        using var card = new EventCardPresenter(ui.Root, bridge, text, null);
+        foreach (var option in e.Options)
+        {
+            var rows = EventSystem.OptionEffectPreviews(c, g.State, option);
+            var button = ui.Q<Button>("option-" + option.Id);
+            var actual = button.Query<Label>(className: "event-option-effect").ToList();
+            CollectionAssert.AreEqual(rows.Select(x => EventEffectText.Format(x, text)).ToArray(), actual.Select(x => x.text).ToArray(), option.Id);
+            Assert.IsTrue(actual.All(x => !x.focusable && x.pickingMode == PickingMode.Ignore), "effect text is not another control or pointer target");
+            var label = lang == "he" && option.TextHe != "" ? Cabinet.Fill(c, g.State, option.TextHe, e.From, p => ContentNames.Of(text, p))
+                : Cabinet.Fill(c, g.State, option.Text, e.From);
+            Assert.AreEqual(text.Format("event.option_cost", label, bridge.Price(new ChooseEventOption(e.Id, option.Id))), button.text,
+                "the real label and Attention price remain on the real choice button");
+        }
+        Assert.AreEqual(12, ui.Q<Button>("option-" + e.Options[0].Id).Query<Label>(className: "event-option-effect").ToList().Count,
+            "non-vacuous: numeric, grant, city, project, policy, rung and rejoin effects were all rendered");
+        Assert.AreEqual(hash, g.State.Hash());
+        Assert.IsEmpty(bridge.Queued, "showing a preview neither selects nor queues an option");
+        UiTestKit.Press(ui.Q<Button>("option-" + e.Options[0].Id));
+        var queued = (ChooseEventOption)bridge.Queued.Single();
+        Assert.AreEqual((e.Id, e.Options[0].Id), (queued.EventId, queued.OptionId), "Submit keeps choosing the actual option");
+    }
+
+    [TestCase("en")]
+    [TestCase("he")]
+    public void PreviewDoesNotEnableAnUnaffordableOptionOrSpendAttention(string lang)
+    {
+        var text = lang == "he" ? He : Text;
+        var (c, g, e) = PreviewFixture();
+        g.State.Attention = 0;
+        var bridge = new SimBridge(g, text);
+        using var ui = new UiTestKit();
+        using var card = new EventCardPresenter(ui.Root, bridge, text, null);
+        var button = ui.Q<Button>("option-" + e.Options[0].Id);
+        Assert.IsFalse(button.enabledSelf);
+        Assert.AreEqual(12, button.Query<Label>(className: "event-option-effect").ToList().Count, "unaffordable effects remain readable");
+        UiTestKit.Press(button);
+        Assert.IsEmpty(bridge.Queued);
+        Assert.AreEqual(0, bridge.AttentionLeft);
+        g.State.Attention = 4; card.Render();
+        Assert.IsTrue(ui.Q<Button>("option-" + e.Options[0].Id).enabledSelf, "the existing price gate restores the option");
+    }
+
     [Test]
     public void ThePortraitCatalogHoldsEveryPublicDomainPortrait()
     {
