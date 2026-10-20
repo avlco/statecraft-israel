@@ -261,16 +261,25 @@ namespace Statecraft.Game.UI
                 var optionRow = new VisualElement { name = "option-" + o.Id + "-row", pickingMode = PickingMode.Ignore };
                 optionRow.AddToClassList("event-option-row");
                 optionRow.Add(b);
-                int effectIndex = 0;
-                foreach (var effect in bridge.OptionEffects(o))
+                var effects = bridge.OptionEffects(o);
+                if (effects.Count != 0)
                 {
-                    var line = new Label(EventEffectText.Format(effect, text))
+                    // Short clauses share a line when they fit, and each clause wraps at narrow widths. Keeping the
+                    // text elements separate also lets UiDirection apply the actual language of each clause.
+                    var preview = new VisualElement { pickingMode = PickingMode.Ignore };
+                    preview.AddToClassList("event-option-effects");
+                    int effectIndex = 0;
+                    foreach (var effect in effects)
                     {
-                        name = "option-" + o.Id + "-effect-" + effectIndex++, pickingMode = PickingMode.Ignore,
-                    };
-                    line.AddToClassList("event-option-effect");
-                    line.AddToClassList("muted");
-                    optionRow.Add(line);
+                        var line = new Label(EventEffectText.Format(effect, text))
+                        {
+                            name = "option-" + o.Id + "-effect-" + effectIndex++, pickingMode = PickingMode.Ignore,
+                        };
+                        line.AddToClassList("event-option-effect");
+                        line.AddToClassList("muted");
+                        preview.Add(line);
+                    }
+                    optionRow.Add(preview);
                 }
                 options.Add(optionRow);
             }

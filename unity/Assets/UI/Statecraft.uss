@@ -326,7 +326,10 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
 .event-option { min-height: 42px; padding: 5px 12px; margin: 3px 0; border-color: rgba(196, 160, 92, 0.6); }
 /* Each option keeps its real button; read-only effects underneath share its inset without becoming more controls. */
 .event-option-row { flex-shrink: 0; margin-bottom: 4px; }
-.event-option-effect { flex-shrink: 0; white-space: normal; font-size: 18px; margin: 0 12px; padding: 0; }
+.event-option-effects { flex-shrink: 0; flex-direction: row; flex-wrap: wrap; margin: 0 12px; }
+.event-option-effect { flex-shrink: 0; max-width: 100%; white-space: normal; font-size: 18px; margin: 0 12px 0 0; padding: 0; }
+.lang-he .event-option-effects { flex-direction: row-reverse; }
+.lang-he .event-option-effect { margin-right: 0; margin-left: 12px; }
 .event-title { -unity-text-align: middle-center; margin-bottom: 4px; white-space: normal; font-size: 28px; }   /* centred, as before, in the card */
 .event-text { white-space: normal; margin-bottom: 8px; }
 /* An objective card's line under its text (#380): when it was completed against history. */

@@ -144,10 +144,20 @@ public class DecisionCardTests
             Assert.AreSame(r.CardElement, r.Focused, "opening still focuses the card without choosing an option");
             button.Focus(); yield return Frames(2);
             Assert.AreSame(button, r.Focused);
+            // Use the player's Tab path. VisualElement.Focus() on a non-focusable element deliberately focuses its
+            // ancestor (Unity 6000.3 VisualElement.Focus), so calling label.Focus() would not test keyboard navigation.
+            var choices = r.Root.Q("event-options").Query<Button>().ToList();
+            foreach (var next in choices.Skip(1).Cast<VisualElement>().Append(r.Hide))
+            {
+                var from = (VisualElement)r.Focused!;
+                using (var move = NavigationMoveEvent.GetPooled(NavigationMoveEvent.Direction.Next)) { move.target = from; from.SendEvent(move); }
+                yield return Frames(2);
+                Assert.AreSame(next, r.Focused, "Tab reaches only real options, then Hide; never a passive effect row");
+            }
+            button.Focus(); yield return Frames(2);
             foreach (var label in labels)
             {
-                label.Focus();
-                Assert.AreSame(button, r.Focused, "static preview text cannot steal keyboard focus");
+                Assert.IsFalse(label.canGrabFocus, "a passive clause cannot be a keyboard stop");
                 var target = r.Root.panel.Pick(label.worldBound.center);
                 Assert.IsNotNull(target);
                 using (var down = PointerDownEvent.GetPooled()) { down.target = target; target.SendEvent(down); }

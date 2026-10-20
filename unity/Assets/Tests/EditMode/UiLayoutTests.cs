@@ -494,6 +494,9 @@ public class UiLayoutTests
                     for (int i = 0; i < 4; i++) yield return null;   // the fourth: a photograph dropped for height settles
                     CheckPhoto($"{w}x{h}: {e.Id}", root, card, problems);
                     CheckCard($"{w}x{h}: {e.Id}", root, problems);
+                    if ((w == 1024 && h == 1024 || w == 960 && h == 1080)
+                        && new[] { "bernadotte_assassination", "maabarot_policy", "operation_hiram" }.Contains(e.Id))
+                        Debug.Log($"OPTION PREVIEW LAYOUT {w}x{h} {e.Id}: {LayoutState(root)}");
                     var c = root.Q("event-card").worldBound;
                     if (c.height > tallest) { tallest = c.height; tallestId = e.Id; }
                     foreach (var b in root.Q("event-options").Query<Button>().ToList())
@@ -562,6 +565,9 @@ public class UiLayoutTests
         var tree = root.panel.visualTree.layout;
         return $"panel scale {root.panel.scaledPixelsPerPoint:0.####}, panel {tree.width:0.#}x{tree.height:0.#}, HUD [{string.Join(" ", (root.Q("root") ?? root).GetClasses())}], "
             + $"card content width {card.contentRect.width:0.#} (padding {s.paddingLeft:0.#}/{s.paddingRight:0.#}), header style height {band.style.height}, "
+            + $"card/layer height {card.worldBound.height:0.##}/{root.Q("event-layer").worldBound.height:0.##}, band actual {band.layout.height:0.##}, "
+            + $"options height {root.Q("event-options").layout.height:0.##}, body content/viewport {root.Q<ScrollView>("event-scroll").contentContainer.layout.height:0.##}/{root.Q<ScrollView>("event-scroll").contentViewport.layout.height:0.##}, "
+            + $"head/foot height {root.Q(className: "event-head").layout.height:0.##}/{root.Q(className: "event-foot").layout.height:0.##}, "
             + $"photograph texture {(band.resolvedStyle.backgroundImage.texture != null ? "loaded" : "none")}";
     }
 
