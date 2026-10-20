@@ -1,0 +1,356 @@
+{
+  "en": {
+    "query": "navlog&camlog&lang=en",
+    "command": "env CHROME_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" uv run tools/machine_lock.py --shared --wait-unity -- uv run --script \"$QA/browser-keyboard-v2.py\" en",
+    "actions": [
+      {
+        "op": "capture",
+        "name": "title"
+      },
+      {
+        "op": "click",
+        "x": 640,
+        "y": 668
+      },
+      {
+        "op": "capture",
+        "name": "initial-card"
+      },
+      {
+        "op": "click",
+        "x": 935,
+        "y": 680
+      },
+      {
+        "op": "click",
+        "x": 640,
+        "y": 401
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "capture",
+        "name": "map-focus"
+      },
+      {
+        "op": "key",
+        "key": "Enter",
+        "code": "Enter",
+        "vk": 13,
+        "expect": "NAV.*ui submit target=map-focus"
+      },
+      {
+        "op": "capture",
+        "name": "enter-selection"
+      },
+      {
+        "op": "key",
+        "key": "ArrowUp",
+        "code": "ArrowUp",
+        "vk": 38,
+        "seconds": 1.2
+      },
+      {
+        "op": "key",
+        "key": " ",
+        "code": "Space",
+        "vk": 32
+      },
+      {
+        "op": "capture",
+        "name": "pan-space-selection"
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "capture",
+        "name": "info-action-focus"
+      },
+      {
+        "op": "key",
+        "key": "Enter",
+        "code": "Enter",
+        "vk": 13,
+        "expect": "NAV.*ui submit target="
+      },
+      {
+        "op": "capture",
+        "name": "info-action-submitted"
+      },
+      {
+        "op": "close"
+      }
+    ],
+    "result": {
+      "browser": "Chrome/155.0.8059.80",
+      "actions": 28,
+      "failed_actions": 0,
+      "exit": 0,
+      "seconds": 376.989,
+      "warning_counts": {
+        "log: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat": 6
+      },
+      "matched_submits": [
+        "NAV f=3790 t=206072 ui submit target=map-focus",
+        "NAV f=7460 t=367901 ui submit target=city-workers-less"
+      ],
+      "orderly_close": true
+    },
+    "input_only": true,
+    "runtime_evaluate_calls": 0,
+    "runtime_call_function_on_calls": 0,
+    "javascript_exceptions": 0,
+    "error_level_messages": 0
+  },
+  "he": {
+    "query": "navlog&camlog&lang=he",
+    "command": "env CHROME_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" uv run tools/machine_lock.py --shared --wait-unity -- uv run --script \"$QA/browser-keyboard-v2.py\" he",
+    "actions": [
+      {
+        "op": "capture",
+        "name": "title"
+      },
+      {
+        "op": "click",
+        "x": 640,
+        "y": 668
+      },
+      {
+        "op": "capture",
+        "name": "initial-card"
+      },
+      {
+        "op": "click",
+        "x": 345,
+        "y": 680
+      },
+      {
+        "op": "click",
+        "x": 640,
+        "y": 401
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "capture",
+        "name": "map-focus"
+      },
+      {
+        "op": "key",
+        "key": "Enter",
+        "code": "Enter",
+        "vk": 13,
+        "expect": "NAV.*ui submit target=map-focus"
+      },
+      {
+        "op": "capture",
+        "name": "enter-selection"
+      },
+      {
+        "op": "key",
+        "key": "ArrowUp",
+        "code": "ArrowUp",
+        "vk": 38,
+        "seconds": 1.2
+      },
+      {
+        "op": "key",
+        "key": " ",
+        "code": "Space",
+        "vk": 32
+      },
+      {
+        "op": "capture",
+        "name": "pan-space-selection"
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "key",
+        "key": "Tab",
+        "code": "Tab",
+        "vk": 9
+      },
+      {
+        "op": "capture",
+        "name": "info-action-focus"
+      },
+      {
+        "op": "key",
+        "key": "Enter",
+        "code": "Enter",
+        "vk": 13,
+        "expect": "NAV.*ui submit target=city-workers-less"
+      },
+      {
+        "op": "capture",
+        "name": "info-action-submitted"
+      },
+      {
+        "op": "close"
+      }
+    ],
+    "result": {
+      "browser": "Chrome/155.0.8059.80",
+      "actions": 28,
+      "failed_actions": 0,
+      "exit": 0,
+      "seconds": 265.53,
+      "warning_counts": {
+        "log: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat": 6
+      },
+      "matched_submits": [
+        "NAV f=4452 t=245616 ui submit target=map-focus",
+        "NAV f=4699 t=257270 ui submit target=city-workers-less"
+      ],
+      "orderly_close": true
+    },
+    "input_only": true,
+    "runtime_evaluate_calls": 0,
+    "runtime_call_function_on_calls": 0,
+    "javascript_exceptions": 0,
+    "error_level_messages": 0
+  }
+}

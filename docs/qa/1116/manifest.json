@@ -1,0 +1,127 @@
+{
+  "captured_utc": "2026-10-20",
+  "artifact_head": "bd2abd9d0a297aa1f7d43d0b4a0bd81ae07645e6",
+  "upstream_base": "2d3e13c098e147493ab034ab2ff20f0b04765fab",
+  "browser": "Chrome/155.0.8059.80",
+  "dpr": 1,
+  "human_review": false,
+  "images": {
+    "keyboard-v2-en-map-focus.png": {
+      "sha256": "f65a71f52d3d63edc99220481381c9aff698fdd7ad9f4388937f903e03ee3222",
+      "bytes": 1517572,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-en-pan-space-selection.png": {
+      "sha256": "c0b0557b652706c96fa7010dd01e6b3a9081c37f853ea39c9c1e4cbe1060fca6",
+      "bytes": 1308034,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-en-info-action-focus.png": {
+      "sha256": "c2c968ee7e4d3a31bfc727ec8aa63e0d82ef0078c1227a9428e2a7355659779e",
+      "bytes": 1307283,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-en-info-action-submitted.png": {
+      "sha256": "982d3acaeb306dd79a862fa102101471fb042cb1ba1df765c233558776b86025",
+      "bytes": 1307849,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-he-map-focus.png": {
+      "sha256": "102d4320f550355980aa19e5786d77755b19b328d2861a3d4a0fd2a7e66ce6d9",
+      "bytes": 1514165,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-he-pan-space-selection.png": {
+      "sha256": "d6a1217f5c737f32ac4723d2e99c6c7da81caa9eaf50fa145f59987f8cc91cb3",
+      "bytes": 1302805,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-he-info-action-focus.png": {
+      "sha256": "99113516a331dd3b732bc5834b65e91c1374374b611688f8e98d46bd32935c01",
+      "bytes": 1302794,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "keyboard-v2-he-info-action-submitted.png": {
+      "sha256": "44ed1b04a1f1a3ddfb6576135687d2c635f1e844728e53c9d7d7e0ea7a9a1c46",
+      "bytes": 1302995,
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    }
+  },
+  "relevant_main_source_matches": [
+    {
+      "file": "unity/Assets/Scripts/UI/MapFocusPresenter.cs",
+      "sha256": "af04ddb7bcc48670369f77dcb56ad13e237fa1671dc4a4dabd8a45af927b7e33",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/Scripts/UI/ScreenNav.cs",
+      "sha256": "eddf82d1ae662de2e57da7363c18f1f0d966b99280993f4b81e61da3d4cea221",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/Scripts/UI/GameRoot.cs",
+      "sha256": "17fae83a6aad77b61553077d789933a4b027e4b11e73405c303255af03eea136",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/Scripts/Map/MapPointer.cs",
+      "sha256": "be7b4e01d234617120eeb8a90f075d6b176c235378f89fb187d70ffe434c0970",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/Scripts/Map/CameraController.cs",
+      "sha256": "06007e8221b9e9b52b2dbd01f9fae2a994f493286961c0e49b712ed85d46dc87",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/UI/Game.uxml",
+      "sha256": "08551c36c01ca29c42e5cdacc0437fb9791e5e5a68ca3dcc895635e80e968cfd",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/UI/Statecraft.uss",
+      "sha256": "e3b2ad9b979ec893e9d3265339059dce7ea52d7a66a8c06b35e8b34a4be70986",
+      "current_main_equals_tested_artifact": true
+    },
+    {
+      "file": "unity/Assets/Tests/EditMode/MapFocusTests.cs",
+      "sha256": "6a51928636a96b2a9083a98f82e82cbbe6efc57b333893ecea7b7893ce908906",
+      "current_main_equals_tested_artifact": true
+    }
+  ],
+  "new_editor_or_build": false,
+  "private_player_files_verified": 102,
+  "source_bounds": "Artifact includes unused event-preview helpers from PR1158; it is not a full-main build."
+}
