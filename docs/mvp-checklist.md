@@ -1,12 +1,14 @@
 # MVP master checklist
 
-Current state on `main` at `6ef26c92`, 18 October 2026 (evening). Part of #374.
+Full checklist snapshot on `main` at `6ef26c92`, 18 October 2026 (evening). Part of #374.
+
+Targeted update, 20 October 2026, checked against `main` at `2d3e13c0`: the completed Arms pool (#781), event-choice feedback (#1034), screen close buttons (#1035), and Burma Road vehicle boundary (#1040). Only those statuses and the obsolete Arms-pool waits are refreshed here; the other entries retain the 18 October assessment. A completed prerequisite does not complete its dependent task.
 
 The design of record is [the GDD](GDD.md), especially "MVP scope 1948 to 1951". The implementation is split across the seven approved phase plans in `docs/superpowers/plans/`. **Done** means the requirement is on `main`; **open** cites its open issue, and an open pull request for it is named beside it; **blocked on owner decision** cites both the issue and the design question that prevents implementation.
 
 ## Owner gates (blocking the critical path)
 
-- [ ] **Decided (owner, 18 Oct 2026, "Approve as drafted"; [#781](https://github.com/eyalgolan/statecraft-israel/issues/781#issuecomment-6251995002)):** the four Arms values, as labelled DESIGN VALUE lines: one Arms is the equipment for one 1,000-person recruit group; 12 Arms on 15 May 1948; IL 1m per Arms (borrowing applies); training consumes 1 Arms per recruit group when it starts; 1 Attention per purchase order. The build is open on #781. [The GDD](GDD.md#resources-and-national-parameters) decides only where Arms come from (D-G6).
+- [x] **Done: [#1047](https://github.com/eyalgolan/statecraft-israel/pull/1047).** The [owner's 18 October approval](https://github.com/eyalgolan/statecraft-israel/issues/781#issuecomment-6251995002) is implemented as labelled DESIGN VALUE lines: one Arms is the equipment for one 1,000-person recruit group; 12 Arms on 15 May 1948; IL 1m per Arms (borrowing applies); training consumes 1 Arms per recruit group when it starts; 1 Attention per purchase order. The pool, purchase order and recruit-training consumption/refund are on `main`; the HUD and military integration remain separate tasks. [The GDD](GDD.md#resources-and-national-parameters) decides only where Arms come from (D-G6).
 - [x] **Done: `docs/superpowers/plans/2026-10-15-gdd-phase-4.md`.** The Phase 4 rulings (#782, then Q-CAMP-2's camp sites, Q-SWAMP-3's Hula clearance and the Kiryat Shmona and Beit Shemesh sign-off) are recorded in the plan's status line and decision rows.
 - [ ] **Blocked on owner decision: #783.** The owner decided these Phase 6 picks in four batches on 18 October ([#783](https://github.com/eyalgolan/statecraft-israel/issues/783#issuecomment-6249796458) to [the Q-ANNEX-1 follow-ups](https://github.com/eyalgolan/statecraft-israel/issues/783#issuecomment-6249967916)): Q-TGT-1 to Q-TGT-3, Q-DEP-6, Q-GATE-1, Q-CAP-1 to Q-CAP-3, Q-RAID-1, Q-REF-1, Q-HIST-1, Q-OCC-1 to Q-OCC-3, Q-PUP-1 (no puppet regime in the MVP), Q-ANNEX-1 and Q-ANNEX-2, and the seven technical rows. Still `OWNER PICK` in `docs/superpowers/plans/2026-10-15-gdd-phase-6.md`: Q-DEP-1 to Q-DEP-5, Q-DEP-7, Q-SENS-2, Q-CARD-1 to Q-CARD-3, Q-SENS-1b, Q-UI-1 to Q-UI-4 and Q-STORE-1; after #793's research, the owner also picks the target list. The plan does not record the 18 October answers yet. **Then decided (owner, 18 Oct 2026, "Accept all 16 drafts"; [#783](https://github.com/eyalgolan/statecraft-israel/issues/783#issuecomment-6254310676)):** all sixteen rows are decided as drafted; every card still needs a person's source check and sensitivity review before it ships.
 - [ ] **Blocked on owner decision: #784.** Q-DEF-4 and Q-OPEN-3 through Q-OPEN-5 remain owner picks in `docs/superpowers/plans/2026-10-15-gdd-phase-7.md`; Q-DEF-2, Q-MIN-2, Q-NEW-3 and Q-END-3 were decided on 18 October and recorded there (#997). Q-DEF-1's IL 250m ceiling is kept, "Keep 250m; balance pass decides" ([#784](https://github.com/eyalgolan/statecraft-israel/issues/784#issuecomment-6250529654)). **Then decided (owner, 18 Oct 2026, "Line + history note" and "Accept the drafts"; [#784](https://github.com/eyalgolan/statecraft-israel/issues/784#issuecomment-6254310853)):** Q-DEF-4 (b), Q-OPEN-3 (a), Q-OPEN-4 (b) and Q-OPEN-5 (c).
@@ -34,9 +36,9 @@ The design of record is [the GDD](GDD.md), especially "MVP scope 1948 to 1951". 
 - [x] **Done: `docs/rules/mvp.md`, R-LOOP-004.** PR 1 and 1a: 44 monthly turns ending 15 January 1952 (#600).
 - [x] **Done: `docs/rules/mvp.md`, R-MONEY-001 and R-MONEY-003.** PR 2 Money as the Treasury (#688, #684, #727). R-MONEY-002 is separately blocked on #884.
 - [x] **Done: `docs/rules/mvp.md`, R-FOOD-001 to R-FOOD-003.** PR 3 Food pool (#712).
-- [ ] **Open: #781.** PR 3b Arms pool, R-ARMS-001 to R-ARMS-003; the four values are decided (owner gates, above).
+- [x] **Done: [#1047](https://github.com/eyalgolan/statecraft-israel/pull/1047).** PR 3b Arms pool (#781), R-ARMS-001 to R-ARMS-003; `Pools`, `BuyArms`, recruit-training consumption/refund and their tests are on `main`.
 - [x] **Done: CHANGELOG entry "Social cohesion is now the `morale` indicator".** PR 4 Social cohesion and International Support (#857).
-- [ ] **Open: #729.** PR 5 effects on all five resources. Food and the no-gain rule are on `main` (`docs/rules/mvp.md`, R-EFX-001 and R-EFX-002); Arms waits on #781's pool.
+- [ ] **Open: #729.** PR 5 effects on all five resources. Food and the no-gain rule are on `main` (`docs/rules/mvp.md`, R-EFX-001 and R-EFX-002); the Arms pool is also on `main` (#1047), so that prerequisite no longer blocks #729; its full plan acceptance remains tracked there.
 - [x] **Done: `docs/rules/mvp.md`, R-GOV-001 and R-GOV-002.** PR 6 cabinet, coalition and Attention (#830).
 - [ ] **Open: #731.** PR 7 HUD for the five resources; the Social cohesion meter is on `main` (CHANGELOG, "Social cohesion on the top bar"), while Food and Arms remain.
 
@@ -70,12 +72,12 @@ The design of record is [the GDD](GDD.md), especially "MVP scope 1948 to 1951". 
 
 - [x] **Done: CHANGELOG entry "The Arab forces of 15 May and 11 June 1948".** PR 1 Arab-forces data rows (#860).
 - [x] **Done: `docs/rules/mvp.md`, R-UNIT-001 and R-UNIT-002.** PR 2 military unit record and types (#1024; #741 closed).
-- [ ] **Open: #742.** PR 3 recruits become units; the Arms cost needs #781's pool.
+- [ ] **Open: #742.** PR 3 recruits become units; the Arms pool is on `main` (#1047), while the recruits-as-units integration remains open.
 - [ ] **Open: #743.** PR 4 sourced starting forces (research: PR #906; the force count is still open).
 - [ ] **Open: #744.** PR 5 movement.
 - [ ] **Open: #745.** PR 6 roads and rail in movement; depends on #786.
 - [ ] **Open: #746.** PR 7 fortify and hold.
-- [ ] **Open: #747.** PR 8 combat; Arms per attack needs #781's pool.
+- [ ] **Open: #747.** PR 8 combat; the Arms pool is on `main` (#1047), but starting forces (#743), movement (#744) and standing orders (#746) remain prerequisites (Phase 5 plan, PR 8).
 - [ ] **Open: #748.** PR 9 artillery and the armoured car.
 - [ ] **Open: #749.** PR 10 enemy AI.
 - [ ] **Open: #750.** PR 11 war state, call-up retirement and truces.
@@ -126,18 +128,18 @@ PRs 1 to 7 have their owner answers (#783, 18 October); PRs 8 to 12 are **blocke
 
 The first outside play-test (18 October). The plan of record for these is #1038.
 
-- [ ] **Open: #1034.** A decision card with no Attention left looks frozen; the card says that End turn hands it to the minister.
-- [ ] **Open: #1035.** A close (X) button on every side-menu screen (open PR #1027).
+- [x] **Done: [#1053](https://github.com/eyalgolan/statecraft-israel/pull/1053).** #1034: unavailable event choices show their Attention cost and are disabled; the card names the minister who receives the decision on End turn, and End turn is highlighted.
+- [x] **Done: [#1027](https://github.com/eyalgolan/statecraft-israel/pull/1027).** #1035: each side-menu screen has a close (X) button, with English/Hebrew layout and hit-area tests in `UiFoundationTests`. Closing returns focus to the invoking rail button, as the maintainer accepted.
 - [ ] **Open: #1036.** A language switch, English and Hebrew, in Settings.
 - [ ] **Open: #1037.** A turn report after End turn, and top-bar numbers that explain their change.
 - [ ] **Open: #1041.** A short How to play screen until #42 lands.
 
 ## Critical path
 
-1. **Open: #781.** Arms is decided; build the pool, then finish open Phase 2 issues #729 and #731.
+1. **Open: #729 and #731.** The Arms pool is on `main` (#1047); finish the remaining Phase 2 event-effect and HUD acceptance without treating #781 as an open prerequisite.
 2. **Open: #735.** Phase 3 PR 3 is done; city projects are next, followed by #737 and #739, with #736 and #738 alongside.
 3. **Open: #785 and #786.** Finish Phase 4 sites and corridors, then #791 and #792 (#789 is done, #968).
-4. **Open: #744 and #746.** PR 2 (#741) is done; build the Phase 5 sequence through #757; #742 and #747 also need #781's pool.
+4. **Open: #744 and #746.** PR 2 (#741) is done; build the Phase 5 sequence through #757; #742 and #747 remain open, but no longer wait for the Arms pool (#1047).
 5. **Open: #793 and #794; blocked on owner decision: #783 for PRs 8 to 12.** Phase 6 PRs 3 to 7 follow #793's list and Phase 5.
 6. **Blocked on owner decision: #784.** Phase 7's remaining owner picks gate #8 and #812 (Q-DEF-4) and #530 (Q-OPEN-3 to Q-OPEN-5); the implementation path ends at #814. **Then decided (owner, 18 Oct 2026, "Line + history note" and "Accept the drafts"; [#784](https://github.com/eyalgolan/statecraft-israel/issues/784#issuecomment-6254310853)):** Q-DEF-4 (b), Q-OPEN-3 (a), Q-OPEN-4 (b) and Q-OPEN-5 (c).
 
@@ -149,7 +151,7 @@ The first outside play-test (18 October). The plan of record for these is #1038.
 
 The art and map issues under #18 remain a parallel track, not a substitute for the phase work above.
 
-- [ ] **Open: #659, #707, #665, #666, #667, #669, #708, #886.** Remaining model placement and art work (#659: #700 and #1030 merged, #994 open). #670 and #725 are closed (#1022, #1028); a sourced end date for the Burma Road vehicles is #1040. **Then decided (owner, 18 Oct 2026, "(a) Empty until the Arab villager figure"; [#666](https://github.com/eyalgolan/statecraft-israel/issues/666#issuecomment-6250530031)):** The seven Arab towns get no civilian figures until #708 (Tal Heuberger's Arab villager model, pending the licence line) arrives. **Then decided (owner, 18 Oct 2026, "Stop on 7 Dec 1948, flagged approximate"; [#1040](https://github.com/eyalgolan/statecraft-israel/issues/1040#issuecomment-6253126728)):** The Burma Road convoy truck and lorry from #1028 stop on 7 December 1948. That's the inauguration of the Road of Valour, which replaced the Burma Road; it's a proxy, since no source dates the last convoy. The road itself stays drawn. A small code PR adds the exclusive end date to both `burma_road` plans in `RoadVehicles`, with an EditMode test for 6 and 7 Dec.
+- [ ] **Open: #659, #707, #665, #666, #667, #669, #708, #886.** Remaining model placement and art work (#659: #700 and #1030 merged, #994 open). #670 and #725 are closed (#1022, #1028); the Burma Road vehicles' approximate end boundary (#1040) is implemented in [#1067](https://github.com/eyalgolan/statecraft-israel/pull/1067). **Then decided (owner, 18 Oct 2026, "(a) Empty until the Arab villager figure"; [#666](https://github.com/eyalgolan/statecraft-israel/issues/666#issuecomment-6250530031)):** The seven Arab towns get no civilian figures until #708 (Tal Heuberger's Arab villager model, pending the licence line) arrives. **Then decided (owner, 18 Oct 2026, "Stop on 7 Dec 1948, flagged approximate"; [#1040](https://github.com/eyalgolan/statecraft-israel/issues/1040#issuecomment-6253126728)):** The Burma Road convoy truck and lorry from #1028 stop on 7 December 1948. That's the inauguration of the Road of Valour, which replaced the Burma Road; it's a proxy, since no source dates the last convoy. The road itself stays drawn. Implemented by [#1067](https://github.com/eyalgolan/statecraft-israel/pull/1067): both `burma_road` vehicle plans use that exclusive end date; `RoadVehiclesTests.BurmaRoadVehiclesStopOn7DecemberWhileOtherRoutesContinue` checks 6 and 7 December. The route itself has no new end date.
 - [x] **Done: the CHANGELOG entry for the nine whole-town models (0.1.0).** The nine whole-town landmarks (#917). #885 stays open.
 - [ ] **Open: #1004.** The building models stand far bigger than the train, and Jaffa's over Tel Aviv's (v0.1.1). #1030 puts every building model at 24x real (owner: "Merge, then fix landmarks + grids"); the kit landmarks and plot grids are #1032, and townspeople and wildlife at the same scale are #1033 (blocks v0.1.2).
 - [x] **Done: `NOTICE` and `ASSETS.yaml`.** The artist credit is present (`NOTICE:12`), and The 1948 Collection's `ASSETS.yaml` artist is Tal Heuberger (#895; the credit confirmed by the owner on 18 October in [#887](https://github.com/eyalgolan/statecraft-israel/issues/887#issuecomment-6249500690), the full name since #1078); #887 is closed.
