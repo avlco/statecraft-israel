@@ -201,24 +201,24 @@ public class ArmisticeTests
         var auja = a.Zones.Single(z => z.Key == "egypt_el_auja_dmz");
         var (q, r) = a.HexesOf(auja).First();
         StringAssert.Contains("Beersheba Sub-District", InfoPanelPresenter.RegionText(m, t, q, r, Start));
-        Assert.AreEqual(t.Format("info.armistice_zone", auja.Name, "Egypt-Israel General Armistice Agreement", hebrew ? "24 בפברואר 1949" : "24 February 1949"),
+        Assert.AreEqual(t.Format("info.armistice_zone", auja.Name, "Egypt-Israel General Armistice Agreement", hebrew ? "\u206724 בפברואר 1949\u2069" : "24 February 1949"),
             InfoPanelPresenter.RegionText(m, t, q, r, Egypt).Split('\n')[0]);
         var leb = a.Lines.Single(l => l.Key == "lebanon_adl");
         var lh = Enumerable.Range(-40, 120).SelectMany(qq => Enumerable.Range(-5, 120).Select(rr => (qq, rr))).First(h => a.LinesAt(h.qq, h.rr, Lebanon).Contains(leb));
         StringAssert.DoesNotContain("Lebanon-Israel", InfoPanelPresenter.RegionText(m, t, lh.qq, lh.rr, Lebanon.AddDays(-1)));
-        StringAssert.Contains(t.Format("info.armistice_line", leb.Name, "Lebanon-Israel General Armistice Agreement", hebrew ? "23 במרץ 1949" : "23 March 1949"),
+        StringAssert.Contains(t.Format("info.armistice_line", leb.Name, "Lebanon-Israel General Armistice Agreement", hebrew ? "\u206723 במרץ 1949\u2069" : "23 March 1949"),
             InfoPanelPresenter.RegionText(m, t, lh.qq, lh.rr, Lebanon));
         // the 1950 line names the modus vivendi and its date, not the 1949 agreement
         var mv = a.Lines.Single(l => l.Key == "egypt_mv1950_demarcation");
         var mh = Hexes().First(h => a.LinesAt(h.q, h.r, new DateTime(1950, 3, 1)).Contains(mv));
         var at1950 = InfoPanelPresenter.RegionText(m, t, mh.q, mh.r, new DateTime(1950, 3, 1));
-        StringAssert.Contains(t.Format("info.armistice_line", mv.Name, mv.Agreement, hebrew ? "22 בפברואר 1950" : "22 February 1950"), at1950);
+        StringAssert.Contains(t.Format("info.armistice_line", mv.Name, mv.Agreement, hebrew ? "\u206722 בפברואר 1950\u2069" : "22 February 1950"), at1950);
         StringAssert.DoesNotContain(mv.Name, InfoPanelPresenter.RegionText(m, t, mh.q, mh.r, new DateTime(1950, 2, 21)));
         // Jordan lines say they are low-accuracy; line A in the triangle only from its stage date
         var tri = a.Lines.Single(l => l.Key == "jordan_adl_iraqi_a_triangle");
         var th = Hexes().First(h => a.LinesAt(h.q, h.r, new DateTime(1949, 6, 1)).Contains(tri));
         StringAssert.DoesNotContain(tri.Name, InfoPanelPresenter.RegionText(m, t, th.q, th.r, new DateTime(1949, 5, 7)));
-        StringAssert.Contains(t.Format("info.armistice_line_low", tri.Name, tri.Agreement, hebrew ? "3 באפריל 1949" : "3 April 1949"),
+        StringAssert.Contains(t.Format("info.armistice_line_low", tri.Name, tri.Agreement, hebrew ? "\u20673 באפריל 1949\u2069" : "3 April 1949"),
             InfoPanelPresenter.RegionText(m, t, th.q, th.r, new DateTime(1949, 5, 8)));
     }
 
