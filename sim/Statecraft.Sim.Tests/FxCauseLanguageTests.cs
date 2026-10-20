@@ -28,7 +28,7 @@ public class FxCauseLanguageTests
     public void RealFxTransitionHasAnExplicitKeyAndPreservesEnglish(bool eased, string key, string english, double delta)
     {
         var why = Transition(eased);
-        var cause = Assert.Single(why.Where(w => w.Target == EconomySystem.FxCrisis));
+        var cause = Assert.Single(why, w => w.Target == EconomySystem.FxCrisis);
         Assert.Equal("economy", cause.System);
         Assert.Equal(delta, cause.Delta);
         Assert.Equal(english, cause.Message);
