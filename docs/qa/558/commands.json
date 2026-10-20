@@ -1,0 +1,382 @@
+{
+  "en": {
+    "query": "smoke=10&navlog&camlog&lang=en",
+    "actions": [
+      {
+        "op": "capture",
+        "name": "startup"
+      },
+      {
+        "op": "click",
+        "x": 936,
+        "y": 672
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "capture",
+        "name": "map-zoom-one"
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "click",
+        "x": 1143,
+        "y": 616
+      },
+      {
+        "op": "capture",
+        "name": "target-position"
+      },
+      {
+        "op": "click",
+        "x": 640,
+        "y": 401
+      },
+      {
+        "op": "capture",
+        "name": "armistice-date"
+      },
+      {
+        "op": "close"
+      }
+    ],
+    "audit": {
+      "head": "fa13bfda7c25fe5ad95a29a86738e92e184ffbae",
+      "exit": 0,
+      "seconds": 193.285,
+      "browser": "Chrome/155.0.8059.80",
+      "actions": 29,
+      "failed_actions": 0,
+      "captures": {
+        "region-dates-v2-en-startup.png": "61b700594c0c2dab16648ebbf7d9bb020db69f4c0b20d784c59974c24e046f59",
+        "region-dates-v2-en-map-zoom-one.png": "f8cc137d1e73000cf4bfd561b976986b04db58c2b0d244fd3adf17e9de53e698",
+        "region-dates-v2-en-target-position.png": "f089df246342813a1beb6f20e151c00a3fd5f5d47f37c370c8d9b96c698042c6",
+        "region-dates-v2-en-armistice-date.png": "3f7fe62195e197dc698fcb5cc71df02fa3f2cf7fcc8e958b4efc928ebe4988aa"
+      },
+      "warning_counts": {
+        "WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat": 6
+      },
+      "javascript_exceptions": 0,
+      "error_level_messages": 0,
+      "protocol_errors": 0,
+      "runtime_evaluate_calls": 0,
+      "runtime_call_function_on_calls": 0,
+      "orderly_close": true,
+      "smoke10_driver": true
+    },
+    "input_only": true
+  },
+  "he": {
+    "query": "smoke=10&navlog&camlog&lang=he",
+    "actions": [
+      {
+        "op": "capture",
+        "name": "startup"
+      },
+      {
+        "op": "click",
+        "x": 345,
+        "y": 681
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "capture",
+        "name": "map-zoom-one"
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "wheel",
+        "x": 640,
+        "y": 401,
+        "deltaY": -200
+      },
+      {
+        "op": "click",
+        "x": 1143,
+        "y": 616
+      },
+      {
+        "op": "capture",
+        "name": "target-position"
+      },
+      {
+        "op": "click",
+        "x": 640,
+        "y": 401
+      },
+      {
+        "op": "capture",
+        "name": "armistice-date"
+      },
+      {
+        "op": "close"
+      }
+    ],
+    "audit": {
+      "head": "fa13bfda7c25fe5ad95a29a86738e92e184ffbae",
+      "exit": 0,
+      "seconds": 145.614,
+      "browser": "Chrome/155.0.8059.80",
+      "actions": 29,
+      "failed_actions": 0,
+      "captures": {
+        "region-dates-v2-he-startup.png": "1474cc0033a43ac7ce7e1406be931c7e3703bc660a1b14dc09f530c8bcd36fba",
+        "region-dates-v2-he-map-zoom-one.png": "1e8e2ba0f09962f73e780d4f348862617aaf4b6c33d27e5d37758c80b3a55ae1",
+        "region-dates-v2-he-target-position.png": "13db6df0b4d2237e91ab971086e915d6abd93beb63b53b3ce831cc6d9eddc126",
+        "region-dates-v2-he-armistice-date.png": "cbadd88bb4f5fe79ad3fe5ccb34000b826d7b456f3e4674147737f1bff20dd0e"
+      },
+      "warning_counts": {
+        "WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat": 6
+      },
+      "javascript_exceptions": 0,
+      "error_level_messages": 0,
+      "protocol_errors": 0,
+      "runtime_evaluate_calls": 0,
+      "runtime_call_function_on_calls": 0,
+      "orderly_close": true,
+      "smoke10_driver": true
+    },
+    "input_only": true
+  }
+}

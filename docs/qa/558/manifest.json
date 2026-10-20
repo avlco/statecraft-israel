@@ -1,0 +1,41 @@
+{
+  "captured": "2026-10-20",
+  "product_head": "fa13bfda7c25fe5ad95a29a86738e92e184ffbae",
+  "base": "2d3e13c098e147493ab034ab2ff20f0b04765fab",
+  "browser": "Chrome/155.0.8059.80",
+  "dpr": 1,
+  "images": {
+    "region-dates-he-armistice-date.png": {
+      "sha256": "7535e8360606facdb96b604ba670432e02484eebf402bc2a9b6e99f2948a5ab0",
+      "bytes": 455425,
+      "head": "5127440f1ab46f48ec4caded434464b05b703bf1",
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "region-dates-v2-he-armistice-date.png": {
+      "sha256": "cbadd88bb4f5fe79ad3fe5ccb34000b826d7b456f3e4674147737f1bff20dd0e",
+      "bytes": 455447,
+      "head": "fa13bfda7c25fe5ad95a29a86738e92e184ffbae",
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    },
+    "region-dates-v2-en-armistice-date.png": {
+      "sha256": "3f7fe62195e197dc698fcb5cc71df02fa3f2cf7fcc8e958b4efc928ebe4988aa",
+      "bytes": 455832,
+      "head": "fa13bfda7c25fe5ad95a29a86738e92e184ffbae",
+      "viewport": [
+        1280,
+        720
+      ],
+      "modified": false
+    }
+  },
+  "private_player_files": 102,
+  "human_review": false
+}
