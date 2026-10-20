@@ -140,10 +140,10 @@ namespace Statecraft.Game.UI
             if (control != "" && !(zone != null && regions.Control?.At(q, r, date).side == Control1948.Side.Dmz)) parts.Add(control);
             // the sub-district only while the map draws the sub-district bands (before the first sourced line, or with no side data)
             var sub = regions.Subdistricts.ShowsOn(date) && regions.ControlPeriod(date) == null ? regions.Subdistricts.SubdistrictAt(q, r) : null;
-            if (zone != null) parts.Add(text.Format("info.armistice_zone", zone.Name, zone.Agreement, MapRegions.DateText(zone.Signed)));
+            if (zone != null) parts.Add(text.Format("info.armistice_zone", zone.Name, zone.Agreement, Control1948.DateText(zone.Signed, k => text[k])));
             else if (sub != null) parts.Add(text.Format("info.region", sub.Name, sub.District));
             foreach (var l in regions.LinesAt(q, r, date))
-                    parts.Add(text.Format(l.LowAccuracy ? "info.armistice_line_low" : "info.armistice_line", l.Name, l.Agreement, MapRegions.DateText(l.Signed)));
+                    parts.Add(text.Format(l.LowAccuracy ? "info.armistice_line_low" : "info.armistice_line", l.Name, l.Agreement, Control1948.DateText(l.Signed, k => text[k])));
             return string.Join("\n", parts);
         }
 

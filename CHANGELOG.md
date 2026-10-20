@@ -17,6 +17,7 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   golden is re-pinned.
 
 ### Fixed
+- The map info panel formats armistice zone and line dates in the selected UI language, reusing the existing date strings; English output and agreement data are unchanged (refs #558).
 - Fractional site and city-project carry is hashed as IEEE bits on every runtime, avoiding different decimal spellings on .NET and Unity Mono; gameplay progress is unchanged.
 - Site construction forecasts use the current minister rate and saved fractional work, including pioneer promotion.
 - On a notched phone the HUD and the panels keep clear of the notch and the home indicator: the root is padded by
