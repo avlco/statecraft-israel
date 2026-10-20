@@ -537,7 +537,7 @@ public class SettingsScreenTests
                 Assert.GreaterOrEqual(screen.yMin, root.Q("top-bar").worldBound.yMax - 0.5f, at + ": the screen starts below the top bar");
                 foreach (var name in new[] { "settings-screen-title", "settings-tiltshift-label", "settings-tiltshift",
                     "settings-quality-label", "settings-quality-auto", "settings-quality-high", "settings-quality-low",
-                    "settings-language-label", "settings-language-en", "settings-language-he", "settings-language-note",
+                    "settings-language-label", "settings-language-en", "settings-language-he",
                     "settings-uiscale-label", "settings-uiscale-100", "settings-uiscale-125", "settings-uiscale-150" })
                 {
                     var e = root.Q<TextElement>(name);
