@@ -76,7 +76,7 @@ public class OptionEffectPreviewTests
                 rows.Select(x => (x.Cause.System, x.Cause.Target, x.Cause.Delta, x.Cause.Message)));
             Assert.Equal(new[] { "halutz", "treasury", "food", "arms", "halutz", "halutz", "veteran_halutz", "town_a.housing_capacity", "town_a.job_slots", "town_b.condition", "maabarot", "rationing", "rung", "rejoin" },
                 rows.Select(x => x.Cause.Target));
-            Assert.Equal(new[] { "+4.1%", "-IL 1.3m", "+3", "-100", "2", "1", "3", "+3", "-100", "+5.1%", "20%", "75%", "4", "" },
+            Assert.Equal(new[] { "+4.1%", "IL -1.3m", "+3", "-100", "2", "1", "3", "+3", "-100", "+5.1%", "20%", "75%", "4", "" },
                 rows.Select(x => x.Amount));
             Assert.Equal(new[] { "halutz", "treasury", "food", "arms", "town_a", "town_b", "town_a", "town_a", "town_a", "town_b", "maabarot", "rationing", "", "preview_record" },
                 rows.Select(x => x.ContextId));
@@ -107,6 +107,28 @@ public class OptionEffectPreviewTests
         Assert.Equal(OptionEffectPreviewKind.SetPolicy, rows[10].Kind);
         Assert.Equal(OptionEffectPreviewKind.SetRung, rows[12].Kind);
         Assert.Equal(OptionEffectPreviewKind.Rejoin, rows[13].Kind);
+    }
+
+    // R-EVT-005 / R-EFX-008: main added this legitimate effect after the original preview draft.
+    // It must appear in place between city changes and policies, without desynchronising the preview.
+    [Fact]
+    public void ProjectUnlocksKeepTheirActualCauseBetweenCityEffectsAndPolicies()
+    {
+        var c = Content();
+        var s = Simulation.NewGame(c, 1, Mode.Historical);
+        var option = EveryKind();
+        option.UnlockProjects = new List<string> { "industry", "industry" };
+        var hash = s.Hash();
+        var causes = EventSystem.OptionEffects(c, s, option);
+        var rows = EventSystem.OptionEffectPreviews(c, s, option);
+        Assert.Equal(causes.Select(x => (x.System, x.Target, x.Delta, x.Message)),
+            rows.Select(x => (x.Cause.System, x.Cause.Target, x.Cause.Delta, x.Cause.Message)));
+        Assert.Equal(new[] { "town_b.condition", "industry", "industry", "maabarot" }, rows.Skip(9).Take(4).Select(x => x.Cause.Target));
+        Assert.Equal("An industry project can now be built", rows[10].Cause.Message);
+        Assert.Equal(OptionEffectPreviewKind.ProjectUnlock, rows[10].Kind);
+        Assert.Equal("industry", rows[10].ContextId);
+        Assert.Equal("An industry project", rows[10].ContextName);
+        Assert.Equal(hash, s.Hash());
     }
 
     [Fact]

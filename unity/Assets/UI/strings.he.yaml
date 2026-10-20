@@ -410,3 +410,6 @@ event.effect.veteran_halutz: "חלוצים ותיקים"
 event.effect.housing_capacity: "קיבולת דיור"
 event.effect.job_slots: "מקומות עבודה"
 event.effect.condition: "מצב הדיור"
+
+# Agent-checked draft; native-speaker review pending (#564).
+event.effect.unlock: "ניתן כעת לבנות {0}"

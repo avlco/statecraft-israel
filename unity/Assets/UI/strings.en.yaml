@@ -396,3 +396,5 @@ event.effect.veteran_halutz: "Veteran Halutzim"
 event.effect.housing_capacity: "housing capacity"
 event.effect.job_slots: "job slots"
 event.effect.condition: "housing condition"
+
+event.effect.unlock: "{0} can now be built"

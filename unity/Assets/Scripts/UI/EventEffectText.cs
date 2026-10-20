@@ -43,6 +43,8 @@ namespace Statecraft.Game.UI
                         _ => throw new ArgumentOutOfRangeException(nameof(row), "Unknown city-field presentation label"),
                     }];
                     return text.Format("event.effect.city", name, field, row.Amount);
+                case OptionEffectPreviewKind.ProjectUnlock:
+                    return text.Format("event.effect.unlock", name);
                 case OptionEffectPreviewKind.SetPolicy:
                     return text.Format("event.effect.policy", name, row.Amount);
                 case OptionEffectPreviewKind.SetRung:

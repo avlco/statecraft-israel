@@ -177,77 +177,67 @@ namespace Statecraft.Sim
         /// effects, the unit grants and city effects (R-EFX-006), the policies it sets (by id), the security level, then rejoin.
         /// Each amount is the option's own; Resolve may apply less where an indicator meets its bound or the Food or Arms stock its floor, and rounds both to whole units. The
         /// event card will read this list (Q-EVT-4, owner 17 October 2026; Phase 7 PR 8), so no number is computed in Unity.</summary>
-        public static List<Cause> OptionEffects(Content c, GameState s, EventOption o)
-        {
-            var lines = o.Effects.Where(fx => Reaches(s, fx.Target))
-                .Select(fx => new Cause("events", fx.Target, fx.Delta, PlayerText.Change(c, fx.Target, fx.Delta))).ToList();
-            lines.AddRange(o.GrantUnits.Select(g => new Cause("events", g.Type, g.N, Granted(g, GrantPlace(c, g).Name))));
-            lines.AddRange(o.CityEffects.Select(x => new Cause("events", x.City + "." + x.Field, x.Delta, CityChange(c, x.City, x.Field, x.Delta))));
-            lines.AddRange(o.UnlockProjects.Select(k => new Cause("events", k, 1, Unlocked(c, k))));
-            lines.AddRange(o.SetPolicy.Where(k => s.Policies.ContainsKey(k.Key)).OrderBy(k => k.Key, StringComparer.Ordinal)
-                .Select(k => new Cause("events", k.Key, k.Value, $"{PlayerText.Target(c, k.Key)} set to {PlayerText.Percent(k.Value)}")));
-            if (o.SetRung.HasValue) lines.Add(new Cause("events", "rung", o.SetRung.Value, FormattableString.Invariant($"Security level set to {o.SetRung.Value}")));
-            // R-ALT-009: the way back to the record is shown with the other effects (R-EVT-005).
-            if (o.Rejoin != "")
-                lines.Add(new Cause("events", "rejoin", 0, $"Returns to the recorded course: {Cabinet.Fill(c, s, c.Events.First(x => x.Id == o.Rejoin).Title, s.Date)}"));
-            return lines;
-        }
+        public static List<Cause> OptionEffects(Content c, GameState s, EventOption o) =>
+            OptionEffectRows(c, s, o).Select(row => row.Cause).ToList();
 
         /// <summary>R-EVT-005: read-only presentation context over the actual OptionEffects entries, in their exact order.
         /// Resolves names, grant destinations and number formats here; a localized UI supplies nouns, not game rules.
         /// Like OptionEffects, these are the option's stated amounts, before Resolve applies bounds or delegation.</summary>
-        public static IReadOnlyList<OptionEffectPreview> OptionEffectPreviews(Content c, GameState s, EventOption o)
+        public static IReadOnlyList<OptionEffectPreview> OptionEffectPreviews(Content c, GameState s, EventOption o) =>
+            OptionEffectRows(c, s, o).ToList().AsReadOnly();
+
+        // One walk creates the Cause together with its presentation context. Both public views consume it, so adding an
+        // effect cannot leave a second ordering/count check to throw while the card renders.
+        static IEnumerable<OptionEffectPreview> OptionEffectRows(Content c, GameState s, EventOption o)
         {
-            var causes = OptionEffects(c, s, o);
-            var rows = new List<OptionEffectPreview>(causes.Count);
-            // Fail visibly if the helper gains or reorders an effect without its presentation context being updated.
-            Cause Next(string target, double delta)
-            {
-                if (rows.Count >= causes.Count || causes[rows.Count].Target != target || causes[rows.Count].Delta != delta)
-                    throw new InvalidOperationException("OptionEffects presentation context is out of order");
-                return causes[rows.Count];
-            }
             foreach (var fx in o.Effects.Where(fx => Reaches(s, fx.Target)))
             {
-                var cause = Next(fx.Target, fx.Delta);
+                var cause = new Cause("events", fx.Target, fx.Delta, PlayerText.Change(c, fx.Target, fx.Delta));
                 var stock = fx.Target == Pools.FoodTarget || fx.Target == Pools.ArmsTarget;
                 var name = stock ? (fx.Target == Pools.FoodTarget ? "Food" : "Arms") : PlayerText.Target(c, fx.Target);
                 var amount = stock ? PlayerText.UnitsChangeNumber(cause.Delta)
                     : PlayerText.IsMoney(c, fx.Target) ? PlayerText.MoneyChange(c, fx.Target, cause.Delta) : PlayerText.PercentChange(cause.Delta);
-                rows.Add(new OptionEffectPreview(cause, stock ? OptionEffectPreviewKind.Stock : OptionEffectPreviewKind.Amount,
-                    fx.Target, name, amount));
+                yield return new OptionEffectPreview(cause, stock ? OptionEffectPreviewKind.Stock : OptionEffectPreviewKind.Amount,
+                    fx.Target, name, amount);
             }
             foreach (var g in o.GrantUnits)
             {
-                var cause = Next(g.Type, g.N);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.UnitGrant, GrantCity(c, g), GrantPlace(c, g).Name,
-                    FormattableString.Invariant($"{cause.Delta}")));
+                var place = GrantPlace(c, g).Name;
+                var cause = new Cause("events", g.Type, g.N, Granted(g, place));
+                yield return new OptionEffectPreview(cause, OptionEffectPreviewKind.UnitGrant, GrantCity(c, g), place,
+                    FormattableString.Invariant($"{cause.Delta}"));
             }
             foreach (var x in o.CityEffects)
             {
-                var cause = Next(x.City + "." + x.Field, x.Delta);
+                var cause = new Cause("events", x.City + "." + x.Field, x.Delta, CityChange(c, x.City, x.Field, x.Delta));
                 var amount = x.Field == ConditionField ? PlayerText.PercentChange(cause.Delta)
                     : FormattableString.Invariant($"{(cause.Delta > 0 ? "+" : "")}{cause.Delta}");
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.City, x.City, PlayerText.Settlement(c, x.City), amount, x.Field));
+                yield return new OptionEffectPreview(cause, OptionEffectPreviewKind.City, x.City, PlayerText.Settlement(c, x.City), amount, x.Field);
+            }
+            // R-EFX-008: these entries are stated effects, including repetitions, just like OptionEffects before this refactor.
+            foreach (var kind in o.UnlockProjects)
+            {
+                var cause = new Cause("events", kind, 1, Unlocked(c, kind));
+                yield return new OptionEffectPreview(cause, OptionEffectPreviewKind.ProjectUnlock, kind,
+                    PlayerText.Capitalised(c.ProjectKinds.First(k => k.Id == kind).Name), "");
             }
             foreach (var kv in o.SetPolicy.Where(k => s.Policies.ContainsKey(k.Key)).OrderBy(k => k.Key, StringComparer.Ordinal))
             {
-                var cause = Next(kv.Key, kv.Value);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.SetPolicy, kv.Key, PlayerText.Target(c, kv.Key), PlayerText.Percent(cause.Delta)));
+                var cause = new Cause("events", kv.Key, kv.Value, $"{PlayerText.Target(c, kv.Key)} set to {PlayerText.Percent(kv.Value)}");
+                yield return new OptionEffectPreview(cause, OptionEffectPreviewKind.SetPolicy, kv.Key, PlayerText.Target(c, kv.Key), PlayerText.Percent(cause.Delta));
             }
             if (o.SetRung.HasValue)
             {
-                var cause = Next("rung", o.SetRung.Value);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.SetRung, "", "", FormattableString.Invariant($"{cause.Delta}")));
+                var cause = new Cause("events", "rung", o.SetRung.Value, FormattableString.Invariant($"Security level set to {o.SetRung.Value}"));
+                yield return new OptionEffectPreview(cause, OptionEffectPreviewKind.SetRung, "", "", FormattableString.Invariant($"{cause.Delta}"));
             }
+            // R-ALT-009: the way back to the record is shown with the other effects (R-EVT-005).
             if (o.Rejoin != "")
             {
-                var cause = Next("rejoin", 0);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.Rejoin, o.Rejoin,
-                    Cabinet.Fill(c, s, Get(c, o.Rejoin).Title, s.Date), ""));
+                var title = Cabinet.Fill(c, s, Get(c, o.Rejoin).Title, s.Date);
+                var cause = new Cause("events", "rejoin", 0, $"Returns to the recorded course: {title}");
+                yield return new OptionEffectPreview(cause, OptionEffectPreviewKind.Rejoin, o.Rejoin, title, "");
             }
-            if (rows.Count != causes.Count) throw new InvalidOperationException("OptionEffects has an effect without presentation context");
-            return rows.AsReadOnly();
         }
 
         /// <summary>The minister <see cref="Delegate"/> hands the event to in this state: its office's holder today, or null
