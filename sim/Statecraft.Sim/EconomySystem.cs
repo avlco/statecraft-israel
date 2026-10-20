@@ -78,8 +78,8 @@ namespace Statecraft.Sim
             why.Add(new Cause("economy", "fx_reserves", net, $"{PlayerText.Change(c, "fx_reserves", net)} (exports {PlayerText.Money(c, "fx_reserves", exports)}, donations and loans {PlayerText.Money(c, "fx_reserves", inflow)}, imports {PlayerText.Money(c, "fx_reserves", imports)})"));
 
             bool on = s.ActiveSituations.Contains(FxCrisis);
-            if (!on && s.FxReserves < 0) { s.ActiveSituations.Add(FxCrisis); why.Add(new Cause("economy", FxCrisis, 1, "Foreign currency reserves are exhausted")); }
-            else if (on && s.FxReserves > 0.25 * r.FxStart) { s.ActiveSituations.Remove(FxCrisis); why.Add(new Cause("economy", FxCrisis, -1, "Foreign currency crisis eased")); }
+            if (!on && s.FxReserves < 0) { s.ActiveSituations.Add(FxCrisis); why.Add(new Cause("economy", FxCrisis, 1, "Foreign currency reserves are exhausted", "cause.fx_crisis_started")); }
+            else if (on && s.FxReserves > 0.25 * r.FxStart) { s.ActiveSituations.Remove(FxCrisis); why.Add(new Cause("economy", FxCrisis, -1, "Foreign currency crisis eased", "cause.fx_crisis_eased")); }
 
             // The consequence: with no currency to pay for them, food imports are cut while the crisis lasts. In the GDD loop
             // the cut falls on the Food stock's imports instead (R-FOOD-002, Q-POOL-4), and food_supply follows the stock.

@@ -1,0 +1,1 @@
+- Currency-crisis report entries carry presentation keys without changing their English messages, gameplay, saved commands or golden state (refs #558).
