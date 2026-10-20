@@ -72,6 +72,30 @@ public class SettingsScreenTests
         Assert.IsFalse(ScreenNav.IsOpen(screen), "pressed again, it closes");
     }
 
+    /// <summary>#1191: merged Hebrew cards make the old English-only limitation false. Check the actual Settings
+    /// labels after its presenter runs, and keep both language choices and their callback working.</summary>
+    [Test]
+    public void LanguageChoicesDoNotClaimEventCardsAreEnglishOnly([Values(false, true)] bool hebrew)
+    {
+        var text = hebrew ? He : En;
+        using var ui = new UiTestKit();
+        using var nav = new ScreenNav(ui.Root);
+        string? picked = null;
+        using var settings = new SettingsPresenter(ui.Root, text, new SettingsStore(dir), language => picked = language);
+        ui.Press("nav-settings");
+        var screen = ui.Q<VisualElement>("screen-settings");
+        Assert.IsTrue(ScreenNav.IsOpen(screen), "the Settings screen is actually open");
+        var labels = screen.Query<Label>().ToList();
+        Assert.Greater(labels.Count, 0, "real Settings labels were loaded");
+        string obsolete = hebrew ? "כרטיסי האירועים באנגלית בלבד בינתיים." : "Event cards are English only for now.";
+        foreach (var label in labels)
+            Assert.AreNotEqual(obsolete, label.text, "Settings must not claim that event cards are English only after the Hebrew cards merged");
+        Assert.AreEqual("English", ui.Q<Button>("settings-language-en").text);
+        Assert.AreEqual("עברית", ui.Q<Button>("settings-language-he").text);
+        ui.Press(hebrew ? "settings-language-en" : "settings-language-he");
+        Assert.AreEqual(hebrew ? UiLanguage.English : UiLanguage.Hebrew, picked, "the other language still reaches the switch callback");
+    }
+
     [Test]
     public void TheTiltShiftOptionTakesEffectAtOnceAndSurvivesAReload([Values(false, true)] bool hebrew)
     {
