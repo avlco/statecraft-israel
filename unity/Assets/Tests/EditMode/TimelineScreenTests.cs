@@ -25,6 +25,92 @@ public class TimelineScreenTests
     }
     static VisualElement[] Rows(VisualElement root) => root.Query<VisualElement>(className: "timeline-row").ToList().ToArray();
 
+    static (GameSession game, GameEvent ev, EventOption chosen, EventOption record) ResolvedIdf(Content content, bool alternative)
+    {
+        var game = GameSession.New(content, GoldenRun.Seed, Mode.Historical);
+        for (int i = 0; !game.State.PendingEvents.Contains("idf_founding") && i < 2; i++) game.Step(Array.Empty<Command>());
+        Assert.Contains("idf_founding", game.State.PendingEvents, "a real pending event is required");
+        var ev = content.Events.Single(e => e.Id == "idf_founding");
+        var record = ev.Options.Single(o => o.Historical);
+        var chosen = alternative ? ev.Options.First(o => !o.Historical) : record;
+        var orders = GoldenRun.Orders(content, game.State)
+            .Where(c => !(c is ChooseEventOption choice && choice.EventId == ev.Id)).ToList();
+        orders.Add(new ChooseEventOption(ev.Id, chosen.Id));
+        game.Step(orders);
+        Assert.AreEqual(chosen.Id, game.State.ChosenOptions[ev.Id], "the normal sim path resolved the chosen answer");
+        return (game, ev, chosen, record);
+    }
+
+    [TestCase(false, false)]
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    [TestCase(true, true)]
+    public void ExistingEventNarrativeUsesTheRequestedLanguage(bool hebrew, bool alternative)
+    {
+        var content = ContentLoader.Load(Paths.Content);
+        var (game, ev, chosen, record) = ResolvedIdf(content, alternative);
+        Assert.IsNotEmpty(ev.TitleHe); Assert.IsNotEmpty(chosen.TextHe); Assert.IsNotEmpty(record.TextHe);
+        Assert.IsNull(Timeline.Variant(content, game.State, ev), "this is the real base event, not an untranslated variant");
+        using var ui = new UiTestKit(); var text = Text(hebrew); var bridge = new SimBridge(game, text);
+        using var screen = Presenter(ui.Root, bridge, text); using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
+        var row = Rows(ui.Root).Single(r => (string)r.userData == ev.Id);
+        Assert.AreEqual(hebrew ? ev.TitleHe : EventSystem.Title(content, game.State, ev), row.Q<Label>("timeline-title").text);
+        Assert.AreEqual(hebrew ? chosen.TextHe : chosen.Text, row.Q<Label>("timeline-yours").text);
+        Assert.AreEqual(hebrew ? record.TextHe : record.Text, row.Q<Label>("timeline-record").text);
+    }
+
+    [TestCase("title")]
+    [TestCase("chosen")]
+    [TestCase("record")]
+    public void MissingHebrewNarrativeFieldsFallBackIndependently(string missing)
+    {
+        // Test-only absence in an independently loaded content copy; no shipped translation or review flag changes.
+        var content = ContentLoader.Load(Paths.Content);
+        var (game, ev, chosen, record) = ResolvedIdf(content, true);
+        if (missing == "title") ev.TitleHe = "";
+        else if (missing == "chosen") chosen.TextHe = "";
+        else record.TextHe = "";
+        using var ui = new UiTestKit(); var text = Text(true); var bridge = new SimBridge(game, text);
+        using var screen = Presenter(ui.Root, bridge, text); using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
+        var row = Rows(ui.Root).Single(r => (string)r.userData == ev.Id);
+        Assert.AreEqual(missing == "title" ? EventSystem.Title(content, game.State, ev) : ev.TitleHe, row.Q<Label>("timeline-title").text);
+        Assert.AreEqual(missing == "chosen" ? chosen.Text : chosen.TextHe, row.Q<Label>("timeline-yours").text);
+        Assert.AreEqual(missing == "record" ? record.Text : record.TextHe, row.Q<Label>("timeline-record").text);
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void VariantTitlesKeepTheirExistingEnglishFallback(bool hebrew)
+    {
+        var content = ContentLoader.Load(Paths.Content);
+        var (game, ev, _, _) = ResolvedIdf(content, false);
+        ev.Variants.Add(new EventVariant { Title = "Fixture variant title" });
+        using var ui = new UiTestKit(); var text = Text(hebrew); var bridge = new SimBridge(game, text);
+        using var screen = Presenter(ui.Root, bridge, text); using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
+        var row = Rows(ui.Root).Single(r => (string)r.userData == ev.Id);
+        Assert.AreEqual("Fixture variant title", row.Q<Label>("timeline-title").text,
+            "a translated base title must not hide the active variant's untranslated title");
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public void NarrativeOfficePlaceholdersUseNamesInTheRequestedLanguage(bool hebrew)
+    {
+        var content = ContentLoader.Load(Paths.Content);
+        var (game, ev, chosen, record) = ResolvedIdf(content, true);
+        // Test-only placeholders, not new Hebrew prose or an assertion about the historical event's wording.
+        ev.Title = ev.TitleHe = chosen.Text = chosen.TextHe = record.Text = record.TextHe = "{defense_minister}";
+        using var ui = new UiTestKit(); var text = Text(hebrew); var bridge = new SimBridge(game, text);
+        var expected = Cabinet.Fill(content, game.State, "{defense_minister}", EventSystem.FillDate(ev, game.State.Date),
+            person => ContentNames.Of(text, person));
+        Assert.AreEqual(hebrew, UiDirection.HasRightToLeft(expected), "existing content supplies the requested name");
+        StringAssert.DoesNotContain("{", expected, "the office placeholder must actually be expanded");
+        using var screen = Presenter(ui.Root, bridge, text); using var nav = new ScreenNav(ui.Root); nav.Open("timeline");
+        var row = Rows(ui.Root).Single(r => (string)r.userData == ev.Id);
+        foreach (var name in new[] { "timeline-title", "timeline-yours", "timeline-record" })
+            Assert.AreEqual(expected, row.Q<Label>(name).text, name);
+    }
+
     [Test]
     public void TheHudOpensTheTimelineAndCloseReturnsItsFocus()
     {
