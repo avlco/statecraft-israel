@@ -56,6 +56,12 @@ rules:
     status: verified
     note: "Decision D-P: the owner confirms the sheets contain only the public-domain portraits and our plain layout. D-P (owner, 17 Oct 2026)."
   # --- Our own captures and drawings: CC BY 4.0 ---
+  - glob: "docs/qa/1034/*.png"
+    licence: CC-BY-SA-4.0
+    source: "Unmodified 1920x1080 WebGL QA captures of bd2abd9d0a297aa1f7d43d0b4a0bd81ae07645e6, Unity 6000.3.25f1, Chrome 155.0.8059.80, DPR 1, 2026-10-20; actual mouse/key input from title in EN/HE. Exact zero-Attention Second Truce case and next-turn delegation. Per-file SHA-256, method and credits: docs/qa/1034/README.md and manifest.json."
+    status: verified
+    note: "Agent-checked provenance, not human historical/native-language/release approval. CC BY-SA 4.0 follows D13 and existing screenshot ruling for visible map bakes. Existing Second Truce photo: Ben Merk / Anefo, Nationaal Archief 934-6899, CC0; credit preserved; Commons licence and SHA-1 checked by agent 2026-10-20. No new sensitivity flags or signatures; no Cabinet/sensitive card/title painting/video. Existing map models: MATKOT, CC0."
+
   - glob: "promo/final/09-m2-flythrough.mp4"
     licence: CC-BY-4.0
     source: "In-engine Unity capture of the M2 map (MapCapture.Flythrough); terrain derived from Copernicus DEM (NOTICE)"

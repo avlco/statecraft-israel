@@ -1,0 +1,77 @@
+{
+  "product_head": "bd2abd9d0a297aa1f7d43d0b4a0bd81ae07645e6",
+  "upstream_base": "2d3e13c098e147493ab034ab2ff20f0b04765fab",
+  "captured_utc_date": "2026-10-20",
+  "browser": "Chrome/155.0.8059.80; isolated headless profile; DPR 1",
+  "source": "real private Build.Web player driven with mouse/key input from title screen; no game-state evaluation/injection",
+  "verification": "agent checked; not human historical, native-language or release approval",
+  "licence": "CC-BY-SA-4.0",
+  "screenshots": [
+    {
+      "file": "repro-en-second-truce-attention0.png",
+      "sha256": "a175d7b3ccbb403ae54495c4b3e0012bcfa07007d34462c5d7bcf44b7b163af4",
+      "bytes": 2376153,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "modified": false
+    },
+    {
+      "file": "repro-en-aug15-restored-attention4.png",
+      "sha256": "cfa1b1752a8991d9291178457f5049f6a626c432d2fe52acd71f93052a911e09",
+      "bytes": 3369424,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "modified": false
+    },
+    {
+      "file": "repro-en-aug15-why-delegation.png",
+      "sha256": "9b9edc4068e9d2d3558b0ff78481fafcac8f61bd5805590da61a912267db90b2",
+      "bytes": 1933936,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "modified": false
+    },
+    {
+      "file": "repro-he-second-truce-attention0.png",
+      "sha256": "08462a50d25793a702812f078b9235dc45b06e9f2c8821b746510f5cc4dd88fc",
+      "bytes": 2349181,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "modified": false
+    },
+    {
+      "file": "repro-he-aug15-restored-attention4.png",
+      "sha256": "84a852563d21f9d8a4b520c84afa6c7ee759aad6a56dfe78cb054db9b9cacf4a",
+      "bytes": 3356293,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "modified": false
+    },
+    {
+      "file": "repro-he-aug15-why-delegation.png",
+      "sha256": "1b46cc3036538f3c5ba80d8e8db458b168070409995fff9ab2471beb6acb3f24",
+      "bytes": 1932170,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "modified": false
+    }
+  ],
+  "build_seconds": 341.24,
+  "web_check_seconds": {
+    "en": 11.931,
+    "he": 10.45
+  },
+  "he_harness_note": "Action23 expected togglewhy instead of actual toggle why and timed out; click and final screenshot succeeded. Both processes exited0; not every HE predicate passed."
+}
