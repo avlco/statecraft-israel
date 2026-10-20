@@ -52,7 +52,11 @@ namespace Statecraft.Game.UI
                 rows.Add(header);
                 foreach (var w in lines)
                 {
-                    var line = new Label(w.Message) { name = "why-" + i++ };
+                    // Only these two fixed report identities have translations; never infer a rule from Delta or English.
+                    var fxMessage = w.MessageKey == "cause.fx_crisis_started" || w.MessageKey == "cause.fx_crisis_eased";
+                    var message = fxMessage && text.Has("ui.lang") && text["ui.lang"] == UiLanguage.Hebrew && text.Has(w.MessageKey)
+                        ? text[w.MessageKey] : w.Message;
+                    var line = new Label(message) { name = "why-" + i++ };
                     line.AddToClassList("why-line");
                     rows.Add(line);
                 }

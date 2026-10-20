@@ -172,6 +172,8 @@ why.effects: "Ongoing effects"
 why.situations: "Situations"
 why.other: "Other"
 why.nothing: "Nothing notable happened this turn."
+cause.fx_crisis_started: "Foreign currency reserves are exhausted"
+cause.fx_crisis_eased: "Foreign currency crisis eased"
 # The turn report (#1037, TurnReportPresenter): a line is a top-bar caption and the change the bar shows.
 report.title: "What happened this turn"
 report.intro: "What changed in the top bar, and the main causes:"

@@ -181,6 +181,9 @@ why.effects: "השפעות מתמשכות"
 why.situations: "מצבים"
 why.other: "אחר"
 why.nothing: "לא קרה דבר ראוי לציון בתור הזה."
+# Agent-checked drafts for the two FX transition lines (#558); native review remains pending (#564).
+cause.fx_crisis_started: "יתרות מטבע החוץ אזלו"
+cause.fx_crisis_eased: "משבר מטבע החוץ התמתן"
 # The turn report (#1037, TurnReportPresenter): a line is a top-bar caption and the change the bar shows.
 report.title: "מה קרה בתור הזה"
 report.intro: "מה השתנה בסרגל העליון, ומה הסיבות העיקריות:"

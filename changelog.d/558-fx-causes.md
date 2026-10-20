@@ -1,1 +1,1 @@
-- Currency-crisis report entries carry presentation keys without changing their English messages, gameplay, saved commands or golden state (refs #558).
+- The Hebrew Why screen translates the two fixed foreign-currency crisis transition messages using explicit report keys; English messages, gameplay, saves and golden state stay unchanged (refs #558; Hebrew drafts await native review).
