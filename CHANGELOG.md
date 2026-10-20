@@ -7,6 +7,8 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 
 ## [Unreleased]
 
+- Prepare localized event-option effect preview data and text formatting for the pending card integration (Refs #1125, #811).
+
 ### Added
 - The ministers reach the GDD systems (D-H3's first slice, refs #808): the Labour minister's office scales housing and
   industry construction, the Agriculture minister's office pioneer and field work, and the Immigration minister's

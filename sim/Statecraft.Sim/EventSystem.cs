@@ -151,10 +151,13 @@ namespace Statecraft.Sim
         /// hex of the one city with the military camp (the loader checks each exists).</summary>
         static (string Name, int Q, int R) GrantPlace(Content c, UnitGrant g)
         {
-            var city = g.At != "" ? g.At : c.Cities.Single(x => x.Facilities.Contains(MilitaryCamp)).Id;
+            var city = GrantCity(c, g);
             var hex = c.SettlementHexes.First(h => h.Id == city);   // every settlement has one (ValidateMap)
             return (PlayerText.Settlement(c, city), hex.Q, hex.R);
         }
+
+        static string GrantCity(Content c, UnitGrant g) =>
+            g.At != "" ? g.At : c.Cities.Single(x => x.Facilities.Contains(MilitaryCamp)).Id;
 
         static string Granted(UnitGrant g, string place) =>
             FormattableString.Invariant($"{g.N} {g.Type} unit{(g.N == 1 ? "" : "s")} at {place}");
@@ -181,6 +184,63 @@ namespace Statecraft.Sim
             if (o.Rejoin != "")
                 lines.Add(new Cause("events", "rejoin", 0, $"Returns to the recorded course: {Cabinet.Fill(c, s, c.Events.First(x => x.Id == o.Rejoin).Title, s.Date)}"));
             return lines;
+        }
+
+        /// <summary>R-EVT-005: read-only presentation context over the actual OptionEffects entries, in their exact order.
+        /// Resolves names, grant destinations and number formats here; a localized UI supplies nouns, not game rules.
+        /// Like OptionEffects, these are the option's stated amounts, before Resolve applies bounds or delegation.</summary>
+        public static IReadOnlyList<OptionEffectPreview> OptionEffectPreviews(Content c, GameState s, EventOption o)
+        {
+            var causes = OptionEffects(c, s, o);
+            var rows = new List<OptionEffectPreview>(causes.Count);
+            // Fail visibly if the helper gains or reorders an effect without its presentation context being updated.
+            Cause Next(string target, double delta)
+            {
+                if (rows.Count >= causes.Count || causes[rows.Count].Target != target || causes[rows.Count].Delta != delta)
+                    throw new InvalidOperationException("OptionEffects presentation context is out of order");
+                return causes[rows.Count];
+            }
+            foreach (var fx in o.Effects.Where(fx => Reaches(s, fx.Target)))
+            {
+                var cause = Next(fx.Target, fx.Delta);
+                var stock = fx.Target == Pools.FoodTarget || fx.Target == Pools.ArmsTarget;
+                var name = stock ? (fx.Target == Pools.FoodTarget ? "Food" : "Arms") : PlayerText.Target(c, fx.Target);
+                var amount = stock ? PlayerText.UnitsChangeNumber(cause.Delta)
+                    : PlayerText.IsMoney(c, fx.Target) ? PlayerText.MoneyChange(c, fx.Target, cause.Delta) : PlayerText.PercentChange(cause.Delta);
+                rows.Add(new OptionEffectPreview(cause, stock ? OptionEffectPreviewKind.Stock : OptionEffectPreviewKind.Amount,
+                    fx.Target, name, amount));
+            }
+            foreach (var g in o.GrantUnits)
+            {
+                var cause = Next(g.Type, g.N);
+                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.UnitGrant, GrantCity(c, g), GrantPlace(c, g).Name,
+                    FormattableString.Invariant($"{cause.Delta}")));
+            }
+            foreach (var x in o.CityEffects)
+            {
+                var cause = Next(x.City + "." + x.Field, x.Delta);
+                var amount = x.Field == ConditionField ? PlayerText.PercentChange(cause.Delta)
+                    : FormattableString.Invariant($"{(cause.Delta > 0 ? "+" : "")}{cause.Delta}");
+                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.City, x.City, PlayerText.Settlement(c, x.City), amount, x.Field));
+            }
+            foreach (var kv in o.SetPolicy.Where(k => s.Policies.ContainsKey(k.Key)).OrderBy(k => k.Key, StringComparer.Ordinal))
+            {
+                var cause = Next(kv.Key, kv.Value);
+                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.SetPolicy, kv.Key, PlayerText.Target(c, kv.Key), PlayerText.Percent(cause.Delta)));
+            }
+            if (o.SetRung.HasValue)
+            {
+                var cause = Next("rung", o.SetRung.Value);
+                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.SetRung, "", "", FormattableString.Invariant($"{cause.Delta}")));
+            }
+            if (o.Rejoin != "")
+            {
+                var cause = Next("rejoin", 0);
+                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.Rejoin, o.Rejoin,
+                    Cabinet.Fill(c, s, Get(c, o.Rejoin).Title, s.Date), ""));
+            }
+            if (rows.Count != causes.Count) throw new InvalidOperationException("OptionEffects has an effect without presentation context");
+            return rows.AsReadOnly();
         }
 
         /// <summary>The minister <see cref="Delegate"/> hands the event to in this state: its office's holder today, or null
