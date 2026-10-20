@@ -140,7 +140,7 @@ Phase 5 PR 2 (#741) adds the record and the types only; nothing moves, fights or
 
 R-UNIT-001: A military unit is a group at formation scale, one token per formation (D-A1; Q-UNIT-1). It has a side, a type, a hex, a strength (an integer, in population units) and a standing order with its target. A military type in `unit_types.yaml` is a `unit` with a `side` (one of `units_1948.yaml`'s sides) and a `class` (infantry, artillery or armour); the loader refuses a type with only one of them, an unknown side or class, or a population type with either, naming the file and field. The MVP's military types are Israel's `recruit`, `veteran_soldier`, `artillery` and `armoured_car`.
 
-R-UNIT-002: A unit's side, strength, order and order target are written into the state hash only when they are not at their default ("" or 0), after its service (R-LOOP-002's rule), so a halutz unit's hash text, and every golden, is unchanged.
+R-UNIT-002: A unit's side, strength, order and order target are written into the state hash only when they are not at their default ("" or 0), after its service (R-LOOP-002's rule). Its housing home city is also written when nonempty (`|home=<city>`); an empty home adds nothing, preserving earlier units' canonical text. A halutz unit's hash text, and every golden, is unchanged.
 
 R-UNIT-003: A finished recruit cohort becomes exactly one Israeli infantry formation at its city's settlement hex, with `Strength` equal to the cohort's `Count` in population units, service 0 and the next id (Q-UNIT-1, Q-UNIT-4; owner, 15 October 2026). The cohort leaves the state: nobody is lost or duplicated. Its reserved Arms are neither charged again nor refunded on completion (R-ARMS-003).
 
