@@ -256,7 +256,23 @@ namespace Statecraft.Game.UI
                 var b = new Button(() => Choose(e, option)) { name = "option-" + o.Id, text = price > 0 ? text.Format("event.option_cost", label, price) : label };
                 b.AddToClassList(OptionClass);
                 b.SetEnabled(!unpaid);
-                options.Add(b);
+                // The real choice keeps its label, price, enabled state and Submit behavior. Its stated effects are
+                // passive text beside that control, read through the bridge; no effect arithmetic or English parsing.
+                var row = new VisualElement { name = "option-" + o.Id + "-row", pickingMode = PickingMode.Ignore };
+                row.AddToClassList("event-option-row");
+                row.Add(b);
+                int effectIndex = 0;
+                foreach (var effect in bridge.OptionEffects(o))
+                {
+                    var line = new Label(EventEffectText.Format(effect, text))
+                    {
+                        name = "option-" + o.Id + "-effect-" + effectIndex++, pickingMode = PickingMode.Ignore,
+                    };
+                    line.AddToClassList("event-option-effect");
+                    line.AddToClassList("muted");
+                    row.Add(line);
+                }
+                options.Add(row);
             }
             card.Q<Label>("event-count").text = open.Count > 1 ? text.Format("event.more", open.Count - 1) : "";
             if (shown && focusedFor != e.Id) FocusCard(e.Id, force: false);

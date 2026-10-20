@@ -79,6 +79,11 @@ namespace Statecraft.Game.UI
         /// cabinet: an appointment queued this turn is in office by then (#1034).</summary>
         public Person? DelegatedTo(GameEvent e) => Simulation.DelegatedTo(Content, State, queue, e.Id);
 
+        /// <summary>The option's stated effects in the sim's order, with sim-formatted amounts. Reading this neither
+        /// queues the choice nor predicts bounds or minister delegation (#1125, R-EVT-005).</summary>
+        public IReadOnlyList<OptionEffectPreview> OptionEffects(EventOption option) =>
+            EventSystem.OptionEffectPreviews(Content, State, option);
+
         /// <summary>The vacant seats the player can fill, less those an appointment queued now fills (Cabinet.Vacancies): the
         /// side menu's Cabinet badge (#1109).</summary>
         public IReadOnlyList<Office> Vacancies => Cabinet.Vacancies(Content, State, queue);

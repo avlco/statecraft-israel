@@ -4,7 +4,7 @@ using Statecraft.Sim;
 
 namespace Statecraft.Game.UI
 {
-    /// <summary>Localized words around the sim's already formatted option-effect amounts. Not yet wired to the card.</summary>
+    /// <summary>Localized words around the sim's already formatted option-effect amounts, shown beside each real choice.</summary>
     public static class EventEffectText
     {
         /// <param name="contextName">Optional localized indicator, money, city, policy or event name from the caller.

@@ -10,7 +10,7 @@ using Statecraft.Sim;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>R-EVT-005: independent formatter tests; production card integration and its layout/focus gates follow #1091/#1105.</summary>
+/// <summary>R-EVT-005: localized formatter tests; actual production integration and layout/focus are checked by EventCardTests and DecisionCardTests.</summary>
 public class EventEffectTextTests
 {
     static readonly Content C = ContentLoader.Load(Paths.Content);

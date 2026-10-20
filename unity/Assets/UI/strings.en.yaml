@@ -381,7 +381,7 @@ site.stop: "Stop building (the money spent is lost)"
 site.built: "Founded on {0}"
 site.ordered: "Ordered"
 
-# #1125 independent option-effect formatter; no production card hookup yet.
+# #1125 option-effect text shown beside each event choice.
 event.effect.amount: "{0} {1}"
 event.effect.stock: "{0} {1} units"
 event.effect.grant: "{0}: {1} at {2}"

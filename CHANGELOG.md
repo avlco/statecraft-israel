@@ -8,7 +8,7 @@ checks this (see `CONTRIBUTING.md`).
 
 ## [Unreleased]
 
-- Prepare localized event-option effect preview data and text formatting for the pending card integration (Refs #1125, #811).
+- Event cards show each option's stated effects in English and Hebrew, from the sim's preview, while retaining the real choice label, Attention price and disabled/keyboard behavior (Refs #1125, #811).
 
 ### Added
 - The IDF brigades' 15 May 1948 strengths in `content/map/units_1948.yaml` (the first step of GDD Phase 5 PR 4, refs
