@@ -60,7 +60,7 @@ rules:
     licence: CC-BY-SA-4.0
     source: "Unmodified 1920x1080 WebGL QA captures of bd2abd9d0a297aa1f7d43d0b4a0bd81ae07645e6, Unity 6000.3.25f1, Chrome 155.0.8059.80, DPR 1, 2026-10-20; actual mouse/key input from title in EN/HE. Exact zero-Attention Second Truce case and next-turn delegation. Per-file SHA-256, method and credits: docs/qa/1034/README.md and manifest.json."
     status: verified
-    note: "Agent-checked provenance, not human historical/native-language/release approval. CC BY-SA 4.0 follows D13 and existing screenshot ruling for visible map bakes. Existing Second Truce photo: Ben Merk / Anefo, Nationaal Archief 934-6899, CC0; credit preserved; Commons licence and SHA-1 checked by agent 2026-10-20. No new sensitivity flags or signatures; no Cabinet/sensitive card/title painting/video. Existing map models: MATKOT, CC0."
+    note: "Agent-checked provenance, not human historical/native-language/release approval. CC BY-SA 4.0 follows D13 and existing screenshot ruling for visible map bakes. Existing Second Truce photo: Ben Merk / Anefo, Nationaal Archief 934-6899, CC0; credit preserved; Commons licence and SHA-1 checked by agent 2026-10-20. No new sensitivity flags or signatures; no Cabinet/sensitive card/title painting/video. Existing map models: Tal Heuberger, CC0."
 
   - glob: "promo/final/09-m2-flythrough.mp4"
     licence: CC-BY-4.0
