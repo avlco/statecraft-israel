@@ -64,7 +64,7 @@ public class EventCardTests
         {
             var rows = EventSystem.OptionEffectPreviews(c, g.State, option);
             var button = ui.Q<Button>("option-" + option.Id);
-            var actual = button.Query<Label>(className: "event-option-effect").ToList();
+            var actual = button.parent.Query<Label>(className: "event-option-effect").ToList();
             CollectionAssert.AreEqual(rows.Select(x => EventEffectText.Format(x, text)).ToArray(), actual.Select(x => x.text).ToArray(), option.Id);
             Assert.IsTrue(actual.All(x => !x.focusable && x.pickingMode == PickingMode.Ignore), "effect text is not another control or pointer target");
             var label = lang == "he" && option.TextHe != "" ? Cabinet.Fill(c, g.State, option.TextHe, e.From, p => ContentNames.Of(text, p))
@@ -72,7 +72,7 @@ public class EventCardTests
             Assert.AreEqual(text.Format("event.option_cost", label, bridge.Price(new ChooseEventOption(e.Id, option.Id))), button.text,
                 "the real label and Attention price remain on the real choice button");
         }
-        Assert.AreEqual(12, ui.Q<Button>("option-" + e.Options[0].Id).Query<Label>(className: "event-option-effect").ToList().Count,
+        Assert.AreEqual(12, ui.Q<Button>("option-" + e.Options[0].Id).parent.Query<Label>(className: "event-option-effect").ToList().Count,
             "non-vacuous: numeric, grant, city, project, policy, rung and rejoin effects were all rendered");
         Assert.AreEqual(hash, g.State.Hash());
         Assert.IsEmpty(bridge.Queued, "showing a preview neither selects nor queues an option");
@@ -93,7 +93,7 @@ public class EventCardTests
         using var card = new EventCardPresenter(ui.Root, bridge, text, null);
         var button = ui.Q<Button>("option-" + e.Options[0].Id);
         Assert.IsFalse(button.enabledSelf);
-        Assert.AreEqual(12, button.Query<Label>(className: "event-option-effect").ToList().Count, "unaffordable effects remain readable");
+        Assert.AreEqual(12, button.parent.Query<Label>(className: "event-option-effect").ToList().Count, "unaffordable effects remain readable");
         UiTestKit.Press(button);
         Assert.IsEmpty(bridge.Queued);
         Assert.AreEqual(0, bridge.AttentionLeft);

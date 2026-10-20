@@ -88,6 +88,79 @@ public class DecisionCardTests
 
     static readonly (int w, int h)[] Tiers = { (1920, 1080), (960, 1080) };
 
+    // #1125: static effect text adds no control, preserves the actual choice, and stays inside the card at real window sizes.
+    [UnityTest]
+    public IEnumerator EveryRealOptionPreviewFitsWithItsChoiceInEnglishAndHebrew()
+    {
+        var he = UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(UiPaths.StringsHebrew).text, "strings.he.yaml");
+        var problems = new List<string>();
+        int seen = 0;
+        foreach (var text in new[] { Text, he })
+            foreach (var (w, h) in new[] { (1920, 1080), (1280, 720), (390, 844), (960, 600) })
+            {
+                using var r = new Rig(w, h, "altalena", text: text);
+                using var direction = new UiDirection(r.Root, r.Bridge);
+                foreach (var ev in C.Events)
+                {
+                    r.Bridge.Replace(Pending(ev.Id));
+                    yield return Frames(4);
+                    direction.Apply();
+                    var card = r.CardElement.worldBound;
+                    var where = $"{text["ui.lang"]} {w}x{h} {ev.Id}";
+                    foreach (var option in ev.Options)
+                    {
+                        var button = r.Root.Q<Button>("option-" + option.Id);
+                        var effects = button.parent.Query<Label>(className: "event-option-effect").ToList();
+                        var expected = EventSystem.OptionEffectPreviews(C, r.Bridge.State, option);
+                        Assert.AreEqual(expected.Count, effects.Count, where + " " + option.Id);
+                        CollectionAssert.AreEqual(expected.Select(x => EventEffectText.Format(x, text)).ToArray(), effects.Select(x => x.text).ToArray(), where);
+                        seen += effects.Count;
+                        foreach (var element in effects.Cast<TextElement>().Prepend(button))
+                        {
+                            var box = element.worldBound;
+                            if (box.xMin < card.xMin - 0.5f || box.xMax > card.xMax + 0.5f || box.yMin < card.yMin - 0.5f || box.yMax > card.yMax + 0.5f)
+                                problems.Add($"{where}: {element.name} {box} leaves card {card}");
+                            if (!UiLayoutTests.TextFits(element)) problems.Add($"{where}: text is clipped: {element.text}");
+                        }
+                        Assert.IsTrue(effects.All(x => !x.focusable && x.pickingMode == PickingMode.Ignore), where);
+                    }
+                }
+            }
+        Assert.Greater(seen, 100, "actual nonempty previews were laid out, not an empty scan");
+        Assert.IsEmpty(problems, string.Join("\n", problems));
+    }
+
+    [UnityTest]
+    public IEnumerator PreviewTextDoesNotTakeKeyboardFocusOrChooseForThePlayer()
+    {
+        var he = UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(UiPaths.StringsHebrew).text, "strings.he.yaml");
+        foreach (var text in new[] { Text, he })
+        {
+            using var r = new Rig(1280, 720, "altalena", text: text);
+            yield return Frames(4);
+            var button = r.FirstOption;
+            var labels = button.parent.Query<Label>(className: "event-option-effect").ToList();
+            Assert.IsNotEmpty(labels, "the actual card has its option effects");
+            Assert.AreSame(r.CardElement, r.Focused, "opening still focuses the card without choosing an option");
+            button.Focus(); yield return Frames(2);
+            Assert.AreSame(button, r.Focused);
+            foreach (var label in labels)
+            {
+                label.Focus();
+                Assert.AreSame(button, r.Focused, "static preview text cannot steal keyboard focus");
+                var target = r.Root.panel.Pick(label.worldBound.center);
+                Assert.IsNotNull(target);
+                using (var down = PointerDownEvent.GetPooled()) { down.target = target; target.SendEvent(down); }
+                using (var up = PointerUpEvent.GetPooled()) { up.target = target; target.SendEvent(up); }
+                Assert.IsEmpty(r.Bridge.Queued, "reading/clicking plain effect text does not choose an option");
+            }
+            var id = r.Card.Shown!.Id;
+            var option = C.Events.First(e => e.Id == id).Options[0].Id;
+            Press(button);
+            Assert.AreEqual((id, option), (((ChooseEventOption)r.Bridge.Queued.Single()).EventId, ((ChooseEventOption)r.Bridge.Queued.Single()).OptionId));
+        }
+    }
+
     /// <summary>#380: the taller two- and three-row bars raise the centred card (the event layer keeps room at its bottom), and
     /// the backdrop must still reach the window's bottom and right edges, so no strip of map stays live under an open card.</summary>
     [UnityTest]
