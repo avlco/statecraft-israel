@@ -25,10 +25,91 @@ public class MilitaryTrainingTests
         var home = Mvp.SettlementHexes.Single(h => h.Id == "tel_aviv");
         Assert.Equal((next, "recruit", "israel", count, home.Q, home.R, 0),
             (unit.Id, unit.Type, unit.Side, unit.Strength, unit.Q, unit.R, unit.Service));
+        Assert.Equal("tel_aviv", unit.HomeCity);
         Assert.Equal(next + 1, s.NextId);
         Assert.Empty(s.Cohorts);
         Assert.Equal(0, s.Cities["tel_aviv"].Recruits);
         Assert.Equal(arms, s.Arms); // Completing neither charges again nor returns the Arms reserved at the start.
+    }
+
+    // R-HOUSE-003, R-TRAIN-003: Q-HOUSE-5 still counts recruits after they leave their training cohort.
+    [Fact]
+    public void AGraduatedRecruitCohortRemainsHousedInItsCity()
+    {
+        var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
+        var city = s.Cities["tel_aviv"].WithCounts(0, 0, 0).WithRecruits(0).WithCraftsmen(0);
+        s.Cities[city.Id] = city;
+        var id = s.NextId++;
+        s.Cohorts.Add(id, new Cohort(id, "recruit", city.Id, 3, 1, 3));
+        Assert.Equal(3, Cities.Housed(s, city));
+
+        Training.Progress(Mvp, s, new List<Cause>());
+
+        Assert.Empty(s.Cohorts);
+        Assert.Equal(3, Assert.Single(s.Units.Values).Strength);
+        Assert.Equal(3, Cities.Housed(s, s.Cities[city.Id]));
+    }
+
+    // R-HOUSE-003: formations belong to their training city's housing, not their current hex.
+    [Fact]
+    public void AMovingFormationKeepsItsHomeHousingThroughOrdersAndPromotion()
+    {
+        var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
+        var city = s.Cities["tel_aviv"].WithCounts(0, 0, 0).WithRecruits(0).WithCraftsmen(0);
+        s.Cities[city.Id] = city;
+        var id = s.NextId++;
+        s.Cohorts.Add(id, new Cohort(id, "recruit", city.Id, 3, 1, 3));
+        var why = new List<Cause>();
+        Training.Progress(Mvp, s, why);
+        var unit = Assert.Single(s.Units.Values);
+        var target = Movement.Reachable(Mvp, s, unit.Id).First(h => h.Value > 0).Key;
+        Assert.Null(Movement.Move(Mvp, s, unit.Id, target.Q, target.R, new Dictionary<int, int>(), why));
+        Assert.Equal(city.Id, s.Units[unit.Id].HomeCity);
+        Assert.Equal(3, Cities.Housed(s, city));
+        Assert.Null(Orders.Give(s, unit.Id, Orders.Fortify, why));
+        Assert.Equal(city.Id, s.Units[unit.Id].HomeCity);
+        Orders.Settle(s, why);
+        Assert.Equal(Orders.Fortify, s.Units[unit.Id].Order);
+        Assert.Equal(city.Id, s.Units[unit.Id].HomeCity);
+        var rules = Mvp.RulesAt(s.Date).Mvp!;
+        for (int turn = 0; turn < rules.VeteranSoldierService!.Value; turn++)
+        {
+            Military.Serve(s, rules, why);
+            Assert.Equal(city.Id, s.Units[unit.Id].HomeCity);
+            Assert.Equal(3, Cities.Housed(s, city));
+        }
+        Assert.Equal("veteran_soldier", s.Units[unit.Id].Type);
+    }
+
+    // R-HOUSE-003: another city, an enemy formation and an unknown home do not fill this city's homes.
+    [Fact]
+    public void HousingCountsOnlyTheIsraeliFormationStrengthWithThatHome()
+    {
+        var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
+        var city = s.Cities["tel_aviv"].WithCounts(0, 0, 0).WithRecruits(0).WithCraftsmen(0);
+        s.Cities[city.Id] = city;
+        s.Units.Add(1, new Unit(1, "recruit", 0, 0, side: "israel", strength: 3, homeCity: city.Id));
+        s.Units.Add(2, new Unit(2, "veteran_soldier", 0, 0, side: "israel", strength: 5, homeCity: "jerusalem"));
+        s.Units.Add(3, new Unit(3, "enemy", 0, 0, side: "egypt", strength: 7, homeCity: city.Id));
+        s.Units.Add(4, new Unit(4, "recruit", 0, 0, side: "israel", strength: 11));
+        Assert.Equal(3, Cities.Housed(s, city));
+    }
+
+    // R-HOUSE-003: the established exception for halutz units remains unchanged.
+    [Fact]
+    public void AGraduatedPioneerCohortLeavesCityHousing()
+    {
+        var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
+        var home = Mvp.Cities.Single(c => c.Facilities.Contains("hakhshara")).Id;
+        var city = s.Cities[home].WithCounts(0, 0, 0).WithRecruits(0).WithCraftsmen(0);
+        s.Cities[home] = city;
+        var id = s.NextId++;
+        s.Cohorts.Add(id, new Cohort(id, "halutz", home, 3, 1));
+        Assert.Equal(3, Cities.Housed(s, city));
+        Training.Progress(Mvp, s, new List<Cause>());
+        Assert.Equal(3, s.Units.Count);
+        Assert.All(s.Units.Values, u => Assert.Empty(u.HomeCity));
+        Assert.Equal(0, Cities.Housed(s, city));
     }
 
     // R-UNIT-003: ascending completion order and the same people after differently sized cohorts finish.
@@ -69,6 +150,7 @@ public class MilitaryTrainingTests
         var loaded = GameSession.Load(Mvp, g.Save.Write(), out var warning);
         Assert.Empty(warning);
         Assert.Equal(g.State.Hash(), loaded.State.Hash());
+        Assert.Equal("tel_aviv", Assert.Single(loaded.State.Units.Values).HomeCity);
         Assert.Equal(unit.Canonical(), Assert.Single(loaded.State.Units.Values).Canonical());
     }
 
@@ -89,6 +171,8 @@ public class MilitaryTrainingTests
         var loaded = GameSession.Load(Mvp, g.Save.Write(), out var warnings);
         Assert.Empty(warnings);
         Assert.Equal(g.State.Hash(), loaded.State.Hash());
+        Assert.Equal("tel_aviv", moved.HomeCity);
+        Assert.Equal("tel_aviv", loaded.State.Units[recruit.Id].HomeCity);
         Assert.Equal(moved.Canonical(), loaded.State.Units[recruit.Id].Canonical());
     }
 
@@ -122,6 +206,7 @@ public class MilitaryTrainingTests
         {
             g.Step(new Command[0]);
             var u = Assert.Single(g.State.Units.Values);
+            Assert.Equal("tel_aviv", u.HomeCity);
             Assert.Equal(service, u.Service);
             Assert.Equal(service < threshold ? "recruit" : "veteran_soldier", u.Type);
         }

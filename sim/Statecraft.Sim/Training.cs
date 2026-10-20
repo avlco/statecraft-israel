@@ -81,8 +81,8 @@ namespace Statecraft.Sim
             var cost = count * type.TrainingCost;
             // Owner decision "Allow borrowing" (2026-10-15, #468 question 1): a short Treasury borrows, as map actions do.
             EconomySystem.PayOrBorrow(c, s, cost, "for training", why);
-            // R-HOUSE-003: trainees leave the civilian count but remain housed as a cohort until graduation. A military or
-            // pioneer unit then leaves city housing; a craftsman remains. The employed share also reads the new counts.
+            // R-HOUSE-003: trainees remain housed as a cohort, and recruits keep their home city's housing as formations.
+            // A pioneer unit leaves city housing; a craftsman remains. The employed share also reads the new counts.
             s.Cities[city] = x.WithCounts(x.Civilians - count, x.Employed, x.Refugees);
             var id = s.NextId++;
             // The plan's reading of D-A6, not part of the owner's ruling: the turn of the order is the first training turn, so
@@ -135,7 +135,7 @@ namespace Statecraft.Sim
                 {
                     var hex = c.SettlementHexes.First(h => h.Id == k.City);
                     var id = s.NextId++;
-                    s.Units.Add(id, new Unit(id, type.Id, hex.Q, hex.R, side: type.Side, strength: k.Count));
+                    s.Units.Add(id, new Unit(id, type.Id, hex.Q, hex.R, side: type.Side, strength: k.Count, homeCity: k.City));
                     why.Add(new Cause("city", k.City, k.Count, $"{name}: {Groups(k.Count)} finished {Course(type.Facility)} and are recruits"));
                 }
                 else if (type.Kind == "unit")

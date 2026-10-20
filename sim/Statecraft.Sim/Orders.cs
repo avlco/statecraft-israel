@@ -24,7 +24,7 @@ namespace Statecraft.Sim
         static string Hex(Unit u) => string.Format(CultureInfo.InvariantCulture, "{0},{1}", u.Q, u.R);
 
         static Unit With(Unit u, string order, string target) =>
-            new Unit(u.Id, u.Type, u.Q, u.R, u.Service, u.Side, u.Strength, order, target);
+            new Unit(u.Id, u.Type, u.Q, u.R, u.Service, u.Side, u.Strength, order, target, u.HomeCity);
 
         /// <summary>R-ORDER-001: gives the unit its standing order, replacing any other. Fortify names the unit's hex and starts
         /// as Fortifying; hold names nothing, as it acts where the unit is. Refused, state untouched, for an unknown order or

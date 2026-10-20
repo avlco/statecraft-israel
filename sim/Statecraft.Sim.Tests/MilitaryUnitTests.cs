@@ -30,6 +30,20 @@ public class MilitaryUnitTests
         Assert.Equal("2:artillery@3,4/1|side=israel", new Unit(2, "artillery", 3, 4, 1, side: "israel").Canonical());
     }
 
+    // R-HOUSE-003, R-UNIT-002: home affects housing, so it is state and survives the immutable clone.
+    [Fact]
+    public void AFormationsHomeCityChangesItsHashAndSurvivesAClone()
+    {
+        var s = new GameState();
+        s.Units.Add(1, new Unit(1, "recruit", 0, 0, side: "israel", strength: 3, homeCity: "tel_aviv"));
+        var copy = s.Clone();
+        Assert.Equal("tel_aviv", copy.Units[1].HomeCity);
+        Assert.Equal(s.Hash(), copy.Hash());
+        copy.Units[1] = new Unit(1, "recruit", 0, 0, side: "israel", strength: 3, homeCity: "jerusalem");
+        Assert.NotEqual(s.Hash(), copy.Hash());
+        Assert.Equal("tel_aviv", s.Units[1].HomeCity);
+    }
+
     // R-UNIT-001: the recruit now joins the three military types introduced by #741, with its side and class.
     [Fact]
     public void TheRealGameHasTheFourIsraeliMilitaryTypes()
