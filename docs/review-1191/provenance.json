@@ -1,0 +1,291 @@
+{
+  "issue": 1191,
+  "status": "Matched BEFORE/AFTER capture validation complete on the named frozen sources; Air retains implementation/publication.",
+  "before_source": "107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7",
+  "after_source": "98b4f9c434dbf7651006e0f40fdc6fdb5c66f989",
+  "agent_inspection_only": true,
+  "native_speaker_or_rights_attestation": false,
+  "licence_reference": "Existing repository ASSETS.yaml engine-capture rule uses CC-BY-SA-4.0 for derived-map bakes; retain NOTICE and original asset rights. No new owner verification supplied.",
+  "images": [
+    {
+      "role": "before",
+      "language": "en",
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "source": "107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7",
+      "image": "before/settings-en-1280x720.png",
+      "png_sha256": "cfeb1b2cbbd7b65037e08f6f2b4c1cfc1cd3147a5301e32353bda415f8591c84",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=en",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "ca8886fa1f3739ae4a68c5d7d77868565b18415476c0fe10b173e56f086aff5a",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 936,
+          "y": 689
+        },
+        {
+          "action": "click",
+          "x": 30,
+          "y": 296
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "before",
+      "language": "he",
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "source": "107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7",
+      "image": "before/settings-he-1280x720.png",
+      "png_sha256": "f5208f3f1312da6fd0a983d2750fa64a7aa78156fa9a11a081da45af9b960221",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=he",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "ca8886fa1f3739ae4a68c5d7d77868565b18415476c0fe10b173e56f086aff5a",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 345,
+          "y": 688
+        },
+        {
+          "action": "click",
+          "x": 30,
+          "y": 296
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "before",
+      "language": "en",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 1,
+      "source": "107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7",
+      "image": "before/settings-en-390x844.png",
+      "png_sha256": "75844cc89caf524c5b91ee5515c05b9e59b478dabc554776fcc1b461c1263e81",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=en",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "ca8886fa1f3739ae4a68c5d7d77868565b18415476c0fe10b173e56f086aff5a",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 355,
+          "y": 597
+        },
+        {
+          "action": "click",
+          "x": 22,
+          "y": 405
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "before",
+      "language": "he",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 1,
+      "source": "107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7",
+      "image": "before/settings-he-390x844.png",
+      "png_sha256": "c94bd964ad5de2f3d2dc7752e643090db60ff7c36eb422e4e97e6dbdb77eedb8",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=he",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "ca8886fa1f3739ae4a68c5d7d77868565b18415476c0fe10b173e56f086aff5a",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 70,
+          "y": 568
+        },
+        {
+          "action": "click",
+          "x": 22,
+          "y": 394
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "after",
+      "language": "en",
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "source": "98b4f9c434dbf7651006e0f40fdc6fdb5c66f989",
+      "image": "after/settings-en-1280x720.png",
+      "png_sha256": "fdff8e19bdca38a6cba43cb95d90e3ef6349f1ed7ebb6e11fa78faa10b37c130",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=en",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "275c8d540931d530fce3dbc770aeb9a31cc1b2b392b1542149a9eed246a64b1e",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 936,
+          "y": 689
+        },
+        {
+          "action": "click",
+          "x": 30,
+          "y": 296
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "after",
+      "language": "he",
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "source": "98b4f9c434dbf7651006e0f40fdc6fdb5c66f989",
+      "image": "after/settings-he-1280x720.png",
+      "png_sha256": "679668515ca380a73ed526bcca20f8b3bdfaa5fcba7714e8ff217468addd2821",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=he",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "275c8d540931d530fce3dbc770aeb9a31cc1b2b392b1542149a9eed246a64b1e",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 345,
+          "y": 688
+        },
+        {
+          "action": "click",
+          "x": 30,
+          "y": 296
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "after",
+      "language": "en",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 1,
+      "source": "98b4f9c434dbf7651006e0f40fdc6fdb5c66f989",
+      "image": "after/settings-en-390x844.png",
+      "png_sha256": "6ad9b9aca1fa09a623bfd3ea65e1c8d44fffd3ab901a185c1b89548d8376b0d5",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=en",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "275c8d540931d530fce3dbc770aeb9a31cc1b2b392b1542149a9eed246a64b1e",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 355,
+          "y": 597
+        },
+        {
+          "action": "click",
+          "x": 22,
+          "y": 405
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    },
+    {
+      "role": "after",
+      "language": "he",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 1,
+      "source": "98b4f9c434dbf7651006e0f40fdc6fdb5c66f989",
+      "image": "after/settings-he-390x844.png",
+      "png_sha256": "ba0e65a1cafbd9f5e17c447d90a9dbc6966c3ad8378d9dee816a4f475641f7fe",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=he",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "build_receipt_sha256": "275c8d540931d530fce3dbc770aeb9a31cc1b2b392b1542149a9eed246a64b1e",
+      "player_file_count": 103,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 70,
+          "y": 568
+        },
+        {
+          "action": "click",
+          "x": 22,
+          "y": 394
+        }
+      ],
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "changed_area": "Obsolete English-only notice beneath the language buttons: visible BEFORE; removed AFTER. Both language choices, sound High, Automatic quality and 100% UI scale remain visible."
+    }
+  ]
+}

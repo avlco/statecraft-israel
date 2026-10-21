@@ -1,0 +1,80 @@
+Settings issue1191 — independent MacBook Pro verification
+
+Frozen AFTER source: 98b4f9c434dbf7651006e0f40fdc6fdb5c66f989
+Frozen BEFORE source:107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7
+Feature implementation/public PR publication remains assigned to the Mac Air.
+This separate fork branch contains review evidence, not a feature PR update.
+
+Managed checks, actual output:
+$ bash scripts/check.sh 107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7
+320 passed in 19.76s
+unity compile: Statecraft.Game and Statecraft.Tests.EditMode build with 0 errors and 0 warnings
+Passed!  - Failed:     0, Passed:  2098, Skipped:     0, Total:  2098
+1447 passed, 4 skipped, 2 subtests passed in 142.58s (0:02:22)
+ALL CHECKS PASSED
+Driver exit0;230.752490542 seconds. Warnings-as-errors build passed.
+
+$ STATECRAFT_UPDATE_GOLDEN=1 dotnet test sim/Statecraft.sln -c Release --nologo
+Passed!  - Failed:     0, Passed:  2098, Skipped:     0, Total:  2098
+Exit0; manifest and source unchanged. Fresh tools/build_sim_for_unity.py exit0.
+Own Release/Unity plugin byte-identical; embedded revision98b4 verified.
+DLL SHA256:43cd01f34dd2d62be43dc897639feea75495787dd82e0da1862ecbf0ca965795
+Managed check log SHA256:66cc3ddb9f9c4cb608b004b24736be888b25c37ad837ecaa62d2338d1ca6106b
+
+Unity6000.3.25f1 full EditMode, actual XML/terminal:
+1641 total;1639 passed;0 failed;2 existing Explicit skips.
+Test run completed. Exiting with code 0 (Ok). Run completed.
+1163.0078479 seconds test time;1180.494298542 seconds wall;driver0/Editor0.
+0 C# warnings/errors;0 TypeDB messages. All27 Settings tests,21 Hebrew tests,
+both new1191 regressions and10 plugin guards passed. The compiled guard hard
+assertion was verified present. Every historical case retained; same1641 case
+names as the original failed run. Actual argv read from its Editor log matched
+the recorded command: EditMode/OSXUniversal, no filter, no -quit/no -nographics.
+Explicit skips: ContactSheetRenders and RenderSteadyTiming.
+XML SHA256:313857383121460a368ee1983acb9bf629db47b60a03ba5e5269fdb80d25e42e
+Log SHA256:3a8110d6f696248582ded2f39f887b87248598a48300303cdc42890262238d31
+Compiled test DLL SHA256:31fffdb938e915748ee3196c8d1cdcfbe4e875f353a2d558dc2c2b50ba4c7826
+Raw shutdown finalization/disposed-flush/debugger-listen notices are retained;
+zero C# warnings/errors is not a claim that the whole log is warning-free.
+
+Original full run was FAILED:1641/1636 passed/3 failed/2 skipped,Editor2.
+Three existing CollectionStreamTests builders received63915 unexpected TypeDB
+duplicate-registration Error messages. Its XML/log remain failed, not relabelled.
+Installed Unity loader IL and official Unity reference code both enumerate
+TypeDb-*.json recursively and concatenate entries. Five numbered local TypeDB
+JSON copies were moved to a hashed reversible quarantine outside the project;
+the two canonical files stayed intact. Their producer is not established.
+No game/test/vendor/package edits, error expectations or waiver were applied.
+The unchanged-source13-case CollectionStreamTests probe then passed13/13 with
+0 failures/skips/C# warnings/errors/TypeDB, before the separate full rerun above.
+Original failed XML SHA256:ea3e070faa7ff64bdc12c2e4dfbf76a29dbdd471eaea01e3323cfda4d91bc419
+Original failed log SHA256:39e73222f845928225b1ce5426b74ec6d0ef2c8321249d5fb04653941929d86b
+Probe XML SHA256:7e86668c602b475aa47b760d76035fccd504793f8d69ef8c01662e80ac8d9db3
+
+Separate Build.Web player: actual BUILD Succeeded;driver0/Editor0.
+103 files/130418490 bytes;196.560916 seconds wall;0 C# warnings/errors/TypeDB.
+Full file set, every file SHA256, shipped eight-entry manifest and local
+shareable:false verified. Source and own DLL unchanged; actual argv matched.
+Build log SHA256:2e7ad68df5807be6ad2af88e69732cb846d4269c537d264f0f1fe8b1b80f7479
+
+Browser tools/web_check.py: EN exit0 and HE exit0.
+Query golden&smoke=5&lang=en (then he);all8 exact GOLDEN OK records plus
+SMOKE OK 5 turns 1948-10-15 8d000459d26a08a49583adfc88c14799ce6e6f653dcecff1e30b5e737f0959aa
+0 configured fatal browser-console patterns. Both local HTTP servers logged
+BrokenPipe during teardown AFTER PASS; original logs retain these separately.
+EN log SHA256:a395f3f8008a3822f7fe4ca322e40670b2c8b42162e320ddc7988d162631dbc8
+HE log SHA256:84b874025ade8107fefdd6ab187831a962d4151ec3b2e5d2835b2f02c8852780
+Manifest SHA256:60acbf816eabed76996df1af4a2a7dd5f299bea62a278f365437c8f769e13c39
+
+Visual:8 original final PNGs, backed by24 original step PNGs;2 ordinary clicks
+in each of8 sessions;0 recorded fatal/runtime-exception events;all sessions
+terminal0. Matched EN/HE1280x720 and390x844,DPR1,seed1948,turn1/15 June1948,
+camera90000/yaw0,fresh Auto quality/adaptive fallback disabled,identical state.
+Before: obsolete notice visible. After: notice removed, both language choices,
+sound High, Automatic quality and100% scale visible and unclipped in Settings.
+No game-state injection or pixel editing. README labels the changed area;
+provenance.json records original image hashes, source, viewport, inputs/state.
+
+Agent verification only: no native-speaker, source/rights, personal-licence or
+release attestation. Existing human gates and Air ownership unchanged.
+These results apply to frozen98b4, not an untested future integration/current-main.

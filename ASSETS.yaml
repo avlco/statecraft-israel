@@ -6,6 +6,12 @@
 # Globs use fnmatch: '*' also matches '/'. Portrait rows live in ASSETS.portraits.yaml (scripts/oss/commons_licences.py).
 # ai_generated: true marks AI output (the future Steam/itch.io disclosure is generated from it).
 rules:
+  # Review evidence only: original Settings captures for issue1191.
+  - glob: "docs/review-1191/*/settings-*.png"
+    licence: CC-BY-SA-4.0
+    source: "Original unedited screenshots of the game's own Unity6000.3.25f1 WebGL players: BEFORE107a45bb8a0c3223d78cfa5a57abaa1cfde1b3e7; AFTER98b4f9c434dbf7651006e0f40fdc6fdb5c66f989. Chrome for Testing156.0.8078.4, EN/HE at1280x720 and390x844,DPR1, deterministic seed1948/turn1 bootstrap followed by ordinary Hide and Settings clicks. Original hashes, query, inputs and matched camera/state in docs/review-1191/provenance.json. Map derives from Copernicus DEM (NOTICE) and existing D13 bakes; captures show the game's existing AI-made3D models. Attribution: Statecraft: Israel contributors; validation captures by Codex on the MacBook Pro."
+    status: owner-verify
+    note: "Review-only real game screenshots, not AI-generated images. CC BY-SA4.0 follows the existing derived-map engine-capture convention. No new owner rights, native-language or personal-licence attestation is supplied; existing asset and release gates remain unchanged."
   # --- AI-generated concept art: CC0 / no rights claimed (LICENSING.md); published 2026-10-10 before D5 was checked ---
   - glob: "promo/final/0[1-8]-*.png"
     licence: CC0-1.0
