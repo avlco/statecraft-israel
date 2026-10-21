@@ -4,13 +4,13 @@ using UnityEngine.UIElements;
 
 namespace Statecraft.Game.UI
 {
-    /// <summary>The side-menu buttons open the Cabinet, Budget, Defence, Why, How to play and Settings screens, one at a time; pressing the open
+    /// <summary>The side-menu buttons open the Cabinet, Budget, Defence, Why, How to play, Objectives and Settings screens, one at a time; pressing the open
     /// screen's button again closes it. Every press toggles, synchronously, with no debounce: two presses in one frame (a
     /// double click, or a click plus Enter) open and close again, so the result depends only on the number of presses
     /// (HudTests.TwoPressesInOneFrameToggleTwice; playtest 1, item 11).</summary>
     public sealed class ScreenNav : System.IDisposable
     {
-        public static readonly string[] Screens = { "cabinet", "budget", "defence", "why", "how-to-play", "settings" };
+        public static readonly string[] Screens = { "cabinet", "budget", "defence", "why", "how-to-play", "objectives", "settings" };
         /// <summary>The class on the open screen's button (Statecraft.uss lights its ring).</summary>
         public const string OpenClass = "nav-open";
         /// <summary>The class on the "root" element while a wide screen (class <see cref="WideClass"/>: Cabinet, Defence) is
@@ -43,7 +43,8 @@ namespace Statecraft.Game.UI
             bool screen = r.ClassListContains(ScreenOpenClass);
             bool full = screen && r.ClassListContains(HudPresenter.TwoRowClass);
             bool outcome = r.ClassListContains(OutcomePresenter.OpenClass);   // an End Turn outcome clip covers all but itself
-            bool report = r.ClassListContains(TurnReportPresenter.OpenClass);   // the turn report covers the HUD under it
+            bool end = r.ClassListContains(EndScreenPresenter.OpenClass);   // the end screen (#812) covers the HUD and the report
+            bool report = r.ClassListContains(TurnReportPresenter.OpenClass) || end;   // the turn report covers the HUD under it
             bool modal = r.ClassListContains(EventCardPresenter.OpenClass) && !start && !screen && !outcome;
             r.EnableInClassList(EventCardPresenter.ModalClass, modal);
             r.Q("top-bar")?.SetEnabled(!(start || outcome || report));
@@ -63,9 +64,16 @@ namespace Statecraft.Game.UI
             var panel = r.Q(TurnReportPresenter.ElementName);
             if (panel != null)
             {
-                bool was = panel.enabledSelf, now = report && !(start || outcome);
+                bool was = panel.enabledSelf, now = r.ClassListContains(TurnReportPresenter.OpenClass) && !(start || outcome || end);
                 panel.SetEnabled(now);
                 if (!was && now) (panel.userData as System.Action)?.Invoke();   // TurnReportPresenter: Close takes the focus
+            }
+            var over = r.Q(EndScreenPresenter.ElementName);
+            if (over != null)
+            {
+                bool was = over.enabledSelf, now = end && !(start || outcome);
+                over.SetEnabled(now);
+                if (!was && now) (over.userData as System.Action)?.Invoke();   // EndScreenPresenter: Close takes the focus
             }
         }
 
@@ -155,13 +163,17 @@ namespace Statecraft.Game.UI
         readonly EventCallback<NavigationCancelEvent> onCancel;
         readonly EventCallback<GeometryChangedEvent> onGeometry;
 
+        /// <summary>A layer over the screens that takes Escape first (GameRoot: the report panel, #1169, and the share panel, #1170): true when it used the
+        /// key, and the open screen under it stays open. This handler trickles down from the root, so it runs before the layer's own.</summary>
+        public System.Func<bool>? TakesEscape;
+
         public ScreenNav(VisualElement root)
         {
             this.root = root;
             // Escape (the UI map's Cancel, from any focused element or the panel) closes the open screen. NavigationGuard
             // handles only NavigationMoveEvent, so the two never meet. GameRoot also polls the Escape key for the case where
             // no element has the focus (CloseOnEscape).
-            onCancel = e => { if (Close()) e.StopPropagation(); };
+            onCancel = e => { if (TakesEscape?.Invoke() == true || Close()) e.StopPropagation(); };
             root.RegisterCallback(onCancel, TrickleDown.TrickleDown);
             onGeometry = e => FitCloseButtons();
             root.RegisterCallback(onGeometry);
