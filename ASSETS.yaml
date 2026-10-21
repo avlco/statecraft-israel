@@ -6,6 +6,11 @@
 # Globs use fnmatch: '*' also matches '/'. Portrait rows live in ASSETS.portraits.yaml (scripts/oss/commons_licences.py).
 # ai_generated: true marks AI output (the future Steam/itch.io disclosure is generated from it).
 rules:
+  - glob: "docs/review-1219/*/*.png"
+    licence: CC-BY-SA-4.0
+    source: "Forty original unedited native Unity 6000.3.25f1 UI-only fixture captures: before cae8ba80be33f5f2e30944bf5a3374d86f8afdbc and after 507348f9573b1e3bd44c9b65b7649f0939b0dfd8, captured 2026-10-21 on the MacBook Pro. Shipped Game.uxml/styles/presenters, real dated map data, fixed hex selection, EN/HE, targets 1920x1080 and 390x844. Flat background, no map camera. Original state/text and hashes in docs/review-1219/provenance.json; exact fixture source beside it. Attribution: Statecraft: Israel contributors; capture by Codex."
+    status: owner-verify
+    note: "Review-only native UI fixtures, not AI-generated images, ordinary gameplay, browser or real-device QA. CC BY-SA follows the derived engine-capture convention, pending owner rights review. No new native-language, historical, sensitivity, personal-licence or release attestation. Evidence branch only, outside the product PR."
   # --- AI-generated concept art: CC0 / no rights claimed (LICENSING.md); published 2026-10-10 before D5 was checked ---
   - glob: "promo/final/0[1-8]-*.png"
     licence: CC0-1.0

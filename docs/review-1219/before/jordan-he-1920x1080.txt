@@ -1,0 +1,11 @@
+date=1949-05-08
+hex=2,14
+fixture=shipped-UI-only; no map camera
+lang=he
+resolution=1920x1080
+region_bounds=(x:31.00, y:796.00, width:350.00, height:215.00)
+region_content=(x:1.00, y:4.00, width:347.00, height:207.00)
+region_measure=(347.00, 207.00)
+layer=Mandate sub-districts, 1947 · 1949 armistice lines: Egypt, Lebanon, ‎Jordan‎ (דיוק נמוך)
+region=‎Tulkarm Sub-District‎, ‎Samaria District‎ (נפות המנדט, 1947)
+עובר כאן: ‎Armistice Demarcation Line (Jordan-Israel), line A, Baqa to Kafr Qasim (Art. VI.3(a), by 8 May 1949)‎ · ‎Hashemite Jordan Kingdom-Israel General Armistice Agreement‎, ‎3 April 1949‎ · דיוק נמוך, מסריקה ברזולוציה נמוכה

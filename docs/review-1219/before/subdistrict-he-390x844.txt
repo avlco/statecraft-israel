@@ -1,0 +1,10 @@
+date=1948-05-15
+hex=-16,36
+fixture=shipped-UI-only; no map camera
+lang=he
+resolution=390x844
+region_bounds=(x:32.50, y:1582.36, width:347.35, height:60.94)
+region_content=(x:0.00, y:4.06, width:345.32, height:52.81)
+region_measure=(345.32, 52.81)
+layer=Mandate sub-districts, 1947
+region=‎Beersheba Sub-District‎, ‎Gaza District‎ (נפות המנדט, 1947)
