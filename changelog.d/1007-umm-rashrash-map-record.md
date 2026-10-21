@@ -1,0 +1,1 @@
+- Add Umm Rashrash as an optional outpost map marker with sourced reference coordinates and agent-checked Hebrew; its objective bonus remains pending (#1007).

@@ -225,3 +225,27 @@ locations:
   # the Knesset's "Liberation of Jerusalem" records that the Jewish Quarter fell to the Jordanians on that date.
   - { url: 'https://m.knesset.gov.il/En/About/Documents/JerEnPDF1.pdf', checked: 2026-10-18 }
   status: draft
+
+# Owner, 21 October 2026 (#1007, issuecomment-6318061578): optional outpost metadata, no 1948 population.
+# The coordinates mark the modern heritage site; they are a reference point, not a survey of the 1949 post.
+- id: umm_rashrash
+  name: Umm Rashrash
+  name_he: אום רשרש
+  name_he_review: agent-checked
+  name_he_sources:
+  - { url: 'https://he.wikipedia.org/wiki/אום_רשרש', checked: 2026-10-21 }
+  kind: outpost
+  lon: 34.9533611
+  lat: 29.5491667
+  q: -20
+  r: 56
+  priority: optional # DESIGN VALUE: owner-approved optional map location, 21 October 2026.
+  marker: true # DESIGN VALUE: map metadata only; the objective-1 bonus still waits on #752.
+  managed_city: false
+  designated_site: false
+  settlement_control_target: false
+  sources:
+  - { url: 'https://www.wikidata.org/wiki/Q25487984', checked: 2026-10-21 } # P625: modern heritage-site reference position, CC0; no reference attached to the statement.
+  - { url: 'https://en.wikipedia.org/wiki/Operation_Uvda', checked: 2026-10-21 } # English name only; no event text or photograph is copied.
+  - { url: 'https://he.wikipedia.org/wiki/אום_רשרש', checked: 2026-10-21 } # Hebrew name and surviving-site identity.
+  status: draft

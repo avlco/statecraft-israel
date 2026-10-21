@@ -73,6 +73,8 @@ The gameplay-purpose column states the design intent for each place. Exact start
 
 ## Location records and historical state
 
+Umm Rashrash's optional row uses `kind: outpost` ([owner, 21 October 2026](https://github.com/eyalgolan/statecraft-israel/issues/1007#issuecomment-6318061578)). It is map metadata only, with no 1948 population, managed city, designated site or settlement-control target. Its sourced position is a modern heritage-site reference point, not a survey of the 1949 post. The record remains a draft with agent-checked Hebrew; the objective-1 bonus still waits on [#752](https://github.com/eyalgolan/statecraft-israel/issues/752).
+
 - Give every location a stable identity, a kind, a period-appropriate display name, its map position and hex binding, its MVP priority, and the sources and review state for historical fields. Track whether it is a marker, a managed city, a designated site or a settlement-control target separately from its map priority. Reuse the existing [settlement roster](../content/map/settlements_1948.yaml) and [localities](../content/map/localities_1948.yaml) identities where available; aliases in the tables do not create duplicate places.
 - Distinguish settlements, immigrant reception camps, designated founding sites and military or infrastructure positions. Civilian residents and military forces keep separate states. A town and an adjacent fort or bridge remain separate records even where the map scale puts them in the same area.
 - Keep sourced geographical coordinates and reference evidence separate from authored gameplay placement. Both the logical hex binding and the displayed placement must refer to the same authored location.
