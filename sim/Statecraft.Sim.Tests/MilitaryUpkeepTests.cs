@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Statecraft.Sim;
 
 /// <summary>Q-UNIT-3: military units pay Money in resolver step 7, and never pay ongoing Arms upkeep.</summary>
@@ -25,7 +26,7 @@ public class MilitaryUpkeepTests
         Assert.Contains(withArmy.Why, x => x.System == "economy" && x.Target == "treasury" && x.Message.Contains("military upkeep"));
     }
 
-    // R-UNIT-006, R-MONEY-003: production can fund upkeep; housing still happens after payment.
+    // R-UNIT-009, R-MONEY-003: production can fund upkeep; housing still happens after payment.
     [Theory]
     [InlineData(false, 2, 0)]
     [InlineData(true, 5, 2)]
@@ -68,7 +69,7 @@ public class MilitaryUpkeepTests
         Assert.Contains(why, x => x.System == "economy" && x.Target == "debt" && x.Message.EndsWith("for military upkeep"));
     }
 
-    // R-UNIT-006: per formation per turn, irrespective of strength, weekly/monthly length or civilian tokens.
+    // R-UNIT-009: per formation per turn, irrespective of strength, weekly/monthly length or civilian tokens.
     [Theory]
     [InlineData(1, 1 / 52.0)]
     [InlineData(7, 1 / 12.0)]
@@ -88,7 +89,7 @@ public class MilitaryUpkeepTests
         Assert.Equal(-0.2, Assert.Single(why, x => x.Message.EndsWith("(military upkeep)")).Delta, 9);
     }
 
-    // R-UNIT-006: graduation in step 4 makes a formation eligible for upkeep in the same turn's step 7.
+    // R-UNIT-009: graduation in step 4 makes a formation eligible for upkeep in the same turn's step 7.
     [Fact]
     public void ANewlyGraduatedFormationPaysThisTurn()
     {
@@ -98,12 +99,14 @@ public class MilitaryUpkeepTests
         s.Cohorts.Add(id, new Cohort(id, "recruit", "tel_aviv", 3, 1, 3));
         var why = new List<Cause>();
         TurnResolver.Resolve(c, s, s.Date.AddDays(7), 7 / 365.0, why);
-        Assert.Equal(-c.Rules.Mvp!.MilitaryUpkeepPerTurn!.Value,
+        var israelBefore = c.StartingForces.Count(f => f.Side == "israel");
+        Assert.Equal(-(israelBefore + 1) * c.Rules.Mvp!.MilitaryUpkeepPerTurn!.Value,
             Assert.Single(why, x => x.Message.EndsWith("(military upkeep)")).Delta);
-        Assert.Equal(0, Assert.Single(s.Units.Values).Service);
+        Assert.Equal(c.StartingForces.Count + 1, s.Units.Count);
+        Assert.Equal(0, Assert.Single(s.Units.Values, u => u.Type == "recruit").Service);
     }
 
-    // R-UNIT-006: the legacy resolver does not acquire military rules just because a state has a unit.
+    // R-UNIT-009: the legacy resolver does not acquire military rules just because a state has a unit.
     [Fact]
     public void TheLegacyLoopDoesNotChargeUpkeepOrAdvanceService()
     {
@@ -117,7 +120,7 @@ public class MilitaryUpkeepTests
         Assert.Empty(why);
     }
 
-    // R-UNIT-006, R-UNIT-004: values are explicit, finite and in range rather than defaulting missing keys to zero.
+    // R-UNIT-009, R-UNIT-004: values are explicit, finite and in range rather than defaulting missing keys to zero.
     [Theory]
     [InlineData("military_upkeep_per_turn: 0.1", "", "military_upkeep_per_turn", "required")]
     [InlineData("military_upkeep_per_turn: 0.1", "military_upkeep_per_turn: -1", "military_upkeep_per_turn", ">= 0")]

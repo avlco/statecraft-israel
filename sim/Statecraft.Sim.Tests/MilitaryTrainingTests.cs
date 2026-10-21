@@ -21,7 +21,8 @@ public class MilitaryTrainingTests
         var arms = s.Arms;
         Training.Progress(Mvp, s, new List<Cause>());
 
-        var unit = Assert.Single(s.Units.Values);
+        Assert.Equal(Mvp.StartingForces.Count + 1, s.Units.Count);
+        var unit = s.Units[next];
         var home = Mvp.SettlementHexes.Single(h => h.Id == "tel_aviv");
         Assert.Equal((next, "recruit", "israel", count, home.Q, home.R, 0),
             (unit.Id, unit.Type, unit.Side, unit.Strength, unit.Q, unit.R, unit.Service));
@@ -46,7 +47,8 @@ public class MilitaryTrainingTests
         Training.Progress(Mvp, s, new List<Cause>());
 
         Assert.Empty(s.Cohorts);
-        Assert.Equal(3, Assert.Single(s.Units.Values).Strength);
+        Assert.Equal(Mvp.StartingForces.Count + 1, s.Units.Count);
+        Assert.Equal(3, Assert.Single(s.Units.Values, u => u.Type == "recruit").Strength);
         Assert.Equal(3, Cities.Housed(s, s.Cities[city.Id]));
     }
 
@@ -61,7 +63,7 @@ public class MilitaryTrainingTests
         s.Cohorts.Add(id, new Cohort(id, "recruit", city.Id, 3, 1, 3));
         var why = new List<Cause>();
         Training.Progress(Mvp, s, why);
-        var unit = Assert.Single(s.Units.Values);
+        var unit = Assert.Single(s.Units.Values, u => u.Type == "recruit");
         var target = Movement.Reachable(Mvp, s, unit.Id).First(h => h.Value > 0).Key;
         Assert.Null(Movement.Move(Mvp, s, unit.Id, target.Q, target.R, new Dictionary<int, int>(), why));
         Assert.Equal(city.Id, s.Units[unit.Id].HomeCity);
@@ -88,10 +90,15 @@ public class MilitaryTrainingTests
         var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
         var city = s.Cities["tel_aviv"].WithCounts(0, 0, 0).WithRecruits(0).WithCraftsmen(0);
         s.Cities[city.Id] = city;
-        s.Units.Add(1, new Unit(1, "recruit", 0, 0, side: "israel", strength: 3, homeCity: city.Id));
-        s.Units.Add(2, new Unit(2, "veteran_soldier", 0, 0, side: "israel", strength: 5, homeCity: "jerusalem"));
-        s.Units.Add(3, new Unit(3, "enemy", 0, 0, side: "egypt", strength: 7, homeCity: city.Id));
-        s.Units.Add(4, new Unit(4, "recruit", 0, 0, side: "israel", strength: 11));
+        var homeId = s.NextId++;
+        var otherCityId = s.NextId++;
+        var enemyId = s.NextId++;
+        var unknownHomeId = s.NextId++;
+        s.Units.Add(homeId, new Unit(homeId, "recruit", 0, 0, side: "israel", strength: 3, homeCity: city.Id));
+        s.Units.Add(otherCityId, new Unit(otherCityId, "veteran_soldier", 0, 0, side: "israel", strength: 5, homeCity: "jerusalem"));
+        s.Units.Add(enemyId, new Unit(enemyId, "enemy", 0, 0, side: "egypt", strength: 7, homeCity: city.Id));
+        s.Units.Add(unknownHomeId, new Unit(unknownHomeId, "recruit", 0, 0, side: "israel", strength: 11));
+        Assert.Equal(Mvp.StartingForces.Count + 4, s.Units.Count);
         Assert.Equal(3, Cities.Housed(s, city));
     }
 
@@ -107,7 +114,7 @@ public class MilitaryTrainingTests
         s.Cohorts.Add(id, new Cohort(id, "halutz", home, 3, 1));
         Assert.Equal(3, Cities.Housed(s, city));
         Training.Progress(Mvp, s, new List<Cause>());
-        Assert.Equal(3, s.Units.Count);
+        Assert.Equal(Mvp.StartingForces.Count + 3, s.Units.Count);
         Assert.All(s.Units.Values, u => Assert.Empty(u.HomeCity));
         Assert.Equal(0, Cities.Housed(s, city));
     }
@@ -117,20 +124,26 @@ public class MilitaryTrainingTests
     public void NoRecruitIsLostOrDoubled()
     {
         var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
-        s.NextId = 10;
-        s.Cohorts.Add(9, new Cohort(9, "recruit", "tel_aviv", 4, 1, 4));
-        s.Cohorts.Add(2, new Cohort(2, "recruit", "tel_aviv", 2, 1, 2));
-        s.Cohorts.Add(5, new Cohort(5, "recruit", "tel_aviv", 1, 2, 1));
+        var starting = s.Units.Values.Select(u => u.Canonical()).ToArray();
+        var cohort = s.NextId;
+        s.Cohorts.Add(cohort + 2, new Cohort(cohort + 2, "recruit", "tel_aviv", 4, 1, 4));
+        s.Cohorts.Add(cohort, new Cohort(cohort, "recruit", "tel_aviv", 2, 1, 2));
+        s.Cohorts.Add(cohort + 1, new Cohort(cohort + 1, "recruit", "tel_aviv", 1, 2, 1));
+        s.NextId += 3;
+        var firstUnit = s.NextId;
         const int people = 7;
         for (var turn = 0; turn < 2; turn++)
         {
             Training.Progress(Mvp, s, new List<Cause>());
-            Assert.Equal(people, s.Cohorts.Values.Sum(k => k.Count) + s.Units.Values.Sum(u => u.Strength));
+            Assert.Equal(people, s.Cohorts.Values.Sum(k => k.Count) + s.Units.Values.Where(u => u.Id >= firstUnit).Sum(u => u.Strength));
+            Assert.Equal(starting, s.Units.Values.Where(u => u.Id < cohort).Select(u => u.Canonical()));
             Assert.Equal(0, s.Cities["tel_aviv"].Recruits);
         }
-        Assert.Equal(new[] { 10, 11, 12 }, s.Units.Keys);
-        Assert.Equal(new[] { 2, 4, 1 }, s.Units.Values.Select(u => u.Strength));
-        Assert.Equal(13, s.NextId);
+        var recruits = s.Units.Values.Where(u => u.Id >= firstUnit).ToArray();
+        Assert.Equal(Mvp.StartingForces.Count + 3, s.Units.Count);
+        Assert.Equal(new[] { firstUnit, firstUnit + 1, firstUnit + 2 }, recruits.Select(u => u.Id));
+        Assert.Equal(new[] { 2, 4, 1 }, recruits.Select(u => u.Strength));
+        Assert.Equal(firstUnit + 3, s.NextId);
     }
 
     // R-TRAIN-003, R-UNIT-003: exercise the real resolver and save replay, not a manually serialised unit.
@@ -144,14 +157,15 @@ public class MilitaryTrainingTests
         Assert.Single(g.State.Cohorts);
         g.Step(new Command[0]);
 
-        var unit = Assert.Single(g.State.Units.Values);
+        Assert.Equal(Mvp.StartingForces.Count + 1, g.State.Units.Count);
+        var unit = Assert.Single(g.State.Units.Values, u => u.HomeCity == "tel_aviv");
         Assert.Equal(("recruit", "israel", 3, 0), (unit.Type, unit.Side, unit.Strength, unit.Service));
         Assert.Equal(0, g.State.Cities["tel_aviv"].Recruits);
         var loaded = GameSession.Load(Mvp, g.Save.Write(), out var warning);
         Assert.Empty(warning);
         Assert.Equal(g.State.Hash(), loaded.State.Hash());
-        Assert.Equal("tel_aviv", Assert.Single(loaded.State.Units.Values).HomeCity);
-        Assert.Equal(unit.Canonical(), Assert.Single(loaded.State.Units.Values).Canonical());
+        Assert.Equal("tel_aviv", loaded.State.Units[unit.Id].HomeCity);
+        Assert.Equal(unit.Canonical(), loaded.State.Units[unit.Id].Canonical());
     }
 
     // #1130 owner decision: a new recruit has three movement points; movement and service replay together.
@@ -161,7 +175,7 @@ public class MilitaryTrainingTests
         var g = GameSession.New(Mvp, GoldenRun.Seed, Mode.Historical);
         Assert.Empty(g.Step(new Command[] { new Train("tel_aviv", "recruit", 3) }).Rejected);
         for (int turn = 1; turn < Mvp.UnitTypes.Single(t => t.Id == "recruit").TrainingTurns; turn++) g.Step(new Command[0]);
-        var recruit = Assert.Single(g.State.Units.Values);
+        var recruit = Assert.Single(g.State.Units.Values, u => u.Type == "recruit");
         var target = Movement.Reachable(Mvp, g.State, recruit.Id).First(h => h.Value == 3).Key;
 
         var step = g.Step(new Command[] { new Move(recruit.Id, target.Q, target.R), new Move(recruit.Id, recruit.Q, recruit.R) });
@@ -181,17 +195,18 @@ public class MilitaryTrainingTests
     public void ARecruitPromotesAfterServiceAndKeepsItsFormation()
     {
         var s = Simulation.NewGame(Mvp, GoldenRun.Seed, Mode.Historical);
-        s.Units.Add(7, new Unit(7, "recruit", 3, 4, 4, "israel", 3, "hold", "8"));
+        var id = s.NextId++;
+        s.Units.Add(id, new Unit(id, "recruit", 3, 4, 4, "israel", 3, "hold", "8"));
         var why = new List<Cause>();
         TurnResolver.Resolve(Mvp, s, s.Date.AddDays(7), 7 / 365.0, why);
-        Assert.Equal(("recruit", 5), (s.Units[7].Type, s.Units[7].Service));
+        Assert.Equal(("recruit", 5), (s.Units[id].Type, s.Units[id].Service));
         TurnResolver.Resolve(Mvp, s, s.Date.AddDays(7), 7 / 365.0, why);
-        var veteran = s.Units[7];
-        Assert.Equal((7, "veteran_soldier", 3, 4, 6, "israel", 3, "hold", "8"),
+        var veteran = s.Units[id];
+        Assert.Equal((id, "veteran_soldier", 3, 4, 6, "israel", 3, "hold", "8"),
             (veteran.Id, veteran.Type, veteran.Q, veteran.R, veteran.Service, veteran.Side, veteran.Strength, veteran.Order, veteran.OrderTarget));
         Assert.Single(why, x => x.Message.Contains("veteran soldiers"));
         TurnResolver.Resolve(Mvp, s, s.Date.AddDays(7), 7 / 365.0, why);
-        Assert.Equal(veteran.Canonical(), s.Units[7].Canonical());
+        Assert.Equal(veteran.Canonical(), s.Units[id].Canonical());
     }
 
     // R-UNIT-004: service, promotion and upkeep must all replay through the existing command-log save schema.
@@ -205,7 +220,7 @@ public class MilitaryTrainingTests
         for (int service = 1; service <= threshold; service++)
         {
             g.Step(new Command[0]);
-            var u = Assert.Single(g.State.Units.Values);
+            var u = Assert.Single(g.State.Units.Values, x => x.HomeCity == "tel_aviv");
             Assert.Equal("tel_aviv", u.HomeCity);
             Assert.Equal(service, u.Service);
             Assert.Equal(service < threshold ? "recruit" : "veteran_soldier", u.Type);

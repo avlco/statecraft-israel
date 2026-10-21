@@ -50,7 +50,7 @@ public class MilitaryUnitTests
     {
         var c = ContentLoader.Load(RealContentTests.ContentRoot());
         Assert.Equal(new[] { ("recruit", "unit", "israel", "infantry"), ("veteran_soldier", "unit", "israel", "infantry"), ("artillery", "unit", "israel", "artillery"), ("armoured_car", "unit", "israel", "armour") },
-                     c.UnitTypes.Where(t => t.Side != "").Select(t => (t.Id, t.Kind, t.Side, t.Class)));
+                     c.UnitTypes.Where(t => t.Side == "israel").Select(t => (t.Id, t.Kind, t.Side, t.Class)));
         Assert.Equal("israel", c.UnitTypes.Single(t => t.Id == "recruit").Side); // R-TRAIN-003: now a formation.
     }
 

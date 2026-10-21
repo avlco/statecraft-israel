@@ -575,7 +575,7 @@ namespace Statecraft.Sim
         /// <summary>The Arms one recruit group takes when its training starts (R-ARMS-003; D-G6, Q-UNIT-3, #781). Required in the
         /// GDD loop, &gt;= 0.</summary>
         public int? ArmsPerRecruitGroup { get; set; }
-        /// <summary>IL millions per Israeli military formation per turn, not per strength point (R-UNIT-006; Q-UNIT-3).</summary>
+        /// <summary>IL millions per Israeli military formation per turn, not per strength point (R-UNIT-009; Q-UNIT-3).</summary>
         public double? MilitaryUpkeepPerTurn { get; set; }
         /// <summary>Turns served as a recruit before promotion to veteran_soldier (R-UNIT-004; Q-UNIT-2).</summary>
         public int? VeteranSoldierService { get; set; }
@@ -1199,6 +1199,9 @@ namespace Statecraft.Sim
         public List<CityStart> Cities = new List<CityStart>();
         /// <summary>The GDD population and unit types (unit_types.yaml). Empty in the legacy loop.</summary>
         public List<UnitType> UnitTypes = new List<UnitType>();
+        /// <summary>The forces a Historical game starts with (map/units_1948.yaml; R-UNIT-006), in file order: the unit with id i
+        /// of a new game is the i-th. Empty in the legacy loop.</summary>
+        public List<StartingForce> StartingForces = new List<StartingForce>();
         /// <summary>The GDD designated sites (sites.yaml), in file order. Empty in the legacy loop.</summary>
         public List<Site> Sites = new List<Site>();
         /// <summary>The GDD city project kinds (projects.yaml), in file order. Empty in the legacy loop.</summary>

@@ -252,7 +252,8 @@ public class TrainingTests
         }
         Assert.Empty(s.Cohorts);
         Assert.Equal(0, s.Cities["tel_aviv"].Recruits);
-        Assert.Equal(3, Assert.Single(s.Units.Values).Strength); // Phase 5: one formation per completed cohort.
+        Assert.Equal(Mvp.StartingForces.Count + 1, s.Units.Count);
+        Assert.Equal(3, Assert.Single(s.Units.Values, u => u.Type == "recruit").Strength); // Phase 5: one formation per completed cohort.
     }
 
     /// <summary>The timing rule, the plan's reading of D-A6 (Task 4.3) and not part of the owner's ruling: the turn a cohort is ordered in is its first training turn, so a cohort
@@ -271,12 +272,13 @@ public class TrainingTests
         Assert.Equal(0, t1.Cities["tel_aviv"].Recruits);
         Assert.Empty(t2.Cohorts);
         Assert.Equal(0, t2.Cities["tel_aviv"].Recruits);
-        Assert.Equal(2, Assert.Single(t2.Units.Values).Strength);
+        Assert.Equal(Mvp.StartingForces.Count + 1, t2.Units.Count);
+        Assert.Equal(2, Assert.Single(t2.Units.Values, u => u.Type == "recruit").Strength);
 
         var u0 = Step(Mvp, start, new Train("tel_aviv", "halutz", 2)).State;     // halutz: 4 turns, done at the end of T+3
         var u2 = Step(Mvp, Step(Mvp, u0).State).State;
-        Assert.Empty(u2.Units);
-        Assert.Equal(2, Step(Mvp, u2).State.Units.Count);
+        Assert.Equal(Mvp.StartingForces.Count, u2.Units.Count);   // the starting forces only (R-UNIT-006)
+        Assert.Equal(Mvp.StartingForces.Count + 2, Step(Mvp, u2).State.Units.Count);
     }
 
     // R-TRAIN-003
@@ -289,12 +291,13 @@ public class TrainingTests
         var cohort = Assert.Single(s.Cohorts.Keys);
         for (int turn = 1; turn < Mvp.UnitTypes.Single(t => t.Id == "halutz").TrainingTurns; turn++)
         {
-            Assert.Empty(s.Units);
+            Assert.Equal(Mvp.StartingForces.Count, s.Units.Count);   // the starting forces only (R-UNIT-006)
             s = Step(Mvp, s).State;
         }
         Assert.Empty(s.Cohorts);
-        Assert.Equal(new[] { cohort + 1, cohort + 2, cohort + 3 }, s.Units.Keys);
-        Assert.All(s.Units.Values, u => Assert.Equal(("halutz", -3, 19), (u.Type, u.Q, u.R)));   // Tel Aviv's settlement hex
+        var halutzim = s.Units.Values.Skip(Mvp.StartingForces.Count).ToList();   // after the starting forces (R-UNIT-006)
+        Assert.Equal(new[] { cohort + 1, cohort + 2, cohort + 3 }, halutzim.Select(u => u.Id));
+        Assert.All(halutzim, u => Assert.Equal(("halutz", -3, 19), (u.Type, u.Q, u.R)));   // Tel Aviv's settlement hex
         Assert.Equal(cohort + 4, s.NextId);
         Assert.Equal(0, s.Cities["tel_aviv"].Recruits);
     }
