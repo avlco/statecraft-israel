@@ -65,6 +65,7 @@ checks this (see `CONTRIBUTING.md`).
   zoom. A new `ZoomKeys` action in the Camera map; the wheel's `Zoom` keeps its one binding.
 
 ### Fixed
+- The map info panel formats armistice zone and line dates in the selected UI language, reusing the existing date strings and isolating Hebrew dates inside English fallback rows; English output and agreement data are unchanged (refs #558).
 - The browser page now fills a notched phone's whole screen (`viewport-fit=cover` in the WebGL template): iPhone
   Safari letterboxed the game inside the safe area, so the notch and home-indicator insets read 0 and no safe-area
   padding could apply (found on Agam's iPhone run; refs #1013).
