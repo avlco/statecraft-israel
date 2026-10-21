@@ -48,6 +48,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "content" / "map" / "armistice_lines_1949.geojson"
 SUBDISTRICTS = ROOT / "content" / "map" / "subdistricts_1948.geojson"
+HEBREW_NAMES = ROOT / "content" / "map" / "region_names_he.json"
 CHECKED = "2026-10-11"
 PG_PIPELINE = ("+proj=pipeline +step +inv +proj=cass +lat_0=31.7340969444444 +lon_0=35.2120805555556 +x_0=170251.555 "
                "+y_0=126867.909 +a=6378300.789 +b=6356566.435 +step +inv +proj=longlat +a=6378300.789 +b=6356566.435 "
@@ -1068,7 +1069,24 @@ def build(syria_pdf: Path, syria_tif: Path, gaza: Path, mv1: Path, mv2: Path, jo
                                   "highway_on_red_road": eg["fit"]["highway_on_red_road"], "highway_km": eg["highway_km"],
                                   "wadi_hasi_mouth_mr": [round(v, 2) for v in eg["mouth"]], "deir_suneid_mr": [round(v, 2) for v in eg["deir_suneid"]]}},
     }
-    return {"type": "FeatureCollection", "statecraft": meta, "features": feats}
+    return with_hebrew_names({"type": "FeatureCollection", "statecraft": meta, "features": feats})
+
+
+def with_hebrew_names(collection: dict) -> dict:
+    """Authored display names and their review flags; never change traced geometry or agreement dates."""
+    names = json.loads(HEBREW_NAMES.read_text(encoding="utf-8"))["armistice"]
+    def replace(target: dict, authored: dict) -> None:
+        # A names-only refresh of an existing file must also copy the absence of a person's removed review flag.
+        for key in list(target):
+            if key.endswith("_he") or "_he_" in key:
+                del target[key]
+        target.update(authored)
+    replace(collection["statecraft"], names["metadata"])
+    for front in collection["statecraft"]["fronts"]:
+        replace(front, names["fronts"][front["key"]])
+    for feature in collection["features"]:
+        replace(feature["properties"], names["features"][feature["properties"]["id"]])
+    return collection
 
 
 def main() -> None:
