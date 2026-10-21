@@ -33,9 +33,9 @@ final `GameState.Hash()` is pinned:
 
 | Run | Ends | Hash |
 |---|---|---|
-| to 1950-01-01 (`Hash1950`) | 1950-01-15, turn 20 | `73eb50db39dbc9ee569c18a5e0a68e55a2b88980d06da76e5f5bfffe22997675` |
-| to 1952-01-01 (`Hash1952`) | 1952-01-15, turn 44 (the game's end) | `d9922fc9baaba3fcc5a6fbcd64de9317f787d7d3a8a0fb61f32a6b1b86462d91` |
-| to the game's end (`mvp-end`) | 1952-01-15, turn 44 | `d9922fc9baaba3fcc5a6fbcd64de9317f787d7d3a8a0fb61f32a6b1b86462d91` |
+| to 1950-01-01 (`Hash1950`) | 1950-01-15, turn 20 | `430350dbf702201d809ead3195b8f0954bd73390bbba35748bd15a9081ba03af` |
+| to 1952-01-01 (`Hash1952`) | 1952-01-15, turn 44 (the game's end) | `7f8c9df0e6a9deb61a704f37976fdfe4abe67e10ac6652e636b57c0cc87f628e` |
+| to the game's end (`mvp-end`) | 1952-01-15, turn 44 | `7f8c9df0e6a9deb61a704f37976fdfe4abe67e10ac6652e636b57c0cc87f628e` |
 
 `hash1952` stops at the first turn on or after 1 January 1952, which is the game's last turn, so it is the same run as
 `mvp-end` (`DeterminismTests.TheWholeGameToItsEndIsFixed`). Both names are kept (spec 2026-10-12 section 3 step 6): a
@@ -44,7 +44,7 @@ player check enumerate the manifest, so it and every scenario are checked withou
 
 A further value is pinned for the browser smoke run (`?smoke=5`: the golden seed, five turns played through the UI's own
 buttons, answering each event with its first option while the turn's Attention pays for it, the rest left to their
-ministers): `SMOKE OK 5 turns 1948-10-15 e5a66f9c2c0c0718d7969289fcc8dd005dedddd37a7c25adfffdc45e2e8b29cd`.
+ministers): `SMOKE OK 5 turns 1948-10-15 53b482fba2f6615973b2a59acd34ffbc0cd974e6ed956908481c5cef48f2b294`.
 It depends on the UI path as well as the sim (which option is first, the turn grid), so re-record it when either changes.
 Check every WebGL build with every manifest entry (plus the UI-path smoke line) with:
 
@@ -55,7 +55,7 @@ while read -r name hash; do
   golden_expect+=(--expect "GOLDEN OK $name $hash")
 done < sim/Statecraft.Sim.Tests/golden/manifest.txt
 uv run tools/web_check.py unity/Builds/Web-<compression> --query "golden&smoke=5" "${golden_expect[@]}" \
-  --expect "SMOKE OK 5 turns 1948-10-15 e5a66f9c2c0c0718d7969289fcc8dd005dedddd37a7c25adfffdc45e2e8b29cd"
+  --expect "SMOKE OK 5 turns 1948-10-15 53b482fba2f6615973b2a59acd34ffbc0cd974e6ed956908481c5cef48f2b294"
 ```
 
 **When a golden moves.** The test fails with the lines that changed, grouped by section (`[ind]`, `[pol]`, `[bud]`,
@@ -333,3 +333,11 @@ The hash reads the state keys, so it never sees a record outside its window. An 
 | GDD Phase 5 PR 8: combat (#747) | 1950 | `73eb50db` | The reference player's attack policy (attack a neighbouring enemy hex at 3:2 or better) sends unit 0 (strength 5, 10,9) against the Syrian unit 9 (3, the valley's 10,10) from 15 May 1948. Four engagements, one RNG draw each, 15 May to 15 August 1948: unit 0 ends at strength 3, unit 9 is destroyed and leaves `units[`, and the Arms stock falls from 12 to 8 (1 an attack). The RNG state moves from the seed for the first time in the run, since nothing else in it draws. Nothing else in the snapshot moves; the scenarios and smoke5 give no attack and are unchanged (was `259133fc`) |
 | GDD Phase 5 PR 8: combat (#747) | 1952 | `d9922fc9` | same (was `452c65ec`) |
 | GDD Phase 5 PR 8: combat (#747) | mvp-end | `d9922fc9` | same as 1952 (was `452c65ec`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | 1950 | `430350db` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 7m over 20 turns; all other snapshot fields and invariant bands are unchanged (was `73eb50db`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | 1952 | `7f8c9df0` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 15.4m over 44 turns; all other snapshot fields and invariant bands are unchanged (was `d9922fc9`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | mvp-end | `7f8c9df0` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 15.4m over 44 turns; all other snapshot fields and invariant bands are unchanged (was `d9922fc9`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | smoke5 | `53b482fb` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 1.75m over 5 turns; all other snapshot fields and invariant bands are unchanged (was `e5a66f9c`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | scenario-cautious | `0f41c3b9` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 2.8m over 8 turns; all other snapshot fields and invariant bands are unchanged (was `b4e5caa1`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | scenario-mvp-absorb-first | `e2209056` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 7m over 20 turns; all other snapshot fields and invariant bands are unchanged (was `7d37c0d0`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | scenario-mvp-defeat | `3ea29cec` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 15.4m over 44 turns; all other snapshot fields and invariant bands are unchanged (was `7bd5158f`) |
+| GDD Phase 5 PR 3: upkeep with the starting forces and combat on main | scenario-reckless | `f7a5e3cd` | owner-accepted military upkeep (R-UNIT-009, #1130) now charges the 7 sourced Israeli formations IL 0.05m each per turn; debt alone rises by IL 2.8m over 8 turns; all other snapshot fields and invariant bands are unchanged (was `8d644f6e`) |
