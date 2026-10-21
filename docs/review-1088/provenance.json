@@ -1,0 +1,179 @@
+{
+  "issue": 1088,
+  "source": "79c6d1112ba15e2cb2292d2e217f70acdc307032",
+  "status": "Bounded current-source Chrome/native reproduction complete; not a real Safari/device/release or full-native acceptance.",
+  "existing_layout_change": "Merged PR1013, commit412824b1092498c3e91ff542d529c91cf092f391: intrinsic caption-fit calculation and existing landscape regression.",
+  "agent_inspection_only": true,
+  "native_speaker_or_rights_attestation": false,
+  "native_scope": {
+    "import_cases": 1,
+    "guard_cases": 10,
+    "landscape_cases": 1,
+    "measurement_rows": 128,
+    "font_css_min": 12.01042,
+    "font_css_max": 12.01042,
+    "inset_phases": [
+      "zero",
+      "left47",
+      "right47",
+      "restored"
+    ],
+    "measured_bounds_overlap_tolerance_css_px": 0.5,
+    "raster_ink_measurement": false,
+    "dpr": 1
+  },
+  "images": [
+    {
+      "image": "images/hud-en-844x390-dpr1.png",
+      "source": "79c6d1112ba15e2cb2292d2e217f70acdc307032",
+      "language": "en",
+      "css_viewport": [
+        844,
+        390
+      ],
+      "dpr": 1,
+      "png_pixels": [
+        844,
+        390
+      ],
+      "png_sha256": "4c1bd52e1d3295eb535962c8bd028b80558ceed4d02d7088540407e1b3b05b58",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=en",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "os": "macOS27.0.1",
+      "build_receipt_sha256": "f80c3e6fc9ebf8446449ac0829db9a8cb7d08617e91c4ffba39fd753e847dea4",
+      "player_file_count": 110,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 608,
+          "y": 333
+        }
+      ],
+      "actual_input_target": "event-hide",
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "cdp_viewport_and_dpr_verified": true,
+      "no_runtime_evaluation_or_init_script": true,
+      "visual_result": "All seven meter captions are separately visible; no visible caption collision.",
+      "observed_layout": "Two rows"
+    },
+    {
+      "image": "images/hud-he-844x390-dpr1.png",
+      "source": "79c6d1112ba15e2cb2292d2e217f70acdc307032",
+      "language": "he",
+      "css_viewport": [
+        844,
+        390
+      ],
+      "dpr": 1,
+      "png_pixels": [
+        844,
+        390
+      ],
+      "png_sha256": "dd242fdfca1a080d2da3d059a4f927c3ee9673d256b905674dd722147c1b0041",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=he",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "os": "macOS27.0.1",
+      "build_receipt_sha256": "f80c3e6fc9ebf8446449ac0829db9a8cb7d08617e91c4ffba39fd753e847dea4",
+      "player_file_count": 110,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 246,
+          "y": 371
+        }
+      ],
+      "actual_input_target": "event-hide",
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "cdp_viewport_and_dpr_verified": true,
+      "no_runtime_evaluation_or_init_script": true,
+      "visual_result": "All seven meter captions are separately visible; no visible caption collision.",
+      "observed_layout": "One row of meters with stacked values/changes"
+    },
+    {
+      "image": "images/hud-en-844x390-dpr3.png",
+      "source": "79c6d1112ba15e2cb2292d2e217f70acdc307032",
+      "language": "en",
+      "css_viewport": [
+        844,
+        390
+      ],
+      "dpr": 3,
+      "png_pixels": [
+        2532,
+        1170
+      ],
+      "png_sha256": "9fc6c304474dfe7b39deaead319cec9bfc08542edaf302ff81e7f3bd311a6500",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=en",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "os": "macOS27.0.1",
+      "build_receipt_sha256": "f80c3e6fc9ebf8446449ac0829db9a8cb7d08617e91c4ffba39fd753e847dea4",
+      "player_file_count": 110,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 601,
+          "y": 372
+        }
+      ],
+      "actual_input_target": "event-hide",
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "cdp_viewport_and_dpr_verified": true,
+      "no_runtime_evaluation_or_init_script": true,
+      "visual_result": "All seven meter captions are separately visible; no visible caption collision.",
+      "observed_layout": "One row of meters with stacked values/changes"
+    },
+    {
+      "image": "images/hud-he-844x390-dpr3.png",
+      "source": "79c6d1112ba15e2cb2292d2e217f70acdc307032",
+      "language": "he",
+      "css_viewport": [
+        844,
+        390
+      ],
+      "dpr": 3,
+      "png_pixels": [
+        2532,
+        1170
+      ],
+      "png_sha256": "e570558de4b237ab0c4d51a5ba961971b92c5ec92a100e7926f8c1efed29ef5e",
+      "pixels_original_unedited": true,
+      "bootstrap_query": "golden&smoke=1&navlog&camlog&nofallback&lang=he",
+      "bootstrap_seed": 1948,
+      "camera_console": "CAMERA distance=90000 yaw=0.0",
+      "turn_console": "TURN 1 1948-06-15 hash f25035f6cccc8a730046e5252b334ec58c27e29cf0f8c907298cb3ca7e9c822f",
+      "quality": "fresh profile Auto; nofallback disables adaptive changes",
+      "browser_version": "Google Chrome for Testing 156.0.8078.4",
+      "os": "macOS27.0.1",
+      "build_receipt_sha256": "f80c3e6fc9ebf8446449ac0829db9a8cb7d08617e91c4ffba39fd753e847dea4",
+      "player_file_count": 110,
+      "ordinary_actions": [
+        {
+          "action": "click",
+          "x": 244,
+          "y": 372
+        }
+      ],
+      "actual_input_target": "event-hide",
+      "recorded_fatal_or_runtime_exception_events": 0,
+      "cdp_viewport_and_dpr_verified": true,
+      "no_runtime_evaluation_or_init_script": true,
+      "visual_result": "All seven meter captions are separately visible; no visible caption collision.",
+      "observed_layout": "One row of meters with stacked values/changes"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+Issue 1088 — pinned-main landscape HUD reproduction
+
+Source: 79c6d1112ba15e2cb2292d2e217f70acdc307032. No production, test, text-floor, tier-policy or UI-scale change was made for this investigation.
+The existing merged PR #1013 adds CaptionsNeedAnotherRow/captionFitWrap and TopBarTests.LandscapeSafeInsetsKeepCaptionInkDisjoint.
+Observed here: the reported caption collision does not reproduce in the four Chrome captures of this source.
+This is not a claim about the original v0.1.1 itch build or a real iPhone/Safari.
+
+Actual current-source managed commands/output:
+dotnet build sim/Statecraft.sln -c Release --nologo -warnaserror
+Exit0; 0 C# warnings/errors.
+dotnet test sim/Statecraft.sln -c Release --no-build --nologo
+Passed!  - Failed:     0, Passed:  2099, Skipped:     0, Total:  2099, Duration: 16 s - Statecraft.Sim.Tests.dll (net10.0)
+Exit0.
+uv run tools/build_sim_for_unity.py
+Exit0; own Release/plugin bytes identical and revision79c embedded.
+Own DLL SHA256:a591b8f939dd88bb80d6c0039034262ea15ab631ffdfbed1b4cb23157c358435
+Golden manifest unchanged:60acbf816eabed76996df1af4a2a7dd5f299bea62a278f365437c8f769e13c39
+
+Fresh Unity 6000.3.25f1 OSXUniversal EditMode filters, no -quit/no -nographics:
+UnityMcpGuardTests.TheOptOutMatchesThePluginsOwnKnob:1/1 passed.
+UnityMcpGuardTests:10/10 passed; compiled conditional hard assertion present.
+TopBarTests.LandscapeSafeInsetsKeepCaptionInkDisjoint:1/1 passed.
+All Editor/driver exits0; 0 C# warnings/errors; 0 TypeDB duplicate messages; 0 skipped.
+Existing landscape test:EN/HE x typical/widest fixture labels x zero/left47/right47/restored synthetic CSS-pixel insets.
+128 actual engine text-bounds measurements; all fonts12.01042 CSS px; overlap tolerance0.5 CSS px.
+These are measured text bounds, not raster glyph-ink measurements. This is not the full EditMode suite.
+Landscape XML SHA256:5356b37a9d26cab2367bee0579f1fd50d311ede014132710eb270d138394f0d1
+Landscape log SHA256:6fe196170e0b8a70eae8edc89772f746083b96c0028ca267462870af67ce8d6e
+Compiled test DLL SHA256:ad5a55fb09e1f58d0255dc371981353d797f9f36f0980cb67dc7ff0b9f36f481
+Raw logs retain post-test SDK/build-server, finalization, disposed-flush and debugger-listen notices.
+The zero-C#-warning/error result is not a claim that every original log line is warning-free.
+
+Separate local Build.Web -compression disabled:
+BUILD Succeeded WebGL: 128.7 MB on disk, 0 errors, 285s (local path omitted).
+Editor/driver exit0; 110 files/134911225 bytes; 318.530689 seconds wall; 0 C# warnings/errors/TypeDB.
+Whole output file set and every hash verified; shipped eight-entry manifest verified; shareable:false.
+Source and own DLL unchanged. Native and build actual argv were read from their Editor logs and matched recorded commands.
+Build log SHA256:98a7d0f55e17d42ea3f074d4f88b60f7b0335cba51b61a39e58816be42c49f6b
+
+Actual tools/web_check.py browser gates:
+EN exit0; HE exit0; each all8 exact GOLDEN OK plus SMOKE OK5 turns matched; 0 configured fatal console patterns.
+Both HTTP servers logged BrokenPipe during teardown after PASS; raw logs retain these separately.
+EN browser log SHA256:449a778393e77446d7df56418ec6564e02f7d27daa63e7e7c0a35df06472d816
+HE browser log SHA256:b0fbc1ded5687503118a5e28d5c1de5f51fbf0d6d7aa0dc036df3b78bee004c1
+
+Original visual matrix:EN/HE x DPR 1/3 at844x390 CSS px. DPR 1 PNGs844x390; DPR 3 PNGs2532x1170.
+Actual CDP viewport and deviceScaleFactor commands verified; no Runtime.evaluate or init script; fresh Auto profiles, nofallback,
+seed 1948, turn 1/15 June1948/statef250, camera 90000/yaw 0. Exactly one ordinary Hide click per session, NAVtargetevent-hide.
+All four sessions exited0; 8 original step PNGs and4 final PNGs hashed; 0 recorded fatal/runtime-exception events.
+Final screenshots show all seven captions separately. Observed side effect:EN DPR 1 uses two rows; EN DPR 3 andHE at both
+DPRs use one row of meters with values/changes stacked. No causal claim about that row difference is made.
+These are Chrome for Testing 156.0.8078.4 on macOS 27.0.1; DPR 3 is a desktop proxy, not a real phone.
+
+Existing owner12px/layout-adjustment and100%-fallback decisions were read and left intact.
+Original v0.1.1 itch, real iPhone/Safari, physical input, release uploads and overall issue closure remain unverified.
+No native-speaker, source/rights, personal-licence or release attestation is supplied; existing human gates remain unchanged.

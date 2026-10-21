@@ -6,6 +6,12 @@
 # Globs use fnmatch: '*' also matches '/'. Portrait rows live in ASSETS.portraits.yaml (scripts/oss/commons_licences.py).
 # ai_generated: true marks AI output (the future Steam/itch.io disclosure is generated from it).
 rules:
+  # Current-source landscape HUD review evidence for issue1088.
+  - glob: "docs/review-1088/images/hud-*.png"
+    licence: CC-BY-SA-4.0
+    source: "Four original unedited screenshots of the game's own Unity 6000.3.25f1 local WebGL build at 79c6d1112ba15e2cb2292d2e217f70acdc307032, captured 2026-10-21 in Chrome for Testing 156.0.8078.4/macOS 27.0.1. EN/HE at 844x390 CSS pixels, DPR 1 and3; physical PNGs 844x390 and 2532x1170. Deterministic seed 1948/turn 1 bootstrap, one ordinary Hide click, camera 90000/yaw 0. Original hashes, viewport/input/state evidence and scope in docs/review-1088/provenance.json. Map derives from Copernicus DEM (NOTICE) and existing D13 bakes; the game contains its existing AI-made 3D models. Attribution:Statecraft: Israel contributors; validation capture by Codex on the MacBook Pro."
+    status: owner-verify
+    note: "Review-only real game screenshots, not AI-generated images. CC BY-SA 4.0 follows the existing derived-map engine-capture convention. Desktop Chrome/DPR 3 proxy, not real iPhone/Safari. No new owner source/rights, native-language, personal-licence or release attestation; existing gates remain unchanged."
   # --- AI-generated concept art: CC0 / no rights claimed (LICENSING.md); published 2026-10-10 before D5 was checked ---
   - glob: "promo/final/0[1-8]-*.png"
     licence: CC0-1.0
