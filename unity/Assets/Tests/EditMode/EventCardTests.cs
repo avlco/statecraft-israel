@@ -24,6 +24,132 @@ public class EventCardTests
         return new SimBridge(g, Text);
     }
 
+    // #1125 / R-EVT-005: render actual helper entries, with synthetic option values on real loaded content.
+    // These are fixture-only values, not new event content, design rules or authored history.
+    static (Content c, GameSession g, GameEvent e) PreviewFixture()
+    {
+        var c = ContentLoader.Load(Paths.Content);
+        var e = c.Events.First(x => x.Id == "altalena");
+        var option = e.Options[0];
+        option.Effects = new System.Collections.Generic.List<OptionEffect>
+        {
+            new OptionEffect { Target = "morale", Delta = .041 }, new OptionEffect { Target = "treasury", Delta = -1.25 },
+            new OptionEffect { Target = "food", Delta = 2.5 }, new OptionEffect { Target = "arms", Delta = -1 },
+        };
+        var city = c.Cities.First().Id;
+        option.GrantUnits = new System.Collections.Generic.List<UnitGrant> { new UnitGrant { Type = "halutz", N = 2, At = city } };
+        option.CityEffects = new System.Collections.Generic.List<CityEffect>
+        {
+            new CityEffect { City = city, Field = EventSystem.HousingField, Delta = 3 },
+            new CityEffect { City = city, Field = EventSystem.JobsField, Delta = -2 },
+            new CityEffect { City = city, Field = EventSystem.ConditionField, Delta = .051 },
+        };
+        option.UnlockProjects = new System.Collections.Generic.List<string> { c.ProjectKinds.First().Id };
+        option.SetPolicy = new System.Collections.Generic.Dictionary<string, double> { ["rationing"] = .75 };
+        option.SetRung = 4; option.Rejoin = "first_new_yishuv";
+        var g = GameSession.New(c, GoldenRun.Seed, Mode.Historical);
+        g.State.Date = e.From; g.State.PendingEvents.Clear(); g.State.PendingEvents.Add(e.Id);
+        return (c, g, e);
+    }
+
+    [TestCase("en")]
+    [TestCase("he")]
+    public void ShowsStructuredEffects(string lang)
+    {
+        var text = lang == "he" ? He : Text;
+        var (c, g, e) = PreviewFixture();
+        // This helper-equality case covers the sim's capitalised fallback. Literal presenter cases below cover NameHe.
+        c.ProjectKinds.Single(k => k.Id == e.Options[0].UnlockProjects.Single()).NameHe = "";
+        var bridge = new SimBridge(g, text);
+        var hash = g.State.Hash();
+        using var ui = new UiTestKit();
+        using var card = new EventCardPresenter(ui.Root, bridge, text, null);
+        foreach (var option in e.Options)
+        {
+            var rows = EventSystem.OptionEffectPreviews(c, g.State, option);
+            var button = ui.Q<Button>("option-" + option.Id);
+            var actual = button.parent.Query<Label>(className: "event-option-effect").ToList();
+            CollectionAssert.AreEqual(rows.Select(x => EventEffectText.Format(x, text)).ToArray(), actual.Select(x => x.text).ToArray(), option.Id);
+            Assert.IsTrue(actual.All(x => !x.focusable && x.pickingMode == PickingMode.Ignore), "effect text is not another control or pointer target");
+            var label = lang == "he" && option.TextHe != "" ? Cabinet.Fill(c, g.State, option.TextHe, e.From, p => ContentNames.Of(text, p))
+                : Cabinet.Fill(c, g.State, option.Text, e.From);
+            Assert.AreEqual(text.Format("event.option_cost", label, bridge.Price(new ChooseEventOption(e.Id, option.Id))), button.text,
+                "the real label and Attention price remain on the real choice button");
+        }
+        var moneyLine = ui.Q<Button>("option-" + e.Options[0].Id).parent.Query<Label>(className: "event-option-effect").ToList()[1];
+        Assert.AreEqual(lang == "he" ? "Money: שינוי IL -1.3m" : "Money IL -1.3m",
+            moneyLine.text.Replace(UiText.LeftToRightMark.ToString(), ""),
+            "the actual card preserves main's signed money wording, independent of the formatter equality above");
+        Assert.AreEqual(12, ui.Q<Button>("option-" + e.Options[0].Id).parent.Query<Label>(className: "event-option-effect").ToList().Count,
+            "non-vacuous: numeric, grant, city, project, policy, rung and rejoin effects were all rendered");
+        Assert.AreEqual(hash, g.State.Hash());
+        Assert.IsEmpty(bridge.Queued, "showing a preview neither selects nor queues an option");
+        UiTestKit.Press(ui.Q<Button>("option-" + e.Options[0].Id));
+        var queued = (ChooseEventOption)bridge.Queued.Single();
+        Assert.AreEqual((e.Id, e.Options[0].Id), (queued.EventId, queued.OptionId), "Submit keeps choosing the actual option");
+    }
+
+    // #1125/#1158: fixture-only project words, not authored history. Check the real presenter, not its formatter.
+    [TestCase("en", false)]
+    [TestCase("en", true)]
+    [TestCase("he", false)]
+    [TestCase("he", true)]
+    public void ProjectUnlockPreviewUsesTheHebrewNameAndKeepsTheCapitalisedEnglishFallback(string lang, bool hasNameHe)
+    {
+        var text = lang == "he" ? He : Text;
+        var (c, g, e) = PreviewFixture();
+        var option = e.Options[0];
+        var kind = c.ProjectKinds.Single(k => k.Id == option.UnlockProjects.Single());
+        kind.Name = "a fixture workshop";
+        kind.NameHe = hasNameHe ? "סדנת בדיקה" : "";
+        // Only this existing unlock remains, so neither a missing row nor an unrelated preview can satisfy the test.
+        option.Effects.Clear(); option.GrantUnits.Clear(); option.CityEffects.Clear(); option.SetPolicy.Clear();
+        option.SetRung = null; option.Rejoin = "";
+        var bridge = new SimBridge(g, text);
+        var original = EventSystem.OptionEffectPreviews(c, g.State, option).Single();
+        Assert.AreEqual(OptionEffectPreviewKind.ProjectUnlock, original.Kind);
+        Assert.AreEqual("A fixture workshop", original.ContextName, "the sim keeps its existing capitalised English context");
+        var originalContext = (original.ContextId, original.ContextName, original.Amount, original.Cause.Message);
+        var state = g.State.Hash();
+        using var ui = new UiTestKit();
+        using var card = new EventCardPresenter(ui.Root, bridge, text, null);
+        var button = ui.Q<Button>("option-" + option.Id);
+        var previews = button.parent.Query<Label>(className: "event-option-effect").ToList();
+        Assert.AreEqual(1, previews.Count, "exactly the existing project-unlock row is rendered for its own choice");
+        var expected = lang == "he"
+            ? hasNameHe ? "אפשר לבנות עכשיו: סדנת בדיקה" : "אפשר לבנות עכשיו: A fixture workshop"
+            : "A fixture workshop can now be built";
+        Assert.AreEqual(expected, previews.Single().text.Replace(UiText.LeftToRightMark.ToString(), ""),
+            "the actual presenter uses a nonempty Hebrew project noun and otherwise keeps the English sentence capitalised");
+        Assert.IsFalse(previews.Single().focusable);
+        Assert.AreEqual(PickingMode.Ignore, previews.Single().pickingMode);
+        Assert.AreEqual(state, g.State.Hash(), "localizing a preview does not apply an effect");
+        Assert.IsEmpty(bridge.Queued, "localizing a preview does not choose for the player");
+        var after = EventSystem.OptionEffectPreviews(c, g.State, option).Single();
+        Assert.AreEqual(originalContext, (after.ContextId, after.ContextName, after.Amount, after.Cause.Message),
+            "the UI changes no sim category, amount, cause or English context");
+    }
+
+    [TestCase("en")]
+    [TestCase("he")]
+    public void PreviewDoesNotEnableAnUnaffordableOptionOrSpendAttention(string lang)
+    {
+        var text = lang == "he" ? He : Text;
+        var (c, g, e) = PreviewFixture();
+        g.State.Attention = 0;
+        var bridge = new SimBridge(g, text);
+        using var ui = new UiTestKit();
+        using var card = new EventCardPresenter(ui.Root, bridge, text, null);
+        var button = ui.Q<Button>("option-" + e.Options[0].Id);
+        Assert.IsFalse(button.enabledSelf);
+        Assert.AreEqual(12, button.parent.Query<Label>(className: "event-option-effect").ToList().Count, "unaffordable effects remain readable");
+        UiTestKit.Press(button);
+        Assert.IsEmpty(bridge.Queued);
+        Assert.AreEqual(0, bridge.AttentionLeft);
+        g.State.Attention = 4; card.Render();
+        Assert.IsTrue(ui.Q<Button>("option-" + e.Options[0].Id).enabledSelf, "the existing price gate restores the option");
+    }
+
     [Test]
     public void ThePortraitCatalogHoldsEveryPublicDomainPortrait()
     {
@@ -673,9 +799,68 @@ sources: [{ url: ""https://example.org/record"", checked: 2026-10-17 }]
         var lines = ui.Q<VisualElement>("event-options").Query<Label>(className: EventCardPresenter.RejoinClass).ToList();
         Assert.AreEqual(1, lines.Count, "only the option with `rejoin` has the line");
         Assert.AreEqual("Returns to the recorded course.", lines[0].text);
-        var children = ui.Q<VisualElement>("event-options").Children().ToList();
-        Assert.AreEqual(children.IndexOf(ui.Q<Button>("option-back")) + 1, children.IndexOf(lines[0]), "the line sits under its option");
+        var button = ui.Q<Button>("option-back");
+        Assert.AreSame(button.parent, lines[0].parent, "the line belongs to its own option row");
+        var children = button.parent.Children().ToList();
+        Assert.GreaterOrEqual(children.IndexOf(button), 0, "the real option button is in the row");
+        Assert.AreEqual(children.IndexOf(button) + 1, children.IndexOf(lines[0]), "the line sits immediately under its own option");
         Assert.IsFalse(lines[0].focusable, "Tab still reaches only the options");
+    }
+
+    // #1125/#954 integration: synthetic stock amounts and destination title, not authored event facts.
+    // Expectations are literal player text, independent of EventEffectText and OptionEffectPreviews.
+    [TestCase("en")]
+    [TestCase("he")]
+    public void EachOptionPreviewKeepsItsOwnChoiceAndSingleRejoinMarker(string lang)
+    {
+        var text = lang == "he" ? He : Text;
+        var c = WithRoad();
+        c.Events.First(x => x.Id == "banner_parent").Title = "Fixture return destination";
+        var ev = c.Events.First(x => x.Id == "banner_after");
+        ev.Options.First(o => o.Id == "hold").Effects = new List<OptionEffect> { new OptionEffect { Target = "arms", Delta = -1 } };
+        ev.Options.First(o => o.Id == "back").Effects = new List<OptionEffect> { new OptionEffect { Target = "food", Delta = 2.5 } };
+        var bridge = OnTheRoad(c, ev.Id, text);
+        var before = bridge.State.Hash();
+        using var ui = new UiTestKit();
+        using var card = new EventCardPresenter(ui.Root, bridge, text, null);
+        var options = ui.Q<VisualElement>("event-options");
+        var hold = ui.Q<Button>("option-hold");
+        var back = ui.Q<Button>("option-back");
+        CollectionAssert.AreEqual(new[] { "option-hold", "option-back" }, options.Query<Button>().ToList().Select(b => b.name).ToArray());
+        Assert.IsTrue(hold.enabledSelf && back.enabledSelf, "precondition: both real choices remain available");
+        Assert.AreEqual(lang == "he" ? "Hold the course (עולה 2.0 תשומת לב)" : "Hold the course (costs 2.0 Attention)",
+            hold.text.Replace(UiText.LeftToRightMark.ToString(), ""), "the real choice label and price remain on its button");
+        Assert.AreEqual(lang == "he" ? "Go back (עולה 2.0 תשומת לב)" : "Go back (costs 2.0 Attention)",
+            back.text.Replace(UiText.LeftToRightMark.ToString(), ""), "the marker and preview do not replace the real choice label or price");
+        var markers = options.Query<Label>(className: EventCardPresenter.RejoinClass).ToList();
+        Assert.AreEqual(1, markers.Count, "control: exactly the returning option has the existing marker");
+        var marker = markers.Single();
+        Assert.AreEqual(lang == "he" ? "חוזר למסלול ההיסטורי." : "Returns to the recorded course.", marker.text);
+        Assert.IsFalse(marker.focusable, "the existing marker is not a Tab stop");
+        Assert.IsFalse(back.Contains(marker), "the marker is outside the real button");
+        Assert.AreEqual(before, bridge.State.Hash(), "rendering does not change the simulation");
+        Assert.IsEmpty(bridge.Queued, "rendering does not choose for the player");
+
+        var backEffects = back.parent.Query<Label>(className: "event-option-effect").ToList();
+        var expectedBack = lang == "he"
+            ? new[] { "מזון +3 יחידות", "חזרה למסלול ההיסטורי: Fixture return destination" }
+            : new[] { "Food +3 units", "Returns to the recorded course: Fixture return destination" };
+        CollectionAssert.AreEqual(expectedBack, backEffects.Select(x => x.text.Replace(UiText.LeftToRightMark.ToString(), "")).ToArray(),
+            "the real returning choice renders its own stated stock amount and named destination");
+        var holdEffects = hold.parent.Query<Label>(className: "event-option-effect").ToList();
+        CollectionAssert.AreEqual(new[] { lang == "he" ? "נשק -1 יחידות" : "Arms -1 units" },
+            holdEffects.Select(x => x.text.Replace(UiText.LeftToRightMark.ToString(), "")).ToArray(), "the other choice keeps its own different preview");
+        Assert.AreNotSame(back.parent, hold.parent, "effects from distinct choices must not be pooled together");
+        Assert.AreSame(back.parent, marker.parent, "the existing marker belongs to the returning choice's row");
+        var children = back.parent.Children().ToList();
+        Assert.GreaterOrEqual(children.IndexOf(back), 0);
+        Assert.AreEqual(children.IndexOf(back) + 1, children.IndexOf(marker), "one marker remains immediately under its own choice");
+        Assert.IsEmpty(hold.parent.Query<Label>(className: EventCardPresenter.RejoinClass).ToList(), "the other choice gets no return marker");
+        Assert.IsTrue(backEffects.Concat(holdEffects).All(x => !x.focusable && x.pickingMode == PickingMode.Ignore), "all new preview clauses remain passive");
+        Assert.IsFalse(backEffects.Any(x => x.text == marker.text), "the named destination preview is not a duplicate generic return marker");
+        UiTestKit.Press(back);
+        var chosen = (ChooseEventOption)bridge.Queued.Single();
+        Assert.AreEqual((ev.Id, "back"), (chosen.EventId, chosen.OptionId), "Submit still chooses the real option");
     }
 
     /// <summary>The banner belongs to the card it is on: Hide and "Decision waiting" bring it back unchanged, and once the

@@ -282,12 +282,42 @@ namespace Statecraft.Game.UI
                 var b = new Button(() => Choose(e, option)) { name = "option-" + o.Id, text = price > 0 ? text.Format("event.option_cost", label, price) : label };
                 b.AddToClassList(OptionClass);
                 b.SetEnabled(!unpaid);
-                options.Add(b);
-                if (o.Rejoin == "") continue;
-                // Under the option, not in it: the button's label stays the choice itself, and a Label takes no Tab stop.
-                var rejoin = new Label(text["event.rejoin"]);
-                rejoin.AddToClassList("muted"); rejoin.AddToClassList(RejoinClass);
-                options.Add(rejoin);
+                // The real choice keeps its label, price, enabled state and Submit behavior. Its stated effects are
+                // passive text beside that control, read through the bridge; no effect arithmetic or English parsing.
+                var optionRow = new VisualElement { name = "option-" + o.Id + "-row", pickingMode = PickingMode.Ignore };
+                optionRow.AddToClassList("event-option-row");
+                optionRow.Add(b);
+                if (o.Rejoin != "")
+                {
+                    // Under this option, not in its button: the real label and Tab behavior remain unchanged.
+                    var rejoin = new Label(text["event.rejoin"]);
+                    rejoin.AddToClassList("muted"); rejoin.AddToClassList(RejoinClass);
+                    optionRow.Add(rejoin);
+                }
+                var effects = bridge.OptionEffects(o);
+                if (effects.Count != 0)
+                {
+                    // Short clauses share a line when they fit, and each clause wraps at narrow widths. Keeping the
+                    // text elements separate also lets UiDirection apply the actual language of each clause.
+                    var preview = new VisualElement { pickingMode = PickingMode.Ignore };
+                    preview.AddToClassList("event-option-effects");
+                    int effectIndex = 0;
+                    foreach (var effect in effects)
+                    {
+                        // An empty Hebrew name falls through to the sim's capitalised English sentence context.
+                        var contextName = effect.Kind == OptionEffectPreviewKind.ProjectUnlock && text["ui.lang"] == UiLanguage.Hebrew
+                            ? c.ProjectKinds.First(k => k.Id == effect.ContextId).NameHe : null;
+                        var line = new Label(EventEffectText.Format(effect, text, contextName))
+                        {
+                            name = "option-" + o.Id + "-effect-" + effectIndex++, pickingMode = PickingMode.Ignore,
+                        };
+                        line.AddToClassList("event-option-effect");
+                        line.AddToClassList("muted");
+                        preview.Add(line);
+                    }
+                    optionRow.Add(preview);
+                }
+                options.Add(optionRow);
             }
             card.Q<Label>("event-count").text = open.Count > 1 ? text.Format("event.more", open.Count - 1) : "";
             if (shown && !photoWaits && layer.enabledInHierarchy && openedFor != e.Id) { openedFor = e.Id; Opened?.Invoke(e.Id); }

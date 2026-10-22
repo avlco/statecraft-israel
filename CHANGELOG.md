@@ -8,6 +8,9 @@ checks this (see `CONTRIBUTING.md`).
 
 ## [Unreleased]
 
+### Added
+- Event cards show each option's stated effects beneath its choice, using the sim's previews and the English or Hebrew UI wording; the real choice keeps its Attention price, keyboard focus and click behavior (#1125, refs #811).
+
 ## [0.2.1] - 2026-10-22
 
 ### Fixed

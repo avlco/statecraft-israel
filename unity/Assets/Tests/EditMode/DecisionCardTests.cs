@@ -88,6 +88,125 @@ public class DecisionCardTests
 
     static readonly (int w, int h)[] Tiers = { (1920, 1080), (960, 1080) };
 
+    // #1125: static effect text adds no control, preserves the actual choice, and stays inside the card at real window sizes.
+    [UnityTest]
+    public IEnumerator EveryRealOptionPreviewFitsWithItsChoiceInEnglishAndHebrew()
+    {
+        var he = UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(UiPaths.StringsHebrew).text, "strings.he.yaml");
+        var problems = new List<string>();
+        int seen = 0;
+        foreach (var text in new[] { Text, he })
+            foreach (var (w, h) in new[] { (1920, 1080), (1280, 720), (390, 844), (960, 600) })
+            {
+                using var r = new Rig(w, h, "altalena", text: text);
+                using var direction = new UiDirection(r.Root, r.Bridge);
+                foreach (var ev in C.Events)
+                {
+                    r.Bridge.Replace(Pending(ev.Id));
+                    yield return Frames(4);
+                    direction.Apply();
+                    var card = r.CardElement.worldBound;
+                    var where = $"{text["ui.lang"]} {w}x{h} {ev.Id}";
+                    foreach (var option in ev.Options)
+                    {
+                        var button = r.Root.Q<Button>("option-" + option.Id);
+                        var effects = button.parent.Query<Label>(className: "event-option-effect").ToList();
+                        var expected = EventSystem.OptionEffectPreviews(C, r.Bridge.State, option);
+                        Assert.AreEqual(expected.Count, effects.Count, where + " " + option.Id);
+                        CollectionAssert.AreEqual(expected.Select(x => EventEffectText.Format(x, text,
+                            x.Kind == OptionEffectPreviewKind.ProjectUnlock && text["ui.lang"] == UiLanguage.Hebrew
+                                ? C.ProjectKinds.Single(k => k.Id == x.ContextId).NameHe : null)).ToArray(), effects.Select(x => x.text).ToArray(), where);
+                        seen += effects.Count;
+                        foreach (var element in effects.Cast<TextElement>().Prepend(button))
+                        {
+                            var box = element.worldBound;
+                            if (box.xMin < card.xMin - 0.5f || box.xMax > card.xMax + 0.5f || box.yMin < card.yMin - 0.5f || box.yMax > card.yMax + 0.5f)
+                                problems.Add($"{where}: {element.name} {box} leaves card {card}");
+                            if (!UiLayoutTests.TextFits(element)) problems.Add($"{where}: text is clipped: {element.text}");
+                        }
+                        Assert.IsTrue(effects.All(x => !x.focusable && x.pickingMode == PickingMode.Ignore), where);
+                    }
+                }
+            }
+        Assert.Greater(seen, 100, "actual nonempty previews were laid out, not an empty scan");
+        Assert.IsEmpty(problems, string.Join("\n", problems));
+    }
+
+    [UnityTest]
+    public IEnumerator PreviewTextDoesNotTakeKeyboardFocusOrChooseForThePlayer()
+    {
+        var he = UiText.Parse(AssetDatabase.LoadAssetAtPath<TextAsset>(UiPaths.StringsHebrew).text, "strings.he.yaml");
+        foreach (var text in new[] { Text, he })
+        {
+            using var r = new Rig(1280, 720, "altalena", text: text);
+            yield return Frames(4);
+            var button = r.FirstOption;
+            var labels = button.parent.Query<Label>(className: "event-option-effect").ToList();
+            Assert.IsNotEmpty(labels, "the actual card has its option effects");
+            Assert.AreSame(r.CardElement, r.Focused, "opening still focuses the card without choosing an option");
+            button.Focus(); yield return Frames(2);
+            Assert.AreSame(button, r.Focused);
+            // Use the player's Tab path. VisualElement.Focus() on a non-focusable element deliberately focuses its
+            // ancestor (Unity 6000.3 VisualElement.Focus), so calling label.Focus() would not test keyboard navigation.
+            var choices = r.Root.Q("event-options").Query<Button>().ToList();
+            foreach (var next in choices.Skip(1).Cast<VisualElement>().Append(r.Hide))
+            {
+                var from = (VisualElement)r.Focused!;
+                using (var move = NavigationMoveEvent.GetPooled(NavigationMoveEvent.Direction.Next)) { move.target = from; from.SendEvent(move); }
+                yield return Frames(2);
+                Assert.AreSame(next, r.Focused, "Tab reaches only real options, then Hide; never a passive effect row");
+            }
+            // Keep this transport local to this case. Event-based pointer positions follow FocusScrollTests;
+            // PointerEventBase.pressedButtons has a protected setter, as button does in SettingsScreenTests.SetButton.
+            // Specify its press/release mask rather than depending on the editor's real mouse state.
+            void ClickAt(Vector2 point)
+            {
+                var target = r.Root.panel.Pick(point);
+                Assert.IsNotNull(target, "the panel picked a real target at the tested coordinate");
+                using (var down = PointerDownEvent.GetPooled(new Event { type = EventType.MouseDown, button = 0, mousePosition = point }))
+                {
+                    typeof(PointerDownEvent).GetProperty("pressedButtons")!.SetValue(down, 1);
+                    Assert.AreEqual(0, down.button); Assert.AreEqual(1, down.pressedButtons);
+                    Assert.AreEqual(point, (Vector2)down.position);
+                    down.target = target; target!.SendEvent(down);
+                }
+                using (var up = PointerUpEvent.GetPooled(new Event { type = EventType.MouseUp, button = 0, mousePosition = point }))
+                {
+                    typeof(PointerUpEvent).GetProperty("pressedButtons")!.SetValue(up, 0);
+                    Assert.AreEqual(0, up.button); Assert.AreEqual(0, up.pressedButtons);
+                    Assert.AreEqual(point, (Vector2)up.position);
+                    up.target = target; target!.SendEvent(up);
+                }
+            }
+            var id = r.Card.Shown!.Id;
+            var option = C.Events.First(e => e.Id == id).Options[0].Id;
+            var pickedButton = r.Root.panel.Pick(button.worldBound.center);
+            Assert.IsTrue(pickedButton == button || button.Contains(pickedButton), "positive control: the coordinate hits the actual option button");
+            ClickAt(button.worldBound.center);
+            yield return Frames(2);
+            var pointerChoice = (ChooseEventOption)r.Bridge.Queued.Single();
+            Assert.AreEqual((id, option), (pointerChoice.EventId, pointerChoice.OptionId),
+                "positive control: this exact pointer transport chooses the real option before a passive-text negative assertion");
+
+            // Reset through the public bridge, in the same panel and rig; Render recreates the option elements.
+            r.Bridge.Replace(Pending("altalena")); yield return Frames(4);
+            Assert.IsEmpty(r.Bridge.Queued);
+            button = r.FirstOption;
+            labels = button.parent.Query<Label>(className: "event-option-effect").ToList();
+            Assert.IsNotEmpty(labels);
+            button.Focus(); yield return Frames(2);
+            foreach (var label in labels)
+            {
+                Assert.IsFalse(label.canGrabFocus, "a passive clause cannot be a keyboard stop");
+                ClickAt(label.worldBound.center);
+                yield return Frames(2);
+                Assert.IsEmpty(r.Bridge.Queued, "the same working pointer transport on plain effect text does not choose an option");
+            }
+            Press(button);
+            Assert.AreEqual((id, option), (((ChooseEventOption)r.Bridge.Queued.Single()).EventId, ((ChooseEventOption)r.Bridge.Queued.Single()).OptionId));
+        }
+    }
+
     [UnityTest]
     public IEnumerator ThePhotoAspectFollowsPaddingWithoutAnOuterResize()
     {
