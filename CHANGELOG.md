@@ -8,6 +8,333 @@ checks this (see `CONTRIBUTING.md`).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-22
+
+### Fixed
+- The first-turn guide's steps now match what is on screen (owner's report on v0.1.4, #1323). Answering the decision card
+  on the event step moves the guide on to Objectives with the focus on Next, instead of leaving "An event card" up with
+  no card. With no card to explain, the event step is left out and the guide counts five steps. The unit card the move
+  step opens is put away when the guide moves on. On the city steps the panel shows only after the info panel is laid
+  out, so it no longer jumps from the bottom to the top.
+- Save warnings describe changed content without assuming an older version and suggest checking the restored game,
+  in English and draft Hebrew (refs #622; native Hebrew review pending).
+- How to play text explains that worker changes take effect at End turn in English and draft Hebrew. English also
+  defines halutzim and Hakhshara alongside their training roles (refs #42, #1041; native Hebrew review pending).
+- Height-sized fallback trees on the opt-in hex map use their generated canopy bounds for footprint checks, including
+  callers with narrower estimates, so accepted stand-in canopies stay inside the tile inset (refs #18, #1120).
+- A transit camp or housing built as a city project (the GDD loop) now brings its ma'abara or shikun landmark, from the
+  same sourced dates as a placed one: the map's town landmarks read the built city projects as the placement layer does
+  (#1123), not only the legacy placements (#1275). No golden moves.
+- The event photograph keeps its 16:9 header when card padding changes without an outer resize (#649).
+- The map info panel formats armistice zone and line dates in the selected UI language, reusing the existing date strings and isolating Hebrew dates inside English fallback rows; English output and agreement data are unchanged (refs #558).
+
+### Changed
+- The war state's first slice (R-WAR-002 and R-WAR-003's clock; refs #750, #1148, by Agam): in the GDD loop the sim
+  refuses the call-up and the security order ("That order is not available in this game", state and Attention
+  unchanged), and the call-up follows the rung an event sets, lowered to the rung's minimum as well as raised, so the
+  army still goes home after the 1949 armistices and the 1950-51 debt rise stays on the Michaely anchor. HistoricalAI
+  sends no call-up order there, the 52-week ceasefire clock never starts, and the Defence screen hides the rung and
+  call-up controls and the ceasefire line. The legacy loop is unchanged. The goldens move (the debt, `mob`, `cf`).
+- The owner approved the three opening-cutscene photographs (Cyprus, Lydda, Aden): their licence rows are verified and their sensitivity review is done, so the release gate no longer refuses them (refs #530, #1093).
+- The owner person-checked the two later starting-force rows of `content/map/units_1948.yaml`, Etzioni (3,166 on
+  15 May 1948, Ben-Gurion's diary) and the 7th Brigade (1,650 on 24 May 1948, en.wiki's Battles of Latrun), and they
+  are `fact-checked` (#1241). Etzioni drops its person-check `to_verify` item; the 7th keeps its item, since a primary
+  source must still replace its secondary figure.
+- The owner sensitivity-reviewed the six settlement targets of `content/settlement_targets.yaml` (Jaffa, Acre, Nazareth,
+  Lod, Ramla and Beersheba), and they are `sensitivity-reviewed` (Q-TGT-3 (b), #793). The release gate no longer names
+  any starting force or target. The content hash moves (an older save warns once); no golden does.
+- Prisoners (follow-up to #1264, refs #751): the four prisoner amounts and the ALA and local-force rule now cite the
+  owner's ruling (owner, 21 October 2026, #751) in `rules.yaml`, `docs/rules/mvp.md` and `DesignValuesTests`. Two tests
+  closed the gaps the owner's review named: the exchange card waiting for prisoners now plays past its 1 July window, and
+  delegating an exchange card is checked to draw no random number. No behaviour changes; goldens do not move.
+- Simulation: from accepting a truce card until its window ends, the player's attack orders are refused with "A
+  truce is in force" - from the first truce's acceptance on the turns that start before 8 July 1948, and from the
+  second's on the turns that start before 15 October 1948; the 15 October 1948 turn is free (refs #750). Accepting a
+  truce ends and clears the player's standing attacks with a line; movement and every other order stand. The enemy
+  side's own truce guard is untouched.
+
+### Added
+- The Timeline shows existing Hebrew event titles and chosen/recorded answer text in the Hebrew UI, with localized office-holder names, independent English fallbacks and untranslated variant titles preserved (refs #955, #1157; existing human-review flags remain unchanged).
+- A timeline screen shows the player’s course beside the record, including considered alternatives and design assumptions
+  (refs #955, #939). Its button is the eighth on the left column, so the column's discs are 40 px, 2 px apart, on the
+  one-row bar.
+- The Etzioni Brigade starts a Historical game in Jerusalem with 3 units, from its 15 May 1948 strength of 3,166 in
+  Ben-Gurion's diary (#1241).
+- A brigade with no sourced place on 15 May 1948 enters on the day its row's strength is dated (R-UNIT-009): the 7th
+  Brigade arrives at Hulda with 2 units (1,650 men, 24 May 1948) on the 15 June 1948 turn (#1241).
+- The release gate refuses a settlement target that is not sensitivity-reviewed (Q-TGT-3 (b), #783; Fixes #1274):
+  `ReleaseGate.SettlementTargetsUnchecked` names every `content/settlement_targets.yaml` row whose status is not
+  `sensitivity-reviewed`, and both `Statecraft.Cli --release-gate` and a `-shareable` build refuse while it is not empty.
+  Since #793 the list holds six targets; the gate refuses any of them that is not sensitivity-reviewed (#1333 records
+  the owner's review). No golden moves.
+- The turn report lists what the Arab forces did after End turn (#1293): one line per order the enemy AI gave that turn,
+  a move, an attack or a fortify (R-ENEMY-001), with the unit's name, in English and Hebrew. The sim names each such
+  order on its cause (`Cause.EnemyOrder`); no golden moves.
+- `MovementTests.AFullTurnOfMovesIsFast` now runs in its own non-parallel `Perf` xUnit collection, so its 16 ms wall-clock budget
+  no longer competes with the parallel test classes for the CPU (Fixes #1303). The budget is unchanged.
+- The last of Tal Heuberger's Collection models are in normal play (#708, #886): the Arab villager beside the Arab
+  towns and the villages with flocks, only while the sim has residents there and, at Jaffa, Lod, Ramle and Beersheba,
+  up to each town's sourced date (owner ruling); the kibbutz woman at every kibbutz; the pioneer farmer at the moshav
+  and the tractors' kibbutzim; the elder immigrant, the child and the immigrant woman beside C01 and C10 at every built
+  transit camp, with the Yemenite immigrant during Operation Magic Carpet (July 1949 to September 1950); the builder at
+  each city project while it is being built; the 1948 soldier as the third figure of the Yiftach and Negev tokens; and
+  #336's second Jerusalem as the city's far-zoom model. All stream after the first frame. C01 and C10 now also stand at
+  the transit camps the GDD loop builds.
+- Settlement control: the target list holds the six rows the owner approved (Jaffa, Acre, Nazareth, Lod, Ramla and
+  Beersheba; Gaza excluded), each with its operation and sources and `status: draft` until a person checks the sources.
+  Acre, Nazareth, Lod, Ramla and Beersheba can be captured in play; Jaffa only if an alternate-timeline card returns it
+  to Arab control (#793). Choosing what happens to a captured place is not in the game's interface yet, so a capture
+  waits and counts as Raid at the end of the game. The content hash moves (an older save warns once); no golden does.
+- An opt-in construction reveal prototype and isolated one-hex editor preview: soft base dust, small bouncing stone chunks, original/refined comparison on an existing designed game hex, replay and cancellation, without changing simulation timing. Its materials stay in the editor until gameplay uses it, so player builds carry no new assets.
+- Map: three more of the thirteen villages without a Hebrew name get a sourced `name_he` (refs #1219): Salihiya
+  סאלחיה and Karatiya כרתיא from moreshet-map.org.il battle pages, Zuq et Tahtani זוק אל-תחתני from an Israel
+  Antiquities Authority final report, per the owner's 21 October source ruling. Ni'ilya and Ghazawiya stay English:
+  their only Hebrew forms so far are Zochrot's, which the ruling does not allow.
+- Round 2 of the opt-in hex-tile map, still presentation only and off by default.
+  - **Buildings:** they draw the shipped b*-v2 town models at full detail. Our own decimated copies had lost faces, so
+    grass showed through walls and windows. The tile budgets are raised to match, and a test counts see-through view
+    rays.
+  - **Regional variants:** two each for the north, centre and south of the wheat, citrus, olive, mixed-farm and forest
+    tiles (a new `mixed_farm`).
+  - **Time of day:** day, dusk and night presets (`?hex-tiles&hex-time=dusk|night`, desktop `-hex-time`). Night has
+    lit windows. Everything is restored on teardown.
+  - **Under attack:** a look for a hex (smoke, glow and a pulsing border) that the sim can drive later. It is not
+    saved to any board.
+  - **Hex Painter:** a palette of every tile, by kind and region, and every unit, with thumbnails. A brush paints
+    tiles, units are placed with a facing, and day, dusk, night and under attack can be previewed.
+  - **Units:** a character unit is one model × 8. The hex figures draw the Collection's whole figures in the editor;
+    the grazing flock's sheep and donkey do too. Our decimated copies showed the ground through clothes, fleece and faces.
+  - **Board capture:** the whole-board shot no longer cuts off the board's south edge.
+  (docs/hex-tiles/README.md; refs #18)
+- Opt-in hex player: stream existing Collection figure aliases after the first frame, replace loading stand-ins without rebuilding terrain, and cancel refreshes on board teardown.
+- Draft sources for the opening cutscene (GDD Phase 7 PR 10): one paragraph per origin (Europe, the Arab countries,
+  Yemen) and a closing line, the CBS Publication 1365 Table 5 arrivals, and three Meitar CC BY 4.0 photographs, in
+  `unity/Assets/UI/Opening/`. An AI draft: nothing shows them yet, and a person's source check and the owner's
+  sensitivity review come before they do (refs #530).
+- A corridor segment's cost and turns are read from one place in the sim (`Projects.Terms`), the one the info panel
+  already uses, so the two cannot drift apart (#792). No player-visible change; no golden moves.
+- GDD Phase 7 PR 5, the war loss (refs #8, #387): an enemy military unit holding the hex of one of the player's GDD
+  cities at the end of a turn ends the game at once with `defeat_war` (R-END-003; Q-WAR-5 and Q-DEF-3, owner, 17 October
+  2026, #784: one turn is enough, any of the GDD cities, truces included), with its own reason line. The check runs in
+  resolver step 11 after the economic count, so a turn the economic defeat also ends keeps `defeat_economy`. The
+  reference run is never defeated, so no golden moves. The end-screen history note beside the cause (Q-DEF-4 (b)) goes
+  with #812.
+- Answering a capture, GDD Phase 6 PR 5 (#797; R-CTRL-007 to R-CTRL-010): a new `ResolveCapture(settlement, outcome)`
+  order, one kind for every outcome at `attention_cost.resolve_capture` 0 (a design value proposed on #797). The sim's
+  `SettlementControl.CaptureOptions` lists Raid and withdraw, Occupy and Deport in that fixed order, with nothing
+  pre-selected and a preview worked out on a copy of the state. Occupy and Deport are refused as not built yet. Raid
+  moves the player's units off the place to the first free neighbouring hex and puts it back under enemy control, with
+  its residents unchanged. `HistoricalAI` and the reference player answer every capture with Raid, and a capture still
+  waiting at the game's end counts as Raid. No golden moves, and none moved when #793 filled the target list with six
+  rows.
+- Map: a corridor segment's hex offers Build road or Build railway with each idle pioneer group, with the cost and
+  turns from the sim, then the turns left and Stop while it is built, then the day it was built. The order is the
+  existing `PioneerWork(unit, build_road | build_rail, corridor:N)`. A city's own hex does not show it; every segment
+  has another hex (refs #792).
+- GDD Phase 5 PR 15, slice 4: the `smoke-orders` golden (refs #754). The WebGL player's `?smoke-orders` run (desktop
+  `-smoke-orders`) plays the first turn as a player gives one unit order: it hides the event card, clicks Golani, presses
+  the card's Move button, clicks the first lit hex and presses End turn, then logs `SMOKE ORDERS OK 1948-06-15 <hash>`.
+  The sim's `GoldenRun.PlaySmokeOrders` pins the same state in the golden manifest; no other golden moves.
+- GDD Phase 5 PR 15, slice 3: the unit card's Attack order with its odds (refs #754). In the GDD loop a unit's card shows
+  Attack (Q-UI-2's name, "Attack" / "התקפה") only where the sim's new `Combat.Check` takes some hex; where it refuses
+  an enemy hex in reach, the card shows the sim's reason. Pressing it lights those hexes, and the card gives each the
+  sim's strength ratio and the combat table's outcome bands for it (Q-UI-1; `Combat.Preview`, new `Combat.Outcomes`).
+  A click on a lit hex queues the sim's attack, and the card says it comes at End turn. `Combat.Give` now runs
+  `Combat.Check` first, so the card and the sim refuse the same attacks for the same reasons.
+- GDD Phase 5 PR 15, slice 2: the unit card's Fortify and Hold orders (refs #754). In the GDD loop a unit's card shows
+  Fortify and Hold (Q-UI-2's names, "Fortify" / "ביצור", "Hold" / "החזקה"), each only where the sim's new
+  `Orders.Check` takes the order; where it does not, the card shows the sim's reason. A press queues the sim's
+  `UnitOrder`, and the card says when the order takes effect. `Orders.Give` now runs `Orders.Check` first, so the card
+  and the sim refuse the same orders for the same reasons.
+- Hebrew UI: a unit card's formed and since dates name their month in Hebrew ("הוקמה: מרץ 1948"), through the
+  existing date strings, when the date is a plain day or month; a date written as prose ("late 1947") keeps its
+  English (refs #1292). The card's place, first commander and sector still show their English until the rows get
+  `place_he`, `first_commander_he` and `sector_he` (#558): no row has them yet.
+
+## [0.1.4] - 2026-10-22
+
+### Added
+- The info panel on a camp, field or Hula swamp site offers Build a training camp, Plow fields or Drain the swamp to each
+  idle halutz group, beside Build a yishuv, with the cost the sim charges (`Projects.Terms`, which `Projects.Start` now
+  uses too) and the group's own turns at the minister rate (`Projects.TurnsToBuild`, #1147), and Stop while the work
+  runs. A yishuv's or the swamp's field says it waits until that site is built or drained
+  (`Projects.YishuvToBuildFirst`), and `SimBridge` lets the three orders through its id check. New English and Hebrew
+  strings; Beri approved the Hebrew as a native speaker (refs #792, #1124).
+- The first-turn guide has a sixth step, "Moving a unit", after Training: it shows a unit that can move (its ring and
+  its card, as a click would) and rings the card's Move button; closing the guide puts back the selection it found. The
+  Hebrew is an agent draft, not yet read by a native speaker (refs #1141).
+- The rationing office has a Hebrew title, "שר האספקה והקיצוב" (feminine "שרת האספקה והקיצוב"), from he.wiki's pages on
+  Dov Yosef and the Ministry of Rationing and Supply. It is marked agent-checked for a native read (#564, Refs #1219,
+  item 5); until now the cabinet screen showed the English title in Hebrew mode.
+- The title shows only while the ministry existed, 10 March 1949 to 1 November 1950 (owner ruling on #1224): offices.yaml
+  gains `title_he_from` / `title_he_until`, and from 1 November 1950 the office keeps its English title.
+- Hebrew names for eight more 1948 localities (refs #1219, item 3): Na'ana, Sumsum, Jiya, Mansi, Zakariya, Qubeiba
+  (Hebron), Sawafir el Gharbiya and Na'ima gain a name_he in content/map/localities_1948.yaml, each cited to the
+  he.wiki page that names the village, marked agent-checked until a native speaker reads them (#564). The five villages
+  with no he.wiki source keep their English names. The runtime bake and the locality tests follow the new names.
+- Web autosaves report their exact IndexedDB commit generation; persistence checks reload on that acknowledgement and fail on missing or failed commits instead of treating End turn as proof of persistence.
+- Star, Report and Share as three round icons, one above the other, at the bottom left of the map screen, at the foot
+  of the side menu's lane (#1236). Each does what its Settings button does and has the same name, shown beside it on
+  hover and on keyboard focus, in English and Hebrew; Tab reaches them after the info panel. The info panel now starts
+  right of that lane and keeps its right edge, which also keeps it off the side menu on a phone held in landscape.
+- Share: a Copy button in the Share panel puts the screenshot on the clipboard, or the post text with the itch link
+  where the browser refuses the picture, and says which one it copied (or that it could not copy, with the download
+  still there), in English and Hebrew (#1238).
+- Unit cards can show the place, first commander and sector in Hebrew: optional `place_he`, `first_commander_he` and
+  `sector_he` in `units_1948.yaml`, each with its sources and `*_review: agent-checked`, shown only in the Hebrew UI,
+  each falling back to its own English. The loader refuses a Hebrew text without its English, blank keys, and sources
+  or review flags without the text. No shipped row carries them yet, so no card changes (refs #558).
+- The "One million" objective card (absorb immigrants) shows an archival arrival photograph in its header: new
+  immigrants from Romania come down a ship's gangway at Haifa port, June 1951 (Benno Rothenberg / Meitar Collection /
+  National Library of Israel, CC BY 4.0), by the owner's ruling of 19 October 2026 for a generic arrival photograph. The owner
+  approved the photograph on 21 October 2026 (`ASSETS.yaml` `verified`; refs #739).
+- The Road of Valour card (`burma_road_complete`, objective 3) and its photograph are signed off: the owner approved the
+  photograph (#1226) and the card's text as written on 21 October 2026 (#791). The card is `sensitivity-reviewed`, the
+  photograph is `sensitivity_reviewed: true` and its `ASSETS.yaml` row is `verified`, so neither blocks a shareable build.
+- A map builder for the opt-in hex-tile map: region recipes (`tools/hex_tiles/regions.yaml`) lay out the whole map in
+  one command (the `israel` board: 920 hexes, the game's settlements and the 1948 localities as towns and villages by
+  type and population, the traced 1948 main roads), give each region its own tiles and ground and its own trees round
+  the edge (oak and pine in the north, citrus and date palm on the coast, acacia and desert rock in the south). Hand
+  edits live in `<board>.overrides.json`, in the shape of the map editor's `content/map/overrides.yaml` but outside
+  `content/` (presentation only: tile, ground, unit, facing, region), and survive regeneration; boards also follow the
+  map editor's terrain and location overrides. The editor-only Hex Painter (Statecraft/Hex Tiles/Hex Painter) picks a
+  hex in the Scene view, changes its tile, ground, unit, facing or region, rebuilds just that hex and writes the edit
+  there. Still presentation only and off by default (refs #18).
+- A finished city project shows on the map: a built housing project or transit camp is drawn on its hex the way the
+  map action of the same kind is (the box, or the ma'abara kit for a camp), and a project still being built is not.
+  `State.Placements` is unchanged; an industry project has no approved art yet and is not drawn (#1123, refs #739).
+- The map override editor window (Statecraft/Map override editor) edits land terrain, one control period at a time and
+  named-location positions in `content/map/overrides.yaml`, with map selection, coordinate and drag moves, Unity
+  undo/redo, discard, and the city, site and corridor records a move touches listed before saving. Save checks the whole
+  content through the game's loader first, so an edit that would break it (a settlement moved onto a designated site)
+  leaves the saved file as it was; saving unchanged data does not rewrite the file. Unsaved edits survive a script
+  reload, and closing the window or choosing Reload with them asks first (refs #1009).
+- GDD Phase 5 PR 8: combat (refs #747, #385). `UnitOrder(unit, attack, q, r)` gives one of Israel's units a standing attack
+  on an adjacent hex holding an enemy unit, and resolver step 2 resolves the attacks of both sides in ascending attacker
+  id (R-COMBAT-001 to R-COMBAT-006): joint attacks sum their strengths, the defender's fortify and biome multiply its
+  strength, one RNG draw per engagement picks a face of the combat table's row for the ratio, losses fall on the
+  strongest unit, a unit at 0 is destroyed, a defender the row sends back retreats one hex or surrenders when it has
+  none, and the attacker does not advance. Each Israeli attacker spends 1 Arms. Combat changes only the units and the
+  Arms, never a city, locality, resident or the score, and each engagement's Why line gives the people both sides lost
+  in the same words. The table, the terrain percents and the Arms per attack are new labelled design values in
+  `content/rules.yaml`, accepted by the owner on #747 (20 October 2026, all six defaults: https://github.com/eyalgolan/statecraft-israel/issues/747#issuecomment-6299184133). The reference player now attacks at 3:2 or better, so the 1950, 1952
+  and mvp-end goldens move (re-pinned, docs/determinism.md): unit 0 fights the Syrian unit beside it from 15 May 1948.
+- Artillery has its own combat role (GDD Phase 5 PR 9, part 1; #748). It supports an attack on an enemy hex up to two
+  hexes away, fires only beside another attacking unit, spends 2 Arms a firing, counts at 200% of its strength and
+  takes none of the attackers' losses; it cannot hold ground. The armoured car fights at 150%. The numbers are design
+  values the owner accepted on 21 October 2026 (#748; R-COMBAT-007, R-COMBAT-008), together with three mechanics: the
+  losses sparing the guns, no hold for artillery, and the 200% counting on defence too.
+- GDD Phase 6 PR 4: capture, resolver step 3 (refs #796, #386). At turn end, in ordinal id order, a curated target that
+  starts under enemy control is captured when Israeli military units are on its hex and no enemy military unit is
+  (Q-CAP-1 (a), Q-CAP-3 (a); R-CTRL-004). Its settlement record names Israel, awaits the player's choice and starts on
+  the turn's end; enemy units alone on a captured target return it to enemy control (#796). A halutz holds nothing, and
+  "enemy-held" means `mvp.enemy_held_localities` (owner, 21 October 2026, #796). A target that is not enemy-held at the
+  start (Jaffa, #793) is never captured. The loader refuses a target whose hex is not its hex in
+  `map/settlement_hexes.yaml` (R-CTRL-001). Capture changes no resident, unit, resource, city, score or objective and
+  draws nothing from the RNG (R-CTRL-005). The shipped target list is empty, so no golden moves.
+- GDD Phase 5 PR 10, part 1: the enemy AI (refs #749, #385). Resolver step 1 now gives every Arab unit its orders from
+  the state alone, through the player's own move, attack and fortify checks with the sides swapped (R-ENEMY-001 to
+  R-ENEMY-004). In Historical mode the Egyptian force, the Arab Legion, the Syrian and the Iraqi forces march from
+  their 15 May 1948 start on their 11 June positions in `map/units_1948.yaml` (Isdud, Latrun, the Mishmar HaYarden
+  bridgehead, Jenin), taking only anchors with two sources that are not Wikipedia (research note arab-forces-1948.md,
+  section 10), on the turns before 8 July 1948. Otherwise a unit holds its hex fortified and attacks a neighbouring
+  Israeli unit at 2:1 or better (`mvp.enemy_attack_ratio_percent`, a new labelled design value). No RNG, no enemy
+  supply, no reinforcements. An enemy unit may not enter a locality that is not on `mvp.enemy_held_localities`, so no
+  enemy move ends on an Israeli locality before enemy capture exists. Every golden moves (re-pinned, docs/determinism.md).
+- No enemy attack inside the two truces (11 June to 8 July and 18 July to 15 October 1948; owner, 21 October 2026, #749):
+  on a turn whose middle day falls in a truce every enemy unit's standing attack ends, and the unit only moves on its
+  script or fortifies (R-ENEMY-006). A stopgap by date until the full war state (#750); of the goldens it moves only
+  smoke5 again. The march through the 15 June 1948 turn is the owner's reading (same ruling).
+- Add the three-part Establish key infrastructure objective, with sourced railway, Burma Road and yishuvim completion
+  cards and one shared base score.
+- Reject objective conditions that do not match whether the objective is a standalone goal or a grouped part.
+- Prisoners (GDD Phase 5 PR 12, #751; R-POW-001 to R-POW-005): a unit that surrenders in combat is now counted, as
+  prisoners when it is an enemy unit, as our soldiers held when it is ours. Prisoners eat Food each turn, and a shortfall
+  costs Social cohesion, never prisoners. Our soldiers held cost Money each turn. A front's exchange card (new event key
+  `prisoners:`) returns both and scores 10 points per population unit of prisoners returned; nothing scores at the
+  capture. The four amounts in `rules.yaml` are agent defaults for the owner to set. The four sourced exchange cards
+  come in a later PR, after a person has checked their sources.
+- GDD Phase 5 PR 4: the sourced starting forces, both sides (refs #743, #385). A new Historical game starts with one sim
+  unit per row of `content/map/units_1948.yaml` that is not hidden, is an army row, has a 15 May strength and an anchor
+  window covering 15 May 1948, on that anchor's hex (R-UNIT-006; precomputed by the new `tools/unit_anchor_hexes.py`
+  into `content/map/unit_anchor_hexes.yaml`, so the sim does no projection maths): Golani, Carmeli (at Haifa), Alexandroni, Kiryati,
+  Givati, Harel and Negev as `veteran_soldier`, and the Egyptian force, the Arab Legion, the Syrian and Iraqi forces and
+  the ALA, each under its side's new infantry type in `content/unit_types.yaml` (labelled design values, 3 movement
+  points). Strength is the row's people in 1,000-person units, halves up, never below 1 (owner, 20 October 2026, #743:
+  "all five defaults"). The sim now reads the file, so it is in the content hash and every golden moves (re-pinned,
+  docs/determinism.md): the twelve units take ids 0 to 11, and nothing else in the run changes. `--release-gate`,
+  `Build -shareable` and `tools/package_release.py` now refuse until every row a unit starts from is `fact-checked`
+  (Q-START-3); today none is. Open mode still cannot start (R-UNIT-007).
+- City projects in the info panel: on a hex a city can build on, the panel names the city that builds (the player picks
+  when several are in reach) and offers Build for each `projects.yaml` kind with its cost and turns, or shows the sim's
+  own refusal in English or Hebrew; a project there shows its turns left and Cancel, or its finishing day. The turns are
+  the sim's forecast at the kind's minister multiplier (`Projects.CityTurnsToBuild`). The sim adds `Projects.CitiesFor`
+  (cities in reach, by the one range check) and `Projects.CheckCityReason` (structured refusals, a locked kind included;
+  `CheckCity`'s English and order unchanged), and the kinds gain draft Hebrew names for native review (#564; refs #1122).
+- On a city's own hex, on a stacked bar or a short window, the project part folds behind one "City projects (N)"
+  toggle that opens and closes the list, so the panel stays clear of the left column (owner ruling on #1150).
+- GDD Phase 5 PR 15, slice 1: the unit card's Move order (refs #754, #385). In the GDD loop a unit's card shows a Move
+  button (Q-UI-2's name, "Move" / "תנועה") when the sim's `Movement.Reachable` has a hex for it. Pressing it lights
+  exactly those hexes on the map. A click on a lit hex queues the sim's `Move` and the card says the unit moves at End
+  turn. Any other click, a second press, a new turn or another selection ends the pick. Fortify, hold, attack and the
+  `smoke-orders` golden come in later slices.
+
+### Changed
+- On small windows (a phone held upright) the first-turn guide's text, title, step count and buttons are raised to the
+  owner's 12 px floor on screen, the top bar's rule; the desktop sizes are unchanged (refs #1141).
+- The Share panel shows a preview of the picture it shares, and its site buttons are the owner's list in order: X,
+  Facebook, Instagram, WhatsApp, Telegram and LinkedIn, shown from the start (#1237). Telegram opens its share link
+  (`t.me/share/url`, with the itch URL and the post). Instagram has no share link: its button opens the share sheet
+  where the browser can share files, and elsewhere downloads the picture and says, in English and Hebrew, to post it
+  from the Instagram app. New Hebrew string queued for a native read (#564).
+- The twelve starting-force rows of `content/map/units_1948.yaml` are `fact-checked`: the owner person-checked them on
+  21 October 2026 (refs #1240): Golani, Carmeli, Alexandroni, Kiryati, Givati, Harel and Negev against Ben-Gurion's
+  diary for 15 May 1948, and the Egyptian force, the Arab Legion, the Syrian and Iraqi forces and the Arab Liberation
+  Army against the checking packet's sources. The release gate no longer names them. The seven IDF rows drop their
+  person-check `to_verify` item; the Arab rows keep their caveats in the strength note (Dupuy's approximately 7,000 for
+  Egypt; Glubb's own figure unread for Syria and Iraq; about 70 of the Arab Liberation Army's men at al-Malikiyya). Rows
+  added later are not covered by the check. No golden moves: the sim reads the status only for the release gate.
+- The seven IDF starting brigades take Ben-Gurion's diary figures for 15 May 1948 (owner, 21 October 2026; refs #1240),
+  a primary source dated to the game's first day, in place of en.wiki's undated brigade table, which stays as each row's
+  second source: Golani 4,095 (3,573 + 522 paid recruits), Carmeli 2,289, Alexandroni 3,588, Kiryati 2,504, Givati
+  3,229, Harel 1,300 and Negev 1,300 (the Palmach in each). A new Historical game starts them at 4, 2, 4, 3, 3, 1 and 1
+  units (was 5, 2, 5, 1, 5, 1 and 2). The rows stay `to_verify` until a person checks the figures against the diary page.
+  Every golden moves (re-pinned, docs/determinism.md): Golani's 4 against the Syrian 3 is under the reference player's
+  3:2, so the reference run no longer attacks.
+- **The GDD game no longer builds the old transit camps and housing placements.** A map action is refused there with
+  "Map actions are not part of this game: start a city project instead", and its Attention comes back; the info panel
+  shows no Build camp or Build housing button. Housing and transit camps are city projects now (R-PROJ-004, #735).
+- **The GDD turn limit on city projects no longer mentions map actions.** The refusal now reads "No more than 2 city
+  projects in one turn", in English and Hebrew, as the GDD loop builds no map action (R-PROJ-004, follow-up to #1255, #735).
+- The first-turn guide's text is bigger and easier to read (player feedback).
+- GDD Phase 5 PR 14: the map's army tokens come from the sim's units (refs #753, #385). In the GDD loop `UnitRoster`
+  draws one token per military unit in `GameState.Units` on its sim hex, grouped per hex; a unit that moved is placed
+  once within one hex of its new hex, off the other tokens' hexes, and the spot is cached. A token's figures follow
+  Q-UI-3 (3 at two thirds or more of the unit's starting strength, 2 at a third or more, 1 below), not the reserve
+  call-up. The squadron and the ships still come from their rows. Etzioni (no sourced strength) and the brigades whose
+  windows open later draw no token in the GDD loop until a sim unit exists for them. In the GDD loop the unit card no
+  longer leads with the reserve call-up: an army token's card drops that line, and the squadron's shows only the security
+  level. The legacy loop is unchanged.
+
+### Fixed
+- The first-turn guide now explains who can work in city jobs, when worker orders take effect, and what Hakhshara and halutzim mean.
+- On phones, the empty map hint wraps beside the minimap in English and Hebrew instead of overlapping it or leaving
+  the window (#998, #1056).
+- Generated Hex Painter meshes, materials and terrain data are released when a preview is destroyed after an editor script reload (refs #18).
+- Editor Hex Painter previews stay out of scene saves while remaining discoverable for the next load; ordinary scene objects and terrain picking are preserved (refs #18).
+- Rebuilding a hex in the opt-in Hex Painter releases the removed unit's generated material while preserving shared assets and untouched units (refs #18).
+- **The Objectives screen reads each objective's Hebrew name from `content/objectives.yaml` (#1208).** In Hebrew it shows
+  `name_he`, otherwise `name`; the second copy of the names in the two strings files is gone, so a new objective needs no
+  strings key. One wording changes on screen: the first objective now reads "היישוב החדש הראשון" (it was "יישוב חדש ראשון");
+  the Hebrew is still an AI translation that waits for the native read on #564.
+- In Hebrew the built sites' map pills show the site's Hebrew name (`name_he`) instead of the English one; a site with
+  no Hebrew name keeps its English (#1219, item 1).
+- `tools/web_check.py --startscreen` and `--persistence` pass again: they clicked New game at a fixed point that #1178's
+  Star on GitHub button moved it away from. Under `?navlog` the start screen now logs each shown button's centre
+  (`NAV ... start buttons start-new-game=0.4167,0.9278 ...`), whenever the layout moves it, and both runs add `navlog`
+  and click there; a run whose page never logs the button fails at once instead of stalling. Diagnostic only: without
+  `?navlog` nothing changes, and no golden moves.
+
 ## [0.1.3] - 2026-10-21
 
 ### Added
