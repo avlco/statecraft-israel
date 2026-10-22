@@ -1,0 +1,9 @@
+Pinned runs, not new executions by gallery preparer:
+BEFORE 2ebbc715: npm ci --ignore-scripts --no-audit --no-fund exit 0; npm run build exit 0; 420 outputs, 3078 tracked source files unchanged.
+AFTER b4fc8f20: npm run build exit 0; 420 outputs, 3110 tracked source files unchanged.
+Before browser runner: six actual cases, 86 assertions = 30 pass / 56 expected style failures; 0 page errors.
+After browser runner: six actual cases, 86 assertions pass / 0 fail; 0 page errors.
+After real clipboard checks: 4 / 4 canonical URL replacements pass (public seeded markers, dedicated contexts).
+Manual fallback checks: real clipboard-write=() response on desktop EN and HE, actual Copy button; manual URL field centered after correction.
+No native chooser invocation, no physical-device or human Hebrew acceptance. No claim that gallery-preparation reran builds/browser/CI.
+See provenance.json for head-specific raw evidence hashes and measured assertions. Full original logs remain local; private paths/ports/profile metadata are excluded here.

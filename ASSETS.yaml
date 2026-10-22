@@ -6,6 +6,12 @@
 # Globs use fnmatch: '*' also matches '/'. Portrait rows live in ASSETS.portraits.yaml (scripts/oss/commons_licences.py).
 # ai_generated: true marks AI output (the future Steam/itch.io disclosure is generated from it).
 rules:
+  # Review evidence only; do not merge this branch into the product PR.
+  - glob: "docs/review-1348-ui-b4fc/*.jpg"
+    licence: CC-BY-SA-4.0
+    source: "Twelve original unedited browser-content JPEGs captured by Codex on the MacBook Air on 22 October 2026 from local normal Astro builds: stable BEFORE 2ebbc7156102e49b89a8c47d796e91197b91d5c2; AFTER b4fc8f20e41ad09d1888328c426ef18a0cd4bb24. Actual macOS Chrome 155.0.8059.85, headless, English/Hebrew at 1440x633 and 390x844, DPR 1; desktop real clipboard-write=() denial/manual fallback. Hashes, framing and checks in docs/review-1348-ui-b4fc/provenance.json. Credit Statecraft: Israel contributors; validation captures by Codex. Existing gameplay poster docs/images/build-m3-city.jpg (main 8dae186) is CC BY-SA 4.0 under its row; map, model and font attributions in the gallery README and NOTICE. Website text CC BY 4.0; fonts OFL."
+    status: owner-verify
+    note: "Real website screenshots, no AI pixel generation, editing, crop or redaction. Existing poster includes AI-generated models; no new game capture. CC BY-SA follows the most restrictive visible map-poster input. No private browser profile, native chooser, recipients or private clipboard. Evidence-only fork branch; no new rights sign-off, human Hebrew review, personal licence statement or release approval. Initial six unstable framing trials are excluded."
   # --- AI-generated concept art: CC0 / no rights claimed (LICENSING.md); published 2026-10-10 before D5 was checked ---
   - glob: "promo/final/0[1-8]-*.png"
     licence: CC0-1.0
