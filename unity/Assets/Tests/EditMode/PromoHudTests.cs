@@ -197,14 +197,15 @@ public class PromoHudTests
                 for (int i = 0; i < 6; i++) yield return null;
                 if (threeRow)
                 {
-                    // #731: a phone's nine meters take three quarter-width lines with the turn-1 values
-                    // too, so the bar's second meter line is never an empty band. A line's meters share their centre (.meters
+                    // #731: a phone's nine meters take two lines with the turn-1 values too (Food and Arms share the second
+                    // line's last quarter, so the bar keeps its 440 px maximum: the owner, 22 October 2026), and the bar's
+                    // second meter line is never an empty band. A line's meters share their centre (.meters
                     // align-items: center); their tops differ with their captions' lines.
                     // (Within a line the centres can differ by a pixel: review of #831, so lines are 3 px apart or more.)
                     var centres = root.Q("meters").Children().Where(m => m.resolvedStyle.display != DisplayStyle.None)
                         .Select(m => m.worldBound.center.y).OrderBy(y => y).ToList();
                     var lines = 1 + centres.Zip(centres.Skip(1), (a, b) => b - a).Count(d => d > 3f);
-                    Assert.AreEqual(3, lines, $"{w}x{h}: nine meters take three quarter-width lines with the turn-1 values");
+                    Assert.AreEqual(2, lines, $"{w}x{h}: nine meters take two lines with the turn-1 values");
                 }
                 if ((w, h) == (1920, 1080))
                 {

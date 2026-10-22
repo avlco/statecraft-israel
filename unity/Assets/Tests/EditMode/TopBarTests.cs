@@ -587,7 +587,8 @@ public class TopBarTests
     /// so no empty band lies between the stats and the map. Its last row (the screen buttons, Attention and End Turn) ends at
     /// the bar's bottom, the panels under it move up with it (they start at most the stylesheet's 16 px below it; the panel's
     /// pixel snapping reads it as 14 to 17), and at 390x844 it is at most 440 px tall (the snapping reads 440 as 440.8, hence
-    /// the 441 bound, not an overshoot); in both languages, with turn 1's values and with the widest.</summary>
+    /// the 441 bound, not an overshoot), with the nine GDD meters (#731; the owner, 22 October 2026: "the phone top bar keeps
+    /// the 440 px maximum from #1089"); in both languages, with turn 1's values and with the widest.</summary>
     [UnityTest]
     public IEnumerator OnAPhoneTheBarEndsAtItsLastRow()
     {
@@ -600,6 +601,8 @@ public class TopBarTests
                         string at = $"{(hebrew ? "he" : "en")} {w}x{h}{(widest ? " widest" : " turn 1")}";
                         if (!root.Q("root").ClassListContains(HudPresenter.ThreeRowClass)) { problems.Add($"{at}: precondition: the three-row bar"); return; }
                         var barEl = root.Q("top-bar");
+                        int meters = barEl.Query(className: "meter").ToList().Count(Shown);
+                        if (meters != 9) problems.Add($"{at}: precondition: the nine GDD meters, Food and Arms among them (#731), found {meters}");
                         var bar = barEl.worldBound;
                         var s = barEl.resolvedStyle;
                         float last = barEl.Children().Where(k => k.resolvedStyle.position == Position.Relative && Shown(k))

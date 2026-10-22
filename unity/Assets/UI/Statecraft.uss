@@ -187,10 +187,15 @@ Button:disabled { color: var(--ink-dim); border-color: rgba(120, 120, 120, 0.4);
    no empty band lies between the stats and the map (#1089, the owner: 440 px "stays as the maximum, not a fixed height"). */
 .hud-three-row .top-bar { height: 440px; }
 .hud-three-row .meters { width: 100%; flex-wrap: wrap; }
-/* Each meter a quarter of the row: seven take two lines, and the nine GDD meters take three (four, four, one). The second line is
+/* Each meter a quarter of the row (the GDD bar's too, over its two-row 20%), so the seven always take two lines (four, then three) and the bar's second line is
    never an empty band (a phone's turn-1 values would otherwise fit one line). A quarter (~190 px) is wider than the widest
    meter there (~154 px). */
 .hud-three-row .meter, .hud-pools.hud-three-row .meter { flex-basis: 25%; flex-grow: 0; flex-shrink: 0; }
+/* The nine GDD meters keep the same two lines (#731): Food and Arms, short captions over a count, share the second line's
+   last quarter at their own width, so the bar stays within its 440 px at 390x844 (the owner, 22 October 2026: "the phone
+   top bar keeps the 440 px maximum from #1089"; a third line for Arms alone took it to 455-500 px). A count too wide for
+   the quarter (ResourceHudTests sets Food to int.MaxValue) still wraps to a line of its own rather than clip. */
+.hud-pools.hud-three-row .meter-pool { flex-basis: auto; min-width: 0; }
 /* At the floor's 25 px (#642) a caption may take most of its quarter, not the 120 px that would break "Immigration" inside the
    word (170 px: a phone's quarter, about 193 px, keeps 5% free, PromoHudTests), and "Security" and its level, too wide for a
    quarter side by side, wrap the level under the caption. */
