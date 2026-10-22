@@ -239,6 +239,12 @@ report.intro: "What changed in the top bar, and the main causes:"
 report.line: "{0}: {1}"
 report.all: "See all in Why?"
 report.close: "Close"
+# The enemy's orders this turn (#1293): one line per order the enemy AI gave (R-ENEMY-001), {0} the unit's name.
+report.enemy: "What the Arab forces did"
+report.enemy_move: "{0} moved to a new position"
+report.enemy_attack: "{0} launched an attack on one of your units"
+report.enemy_fortify: "{0} fortified its position"
+report.unit: "Force {0}"
 # The end screen (#812; D-H4): the sim's end report (EndReport.For, #810), formatted only. {0} the card's title, {1} the
 # player's date, {2} the historical date; the population's {1} is the date of its CBS anchor and {2} the anchor's count.
 end.title: "The game has ended"
@@ -422,6 +428,15 @@ unit.order.fortify: "Fortify"
 unit.order.hold: "Hold"
 unit.fortify_queued: "Fortify ordered: the unit is fortified from the end of the turn"
 unit.hold_queued: "Hold ordered: the unit holds its hex when you end the turn"
+# Attack (#754): the name is Q-UI-2's, approved by the owner (#375). The odds are Q-UI-1's: Combat.Preview's strength ratio
+# ({0} the defenders' names, or the hex's coordinates; {1} the percent), then each of Combat.Outcomes' bands ({0} of {1} faces; {2} and {3} people lost).
+unit.order.attack: "Attack"
+unit.attack_pick: "Choose a lit hex to attack"
+# {1}'s format carries the %, as in Hebrew (the two files' format items must match), where it keeps the sign inside UiText.Format's marks.
+unit.attack_odds: "{0}: strength ratio {1:0'%'}"
+unit.attack_band: "{0} in {1}: you lose {2:N0} people, they lose {3:N0}"
+unit.attack_band_retreat: "{0} in {1}: you lose {2:N0} people, they lose {3:N0} and retreat"
+unit.attack_queued: "Attack ordered: the unit attacks when you end the turn"
 newgame.confirm: "Press New game again to abandon this game and start over."
 newgame.delete_failed: "The old saved game could not be removed; it will be replaced after your next turn."
 save.unreadable: "Your saved game could not be loaded ({0}). A new game has started."
@@ -493,6 +508,11 @@ site.build_swamp: "Drain the swamp with {0}: {1}, {2}"
 site.building_swamp: "Being drained by {0}: {1} left"
 site.stop_swamp: "Stop draining (the money spent is lost)"
 site.built_swamp: "Drained on {0}"
+# A corridor segment's part on its hexes (#792): {0} the corridor's name, {1} the segment's number from 1 (Q-SENS-1).
+corridor.segment: "{0}, segment {1}"
+corridor.build_road: "Build road with {0}: {1}, {2}"
+corridor.build_rail: "Build railway with {0}: {1}, {2}"
+corridor.built: "Built on {0}"
 
 # Timeline screen (#955).
 timeline.title: "Your course and the record"

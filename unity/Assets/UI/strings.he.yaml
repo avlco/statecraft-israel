@@ -261,6 +261,14 @@ report.intro: "מה השתנה בסרגל העליון, ומה הסיבות הע
 report.line: "{0}: שינוי של {1}"
 report.all: "הכול במסך למה?"
 report.close: "סגירה"
+# The enemy's orders this turn (#1293), {0} the unit's name: agent-drafted Hebrew, not yet read by a native speaker. The
+# verbs are masculine, as every Arab force's name_he is (חיל, הלגיון, הצבא, צבא) and so is report.unit's כוח. For the
+# native reviewer (#564).
+report.enemy: "מה עשו הכוחות הערביים"
+report.enemy_move: "{0} עבר לעמדה חדשה"
+report.enemy_attack: "{0} פתח בהתקפה על אחת היחידות שלכם"
+report.enemy_fortify: "{0} התבצר בעמדתו"
+report.unit: "כוח {0}"
 # The end screen (#812; D-H4): the sim's end report, formatted only. For the native reviewer (#564).
 end.title: "המשחק הסתיים"
 end.outcome.mvp_ended: "המשחק הגיע לתורו האחרון."
@@ -450,6 +458,19 @@ unit.order.hold: "החזקה"
 unit.fortify_queued: "ניתנה פקודת ביצור: היחידה תהיה מבוצרת מסוף התור"
 # Approved by Beri, a native speaker, on #1269 (21 Oct 2026). For the native reviewer (#564)
 unit.hold_queued: "ניתנה פקודת החזקה: היחידה תחזיק במשושה שלה בסיום התור"
+# Attack (#754): the name is Q-UI-2's, approved by the owner (#375).
+unit.order.attack: "התקפה"
+# Approved by Beri, a native speaker, on #1277 (21 Oct 2026). For the native reviewer (#564)
+unit.attack_pick: "בחרו משושה מואר להתקפה"
+# Approved by Beri, a native speaker, on #1277 (21 Oct 2026). For the native reviewer (#564)
+# The % is in {1}'s format, inside the left-to-right marks UiText.Format puts round the value: a bare % after them is drawn on the number's left (#754).
+unit.attack_odds: "{0}: יחס כוחות {1:0'%'}"
+# Approved by Beri, a native speaker, on #1277 (21 Oct 2026). For the native reviewer (#564)
+unit.attack_band: "{0} מתוך {1}: אתם מאבדים {2:N0} איש, הם מאבדים {3:N0}"
+# Approved by Beri, a native speaker, on #1277 (21 Oct 2026). For the native reviewer (#564)
+unit.attack_band_retreat: "{0} מתוך {1}: אתם מאבדים {2:N0} איש, הם מאבדים {3:N0} ונסוגים"
+# Approved by Beri, a native speaker, on #1277 (21 Oct 2026). For the native reviewer (#564)
+unit.attack_queued: "ניתנה פקודת התקפה: היחידה תתקוף בסיום התור"
 newgame.confirm: "יש ללחוץ שוב על משחק חדש כדי לעזוב את המשחק הזה ולהתחיל מחדש."
 newgame.delete_failed: "לא ניתן היה להסיר את השמירה הקודמת; היא תוחלף אחרי התור הבא."
 save.unreadable: "לא ניתן היה לטעון את המשחק השמור ({0}). משחק חדש התחיל."
@@ -533,6 +554,13 @@ site.build_swamp: "ייבוש הביצה עם {0}: {1}, {2}"
 site.building_swamp: "בייבוש בידי {0}: עוד {1}"
 site.stop_swamp: "עצירת הייבוש (הכסף שהוצא לא יוחזר)"
 site.built_swamp: "יובש ב־{0}"
+# A corridor segment's part (#792): the owner's approved words סלילת כביש and הנחת מסילה (Q-UI-2, #782); a segment is
+# קטע, as order.kind.corridor_segment. For the native reviewer (#564).
+# Approved by Beri, a native speaker, on #1320 (22 Oct 2026).
+corridor.segment: "{0}, קטע {1}"
+corridor.build_road: "סלילת כביש עם {0}: {1}, {2}"
+corridor.build_rail: "הנחת מסילה עם {0}: {1}, {2}"
+corridor.built: "נבנה ב־{0}"
 
 # Timeline screen (#955). Hebrew drafts: agent-checked, native review pending (#564).
 timeline.title: "הדרך שלך והרצף ההיסטורי"
