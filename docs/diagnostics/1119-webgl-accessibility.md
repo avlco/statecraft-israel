@@ -21,10 +21,31 @@ contains a named RootWebArea, an ignored node, generic container, and unnamed Ca
 it contains no New Game or recording button. These are observations of browser
 semantics, not a transcript of assistive-technology speech.
 
-**Actual VoiceOver: NOT RUN.** Native-control inventory explicitly reports the Mac
-locked and automatic unlock unsuccessful. A request for manual unlock is pending.
-Do not convert these DOM/AX observations or the synthetic fixture into a VoiceOver pass.
+**Initial VoiceOver status, 21 October 2026: NOT RUN.** At that point native-control
+inventory reported the Mac locked and automatic unlock unsuccessful; manual unlock
+was requested. That lock was subsequently resolved, as recorded below. Do not convert
+these DOM/AX observations or the synthetic fixture into a VoiceOver pass.
 A separate ordinary-input EN run recorded New Game, skipping the first-turn guide, the One Army event card, Tab visibly focusing its first option without choosing, Escape returning to Decision waiting, and one End Turn showing the turn report. All six DOM/AX snapshots still contain four AX nodes and an unnamed canvas. The report contains real result text visually but no corresponding AX text. No refusal was triggered.
+
+### Native attempt follow-up, recorded 22 October 2026
+
+The [21 October follow-up record](https://github.com/eyalgolan/statecraft-israel/pull/1230#issuecomment-6309041725)
+reports an actual attempt after the contributor unlocked the Mac. This used the same
+`507348f9573b1e3bd44c9b65b7649f0939b0dfd8` player, with all 110 files reverified,
+on macOS 27.0.1 (26A434), ordinary Chrome 155.0.8059.85 in a fresh Guest window,
+and VoiceOver 10 (993). This browser session is separate from the headless DOM/AX
+observations above.
+
+Native Settings showed VoiceOver off, then on; its caption panel was already enabled.
+Retrieving VoiceOver output timed out after 2532.8984 seconds. No speech or caption
+transcript was obtained, and only the English loading screen was observed: no ready-game
+speech observation or completed fresh EN/HE scenarios. This is an **incomplete attempt**,
+with no inference of silence or accessibility success. VoiceOver was restored to its
+original off state, the Guest window closed, and the owned local server stopped; all
+three cleanup actions were verified. No product source changed.
+
+Unlock is no longer the outstanding requirement. Actual reader output and completion
+of the real diagnostic below remain required before the owner's design choice.
 
 Focus name, event narration, refusal narration, and turn-result narration require the
 real diagnostic below before this issue can be completed.
@@ -173,14 +194,15 @@ This is not connected to the game and does not exercise a Unity runtime or scree
 
 ## Real diagnostic still required
 
-After manual unlock, record VoiceOver version/build, browser version and exact player
-source; enable VoiceOver with visible native controls and retain observed transcript
+In a fresh isolated browser session, record VoiceOver version/build, browser version
+and exact player source; enable VoiceOver with visible native controls and retain observed transcript
 or equivalent actual output. In fresh EN and HE profiles check: discover and name New
 Game; focus through real controls; read the current event's complete title/body and
 ordered choices; trigger a real unavailable action and record refusal; finish a turn
 and read result; close/open screens; start a new session and switch language. Record
 what is silent or unreachable as a failure, never fabricate the missing spoken text.
-The lock prevents this part now; neither source inspection nor Chrome AX substitutes.
+The earlier lock is resolved; obtaining actual reader output and finishing these
+scenarios remain outstanding. Neither source inspection nor Chrome AX substitutes.
 
 ## Primary references checked 21 October 2026
 
