@@ -27,6 +27,14 @@ public class HexPrototypeTests
     public void IdIsLowerSnakeCase(string id) => Assert.That(Regex.IsMatch(id, "^[a-z][a-z0-9_]*$"), id);
 
     [TestCaseSource(nameof(Ids))]
+    public void NamesAPaletteKindAndRegion(string id)
+    {
+        var info = HexPrototypes.Info(id);
+        Assert.That(HexPrototypes.Kinds, Does.Contain(info.Kind), $"{id}: kind '{info.Kind}'");
+        Assert.That(info.Region == "" || HexPrototypes.Regions.Contains(info.Region), $"{id}: region '{info.Region}'");
+    }
+
+    [TestCaseSource(nameof(Ids))]
     public void BuildsSomething(string id) => Assert.That(Built(id).Placements.Count, Is.GreaterThan(0), id);
 
     [TestCaseSource(nameof(Ids))]
@@ -79,12 +87,15 @@ public class HexPrototypeTests
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
             var name = System.IO.Path.GetFileNameWithoutExtension(path);
+            if (name.EndsWith(HexBoardOverrides.Suffix)) continue;   // a board's hand edits, applied (and so checked) by LoadBoard
             var board = HexBoardCapture.LoadBoard(name);
             foreach (var h in board.Hexes.Values)
             {
                 Assert.That(new[] { "flat", "hills", "mountain", "water" }, Does.Contain(h.terrain), $"{name} ({h.q},{h.r})");
                 Assert.That(HexGround.Ids, Does.Contain(h.ground), $"{name} ({h.q},{h.r})");
                 if (h.prototype != "") Assert.That(HexPrototypes.All.ContainsKey(h.prototype), $"{name} ({h.q},{h.r}): no prototype '{h.prototype}'");
+                if (h.unit != "") Assert.That(HexUnitTypes.All.ContainsKey(h.unit), $"{name} ({h.q},{h.r}): no unit '{h.unit}'");
+                if (h.region != "") Assert.That(board.Regions.ContainsKey(h.region), $"{name} ({h.q},{h.r}): no region '{h.region}'");
             }
         }
     }
