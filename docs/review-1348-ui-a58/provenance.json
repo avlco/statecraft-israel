@@ -1,0 +1,2451 @@
+{
+  "before_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+  "after_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+  "after_tree": "ed3b6ac082ff28b00536886de8dc6e87ac8ed277",
+  "captured_date": "2026-10-22",
+  "browser": "Actual macOS Google Chrome 155.0.8059.85, headless, dedicated contexts; DPR 1",
+  "images": [
+    {
+      "file": "before-font6e-en-1440.jpg",
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "language": "en",
+      "case": "1440",
+      "width": 1440,
+      "height": 633,
+      "bytes": 61497,
+      "sha256": "69bd4e80f285adf8d878dbe44fca158d5fc4c3bb344270e4909d0c7e75d7db63",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "before-font6e-en-390.jpg",
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "language": "en",
+      "case": "390",
+      "width": 390,
+      "height": 844,
+      "bytes": 64483,
+      "sha256": "f79a9a9c538274a49b5357d36d4276f9d4640acf620953bffa1c9faa59702608",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "before-font6e-en-manual.jpg",
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "language": "en",
+      "case": "manual",
+      "width": 1440,
+      "height": 633,
+      "bytes": 55055,
+      "sha256": "90a698d720f61513109dd92756670a36334c21b2890496959eff13be45d730b8",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "before-font6e-he-1440.jpg",
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "language": "he",
+      "case": "1440",
+      "width": 1440,
+      "height": 633,
+      "bytes": 55884,
+      "sha256": "be2851be8ec90584a7cf3f66eda1f31bad21a6fbc9485b74701a4f065a7e33d2",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "before-font6e-he-390.jpg",
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "language": "he",
+      "case": "390",
+      "width": 390,
+      "height": 844,
+      "bytes": 61210,
+      "sha256": "f8d98c4bc7bbd23846a106d05b7c8591af995dd7a26ef100aa4ab7b76698731e",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "before-font6e-he-manual.jpg",
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "language": "he",
+      "case": "manual",
+      "width": 1440,
+      "height": 633,
+      "bytes": 50491,
+      "sha256": "8b0aa277be30ad1ffb7dea67dc5a6a07cdea748646de8429636f0a5208790775",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "after-finala58-en-1440.jpg",
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "language": "en",
+      "case": "1440",
+      "width": 1440,
+      "height": 633,
+      "bytes": 63518,
+      "sha256": "709bb93c52f46ebd8e59060705089308fe7c94f77c041a43d89e433c2c8c703a",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "after-finala58-en-390.jpg",
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "language": "en",
+      "case": "390",
+      "width": 390,
+      "height": 844,
+      "bytes": 65104,
+      "sha256": "132ca9f8a531cdd64dfa3ee50fa336669e89a81c8e4cc366280f0a918939ca5a",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "after-finala58-en-manual.jpg",
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "language": "en",
+      "case": "manual",
+      "width": 1440,
+      "height": 633,
+      "bytes": 56684,
+      "sha256": "32516e81b5f6d58e11d536477d3886bb845781cd1df0642db8b89e45294ab0cf",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "after-finala58-he-1440.jpg",
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "language": "he",
+      "case": "1440",
+      "width": 1440,
+      "height": 633,
+      "bytes": 60706,
+      "sha256": "b9e181a1e84a86732786c097edda1ffa05f0d11ce5c0ad73fabb2e2ad8b8503b",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "after-finala58-he-390.jpg",
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "language": "he",
+      "case": "390",
+      "width": 390,
+      "height": 844,
+      "bytes": 62428,
+      "sha256": "91bf8ec7be5d42309e36f4050785c628e5046ffb79fba52d44cbe3fbe62763ae",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    },
+    {
+      "file": "after-finala58-he-manual.jpg",
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "language": "he",
+      "case": "manual",
+      "width": 1440,
+      "height": 633,
+      "bytes": 53885,
+      "sha256": "cd16a2801047bfac6f1034b594b219d134a4feef38a50122b1194fc88410dda0",
+      "metadata_markers": [
+        {
+          "marker": "0xe0",
+          "bytes": 14,
+          "prefix_hex": "4a46494600010100"
+        },
+        {
+          "marker": "0xe2",
+          "bytes": 470,
+          "prefix_hex": "4943435f50524f46"
+        }
+      ]
+    }
+  ],
+  "browser_validation": [
+    {
+      "source_head": "6e1527c465b702062898d8f3547c11e0e8c56f6a",
+      "raw_result_sha256": "56a47ab734586043bf46861a4c3b0801399e3693090aa13b5b166c8acaf6e8a6",
+      "started_utc": "2026-10-22T15:54:55.337Z",
+      "finished_utc": "2026-10-22T15:55:03.569Z",
+      "browser": "155.0.8059.85",
+      "cases": [
+        {
+          "label": "before-font6e-en-1440",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "en"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 8,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 8,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 719.9921875,
+                "parentContentCenter": 720,
+                "errorPx": -0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "en",
+          "direction": "ltr",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.609375,
+          "buttons": [
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "400",
+              "lineHeight": "32px",
+              "width": 100.0625,
+              "height": 58
+            },
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "400",
+              "lineHeight": "32px",
+              "width": 135.984375,
+              "height": 58
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        },
+        {
+          "label": "before-font6e-en-manual",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "en"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 8,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 8,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 719.9921875,
+                "parentContentCenter": 720,
+                "errorPx": -0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "real clipboard-denial path has displayed manual fallback",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "real fallback status is nonempty",
+              "passed": true,
+              "observed": 24
+            },
+            {
+              "name": "manual URL belongs to its actual label",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "visible manual URL field is physically centered",
+              "passed": true,
+              "observed": {
+                "inputCenter": 720,
+                "labelCenter": 720
+              }
+            }
+          ],
+          "language": "en",
+          "direction": "ltr",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.609375,
+          "buttons": [
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "400",
+              "lineHeight": "32px",
+              "width": 100.0625,
+              "height": 58
+            },
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "400",
+              "lineHeight": "32px",
+              "width": 135.984375,
+              "height": 58
+            }
+          ],
+          "real_policy_header": "clipboard-write=()",
+          "native_share_available": null
+        },
+        {
+          "label": "before-font6e-en-390",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "en"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "18px",
+                "page": "18px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "28.8px",
+                "fontSize": "18px",
+                "expectedPx": 21.599999999999998,
+                "errorPx": 7.200000000000003,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "18px",
+                "page": "18px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "28.8px",
+                "fontSize": "18px",
+                "expectedPx": 21.599999999999998,
+                "errorPx": 7.200000000000003,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 194.9921875,
+                "parentContentCenter": 195,
+                "errorPx": -0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "en",
+          "direction": "ltr",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.21875,
+          "buttons": [
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "28.8px",
+              "width": 90.4375,
+              "height": 52.578125
+            },
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "28.8px",
+              "width": 122.765625,
+              "height": 52.578125
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        },
+        {
+          "label": "before-font6e-he-1440",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "he"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32.3px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 9.499999999999996,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32.3px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 9.499999999999996,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 720.0078125,
+                "parentContentCenter": 720,
+                "errorPx": 0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "he",
+          "direction": "rtl",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.640625,
+          "buttons": [
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "400",
+              "lineHeight": "32.3px",
+              "width": 95.265625,
+              "height": 57.171875
+            },
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "400",
+              "lineHeight": "32.3px",
+              "width": 148.65625,
+              "height": 57.171875
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        },
+        {
+          "label": "before-font6e-he-manual",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "he"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32.3px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 9.499999999999996,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "32.3px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 9.499999999999996,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 720.0078125,
+                "parentContentCenter": 720,
+                "errorPx": 0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "real clipboard-denial path has displayed manual fallback",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "real fallback status is nonempty",
+              "passed": true,
+              "observed": 23
+            },
+            {
+              "name": "manual URL belongs to its actual label",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "visible manual URL field is physically centered",
+              "passed": true,
+              "observed": {
+                "inputCenter": 720,
+                "labelCenter": 720
+              }
+            }
+          ],
+          "language": "he",
+          "direction": "rtl",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.640625,
+          "buttons": [
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "400",
+              "lineHeight": "32.3px",
+              "width": 95.265625,
+              "height": 57.171875
+            },
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "400",
+              "lineHeight": "32.3px",
+              "width": 148.65625,
+              "height": 57.171875
+            }
+          ],
+          "real_policy_header": "clipboard-write=()",
+          "native_share_available": null
+        },
+        {
+          "label": "before-font6e-he-390",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "he"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "17.17px",
+                "page": "17.17px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "29.189px",
+                "fontSize": "17.17px",
+                "expectedPx": 20.604000000000003,
+                "errorPx": 8.584999999999997,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "17.17px",
+                "page": "17.17px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": false,
+              "observed": {
+                "actual": "400",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": false,
+              "observed": {
+                "actual": "29.189px",
+                "fontSize": "17.17px",
+                "expectedPx": 20.604000000000003,
+                "errorPx": 8.584999999999997,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 195,
+                "parentContentCenter": 195,
+                "errorPx": 0
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "he",
+          "direction": "rtl",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.671875,
+          "buttons": [
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "17.17px",
+              "fontWeight": "400",
+              "lineHeight": "29.189px",
+              "width": 86.46875,
+              "height": 52.0625
+            },
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "17.17px",
+              "fontWeight": "400",
+              "lineHeight": "29.189px",
+              "width": 134.71875,
+              "height": 52.0625
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        }
+      ],
+      "page_errors": 0,
+      "real_copy_checks": [
+        {
+          "case": "before-font6e-en-1440",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "query_fragment_absent": true,
+          "passed": true
+        },
+        {
+          "case": "before-font6e-en-390",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "query_fragment_absent": true,
+          "passed": true
+        },
+        {
+          "case": "before-font6e-he-1440",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "query_fragment_absent": true,
+          "passed": true
+        },
+        {
+          "case": "before-font6e-he-390",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "query_fragment_absent": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+      "raw_result_sha256": "20c27113b3ab494f8ea14e27cf5b46070c4009fddc0c659789fc91eacea8e8b5",
+      "started_utc": "2026-10-22T16:13:45.317Z",
+      "finished_utc": "2026-10-22T16:13:53.618Z",
+      "browser": "155.0.8059.85",
+      "cases": [
+        {
+          "label": "after-finala58-en-1440",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "en"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "24px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "24px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 720,
+                "parentContentCenter": 720,
+                "errorPx": 0
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "en",
+          "direction": "ltr",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.609375,
+          "buttons": [
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "600",
+              "lineHeight": "24px",
+              "width": 102.84375,
+              "height": 50
+            },
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "600",
+              "lineHeight": "24px",
+              "width": 140.53125,
+              "height": 50
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        },
+        {
+          "label": "after-finala58-en-manual",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "en"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "24px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "20px",
+                "page": "20px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "24px",
+                "fontSize": "20px",
+                "expectedPx": 24,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 720,
+                "parentContentCenter": 720,
+                "errorPx": 0
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "real clipboard-denial path has displayed manual fallback",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "real fallback status is nonempty",
+              "passed": true,
+              "observed": 24
+            },
+            {
+              "name": "manual URL belongs to its actual label",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "visible manual URL field is physically centered",
+              "passed": true,
+              "observed": {
+                "inputCenter": 720,
+                "labelCenter": 720
+              }
+            }
+          ],
+          "language": "en",
+          "direction": "ltr",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.609375,
+          "buttons": [
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "600",
+              "lineHeight": "24px",
+              "width": 102.84375,
+              "height": 50
+            },
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "20px",
+              "fontWeight": "600",
+              "lineHeight": "24px",
+              "width": 140.53125,
+              "height": 50
+            }
+          ],
+          "real_policy_header": "clipboard-write=()",
+          "native_share_available": null
+        },
+        {
+          "label": "after-finala58-en-390",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "en"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "18px",
+                "page": "18px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "21.6px",
+                "fontSize": "18px",
+                "expectedPx": 21.599999999999998,
+                "errorPx": 3.552713678800501e-15,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+                "page": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "18px",
+                "page": "18px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "21.6px",
+                "fontSize": "18px",
+                "expectedPx": 21.599999999999998,
+                "errorPx": 3.552713678800501e-15,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 194.9921875,
+                "parentContentCenter": 195,
+                "errorPx": -0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "en",
+          "direction": "ltr",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.21875,
+          "buttons": [
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "18px",
+              "fontWeight": "600",
+              "lineHeight": "21.6px",
+              "width": 92.9375,
+              "height": 45.375
+            },
+            {
+              "fontFamily": "\"EB Garamond\", \"Frank Ruhl Libre\", Georgia, \"Times New Roman\", serif",
+              "fontSize": "18px",
+              "fontWeight": "600",
+              "lineHeight": "21.6px",
+              "width": 126.859375,
+              "height": 45.375
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        },
+        {
+          "label": "after-finala58-he-1440",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "he"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "22.8px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "22.8px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 720.0078125,
+                "parentContentCenter": 720,
+                "errorPx": 0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "he",
+          "direction": "rtl",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.640625,
+          "buttons": [
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "600",
+              "lineHeight": "22.8px",
+              "width": 96.78125,
+              "height": 47.671875
+            },
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "600",
+              "lineHeight": "22.8px",
+              "width": 150.390625,
+              "height": 47.671875
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        },
+        {
+          "label": "after-finala58-he-manual",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "he"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "22.8px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "19px",
+                "page": "19px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "22.8px",
+                "fontSize": "19px",
+                "expectedPx": 22.8,
+                "errorPx": 0,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 720.0078125,
+                "parentContentCenter": 720,
+                "errorPx": 0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "real clipboard-denial path has displayed manual fallback",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "real fallback status is nonempty",
+              "passed": true,
+              "observed": 23
+            },
+            {
+              "name": "manual URL belongs to its actual label",
+              "passed": true,
+              "observed": true
+            },
+            {
+              "name": "visible manual URL field is physically centered",
+              "passed": true,
+              "observed": {
+                "inputCenter": 720,
+                "labelCenter": 720
+              }
+            }
+          ],
+          "language": "he",
+          "direction": "rtl",
+          "viewport": {
+            "width": 1440,
+            "height": 633,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.640625,
+          "buttons": [
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "600",
+              "lineHeight": "22.8px",
+              "width": 96.78125,
+              "height": 47.671875
+            },
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "19px",
+              "fontWeight": "600",
+              "lineHeight": "22.8px",
+              "width": 150.390625,
+              "height": 47.671875
+            }
+          ],
+          "real_policy_header": "clipboard-write=()",
+          "native_share_available": null
+        },
+        {
+          "label": "after-finala58-he-390",
+          "assertions": [
+            {
+              "name": "one real sharing component is rendered",
+              "passed": true,
+              "observed": 1
+            },
+            {
+              "name": "actual English or Hebrew page",
+              "passed": true,
+              "observed": "he"
+            },
+            {
+              "name": "actual action and fallback DOM exists",
+              "passed": true,
+              "observed": {
+                "actions": true,
+                "buttons": 2,
+                "status": true,
+                "manual": true,
+                "input": true
+              }
+            },
+            {
+              "name": "Share uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Share uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "17.17px",
+                "page": "17.17px"
+              }
+            },
+            {
+              "name": "Share offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Share preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Share preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "20.604px",
+                "fontSize": "17.17px",
+                "expectedPx": 20.604000000000003,
+                "errorPx": -3.552713678800501e-15,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "Copy link uses the page font family",
+              "passed": true,
+              "observed": {
+                "actual": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+                "page": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif"
+              }
+            },
+            {
+              "name": "Copy link uses the page font size",
+              "passed": true,
+              "observed": {
+                "actual": "17.17px",
+                "page": "17.17px"
+              }
+            },
+            {
+              "name": "Copy link offers the same pointer affordance as page buttons",
+              "passed": true,
+              "observed": "pointer"
+            },
+            {
+              "name": "Copy link preserves the site button weight",
+              "passed": true,
+              "observed": {
+                "actual": "600",
+                "expected": 600
+              }
+            },
+            {
+              "name": "Copy link preserves the site button line-height",
+              "passed": true,
+              "observed": {
+                "actual": "20.604px",
+                "fontSize": "17.17px",
+                "expectedPx": 20.604000000000003,
+                "errorPx": -3.552713678800501e-15,
+                "tolerancePx": 0.01
+              }
+            },
+            {
+              "name": "at least Copy link is visibly rendered",
+              "passed": true,
+              "observed": 2
+            },
+            {
+              "name": "visible action row 1 is physically centered",
+              "passed": true,
+              "observed": {
+                "actualCenter": 195.0078125,
+                "parentContentCenter": 195,
+                "errorPx": 0.0078125
+              }
+            },
+            {
+              "name": "status text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            },
+            {
+              "name": "manual fallback text is centered by the browser",
+              "passed": true,
+              "observed": "center"
+            }
+          ],
+          "language": "he",
+          "direction": "rtl",
+          "viewport": {
+            "width": 390,
+            "height": 844,
+            "devicePixelRatio": 1
+          },
+          "actions_top": 180.671875,
+          "buttons": [
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "17.17px",
+              "fontWeight": "600",
+              "lineHeight": "20.604px",
+              "width": 87.84375,
+              "height": 44
+            },
+            {
+              "fontFamily": "\"Frank Ruhl Libre\", \"EB Garamond\", David, \"Times New Roman\", serif",
+              "fontSize": "17.17px",
+              "fontWeight": "600",
+              "lineHeight": "20.604px",
+              "width": 136.296875,
+              "height": 44
+            }
+          ],
+          "real_policy_header": null,
+          "native_share_available": true
+        }
+      ],
+      "page_errors": 0,
+      "real_copy_checks": [
+        {
+          "case": "after-finala58-en-1440",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "query_fragment_absent": true,
+          "passed": true
+        },
+        {
+          "case": "after-finala58-en-390",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/en/",
+          "query_fragment_absent": true,
+          "passed": true
+        },
+        {
+          "case": "after-finala58-he-1440",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "query_fragment_absent": true,
+          "passed": true
+        },
+        {
+          "case": "after-finala58-he-390",
+          "expected_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "actual_canonical": "https://eyalgolan.github.io/statecraft-israel/he/",
+          "query_fragment_absent": true,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "final_head_local_gates": {
+    "source_head": "a58febaa77effeddd8b2ca6e719f9fce2af60ea9",
+    "tree": "ed3b6ac082ff28b00536886de8dc6e87ac8ed277",
+    "upstream_main_merged": "8c126f2b485b7fd1bd7fc722cb33eca0381c8a5e",
+    "comparison_ref": "5e9ce11af6e43d06cf1de4d533624c76a6f2ceb9",
+    "SDK": "10.0.401",
+    "source_files": 3114,
+    "tracked_digest_before_after": "33283c55ebdc5c9ef870e41f69d031b1e979faad34fa4ce1f90417b690dc0cf8",
+    "no_golden_moved": true,
+    "goldens10": {
+      "sim/Statecraft.Sim.Tests/golden/hash1950.txt": "54a3b2ef2522b302b5258843658efcf10b6858fe01d330bf41a37e91b9c17d69",
+      "sim/Statecraft.Sim.Tests/golden/hash1952.txt": "95b02093c56f761a6daf99350b90054dfa0d5d6c1dc73f7c846b603b51edc9d4",
+      "sim/Statecraft.Sim.Tests/golden/invariants.yaml": "fcf5200656733984f6047607027ef7ad064cc0f8e9e3b424071ba9fd1bd2e4d9",
+      "sim/Statecraft.Sim.Tests/golden/manifest.txt": "e8c11c354b851bd86021a6ecdb4d0f1201ef5037ee29503de6f409e79892a1aa",
+      "sim/Statecraft.Sim.Tests/golden/mvp-end.txt": "95b02093c56f761a6daf99350b90054dfa0d5d6c1dc73f7c846b603b51edc9d4",
+      "sim/Statecraft.Sim.Tests/golden/scenario-cautious.txt": "6d44017313884e1683448812cb0a8dbb181e8ff7db44ab7001a11ee11af570cb",
+      "sim/Statecraft.Sim.Tests/golden/scenario-mvp-absorb-first.txt": "40a352afbcedd761e52267d51ccdfa04164276e1bef1473f3f578eac26cb04a2",
+      "sim/Statecraft.Sim.Tests/golden/scenario-mvp-defeat.txt": "deb6d0db70d191498324561c7e38d0d3aca0c3d9855a7a5ece9abec6f43b0684",
+      "sim/Statecraft.Sim.Tests/golden/scenario-reckless.txt": "52937f57e9124c2397d3f1e700c805f13385fa262a63b9cd13fe50b5dbf5e5f8",
+      "sim/Statecraft.Sim/GoldenRun.cs": "04742fee5be02e776d07b8d305f2f4ce89e659b5237122d940aeecdb0e643223"
+    },
+    "steps": [
+      {
+        "name": "node",
+        "exit": 0,
+        "seconds": 0.5892898749989399,
+        "positive_tests": 15,
+        "sim_test_counts": null,
+        "policy_passed": null,
+        "tools_passed": null,
+        "output_files": null,
+        "semantic_status": "passed"
+      },
+      {
+        "name": "rootbuild",
+        "exit": 0,
+        "seconds": 3.2602866660017753,
+        "positive_tests": null,
+        "sim_test_counts": null,
+        "policy_passed": null,
+        "tools_passed": null,
+        "output_files": 420,
+        "semantic_status": "passed"
+      },
+      {
+        "name": "projectbuild",
+        "exit": 0,
+        "seconds": 2.7255252080030914,
+        "positive_tests": null,
+        "sim_test_counts": null,
+        "policy_passed": null,
+        "tools_passed": null,
+        "output_files": 420,
+        "semantic_status": "passed"
+      },
+      {
+        "name": "fullcheck",
+        "exit": 0,
+        "seconds": 268.065209958997,
+        "positive_tests": null,
+        "sim_test_counts": [
+          {
+            "failed": 0,
+            "passed": 2408,
+            "skipped": 0,
+            "total": 2408
+          }
+        ],
+        "policy_passed": 320,
+        "tools_passed": 1507,
+        "output_files": null,
+        "semantic_status": "passed"
+      },
+      {
+        "name": "ENV1",
+        "exit": 0,
+        "seconds": 24.348092749998614,
+        "positive_tests": null,
+        "sim_test_counts": [
+          {
+            "failed": 0,
+            "passed": 2408,
+            "skipped": 0,
+            "total": 2408
+          }
+        ],
+        "policy_passed": null,
+        "tools_passed": null,
+        "output_files": null,
+        "semantic_status": "passed"
+      }
+    ],
+    "helper_drain": "Three owned idle SDK helpers identity-checked, terminated by individual PID, absence verified; source unchanged.",
+    "started_utc": "2026-10-22T16:07:01.876652+00:00",
+    "finished_utc": "2026-10-22T16:12:06.724591+00:00",
+    "GitHub_CI": "Not claimed from local executions; read live on the published head."
+  },
+  "framing": "Sharing component top settled at y = 180 ± 1 CSS px before each raw quality-80 JPEG. Same paired viewport. Corrected control height naturally shifts following content. BEFORE already includes centering; AFTER also incorporates upstream main8c.",
+  "privacy_review": "All twelve images visually inspected by an agent: public site and public canonical URLs only. No browser chrome, OS chooser, recipients or private clipboard. JPEG headers contain APP0 JFIF and APP2 ICC only; no APP1 EXIF/GPS, APP13 or COM. Public derivative omits local paths, ports and commit-author metadata.",
+  "licence": "CC-BY-SA-4.0",
+  "rights_status": "owner-verify; no new rights or human attestation",
+  "credit": "Statecraft: Israel contributors; original validation captures by Codex on the MacBook Air",
+  "limits": [
+    "Browser viewports are not physical-device QA.",
+    "No native Share chooser/cancellation was exercised on a58.",
+    "Hebrew remains agent-checked; native human review on #564 is pending.",
+    "Local gates and gallery publication do not prove GitHub CI, deployed behavior, release approval or whole-issue completion."
+  ]
+}

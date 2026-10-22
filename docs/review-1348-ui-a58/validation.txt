@@ -1,0 +1,41 @@
+Source: a58febaa77effeddd8b2ca6e719f9fce2af60ea9
+Tree: ed3b6ac082ff28b00536886de8dc6e87ac8ed277
+Merged upstream: 8c126f2b485b7fd1bd7fc722cb33eca0381c8a5e
+Actual comparison ref for check.sh: origin/main=5e9ce11af6e43d06cf1de4d533624c76a6f2ceb9
+Runtime: Node 25.8.1; .NET SDK 10.0.401.
+
+From site/ (shell expands the approved CI glob):
+$ node --test tests/*.test.mjs
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.690083
+exit 0; 0.589s wall time
+
+$ bash scripts/check.sh origin/main
+320 passed in 20.40s
+== unity compile: SKIPPED, no unity/Library (open the project in Unity once, or clone a Library)
+Passed!  - Failed:     0, Passed:  2408, Skipped:     0, Total:  2408, Duration: 20 s - Statecraft.Sim.Tests.dll (net10.0)
+1507 passed, 5 skipped, 2 subtests passed in 168.80s (0:02:48)
+ALL CHECKS PASSED
+exit 0; 268.065s wall time
+
+$ STATECRAFT_UPDATE_GOLDEN=1 dotnet test sim/Statecraft.sln -c Release
+Passed!  - Failed:     0, Passed:  2408, Skipped:     0, Total:  2408, Duration: 21 s - Statecraft.Sim.Tests.dll (net10.0)
+exit 0; 24.348s wall time
+no golden moved
+
+$ SITE_URL=https://statecraft.example SITE_BASE=/ npm --prefix site run build
+exit 0; 3.260s; 420 files; 28 pages OK
+$ SITE_URL=https://eyalgolan.github.io SITE_BASE=/statecraft-israel npm --prefix site run build
+exit 0; 2.726s; 420 files; 28 pages OK
+ASTRO_TELEMETRY_DISABLED=1 for both builds; fixture domain is not a deployment.
+
+Font RED on 6e: 6 cases, 24 new font assertions FAIL / 86 prior assertions PASS; 4 actual canonical copies PASS; 0 page errors.
+Final a58 browser: 6 cases, 110 assertions PASS; 4 actual canonical copies PASS; 0 page errors.
+Two real header-refusal/manual cases: desktop EN/HE, clipboard-write=() response.
+All 3,114 tracked source files/refs and ten golden files unchanged through the gates. Owned idle SDK helpers were identity-checked and drained; absence verified. Raw local logs remain local, including failed directory-command/controller trials. No native Share chooser, physical-device, native Hebrew, GitHub CI, deployment or release attestation is inferred.
