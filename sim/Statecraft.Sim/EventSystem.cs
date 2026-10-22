@@ -183,80 +183,69 @@ namespace Statecraft.Sim
                 : FormattableString.Invariant($"{PlayerText.Settlement(c, city)}: {field.Replace('_', ' ')} {(delta > 0 ? "+" : "")}{delta}");
 
         /// <summary>R-EVT-005: every effect of an option, in the order choosing it applies them (Resolve): the numeric
-        /// effects, the unit grants and city effects (R-EFX-006), the policies it sets (by id), the security level, then rejoin.
-        /// Each amount is the option's own; Resolve may apply less where an indicator meets its bound or the Food or Arms stock its floor, and rounds both to whole units. The
-        /// event card will read this list (Q-EVT-4, owner 17 October 2026; Phase 7 PR 8), so no number is computed in Unity.</summary>
-        public static List<Cause> OptionEffects(Content c, GameState s, EventOption o)
-        {
-            var lines = o.Effects.Where(fx => Reaches(s, fx.Target))
-                .Select(fx => new Cause("events", fx.Target, fx.Delta, PlayerText.Change(c, fx.Target, fx.Delta))).ToList();
-            lines.AddRange(o.GrantUnits.Select(g => new Cause("events", g.Type, g.N, Granted(g, GrantPlace(c, g).Name))));
-            lines.AddRange(o.CityEffects.Select(x => new Cause("events", x.City + "." + x.Field, x.Delta, CityChange(c, x.City, x.Field, x.Delta))));
-            lines.AddRange(o.UnlockProjects.Select(k => new Cause("events", k, 1, Unlocked(c, k))));
-            lines.AddRange(o.SetPolicy.Where(k => s.Policies.ContainsKey(k.Key)).OrderBy(k => k.Key, StringComparer.Ordinal)
-                .Select(k => new Cause("events", k.Key, k.Value, $"{PlayerText.Target(c, k.Key)} set to {PlayerText.Percent(k.Value)}")));
-            if (o.SetRung.HasValue) lines.Add(new Cause("events", "rung", o.SetRung.Value, FormattableString.Invariant($"Security level set to {o.SetRung.Value}")));
-            // R-ALT-009: the way back to the record is shown with the other effects (R-EVT-005).
-            if (o.Rejoin != "")
-                lines.Add(new Cause("events", "rejoin", 0, $"Returns to the recorded course: {Cabinet.Fill(c, s, c.Events.First(x => x.Id == o.Rejoin).Title, s.Date)}"));
-            return lines;
-        }
+        /// effects, the unit grants, city effects and project unlocks (R-EFX-006), the policies it sets (by id), the security
+        /// level, then rejoin. Each amount is the option's own; Resolve may apply less where an indicator meets its bound or
+        /// the Food or Arms stock its floor, and rounds both to whole units. The event card will read this list (Q-EVT-4,
+        /// owner 17 October 2026; Phase 7 PR 8), so no number is computed in Unity.</summary>
+        public static List<Cause> OptionEffects(Content c, GameState s, EventOption o) =>
+            OptionEffectRows(c, s, o).Select(r => r.Cause).ToList();
 
-        /// <summary>R-EVT-005: read-only presentation context over the actual OptionEffects entries, in their exact order.
-        /// Resolves names, grant destinations and number formats here; a localized UI supplies nouns, not game rules.
-        /// Like OptionEffects, these are the option's stated amounts, before Resolve applies bounds or delegation.</summary>
-        public static IReadOnlyList<OptionEffectPreview> OptionEffectPreviews(Content c, GameState s, EventOption o)
+        /// <summary>R-EVT-005: the same entries as <see cref="OptionEffects"/>, in the same order, each with read-only
+        /// presentation context: its category, the place or row it names and its amount already formatted by the sim. A
+        /// localized UI supplies nouns, not game rules. Both come from one walk of the option's effects, so they cannot drift.</summary>
+        public static IReadOnlyList<OptionEffectPreview> OptionEffectPreviews(Content c, GameState s, EventOption o) =>
+            OptionEffectRows(c, s, o).AsReadOnly();
+
+        static List<OptionEffectPreview> OptionEffectRows(Content c, GameState s, EventOption o)
         {
-            var causes = OptionEffects(c, s, o);
-            var rows = new List<OptionEffectPreview>(causes.Count);
-            // Fail visibly if the helper gains or reorders an effect without its presentation context being updated.
-            Cause Next(string target, double delta)
-            {
-                if (rows.Count >= causes.Count || causes[rows.Count].Target != target || causes[rows.Count].Delta != delta)
-                    throw new InvalidOperationException("OptionEffects presentation context is out of order");
-                return causes[rows.Count];
-            }
+            var rows = new List<OptionEffectPreview>();
+            void Add(OptionEffectPreviewKind kind, string target, double delta, string message, string contextId, string contextName,
+                string amount, string field = "") =>
+                rows.Add(new OptionEffectPreview(new Cause("events", target, delta, message), kind, contextId, contextName, amount, field));
+
             foreach (var fx in o.Effects.Where(fx => Reaches(s, fx.Target)))
             {
-                var cause = Next(fx.Target, fx.Delta);
                 var stock = fx.Target == Pools.FoodTarget || fx.Target == Pools.ArmsTarget;
                 var name = stock ? (fx.Target == Pools.FoodTarget ? "Food" : "Arms") : PlayerText.Target(c, fx.Target);
-                var amount = stock ? PlayerText.UnitsChangeNumber(cause.Delta)
-                    : PlayerText.IsMoney(c, fx.Target) ? PlayerText.MoneyChange(c, fx.Target, cause.Delta) : PlayerText.PercentChange(cause.Delta);
-                rows.Add(new OptionEffectPreview(cause, stock ? OptionEffectPreviewKind.Stock : OptionEffectPreviewKind.Amount,
-                    fx.Target, name, amount));
+                var amount = stock ? PlayerText.UnitsChangeNumber(fx.Delta)
+                    : PlayerText.IsMoney(c, fx.Target) ? PlayerText.MoneyChange(c, fx.Target, fx.Delta) : PlayerText.PercentChange(fx.Delta);
+                Add(stock ? OptionEffectPreviewKind.Stock : OptionEffectPreviewKind.Amount, fx.Target, fx.Delta,
+                    PlayerText.Change(c, fx.Target, fx.Delta), fx.Target, name, amount);
             }
             foreach (var g in o.GrantUnits)
             {
-                var cause = Next(g.Type, g.N);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.UnitGrant, GrantCity(c, g), GrantPlace(c, g).Name,
-                    FormattableString.Invariant($"{cause.Delta}")));
+                var place = GrantPlace(c, g).Name;
+                Add(OptionEffectPreviewKind.UnitGrant, g.Type, g.N, Granted(g, place), GrantCity(c, g), place,
+                    FormattableString.Invariant($"{g.N}"));
             }
             foreach (var x in o.CityEffects)
             {
-                var cause = Next(x.City + "." + x.Field, x.Delta);
-                var amount = x.Field == ConditionField ? PlayerText.PercentChange(cause.Delta)
-                    : FormattableString.Invariant($"{(cause.Delta > 0 ? "+" : "")}{cause.Delta}");
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.City, x.City, PlayerText.Settlement(c, x.City), amount, x.Field));
+                var amount = x.Field == ConditionField ? PlayerText.PercentChange(x.Delta)
+                    : FormattableString.Invariant($"{(x.Delta > 0 ? "+" : "")}{x.Delta}");
+                Add(OptionEffectPreviewKind.City, x.City + "." + x.Field, x.Delta, CityChange(c, x.City, x.Field, x.Delta),
+                    x.City, PlayerText.Settlement(c, x.City), amount, x.Field);
             }
+            foreach (var k in o.UnlockProjects)
+                Add(OptionEffectPreviewKind.ProjectUnlock, k, 1, Unlocked(c, k), k,
+                    PlayerText.Capitalised(c.ProjectKinds.First(x => x.Id == k).Name), "");
             foreach (var kv in o.SetPolicy.Where(k => s.Policies.ContainsKey(k.Key)).OrderBy(k => k.Key, StringComparer.Ordinal))
             {
-                var cause = Next(kv.Key, kv.Value);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.SetPolicy, kv.Key, PlayerText.Target(c, kv.Key), PlayerText.Percent(cause.Delta)));
+                var name = PlayerText.Target(c, kv.Key);
+                var amount = PlayerText.Percent(kv.Value);
+                Add(OptionEffectPreviewKind.SetPolicy, kv.Key, kv.Value, $"{name} set to {amount}", kv.Key, name, amount);
             }
-            if (o.SetRung.HasValue)
+            if (o.SetRung is int rung)
             {
-                var cause = Next("rung", o.SetRung.Value);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.SetRung, "", "", FormattableString.Invariant($"{cause.Delta}")));
+                var amount = FormattableString.Invariant($"{rung}");
+                Add(OptionEffectPreviewKind.SetRung, "rung", rung, $"Security level set to {amount}", "", "", amount);
             }
+            // R-ALT-009: the way back to the record is shown with the other effects (R-EVT-005).
             if (o.Rejoin != "")
             {
-                var cause = Next("rejoin", 0);
-                rows.Add(new OptionEffectPreview(cause, OptionEffectPreviewKind.Rejoin, o.Rejoin,
-                    Cabinet.Fill(c, s, Get(c, o.Rejoin).Title, s.Date), ""));
+                var title = Cabinet.Fill(c, s, c.Events.First(x => x.Id == o.Rejoin).Title, s.Date);
+                Add(OptionEffectPreviewKind.Rejoin, "rejoin", 0, $"Returns to the recorded course: {title}", o.Rejoin, title, "");
             }
-            if (rows.Count != causes.Count) throw new InvalidOperationException("OptionEffects has an effect without presentation context");
-            return rows.AsReadOnly();
+            return rows;
         }
 
         /// <summary>The minister <see cref="Delegate"/> hands the event to in this state: its office's holder today, or null

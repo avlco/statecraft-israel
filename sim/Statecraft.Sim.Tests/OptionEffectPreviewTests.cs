@@ -76,7 +76,7 @@ public class OptionEffectPreviewTests
                 rows.Select(x => (x.Cause.System, x.Cause.Target, x.Cause.Delta, x.Cause.Message)));
             Assert.Equal(new[] { "halutz", "treasury", "food", "arms", "halutz", "halutz", "veteran_halutz", "town_a.housing_capacity", "town_a.job_slots", "town_b.condition", "maabarot", "rationing", "rung", "rejoin" },
                 rows.Select(x => x.Cause.Target));
-            Assert.Equal(new[] { "+4.1%", "-IL 1.3m", "+3", "-100", "2", "1", "3", "+3", "-100", "+5.1%", "20%", "75%", "4", "" },
+            Assert.Equal(new[] { "+4.1%", "IL -1.3m", "+3", "-100", "2", "1", "3", "+3", "-100", "+5.1%", "20%", "75%", "4", "" },
                 rows.Select(x => x.Amount));
             Assert.Equal(new[] { "halutz", "treasury", "food", "arms", "town_a", "town_b", "town_a", "town_a", "town_a", "town_b", "maabarot", "rationing", "", "preview_record" },
                 rows.Select(x => x.ContextId));
@@ -107,6 +107,44 @@ public class OptionEffectPreviewTests
         Assert.Equal(OptionEffectPreviewKind.SetPolicy, rows[10].Kind);
         Assert.Equal(OptionEffectPreviewKind.SetRung, rows[12].Kind);
         Assert.Equal(OptionEffectPreviewKind.Rejoin, rows[13].Kind);
+    }
+
+    // One walk builds both lists (#1158 review): each row's own message carries the name and the amount it was built with,
+    // for every option in the shipped content and for every kind the fixture can express, a project unlock included.
+    [Fact]
+    public void EveryRowAgreesWithItsOwnEffectInTheShippedContentAndTheFixture()
+    {
+        var real = ContentLoader.Load(RealContentTests.ContentRoot());
+        var fixture = ContentLoader.Load(Fixture.Write(Fixture.Gdd(new Dictionary<string, string>
+        {
+            ["projects.yaml"] = Fixture.GddProjects.Replace("job_slots: 3 }", "job_slots: 3, locked: true }"),
+        })));
+        var unlock = new EventOption { UnlockProjects = new List<string> { "industry" } };
+        var cases = new List<(Content c, EventOption o)>(real.Events.SelectMany(e => e.Options).Select(o => (real, o)))
+        {
+            (fixture, unlock), (Content(), EveryKind()),
+        };
+        Assert.Contains(cases, x => x.o.Effects.Count > 0);
+        var checkedRows = 0;
+        foreach (var (c, o) in cases)
+        {
+            var s = Simulation.NewGame(c, 1, Mode.Historical);
+            var effects = EventSystem.OptionEffects(c, s, o);
+            var rows = EventSystem.OptionEffectPreviews(c, s, o);
+            Assert.Equal(effects.Select(x => (x.System, x.Target, x.Delta, x.Message)),
+                rows.Select(x => (x.Cause.System, x.Cause.Target, x.Cause.Delta, x.Cause.Message)));
+            foreach (var r in rows)
+            {
+                Assert.Contains(r.Amount, r.Cause.Message);
+                Assert.Contains(r.ContextName, r.Cause.Message);
+                checkedRows++;
+            }
+        }
+        Assert.True(checkedRows > cases.Count, $"only {checkedRows} rows over {cases.Count} options");
+
+        var row = Assert.Single(EventSystem.OptionEffectPreviews(fixture, Simulation.NewGame(fixture, 1, Mode.Historical), unlock));
+        Assert.Equal((OptionEffectPreviewKind.ProjectUnlock, "industry", "An industry project", ""), (row.Kind, row.ContextId, row.ContextName, row.Amount));
+        Assert.Equal("An industry project can now be built", row.Cause.Message);
     }
 
     [Fact]

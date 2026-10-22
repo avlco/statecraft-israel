@@ -7,7 +7,7 @@ namespace Statecraft.Game.UI
     /// <summary>Localized words around the sim's already formatted option-effect amounts. Not yet wired to the card.</summary>
     public static class EventEffectText
     {
-        /// <param name="contextName">Optional localized indicator, money, city, policy or event name from the caller.
+        /// <param name="contextName">Optional localized indicator, money, city, project kind, policy or event name from the caller.
         /// Empty or null uses the sim's English data name. Current model/city rows have no Hebrew name field.</param>
         public static string Format(OptionEffectPreview row, UiText text, string? contextName = null)
         {
@@ -43,6 +43,8 @@ namespace Statecraft.Game.UI
                         _ => throw new ArgumentOutOfRangeException(nameof(row), "Unknown city-field presentation label"),
                     }];
                     return text.Format("event.effect.city", name, field, row.Amount);
+                case OptionEffectPreviewKind.ProjectUnlock:
+                    return text.Format("event.effect.unlock", name);
                 case OptionEffectPreviewKind.SetPolicy:
                     return text.Format("event.effect.policy", name, row.Amount);
                 case OptionEffectPreviewKind.SetRung:
