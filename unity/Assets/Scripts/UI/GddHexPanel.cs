@@ -314,7 +314,7 @@ namespace Statecraft.Game.UI
             {
                 case "maabarot_policy": case "not_land": return text["info.map_action_reason." + reason.Kind];
                 case "occupied": return text.Format("info.map_action_reason.occupied", text["info.map_action." + reason.Values[0]]);
-                case "no_resource": return text.Format("city.project_reason.no_resource", townName(reason.Values[0]), reason.Values[1],
+                case "no_resource": return text.Format("city.project_reason.no_resource", townName(reason.Values[0]), text["city.resource." + reason.Values[1]],
                     ContentNames.Of(text, c.ProjectKinds.First(x => x.Id == reason.Values[2])));
                 case "turn_cap": return text.Format("city.project_reason.turn_cap", int.Parse(reason.Values[0], CultureInfo.InvariantCulture));
                 default: return reason.Text;

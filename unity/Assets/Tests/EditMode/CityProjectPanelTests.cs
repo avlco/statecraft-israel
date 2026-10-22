@@ -57,6 +57,42 @@ public class CityProjectPanelTests
         t.Format("city.project_start", ContentNames.Of(t, k), PlayerText.Money(C, "treasury", k.Cost), GddHexPanel.Turns(t, Projects.CityTurnsToBuild(C, s, k.Id, k.Turns, 0)));
 
     [Test]
+    public void EveryRequiredProjectResourceHasDisplayNamesInBothLanguages()
+    {
+        // #1360: resource ids are simulation keys; the player sees a localized name.
+        var required = C.ProjectKinds.Where(k => k.Requires != "").Select(k => k.Requires).Distinct().ToList();
+        CollectionAssert.Contains(required, "vineyards", "precondition: the real winery needs vineyards");
+        foreach (var resource in required)
+            foreach (var text in new[] { En, He })
+                Assert.IsTrue(text.Has("city.resource." + resource), "missing display name for " + resource);
+    }
+
+    [Test]
+    public void TheWineryResourceRefusalUsesThePanelsLanguage([Values] bool hebrew)
+    {
+        // #1360: exercise the real winery, Tel Aviv, sim refusal and presenter instead of a translated test-only kind.
+        var t = hebrew ? He : En;
+        var (q, r) = TelAvivHex;
+        var namesHe = SettlementPlacer.Parse(File.ReadAllText(Path.Combine(Paths.Content, "map", SettlementPlacer.DefaultFileName)))
+            .ToDictionary(town => town.Id, town => town.NameHe ?? town.Name);
+        using var ui = new UiTestKit();
+        var bridge = Bridge(t);
+        var refusal = Projects.CheckCityReason(C, bridge.State, "winery", TelAviv, q, r);
+        Assert.IsNotNull(refusal, "precondition: Tel Aviv cannot build the real winery");
+        Assert.AreEqual("no_resource", refusal!.Kind);
+        using var panel = new InfoPanelPresenter(ui.Root, bridge, t, Towns, townNamesHe: namesHe);
+        panel.Show(q, r);
+        var city = hebrew ? namesHe[TelAviv] : Towns[TelAviv];
+        Assert.AreEqual(t.Format("city.project_for", city), ui.Q<Label>("city-project-for").text, "Tel Aviv is the selected builder");
+        var actual = ui.Q<Label>("city-project-winery-reason").text;
+        Assert.AreEqual(hebrew ? $"ב־{city} אין כרמים עבור יקב" : $"{city} has no vineyards for a winery", actual);
+        if (hebrew)
+            Assert.IsFalse(actual.Any(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')), "the Hebrew reason contains no Latin letters");
+        Assert.IsNull(ui.Root.Q<Button>("city-project-winery"), "the existing sim refusal still prevents building");
+        Assert.IsEmpty(bridge.Queued, "displaying a localized refusal queues no order");
+    }
+
+    [Test]
     public void EveryLoadedKindIsOfferedWithItsContentCostAndTurns([Values] bool hebrew)
     {
         var t = hebrew ? He : En;
@@ -224,7 +260,7 @@ public class CityProjectPanelTests
             var expected = why switch
             {
                 "policy" => t["info.map_action_reason.maabarot_policy"],
-                "resource" => t.Format("city.project_reason.no_resource", Towns[City], "vineyards", ContentNames.Of(t, winery)),
+                "resource" => t.Format("city.project_reason.no_resource", Towns[City], t["city.resource.vineyards"], ContentNames.Of(t, winery)),
                 "sea" => t["info.map_action_reason.not_land"],
                 "placement" => t.Format("info.map_action_reason.occupied", t["info.map_action.housing"]),
                 _ => t.Format("city.project_reason.turn_cap", C.RulesAt(s0.Date).MapActionsPerTurn),

@@ -8,6 +8,8 @@ checks this (see `CONTRIBUTING.md`).
 
 ## [Unreleased]
 
+- The Hebrew city-project panel names the winery and its required vineyards in Hebrew instead of showing English words (#1360); the new wording awaits a native speaker's review (#564).
+
 ## [0.2.0] - 2026-10-22
 
 ### Fixed
