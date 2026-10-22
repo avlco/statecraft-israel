@@ -1,0 +1,105 @@
+{
+  "captured_utc": "2026-10-22T09:33:51.594306+00:00",
+  "prepared_utc": "2026-10-22T11:19:42.464850+00:00",
+  "after_source": "9587f8505f06b7f2f9420f569065e0acbfcf112b",
+  "after_tree": "886533d51ca7f8687eac81e7ad9339279cc2f24a",
+  "before_source": "178369faba9cd22f2058fb4108b4836ba78e996e",
+  "before_projected_tree": "5bce689e4459d4243a0d7c473d1f86ddbd9d65cf",
+  "browser": "macOS Chrome via CUA; raw browser-content JPEGs",
+  "scope": "website-sharing visual review only; not native permission, full browser acceptance or human review",
+  "images": [
+    {
+      "file": "desktop-en-before.jpg",
+      "width": 1440,
+      "height": 633,
+      "bytes": 63300,
+      "sha256": "4b605a53f2fe3208c881dc378eff07ae66e71370af22254e2aa543e6831baf91",
+      "source_tree": "5bce689e4459d4243a0d7c473d1f86ddbd9d65cf",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "desktop-en-after.jpg",
+      "width": 1440,
+      "height": 633,
+      "bytes": 53542,
+      "sha256": "d689b046894f1d9e2c6ba568a685f2d16c561e5eaad8adccb6dcfa45626537dd",
+      "source_tree": "886533d51ca7f8687eac81e7ad9339279cc2f24a",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "desktop-he-before.jpg",
+      "width": 1440,
+      "height": 633,
+      "bytes": 51362,
+      "sha256": "5400c4613234569f33c04a7208fdd1da12618b731271a008c90a34d458648bf6",
+      "source_tree": "5bce689e4459d4243a0d7c473d1f86ddbd9d65cf",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "desktop-he-after.jpg",
+      "width": 1440,
+      "height": 633,
+      "bytes": 48242,
+      "sha256": "aa2e0ff7fb704d7874744fe0588c894b272677efa147c33b43e37ba669e2c04c",
+      "source_tree": "886533d51ca7f8687eac81e7ad9339279cc2f24a",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "mobile-en-before.jpg",
+      "width": 390,
+      "height": 844,
+      "bytes": 67175,
+      "sha256": "1be0a10d904d163cbfaade5874d05cc77358266c3297fa9122c70741a3f3531d",
+      "source_tree": "5bce689e4459d4243a0d7c473d1f86ddbd9d65cf",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "mobile-en-after.jpg",
+      "width": 390,
+      "height": 844,
+      "bytes": 60386,
+      "sha256": "4efe6c9f21ef7d0b9bede5e2dee28bd3adb24d069a6c38c9a8af7389eb5cb4d2",
+      "source_tree": "886533d51ca7f8687eac81e7ad9339279cc2f24a",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "mobile-he-before.jpg",
+      "width": 390,
+      "height": 844,
+      "bytes": 64209,
+      "sha256": "45f0de6a4f06e617e618c622a6e86c46ac1aba98072126cf3f82fcdf1907ec85",
+      "source_tree": "5bce689e4459d4243a0d7c473d1f86ddbd9d65cf",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    },
+    {
+      "file": "mobile-he-after.jpg",
+      "width": 390,
+      "height": 844,
+      "bytes": 57009,
+      "sha256": "f1db3ca57c5cd726149c67b65f00c71bc247a87b54fd35b9396500bed3f115bb",
+      "source_tree": "886533d51ca7f8687eac81e7ad9339279cc2f24a",
+      "changed_area": "Native Share and explicit Copy link beneath Sources; baseline has no sharing controls"
+    }
+  ],
+  "visual_notes": [
+    "Desktop uses same1440x633 viewport and same #what anchor; final EN recaptured after transient header clipping, anchor differs3px from baseline. Other desktop EN original retained privately as a rejected framing trial.",
+    "Mobile pairs use one verified390x844 tab/same #what anchor; earlier mislabeled captures at1440 excluded.",
+    "Eight chosen raw JPEGs visually inspected; controls visible/unclipped, EN left/HE right,44px high/no horizontal overflow; no real native chooser/private clipboard screenshot included."
+  ],
+  "licence": "CC-BY-SA-4.0",
+  "rights_status": "owner-verify; no new personal or owner attestation",
+  "credit": "Statecraft: Israel contributors; original validation captures by Codex on the MacBook Pro",
+  "inputs": {
+    "site_text": "LICENSING.md website row, CC BY 4.0",
+    "mobile_gameplay_poster": "docs/images/build-m3-city.jpg, main8dae186, CC BY-SA 4.0 per ASSETS.yaml; no new engine capture",
+    "fonts": "EB Garamond and Frank Ruhl Libre; OFL notices in site/public/fonts/",
+    "terrain": "produced using Copernicus WorldDEM-30 (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+    "existing_models": "Tal Heuberger, The 1948 Collection; existing AI-generated Tripo assets, not new image generation"
+  },
+  "pending": [
+    "Native actual Copy for HE project and EN root",
+    "Actual scoped clipboard-denial/manual fallback and original permission restoration",
+    "Final Air review and one focused feature PR",
+    "Human Hebrew review; no personal licence statement for1038 is supplied"
+  ]
+}

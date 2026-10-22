@@ -6,6 +6,12 @@
 # Globs use fnmatch: '*' also matches '/'. Portrait rows live in ASSETS.portraits.yaml (scripts/oss/commons_licences.py).
 # ai_generated: true marks AI output (the future Steam/itch.io disclosure is generated from it).
 rules:
+  # Review evidence only; keep outside the website feature PR.
+  - glob: "docs/review-1038/*.jpg"
+    licence: CC-BY-SA-4.0
+    source: "Eight original unedited macOS Chrome browser-content JPEGs of local normal Astro builds on 22 October 2026. BEFORE parent178369faba9cd22f2058fb4108b4836ba78e996e projected5bce689e; AFTER9587f8505f06b7f2f9420f569065e0acbfcf112b tree886533d5. English/Hebrew at1440x633 and390x844, same what-section anchor. Original hashes and framing notes in docs/review-1038/provenance.json. Credit Statecraft: Israel contributors; validation captures by Codex on the MacBook Pro. Mobile pairs include existing docs/images/build-m3-city.jpg gameplay poster (main8dae186), CC BY-SA4.0; terrain and model attribution in README/NOTICE. Website text CC BY4.0; fonts OFL."
+    status: owner-verify
+    note: "Real website screenshots, no AI pixel generation/editing and no private profile/OS chooser/clipboard. CC BY-SA follows the most restrictive visible existing map-poster input. Evidence-only fork branch, not a feature source change, rights sign-off, full browser acceptance, human Hebrew review, personal licence or release attestation. Preferred GitHub attachment route blocked by browser policy; no Chrome permission changed."
   # --- AI-generated concept art: CC0 / no rights claimed (LICENSING.md); published 2026-10-10 before D5 was checked ---
   - glob: "promo/final/0[1-8]-*.png"
     licence: CC0-1.0

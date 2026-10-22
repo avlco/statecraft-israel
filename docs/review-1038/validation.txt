@@ -1,0 +1,24 @@
+Frozen website source9587f8505f06b7f2f9420f569065e0acbfcf112b only.
+Previously observed commands/output (not re-run by screenshot publication):
+node --test site/tests/share.test.mjs:15 passed,0 failed,0 skipped,exit0.
+bash scripts/check.sh origin/main:320 policy,2208 sim,1473 tools,4 skipped,
+2 subtests passed;ALL CHECKS PASSED,exit0. Actual fork base5e9ce11 unchanged.
+Two final npm run build commands:28 pages checked/415 files each,exit0,
+project-path and example.test root fixture. No deployment.
+Baseline and saved pre-focus normal builds:28 pages/415 files each,exit0.
+Real CUA keyboard with disclosed mocked APIs:4 expected before failures,
+4 final passes;4 further final denial/duplicate-guard cases passed.
+Mocked NotAllowedError is NOT OS permission-denial proof.
+Native ShareSheet opened and cancelled without recipient forENproject/HEroot.
+Native-only Copy followed by ordinary native Paste matched exact query-free
+canonical forENproject/HEroot. HEproject/ENroot and actual scoped denial remain.
+Earlier browser-session/native clipboard mismatch trials remain failed;
+precise tooling interference cause unproven, no product patch made.
+
+Public exact-source receipts:
+https://github.com/eyalgolan/statecraft-israel/issues/1038#issuecomment-6336738074
+https://github.com/eyalgolan/statecraft-israel/issues/1038#issuecomment-6337822166
+
+Publication only adds this evidence packet and one ASSETS provenance row.
+No product source, golden, deployment, CI, domain, personal licence or human
+review field changes. Overall browser/feature-PR acceptance remains incomplete.
