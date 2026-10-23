@@ -54,6 +54,9 @@ namespace Statecraft.Game.Map
         /// <summary>The game date the routes were last shown at (RouteLayer.ShowAt), so a rebuild draws them as at that date;
         /// null before the game has set one (the routes then show as at the game's start).</summary>
         public DateTime? RouteDate { get; set; }
+        /// <summary>In the GDD loop, which segments of each corridor route are built (RouteLayer.ShowAt, #792), so a rebuild
+        /// draws them as the game left them; null outside the GDD loop (the routes then show by date).</summary>
+        public IReadOnlyDictionary<string, IReadOnlyList<bool>> RouteSegmentsBuilt { get; set; }
         /// <summary>Who held which hex on a date (content/map/control_hexes_1948_49.yaml with the map editor's control
         /// overrides), as Build read it, or null without the file: GameRoot draws the borders from it, and the road vehicles
         /// (issue #725) stand only on ground Israel held. Display only.</summary>
@@ -147,6 +150,65 @@ namespace Statecraft.Game.Map
             m.SetVertices(verts); m.SetTriangles(tris, 0);
             m.RecalculateBounds();
             mr.enabled = true;
+        }
+
+        /// <summary>The hexes a unit's Move can go to, outlined while the player picks one (#754): a child of the terrain.</summary>
+        public const string ReachableName = "ReachableHexes";
+        /// <summary>The reachable hexes' band, half the selection's, so the lit hexes read as choices and not as the selection.</summary>
+        public const float ReachableWidth = SelectionWidth / 2;
+
+        /// <summary>Outlines every hex in <paramref name="hexes"/> (Movement.Reachable's, from InfoPanelPresenter) with a thin
+        /// band in one mesh, drawn and draped as <see cref="Select"/>'s outline and with its material; nothing to light (none,
+        /// or only hexes off the map) hides it. Display only: which hexes are lit is the sim's answer, never computed here.
+        /// A unit has at most 5 movement points (unit_types.yaml), so the mesh stays far under 16-bit indices.</summary>
+        public void ShowReachable(IEnumerable<(int q, int r)> hexes)
+        {
+            if (Terrain == null || Hexes == null) return;
+            var found = Terrain.transform.Find(ReachableName);
+            var go = found != null ? found.gameObject : null;
+            if (go == null)
+            {
+                go = new GameObject(ReachableName);
+                go.transform.SetParent(Terrain.transform, false);
+                var mesh = Terrain.GetComponent<MapRuntimeAssets>().Own(new Mesh { name = ReachableName });
+                go.AddComponent<MeshFilter>().sharedMesh = mesh;
+                var renderer = go.AddComponent<MeshRenderer>();
+                renderer.sharedMaterial = selectionMaterial;
+                renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
+            var byHex = new Dictionary<(int, int), HexJson>();
+            foreach (var h in Hexes.hexes) byHex[(h.q, h.r)] = h;
+            float size = Hexes.hex_size_km * 1000f;
+            int n = MapBuilder.RingVertices;
+            var verts = new List<Vector3>(); var tris = new List<int>();
+            var ring = new List<Vector3>(2 * n); var middle = new List<Vector3>(n);
+            foreach (var at in hexes)
+            {
+                if (!byHex.TryGetValue(at, out var hex)) continue;
+                var c = Frame.ToWorld(hex.lon, hex.lat, 0);
+                var centre = new Vector2(c.x, c.z);
+                ring.Clear(); middle.Clear();
+                MapBuilder.DrapedRing(Frame, Terrain.terrainData, centre, size, SelectionClearanceM, ring);
+                MapBuilder.DrapedRing(Frame, Terrain.terrainData, centre, size * (1f - ReachableWidth), SelectionClearanceM, ring);
+                MapBuilder.DrapedRing(Frame, Terrain.terrainData, centre, size * (1f - ReachableWidth / 2), SelectionClearanceM, middle);
+                int b0 = verts.Count;
+                for (int j = 0; j < n; j++)   // each index at the highest of its three rings, as Select's band
+                {
+                    float y = Mathf.Max(ring[j].y, Mathf.Max(ring[n + j].y, middle[j].y));
+                    ring[j] = new Vector3(ring[j].x, y, ring[j].z); ring[n + j] = new Vector3(ring[n + j].x, y, ring[n + j].z);
+                }
+                verts.AddRange(ring);
+                for (int j = 0; j < n; j++)
+                {
+                    int a = b0 + j, b = b0 + (j + 1) % n, ai = b0 + n + j, bi = b0 + n + (j + 1) % n;
+                    tris.AddRange(new[] { a, ai, b, b, ai, bi });   // the shader draws both faces (Cull Off)
+                }
+            }
+            var m = go.GetComponent<MeshFilter>().sharedMesh;
+            m.Clear();
+            m.SetVertices(verts); m.SetTriangles(tris, 0);
+            m.RecalculateBounds();
+            go.GetComponent<MeshRenderer>().enabled = verts.Count > 0;
         }
 
         public void Configure(Material terrain, Material marker, Material selection, Material sea, Material frame)

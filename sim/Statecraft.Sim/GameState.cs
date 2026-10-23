@@ -17,6 +17,8 @@ namespace Statecraft.Sim
         public const string CoalitionCollapse = "coalition_collapse";
         /// <summary>Money and Food were both exhausted for mvp.defeat_turns turn ends in a row (R-END-002; D-B5).</summary>
         public const string DefeatEconomy = "defeat_economy";
+        /// <summary>An enemy military unit holds a GDD city's hex at the turn's end (R-END-003; Q-WAR-5, Q-DEF-3).</summary>
+        public const string DefeatWar = "defeat_war";
     }
 
     public enum Mode { Historical, Open }
@@ -81,9 +83,13 @@ namespace Statecraft.Sim
         public SortedDictionary<string, DateTime> Objectives = new SortedDictionary<string, DateTime>(StringComparer.Ordinal);
         /// <summary>Settlement control by target id, ordinal (R-CTRL-002).</summary>
         public SortedDictionary<string, SettlementControl> Settlements = new SortedDictionary<string, SettlementControl>(StringComparer.Ordinal);
-        /// <summary>The player's score (GDD "Objectives": bonus points). An int assumes whole-number points; the point values and
-        /// the timing bonus are open decisions with the owner (D-B2, D-B6), so the type is revisited when they are set.</summary>
+        /// <summary>The player's score (GDD "Objectives": bonus points). An int: the point values (D-B6) and the timing bonus (D-B2)
+        /// the owner set on 14 October 2026 (#456) are whole numbers (R-OBJ-002).</summary>
         public int Score;
+        /// <summary>The parts of <see cref="Score"/> (R-SCORE-001; Q-SCORE-1), each added when it scores, so no reading has to
+        /// rebuild them from rules that may have changed since: objective base points (R-OBJ-002, R-OBJ-006), timing bonuses
+        /// (R-OBJ-002, R-OBJ-005) and points for prisoners returned (R-POW-004). Their sum is <see cref="Score"/>.</summary>
+        public int ScoreObjectivePoints, ScoreTimingBonuses, ScorePrisonerPoints;
         /// <summary>The national Food stock (R-FOOD-001; D-C2): units of Food, one population unit's food for a month. Never below 0.</summary>
         public int Food;
         /// <summary>The Food the nation needed in the last turn (R-FOOD-002): its population in units, set at the start and in step 7.</summary>
@@ -94,6 +100,13 @@ namespace Statecraft.Sim
         public int ExhaustedTurns;
         /// <summary>The national Arms stock (R-ARMS-001; D-G6): one Arms is the equipment package for one 1,000-person recruit group. Never below 0.</summary>
         public int Arms;
+        /// <summary>The enemy prisoners held, in population units, by the side of the unit that surrendered (R-POW-001; impact
+        /// plan section 4.3). Only a surrender in combat adds to it; only a front's exchange card takes from it (R-POW-004).</summary>
+        public SortedDictionary<string, int> PrisonersHeld = new SortedDictionary<string, int>(StringComparer.Ordinal);
+        /// <summary>The prisoners returned so far, in population units, by side (R-POW-004).</summary>
+        public SortedDictionary<string, int> PrisonersReturned = new SortedDictionary<string, int>(StringComparer.Ordinal);
+        /// <summary>The player's soldiers held by the enemy, in population units, by the side that took them (R-POW-005; Q-POW-4).</summary>
+        public SortedDictionary<string, int> SoldiersHeld = new SortedDictionary<string, int>(StringComparer.Ordinal);
 
         public double TotalPopulation => Population.Values.Sum();
 
@@ -121,6 +134,9 @@ namespace Statecraft.Sim
             c.UnlockedProjects = new SortedSet<string>(UnlockedProjects, StringComparer.Ordinal);
             c.Objectives = new SortedDictionary<string, DateTime>(Objectives, StringComparer.Ordinal);
             c.Settlements = new SortedDictionary<string, SettlementControl>(Settlements, StringComparer.Ordinal);
+            c.PrisonersHeld = new SortedDictionary<string, int>(PrisonersHeld, StringComparer.Ordinal);
+            c.PrisonersReturned = new SortedDictionary<string, int>(PrisonersReturned, StringComparer.Ordinal);
+            c.SoldiersHeld = new SortedDictionary<string, int>(SoldiersHeld, StringComparer.Ordinal);
             return c;
         }
 
@@ -216,6 +232,12 @@ namespace Statecraft.Sim
             if (Settlements.Count > 0)
                 Section("ctrl", '{', '}', Settlements.Select(kv => kv.Key + "=" + kv.Value.Canonical()));
             if (Score != 0) { Sep(); Nl(); sb.Append("score=").Append(Score.ToString(CultureInfo.InvariantCulture)); }
+            if (ScoreObjectivePoints != 0 || ScoreTimingBonuses != 0 || ScorePrisonerPoints != 0)
+            {
+                Sep(); Nl();
+                sb.Append("scoreparts=").Append(ScoreObjectivePoints.ToString(CultureInfo.InvariantCulture)).Append(',')
+                  .Append(ScoreTimingBonuses.ToString(CultureInfo.InvariantCulture)).Append(',').Append(ScorePrisonerPoints.ToString(CultureInfo.InvariantCulture));
+            }
             if (Food != 0 || FoodNeed != 0 || FoodUnmet != 0)
             {
                 Sep(); Nl();
@@ -224,6 +246,11 @@ namespace Statecraft.Sim
             }
             if (ExhaustedTurns != 0) { Sep(); Nl(); sb.Append("exhausted=").Append(ExhaustedTurns.ToString(CultureInfo.InvariantCulture)); }
             if (Arms != 0) { Sep(); Nl(); sb.Append("arms=").Append(Arms.ToString(CultureInfo.InvariantCulture)); }
+            // Prisoners (R-POW-001 to R-POW-005): written only once a surrender has happened, so a run with none hashes as before.
+            IEnumerable<string> Counts(SortedDictionary<string, int> m) => m.Select(kv => kv.Key + "=" + kv.Value.ToString(CultureInfo.InvariantCulture));
+            if (PrisonersHeld.Count > 0) Section("pow", '{', '}', Counts(PrisonersHeld));
+            if (PrisonersReturned.Count > 0) Section("powret", '{', '}', Counts(PrisonersReturned));
+            if (SoldiersHeld.Count > 0) Section("ownheld", '{', '}', Counts(SoldiersHeld));
             return sb.ToString();
         }
     }

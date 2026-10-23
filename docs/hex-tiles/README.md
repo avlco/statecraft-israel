@@ -51,8 +51,166 @@ The generator does the following:
 - **Every other hex:** a tile chosen by terrain, biome and coast.
 - **Connections:** roads between the main towns along hex lines, and the Yarkon.
 
-The output is a plain file: edit it by hand afterwards, and re-running overwrites it. `tel_aviv` stays the small test
-board.
+The output is a plain file, and re-running overwrites it. Hand edits that should survive a re-run go in the board's
+overrides file (see "Painting hexes by hand"). `tel_aviv` stays the small test board.
+
+## Laying out the whole map: region recipes
+
+`tools/hex_tiles/regions.yaml` holds the recipes, as data. One command lays out every hex of the game map from it:
+
+```bash
+python3 tools/hex_tiles/make_board.py --regions tools/hex_tiles/regions.yaml --id israel --all --env-ring 1
+```
+
+That writes `Boards/israel.json`: 920 hexes in seven regions. Capture it with `HexBoardCapture -board israel
+-boardOnly`, or open it in the Hex Painter. In the game it would be `?hex-tiles=israel`, but that has not been tried yet:
+it builds 920 tiles on the real map, so check the load time before relying on it. `--regions` needs PyYAML. With
+`--regions`, the generator works like this:
+
+- **Regions.** Galilee and the north, the coastal plain, the central hills, Jerusalem, the Negev, the Arava and the
+  Jordan valley. Each is a `polygon` of `[lon, lat]` points, or a `hexes` list of `q, r` pairs. A hex goes to:
+  - the first region that lists it;
+  - else the first region whose polygon holds its centre;
+  - else `defaults.region`.
+
+  The polygons are landscape zones drawn roughly by eye. They are not borders.
+- **Ground.** The region's `ground` table maps each biome of `content/map/hexes.json` to a ground layer, over the
+  defaults.
+- **Settlements.** First the game's 25 settlements. Then the 1948 localities (`content/map/localities_1948.tsv`) of at
+  least `min_population` people, largest first. Each settlement takes one hex, and a hex that is already taken keeps its
+  first owner. The tile is chosen by the region's `settlements` rules, then the defaults'. A rule can match on:
+  - `id`;
+  - `type` (city, town, arab_town, village, kibbutz, moshav);
+  - `tier` (from `tiers`, by the 1945 population);
+  - `terrain`;
+  - `biome`.
+- **Other land.** The region's `nature` rules, then the defaults'. A rule can match on `terrain`, `biome` and `coastal`.
+  It sets a `prototype`, or a weighted `pick` drawn by a stable per-hex value, and it may set a `ground`.
+- **Roads.** They follow the traced 1948 main roads (`content/map/route_paths_1948.tsv`), hex centre to hex centre.
+- **Environment.** `--env-ring N` makes the land within N hexes of the board's edge environment: landscape with no tiles
+  and no hex lines. Each region's `flora` sets the trees and rocks on its environment hexes (see below).
+- **Settings.** Without `--regions` the generator keeps its built-in choices. `central_israel` and `tel_aviv_crop`
+  regenerate exactly as before.
+
+### Environment trees by region
+
+The board file carries a `regions` list, and each hex names its `region`. `HexEnvironment` reads the region's
+dress:
+
+- `flat` and `hills` species, each with a `model`, a stand-in `shape` (tree, pine, palm, rock or box) and a `weight`.
+  The species are picked by a noise field, so woods of one kind clump.
+- `density`, a multiplier on the woods.
+- a `rock` model, its `rockChance` (two tries a hex), and `rocksOnFlat`.
+
+The recipes plant, by region:
+
+| Region | Trees | Rocks |
+|---|---|---|
+| North | Tabor oak and Aleppo pine | |
+| Coast | Citrus and date palm | |
+| Negev and Arava | Acacia | Desert rock |
+| Jordan valley | Date palm and acacia | |
+| Jerusalem | Olive, cypress and pine | |
+
+A hex with no region, as on every board made before regions, gets the built-in mix: olive and carob on the flat, oak
+and pine on hills, limestone outcrops on hills.
+
+### Regional variants of the farm and forest tiles
+
+Each farm and forest type has two variants for each of the north, centre and south: 30 tiles, all `Kind` farm or
+forest.
+
+| Type | Ids | Base |
+|---|---|---|
+| Wheat | `wheat_fields_<region>_a` and `_b` | `WheatFields` |
+| Citrus | `citrus_orchard_<region>_a` and `_b` | `CitrusOrchard` |
+| Olive | `olive_terraces_<region>_a` and `_b` | `OliveTerraces` |
+| Mixed farm | `mixed_farm_<region>_a` and `_b` | `MixedFarm` (`mixed_farm`) |
+| Forest | `forest_<region>_a` and `_b` | `PineForest` |
+
+- **One variant, one file.** Each variant is a short file in `Prototypes/` named by its region (`wheat_fields_north_a`
+  is `WheatFieldsNorthA.cs`). It subclasses its base and overrides only the base's `protected virtual` members: grid
+  turn, parcel size, crops, species, caps, yard, and `Dress`.
+- **The regions differ:**
+  - north is greener, with oak and pine hedgerows;
+  - centre has coastal-plain citrus;
+  - south is drier and sparser, with date palms and acacia. Its forest is an acacia or date-palm grove, not a pine
+    wood.
+- **a and b differ** in layout, parcel size, crop mix and species, so they read apart at board distance.
+- **Choosing a variant.** The region recipes in `regions.yaml` pick between the variants of a hex's region with the
+  stable per-hex `pick`.
+- **`HexVariantTests` checks them:**
+  - every variant is registered with its kind and region;
+  - each variant builds differently from its pair and from its base;
+  - the base tiles still build exactly as before. Their placements and paints are pinned by hash, so a base edit that
+    changes what `wheat_fields` and the others build fails the test.
+
+## Painting hexes by hand: overrides and the Hex Painter
+
+**Overrides.** Hand edits that must survive regeneration go in `Boards/<id>.overrides.json`, beside the board. The file
+has the same shape as the map editor's `content/map/overrides.yaml` (#1099): one list per field of `{hex: {q, r}, value}`,
+and no hex appears twice in a list.
+
+```json
+{ "board": "israel", "prototype": [ { "hex": { "q": -1, "r": 18 }, "value": "kibbutz" } ], "region": [] }
+```
+
+- **The fields are hex-tile presentation only:**
+  - `prototype`, the tile;
+  - `ground`, its ground layer;
+  - `unit` and `facing` (degrees, as a string), the unit standing on it;
+  - `region`, whose trees dress an environment hex.
+- **The split with the map editor (#1009).** Terrain, control and settlement locations belong to the map editor, in
+  `content/map/overrides.yaml`. That file is in the content hash and the sim reads it. The hex overrides stay out of
+  `content/`, so painting a hex never moves the content hash.
+- **The generator reads both files:**
+  - It applies the map editor's terrain (a hex's biome) and location moves (a settlement's hex) first, so boards follow
+    the game map.
+  - It applies the hex edits last, on every run, and reports any edit whose hex is not on the board.
+- **`HexBoard.Load` applies the hex edits again at load,** so an edit shows in the game before the board is
+  regenerated.
+
+**The Hex Painter** (**Statecraft/Hex Tiles/Hex Painter**, editor only):
+
+1. Pick a board and press **Load into scene**. It builds the board in the open scene, one object per hex. **Add the
+   captures' light and grade** lights an empty scene.
+2. Click a hex in the Scene view. It is outlined, and the window shows its terrain, region and note.
+3. Change its prototype, ground, unit, facing or region. The painter rebuilds only that hex (its pieces, its trees, its
+   unit, and the ground round it) and writes the edit to the board's overrides file. It does not edit terrain, control or
+   locations: those are the map editor's (#1009).
+
+The board in the scene is never saved: load it again after a script reload.
+
+**The palette.** Below the selected hex, the painter lists every registered tile.
+
+- **How it is grouped:**
+  - Tiles are grouped by kind (city, town, village, farm, forest, nature, other), then by region (north, centre, south,
+    any). The groups come from `[HexPrototype(Kind, Region)]`, so a new tile appears by itself.
+  - Units come after the tiles, as characters (a squad of 8) and vehicles (one each).
+- **Thumbnails.** Each entry shows its thumbnail, or its id where none has been made yet. **Make thumbnails** (or
+  `HexPaletteThumbs.Run` in batch) renders them into `asset-staging/ui-local/hex-tiles/thumbs/`. It replaces the open
+  scene after asking to save, then reopens the scene and the board.
+- **Paint tiles.** Pick a tile, which switches the mode to *Paint tile*, then click or drag over hexes in the Scene
+  view. Each hex is rebuilt and written to the board's overrides. The "no tile" brush clears a hex's prototype.
+- **Stand units.** Pick a unit and a facing (the six neighbour directions, or any angle), then click a hex, or use
+  *Stand the unit on the selected hex*. This writes `unit` and `facing`. *Clear unit* removes it, and the removal is
+  recorded, so the hex stays empty after regenerating.
+- **Previews.** *Day*, *Dusk*, *Night* (see "Time of day") and *Under attack* (see "Under attack") are previews only.
+  - They are never written.
+  - They are undone on Unload, on loading another board, on closing the window and on a script reload.
+  - After a painted hex is rebuilt, its under-attack look is shown again and the time preset is applied again.
+
+To check the painter's path from the command line, use `HexPainterCapture`. It loads the board, shoots the hex, makes
+one edit, and shoots it again. The edit goes to a scratch overrides file in the capture folder unless `-overrides` names
+another:
+
+```bash
+Unity -batchmode -CI false -GITHUB_ACTIONS false -TF_BUILD false -quit -projectPath unity -executeMethod Statecraft.HexTiles.Painter.HexPainterCapture.Run -board israel -hex -3,19 -thumbs -ops "prototype=kibbutz;unit=palmach_squad@120;time=dusk;time=night;attack"
+```
+
+Each operation writes `<n>-<op>/before.png` and `after.png`. The capture also writes `painter.txt` and, with
+`-thumbs`, the palette's contact sheet: `palette.png` and `palette.txt`. The older `-field <f> -value <v>
+[-facing <deg>]` form still works.
 
 ## Adding a prototype hex (the contributor workflow)
 
@@ -60,7 +218,10 @@ board.
 
 1. **Copy the reference** `unity/Assets/Scripts/Map/HexTiles/Prototypes/TelAvivCity.cs` to
    `Prototypes/<YourName>.cs`. Then:
-   - Give it a new `[HexPrototype("your_id")]`, in lower_snake_case and unique.
+   - Give it a new `[HexPrototype("your_id", Kind = "...")]`, in lower_snake_case and unique.
+     - `Kind` is its group in the painter's palette, one of `HexPrototypes.Kinds`: city, town, village, farm, forest,
+       nature or other.
+     - Add `Region = "north"`, `"centre"` or `"south"` for a regional variant.
    - Use the namespace `Statecraft.HexTiles.Prototypes`.
    - Write it in C# 9: no `record` types.
    - Keep one prototype class per file. Do not copy `WheatFields.cs`: it holds two (`wheat_fields` and `grazing_land`).
@@ -159,7 +320,9 @@ Render a single prototype on the board with its ground and neighbours. The outpu
 Unity -batchmode -CI false -GITHUB_ACTIONS false -TF_BUILD false -quit -projectPath unity -executeMethod Statecraft.HexTiles.Capture.HexBoardCapture.Run -prototype your_id
 ```
 
-Leave out `-prototype` to render the whole board, which adds `board.png`. Add `-on <tile>` to try your prototype on
+Leave out `-prototype` to render the whole board, which adds `board.png`. Each prototype and unit is shot once, at its
+last hex in the board file. `-boardOnly` skips those shots. A board too large for the standard shot (the whole country)
+is framed whole. Add `-on <tile>` to try your prototype on
 another tile's hex without editing the board file, for example `-prototype tel_aviv_city_mixed -on tel_aviv_city`
 (an A/B variant on the city's hex). The stats line lists:
 
@@ -175,6 +338,7 @@ Unity -batchmode -CI false -GITHUB_ACTIONS false -TF_BUILD false -projectPath un
 The tests require that every prototype:
 
 - has a lower_snake_case id;
+- names a palette kind, and a known region if any;
 - builds something;
 - is deterministic;
 - keeps every piece inside its inset hexagon;
@@ -246,6 +410,91 @@ Unity -batchmode -CI false -GITHUB_ACTIONS false -TF_BUILD false -quit -projectP
 The output is `asset-staging/ui-local/hex-tiles/unit-move/unit-move.mp4`, plus its frames. The MP4 is written only
 when ffmpeg is on PATH. `-captureDir` and `-captureSize 1920x1080` are optional.
 
+## Buildings: the shipped b*-v2 models
+
+The building ids the tiles use (`sandbox:hq_white_city*`, `sandbox:hq_white_city_hero` and every `sandbox:kit_*`) draw
+the shipped b*-v2 town models at full detail.
+
+- **Where they come from:** `TownModelSet`, `Assets/Art/Settlements/TownModels.asset`, the set the map scene already
+  loads.
+- **How the ids map:** `HexModels.TownAliases` holds the mapping. No prototype file names the models.
+- **Why:** our own decimated kit had lost faces, and its materials cull back faces, so the ground showed through walls
+  and windows (Tal, 19 October 2026).
+- **Fallbacks:** without the set, an id draws its local sandbox prefab, then its stand-in.
+- **Naming a model directly:** use `town:<folder>`, for example `town:b04a-haifa-stone-balconies-v2`. The folders are
+  listed in `TownModels.Ids`. These models are cleared on main, so they draw on every machine.
+  - `town:<folder>@mid` draws the set's baked mid level. Most mid levels see through, so don't use it.
+- **Remaps.** b11 shikun and b21 workshop are not in the set and are not pulled into a build. `kit_white_city_4` draws
+  b13a; `kit_jaffa_2` and `kit_negev_3` draw b03a. `kit_haifa` draws b17, because b04a's full mesh has open wall
+  triangles.
+- **Cost:** a full mesh is about 6,000 triangles, so the city, village and farm budgets were raised to match. A lighter
+  level is a follow-up: the LOD generator's in-between levels are whole for most models, but they smear their
+  textures.
+- **Checking a new building mesh:**
+  - `HexModelMeshTests` counts view rays that meet a model but none of its front faces: the ground shows there.
+    b02a and b13a are allowed their thin balcony slivers. The report goes to
+    `asset-staging/ui-local/hex-tiles/round2/buildings/mesh-report.txt`.
+  - `HexModelCapture.Run` shoots every building alias from four sides.
+  - On Tripo meshes, open-edge counts are noise. Only see-through rays find holes.
+
+## Figures: the Collection's whole characters
+
+- **One character per unit.** A character unit is one model × 8 (`HexUnitTypes.Squad(title, model)`), never a mix.
+  `palmach_squad` is 8 Palmach scouts (c12f).
+- **Where the figures come from.** In the editor (captures, painter, tests), the `proto:figure-*` ids draw the cleared
+  Collection figures (`HexModels.FigureAliases`, `Assets/Art/Collection/<figure>/<figure>-near|far.prefab`).
+  - Our own decimated copies (`characters_to_fbx.py`) had lost faces, 2.7 to 6.5% see-through.
+  - Soldiers take `near`. Townspeople take `far`, except c01, whose far level is holed.
+  - The grazing flock's sheep and donkey take `far`; their decimated copies were 6 to 8% see-through.
+- **In a player** the Collection streams from bundles, so the hex tiles still draw the local proto figures, then
+  stand-ins. Wiring the bundles in is a follow-up.
+- **No walk cycle.** The Collection's near figures have an idle clip only, so a moving squad glides.
+- **Checking a figure:** `HexUnitTests` checks one model per unit, whole figures, facing, height and the fallback.
+
+## Time of day
+
+- **Turning it on:** add `&hex-time=dusk` or `&hex-time=night` to a `?hex-tiles` URL (desktop: `-hex-time dusk|night`).
+- **What counts:**
+  - Only a top-level query parameter counts.
+  - A value after `#`, a bad value, or the flag alone gives day.
+  - `?hex-time` without `?hex-tiles` does nothing.
+- **The presets** (`Core/HexTimeOfDay.cs`, presentation only):
+  - **Day** is the warm `HexLook`, unchanged.
+  - **Dusk** is a low (14°) west-north-west sun: deep warm light and long shadows under a cooler sky.
+  - **Night** is a dim blue-white moon, a dark-blue ambient and a lower exposure. It keeps about 55–60% of day's
+    brightness, so tiles and units stay readable. City and town tiles get warm lit windows: one mesh, under the board
+    root as `HexNightWindows`.
+- **Teardown:** the preset's undo runs before `HexLook`'s. It puts back:
+  - the grade values and override states it changed;
+  - the sun's rotation, intensity, colour and shadows;
+  - the ambient mode, colours and probe.
+  It removes only the volume components it added, and destroys the window mesh and material.
+- **Captures** take `-time day|dusk|night`. Night also darkens the background.
+- **In the Hex Painter:** the window has the same switch.
+
+## Under attack
+
+`HexUnderAttack.Show(boardRoot, surface, q, r)` marks a hex as under attack: three grey smoke columns, a low warm glow
+where each rises, and a muted red border that pulses slowly. The columns rise in the hex's north half, so they stand
+behind a unit or the city's centre as the board camera sees it.
+
+- **Presentation only:** nothing reads or writes the simulation, and it is never written to a board or its overrides.
+  It is the visual state the sim can drive later; movement and combat rules are the owner's
+  (`docs/gdd/military-combat.md`).
+- **Removing it:** `Hide(boardRoot, q, r)` removes it and frees the 3 meshes, the 3 materials and the texture it made.
+  `IsShown` tells whether a hex has it.
+- **Animation:** it animates in edit mode and in play (`HexUnderAttackLook`). For a deterministic frame, in captures and
+  tests, set `look.Hold = true` and call `look.Time(t)`. Smoke placement is seeded by (q, r).
+- **Materials:** they ship as templates in `Resources/HexTiles/Materials` (`HexAttackSmoke`, `HexAttackGlow`,
+  `HexAttackBorder`), made by **Statecraft/Hex Tiles/Make Materials**. After running that menu, revert the five older
+  templates it rewrites.
+- **Cost:** about 723 triangles and 3 draws.
+- **Captures:**
+
+```bash
+Unity -batchmode -CI false -GITHUB_ACTIONS false -TF_BUILD false -quit -projectPath unity -executeMethod Statecraft.HexTiles.Capture.HexUnderAttackCapture.Run -board israel
+```
+
 ## Review and hand-in
 
 - **Branch:** work on `hex/<your_id>`. The change is your one prototype file (or one `Units/<id>.cs`), plus your models
@@ -259,7 +508,8 @@ when ffmpeg is on PATH. `-captureDir` and `-captureSize 1920x1080` are optional.
 
 - **Tripo models are local-only while their rights are pending:**
   - figures, animals, vehicles and landmarks (`proto:`);
-  - the decimated city kit (`sandbox:kit_*`).
+  - the decimated city kit (`sandbox:kit_*`). The tiles no longer draw it while the shipped town models are found (see
+  "Buildings").
   They are never committed, shared or built into a shareable build. On other machines they draw as stand-ins.
 - **Not yet in the repository:**
   - the EZ-Tree trees (MIT), Poly Haven rocks and ground textures (CC0) under `sandbox:`;
@@ -275,13 +525,26 @@ when ffmpeg is on PATH. `-captureDir` and `-captureSize 1920x1080` are optional.
 |---|---|
 | `Core/HexTileContract.cs` | `HexTerrain`, `[HexPrototype]`, `IHexPrototype`, `HexScale`, the registry, hex geometry |
 | `Core/HexTileContext.cs` | The API a prototype uses, and the placement record |
-| `Core/HexModels.cs` | Model ids, variants, stand-ins, triangle counts |
+| `Core/HexModels.cs` | Model ids, variants, stand-ins, triangle counts, the shipped town models (`TownAliases`) |
+| `Core/HexTimeOfDay.cs` | Day, dusk and night presets (`?hex-time`) |
+| `Core/HexUnderAttack.cs` | The under-attack look for a hex |
 | `Core/HexBoard.cs` | Board files, the Civ-style ground (`HexBoardSurface`), ground layers |
 | `Core/HexBoardBuilder.cs` | Terrain, sea, rendering, tile edges, per-tile reports |
 | `Core/HexUnits.cs` | `HexUnit`, `HexUnitMember`, and `HexUnitMotion` (moving a unit along hex centres) |
-| `Capture/HexBoardCapture.cs` | The capture command (`-prototype <id>`, plus `-on <tile>` to try it on another tile's hex) |
+| `Core/HexBoardOverrides.cs` | A board's hand edits (`<id>.overrides.json`) |
+| `Capture/HexBoardCapture.cs` | The capture command (`-prototype <id>`, plus `-on <tile>` to try it on another tile's hex; `-time`) |
+| `Capture/HexModelCapture.cs` | Four-side shots of each building model, and the see-through check (`HexMeshCheck`) |
+| `Capture/HexUnderAttackCapture.cs` | Before and after shots of the under-attack look |
+| `Painter/HexPainterWindow.cs` | The Hex Painter window |
+| `Painter/HexPainter.cs` | The painter's write-back and one-hex rebuild |
+| `Painter/HexPainterCapture.cs` | The painter's path from the command line (`-ops`, `-thumbs`) |
+| `Painter/HexPalette.cs` | The palette's groups, facings and brushes |
+| `Painter/HexPaletteThumbs.cs` | Palette thumbnails and the contact sheet |
+| `Painter/HexPainterSwitches.cs`, `HexPainterStage.cs` | The painter's time-of-day and under-attack previews, and its light and grade |
+| `tools/hex_tiles/regions.yaml` | The region recipes |
 | `Capture/HexUnitMoveCapture.cs` | The unit-move video |
 | `Tests/HexPrototypeTests.cs` | The contract tests |
+| `Tests/HexVariantTests.cs`, `HexModelMeshTests.cs`, `HexTimeOfDayTests.cs`, `HexUnderAttackTests.cs`, `HexBoardCaptureTests.cs` | Variants, whole buildings, time of day, under attack, whole-board framing |
 | `Prototypes/` | One file per prototype hex (`TelAvivCity.cs` is the reference) |
 | `Prototypes/MountainPeaks.cs` | `mountain_peaks`, the rocks on a mountain hex |
 | `Prototypes/WheatFields.cs` | `wheat_fields` and `grazing_land` (two classes in one file: do not copy it) |

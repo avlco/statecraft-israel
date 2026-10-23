@@ -62,10 +62,12 @@ public class ObjectivesScreenTests
             for (int i = 0; i < status.Count; i++)
             {
                 var o = status[i];
-                // Every objective on main has its name in both strings files (the presenter's objectives.yaml fallback is for #791).
-                Assert.IsTrue(text.Has("objectives.name." + o.Id), when + ": " + o.Id + " has a name in this language");
+                // The name is objectives.yaml's own (#1208): name_he in Hebrew, name in English; no copy in the strings files.
+                var objective = C.Objectives.Single(x => x.Id == o.Id);
+                Assert.IsNotEmpty(objective.NameHe, o.Id + " has a Hebrew name in objectives.yaml");
+                Assert.IsFalse(text.Has("objectives.name." + o.Id), when + ": " + o.Id + " has no second copy of the name in the strings file");
                 Assert.AreEqual("objectives-row-" + o.Id, rows[i].name, when + ": the helper's order");
-                Assert.AreEqual(text["objectives.name." + o.Id], rows[i].Q<Label>(className: "objectives-name").text, when + ": " + o.Id + " name");
+                Assert.AreEqual(hebrew ? objective.NameHe : objective.Name, rows[i].Q<Label>(className: "objectives-name").text, when + ": " + o.Id + " name");
                 var line = rows[i].Q<Label>(className: "objectives-status").text;
                 Assert.AreEqual(o.Completed is System.DateTime done
                     ? text.Format("objectives.done", Date(text, done), Date(text, o.Historical))
@@ -75,10 +77,10 @@ public class ObjectivesScreenTests
 
         Assert.IsTrue(Objectives.Status(bridge.Content, bridge.State).All(o => !o.Done), "precondition: nothing done at the start");
         Check("at the start");
-        var first = C.Objectives[0];
+        var first = C.Objectives.Single(x => x.Id == "absorb_immigrants");   // by id: the first in id order, as before R-OBJ-007
         Assert.IsTrue(Objectives.Record(C, bridge.State, C.RulesAt(bridge.State.Date).Mvp!, first.Id, first.ReferenceDate.AddMonths(-1), new List<Cause>()));
         presenter.Render();
-        Assert.IsTrue(Objectives.Status(bridge.Content, bridge.State)[0].Done, "precondition: the first is done");
+        Assert.IsTrue(Objectives.Status(bridge.Content, bridge.State).Single(x => x.Id == first.Id).Done, "precondition: the first is done");
         Check("after the first is done");
     }
 
