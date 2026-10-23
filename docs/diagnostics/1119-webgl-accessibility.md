@@ -59,14 +59,15 @@ and [#1230](https://github.com/eyalgolan/statecraft-israel/pull/1230#issuecommen
 The approved next milestone is an HTML panel beside the game that mirrors the current
 event title, text and choices, the current focus and the status. Play continues through
 the existing game keyboard controls. Whether to proceed to an operable companion (C)
-is decided after a real VoiceOver test of B. The design-choice gate for B is resolved;
-this document does not claim B is implemented or that the real diagnostic passed.
+is decided after a real VoiceOver test of B. The design-choice gate for B is resolved.
+The [implementation and current audit](1119-read-only-companion.md) are separate from
+this historical proposal; the real diagnostic remains incomplete.
 
 The integration audit below remains pinned to `3afb171` and runtime `507348f`. Main
 `460a8500088331dc35f3da662b0f1316619e0928` also contains `UI/ShareShot.jslib`,
-which was absent from that audit. Before implementation and the real reader run,
-re-audit the integration points and pin the source and player actually tested; the
-newer bridge and template are not covered by the old runtime observations.
+which was absent from that audit. The new [B audit receipt](1119-b-audit.json) pins the
+tested source and player, including ShareShot and every other script `.jslib`. The
+newer bridge and template are not covered by the old runtime observations below.
 
 ## Verified code integration points
 
