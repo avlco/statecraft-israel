@@ -221,7 +221,7 @@ This is not connected to the game and does not exercise a Unity runtime or scree
 
 The contributor runs this manually at the Mac, with VoiceOver's caption panel visible
 and a caption-panel screenshot plus notes at every step. Do not automate VoiceOver.
-In a fresh isolated browser session, record VoiceOver version/build, browser version
+In a fresh isolated browser session, record macOS version/build, VoiceOver version/build, browser version
 and exact player source; enable VoiceOver with visible native controls and retain observed transcript
 or equivalent actual output. In fresh EN and HE profiles check: discover and name New
 Game; focus through real controls; read the current event's complete title/body and
