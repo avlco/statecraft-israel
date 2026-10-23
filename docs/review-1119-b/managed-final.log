@@ -1,0 +1,30 @@
+machine_lock: taking the machine lock (shared)
+== changelog (against a250e2954b31201a02fa0ee0cf9b74ee6e77c2ec)
+A changelog fragment is added: changelog.d/1119-read-only-companion.md
+== reviewed_by guard (against a250e2954b31201a02fa0ee0cf9b74ee6e77c2ec)
+reviewed_by guard: no AI-co-authored commit touches a sign-off or a signed-off row.
+== gdd lint
+OK: every GDD section has its parts, a done-when, units, sources and no TBD
+== policy checker tests
+........................................................................ [ 89%]
+...................................                                      [100%]
+323 passed in 22.87s
+== repo policy
+OK: checks secrets, emails, home-paths, conflict-markers, sizes, symlinks, required, decisions, assets over 3151 tracked files
+== rule ids
+OK: every defined rule ID has a citing test and every cited ID is defined
+== sim build, warnings as errors
+    0 Error(s)
+
+Time Elapsed 00:00:05.77
+== unity compile: SKIPPED, no unity/Library (open the project in Unity once, or clone a Library)
+== sim and content tests
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:  2443, Skipped:     0, Total:  2443, Duration: 21 s - Statecraft.Sim.Tests.dll (net10.0)
+== data tool tests
+........................................................................ [ 99%]
+..............                                                           [100%]
+1519 passed, 5 skipped, 2 subtests passed in 193.81s (0:03:13)
+
+ALL CHECKS PASSED

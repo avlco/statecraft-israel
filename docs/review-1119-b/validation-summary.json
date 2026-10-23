@@ -1,0 +1,70 @@
+{
+  "checkpoint": "B implemented; complete Native retry, corrected start-screen checks and matched phone baselines pending",
+  "native_source_at_launch": "e27977229fc3b5eb0f37a770f1d09ea8f1094901",
+  "runtime_source": "4d681e5eaf6f648bab85fb37b9f1fe8b7ffca609",
+  "native_run": {
+    "result": "Failed(Child)",
+    "total": "2356",
+    "passed": "2351",
+    "failed": "1",
+    "skipped": "4",
+    "inconclusive": "0",
+    "start-time": "2026-10-23 09:49:06Z",
+    "end-time": "2026-10-23 10:23:39Z",
+    "duration": "2072.9492351"
+  },
+  "warning_CS": 0,
+  "error_CS": 0,
+  "original_xml_sha256": "9723e264228d23def7780db2a132f3dbe5f65025fb5f821f734b9209a6da5d5f",
+  "original_editor_log_sha256": "acc030f616b516b67e78ea6726ddc3676587a3cc320ec31b89b5c29f0a1aae10",
+  "nonpassing_cases": [
+    {
+      "fullname": "HexModelMeshTests.TownAliasesFaceAsTheirSandboxPrefabs",
+      "result": "Skipped",
+      "label": "Ignored",
+      "message": "no local sandbox prefabs to compare"
+    },
+    {
+      "fullname": "HexUnitTests.CollectionFiguresFaceAsTheirProtoFigures",
+      "result": "Skipped",
+      "label": "Ignored",
+      "message": "no local proto figures to compare"
+    },
+    {
+      "fullname": "ControlTests.ContactSheetRenders",
+      "result": "Skipped",
+      "label": "Explicit",
+      "message": null
+    },
+    {
+      "fullname": "ProjectSettingsTests.TheTemplateFillsTheWindowAndPersistsSaves",
+      "result": "Failed",
+      "label": null,
+      "message": "  Expected: String containing \"#unity-canvas { position: fixed; left: 0; top: 0; width: 100%; height: 100%;\"\n  But was:  \"<!DOCTYPE html>\n<html lang=\"en-us\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, viewport-fit=cover\">\n    <title>{{{ PRODUCT_NAME }}}</title>\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n    <style>\n      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #0e1626; }\n      #player-layout { display: grid; grid-template-columns: minmax(0, 1fr) clamp(18rem, 26vw, 24rem);\n        width: 100%; height: 100dvh; box-sizing: border-box;\n        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }\n      #game-view { position: relative; min-width: 0; min-height: 0; }\n      #unity-canvas { width: 100%; height: 100%; background: #0e1626; display: block; }\n      #companion { min-width: 0; overflow-y: auto; padding: 12px; border-left: 1px solid #c4a05c;\n        color: #ece4d2; font: 16px/1.5 Georgia, \"Times New Roman\", serif; overflow-wrap: anywhere; }\n      #companion h2 { font-size: 1.2em; }\n      #companion p { white-space: pre-wrap; }\n      #companion li[aria-disabled=\"true\"] { color: #b8b0a0; }\n      @media (max-width: 700px) {\n        #player-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(8rem, 30dvh); }\n        #companion { border-left: 0; border-top: 1px solid #c4a05c; }\n      }\n      #loading { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #ece4d2;\n                 font: 20px Georgia, \"Times New Roman\", serif; text-align: center; }\n      #bar { width: 320px; height: 4px; margin-top: 12px; border: 1px solid #c4a05c; }\n      #fill { width: 0; height: 100%; background: #c4a05c; }\n      #error { display: none; position: absolute; left: 10%; right: 10%; top: 40%; color: #de7868; background: #0e1626;\n               border: 1px solid #c4a05c; padding: 16px; font: 16px Georgia, serif; white-space: pre-wrap; }\n    </style>\n  </head>\n  <body>\n    <div id=\"player-layout\">\n      <main id=\"game-view\">\n        <canvas id=\"unity-canvas\" tabindex=\"-1\"></canvas>\n        <div id=\"loading\">Statecraft: Israel<div id=\"bar\"><div id=\"fill\"></div></div></div>\n        <div id=\"error\"></div>\n      </main>\n      <aside id=\"companion\" aria-label=\"Statecraft: Israel\">\n        <p id=\"companion-focus\" dir=\"auto\"></p>\n        <div id=\"companion-reading\"></div>\n        <p id=\"companion-status\" dir=\"auto\" role=\"status\"></p>\n      </aside>\n    </div>\n    <script>\n      // Unity keeps the render size matched to the canvas's CSS size, so the UI Toolkit panel\n      // (ScaleWithScreenSize, 1920x1080, match 0.5) rescales on every browser resize.\n      var loaderUrl = \"Build/{{{ LOADER_FILENAME }}}\";\n      var config = {\n        arguments: [],\n        dataUrl: \"Build/{{{ DATA_FILENAME }}}\",\n        frameworkUrl: \"Build/{{{ FRAMEWORK_FILENAME }}}\",\n#if USE_THREADS\n        workerUrl: \"Build/{{{ WORKER_FILENAME }}}\",\n#endif\n#if USE_WASM\n        codeUrl: \"Build/{{{ CODE_FILENAME }}}\",\n#endif\n#if SYMBOLS_FILENAME\n        symbolsUrl: \"Build/{{{ SYMBOLS_FILENAME }}}\",\n#endif\n        streamingAssetsUrl: \"StreamingAssets\",\n        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},\n        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},\n        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},\n        // Queue IndexedDB persistence when a file under /idbfs closes; completion is asynchronous.\n        // GameStart's save receipt observes that commit, without starting a concurrent manual sync.\n        autoSyncPersistentDataPath: true,\n      };\n      // Issue #437: the Build/ files are named by their content hash, and this page names its build's files. A browser may\n      // show this page from its cache after a newer build replaced them (a server that sends no Cache-Control, such as\n      // python3 -m http.server, lets it), so ask the server for the current page and load the files that one names. The\n      // fetch skips the cache and stores the copy it gets (\"reload\"), so the next visit runs the current page. When it\n      // fails (file://, offline, or not this template), keep this page's own names.\n      var FRESH_KEYS = [\"loaderUrl\", \"dataUrl\", \"frameworkUrl\", \"workerUrl\", \"codeUrl\", \"symbolsUrl\"];\n      function useCurrentPage(html) {\n        var found = {};\n        FRESH_KEYS.forEach(function (key) {\n          var m = html.match(new RegExp(\"\\\\b\" + key + '\\\\s*[:=]\\\\s*\"(Build/[^\"]+)\"'));\n          if (m) found[key] = m[1];\n        });\n        if (!found.loaderUrl || !found.dataUrl) return;\n        loaderUrl = found.loaderUrl;\n        FRESH_KEYS.slice(1).forEach(function (key) {\n          if (found[key]) config[key] = found[key]; else delete config[key];\n        });\n      }\n      function fail(message) {\n        var e = document.getElementById(\"error\");\n        e.textContent = \"Statecraft could not start:\\n\" + message;\n        e.style.display = \"block\";\n        console.error(\"BOOT FAIL \" + message);\n      }\n      // B is output only. Install after the loader resolves; no new font, library, asset or boot request.\n      function mountCompanion() {\n        var panel = document.getElementById(\"companion\"), reading = document.getElementById(\"companion-reading\");\n        var focus = document.getElementById(\"companion-focus\"), status = document.getElementById(\"companion-status\");\n        var cardKey, statusText, statusTurn;\n        function string(value) { return typeof value === \"string\"; }\n        function strings(value) { return Array.isArray(value) && value.every(string); }\n        function valid(p) {\n          return p && (p.language === \"en\" || p.language === \"he\") && Number.isSafeInteger(p.turn) && p.turn >= 0\n            && [p.screen, p.focus, p.title, p.body, p.status].every(string) && strings(p.context)\n            && Array.isArray(p.choices) && p.choices.every(function (c) {\n              return c && string(c.text) && typeof c.enabled === \"boolean\" && strings(c.notes);\n            });\n        }\n        function text(tag, value) {\n          var node = document.createElement(tag);\n          node.setAttribute(\"dir\", \"auto\"); node.textContent = value;\n          return node;\n        }\n        window.statecraftCompanionPush = function (json) {\n          var p;\n          try { p = JSON.parse(json); } catch (_) { return false; }\n          if (!valid(p)) return false; // reject the whole payload before touching the last good panel\n          var key = JSON.stringify([p.language, p.screen, p.title, p.body, p.context, p.choices]);\n          if (key !== cardKey) {\n            var content = document.createElement(\"div\");\n            if (p.screen) content.appendChild(text(\"h2\", p.screen));\n            if (p.title) content.appendChild(text(\"h2\", p.title));\n            p.context.forEach(function (line) { content.appendChild(text(\"p\", line)); });\n            if (p.body) content.appendChild(text(\"p\", p.body));\n            if (p.choices.length) {\n              var list = document.createElement(\"ol\");\n              p.choices.forEach(function (choice) {\n                var item = text(\"li\", choice.text);\n                item.setAttribute(\"aria-disabled\", choice.enabled ? \"false\" : \"true\");\n                choice.notes.forEach(function (note) { item.appendChild(text(\"p\", note)); });\n                list.appendChild(item);\n              });\n              content.appendChild(list);\n            }\n            reading.replaceChildren(content); cardKey = key;\n          }\n          panel.setAttribute(\"lang\", p.language); // fixed allowlist, independent of game text\n          if (focus.textContent !== p.focus) focus.textContent = p.focus;\n          if (statusText !== p.status || statusTurn !== p.turn) {\n            status.replaceChildren(document.createTextNode(p.status));\n            statusText = p.status; statusTurn = p.turn;\n          }\n          return true;\n        };\n      }\n      function start() {\n        var script = document.createElement(\"script\");\n        script.src = loaderUrl;\n        script.onerror = function () { fail(\"could not load \" + loaderUrl); };\n        script.onload = function () {\n          createUnityInstance(document.querySelector(\"#unity-canvas\"), config, function (progress) {\n            document.getElementById(\"fill\").style.width = (100 * progress) + \"%\";\n          }).then(function () {\n            mountCompanion();\n            document.getElementById(\"loading\").style.display = \"none\";\n          }).catch(fail);\n        };\n        document.body.appendChild(script);\n      }\n      fetch(location.href.split(\"#\")[0], { cache: \"reload\" })\n        .then(function (r) { return r.ok ? r.text() : \"\"; })\n        .then(useCurrentPage)\n        .catch(function () {})\n        .then(start);\n    </script>\n  </body>\n</html>\n\"\n"
+    },
+    {
+      "fullname": "RenderSteadyTests.RenderSteadyTiming",
+      "result": "Skipped",
+      "label": "Explicit",
+      "message": "timing, run by name"
+    }
+  ],
+  "companion_cases": [
+    {
+      "fullname": "AccessibilityCompanionTests.AShownCardIsReadAfterStylesResolveWithoutAnotherInput",
+      "result": "Passed"
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.RefusalWithoutChangedAndAppendedNoticesAreReadAfterThePresenters",
+      "result": "Passed"
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheEnglishAndHebrewPayloadReadsTheCardChoicesFocusAndLiteralText",
+      "result": "Passed"
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheFinalTurnReportIsReadAndDisposeClearsAndCancelsPendingWork",
+      "result": "Passed"
+    }
+  ]
+}

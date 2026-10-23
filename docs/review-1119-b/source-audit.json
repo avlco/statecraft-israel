@@ -1,0 +1,158 @@
+{
+  "runtime_source_commit": "4d681e5eaf6f648bab85fb37b9f1fe8b7ffca609",
+  "integrated_main": "a250e2954b31201a02fa0ee0cf9b74ee6e77c2ec",
+  "base_source_commit": "f9d8371d693c5996399c13fe5513bd225ec2f472",
+  "source_files": {
+    "unity/Assets/Scripts/Map/DocumentVisibility.jslib": {
+      "sha256": "d6b27154fb0a9f0e04bec6c9483fe978594297c43026f9b6137fcbee74851781",
+      "bytes": 435
+    },
+    "unity/Assets/Scripts/Map/WheelInput.jslib": {
+      "sha256": "1b3cf209d82e8e92d4fb8d9dc0847e11b699cd894545d7eed851673d2136e07f",
+      "bytes": 2171
+    },
+    "unity/Assets/Scripts/UI/AccessibilityCompanion.cs": {
+      "sha256": "7634614c62d2438d86f80159d3c51034982414ac4bb605ffc51dabdcd2ee6684",
+      "bytes": 8845
+    },
+    "unity/Assets/Scripts/UI/AccessibilityCompanion.jslib": {
+      "sha256": "3ced0cf04055faac5aa93c104ffec9d3711ea200755580bbd5ec46763190331c",
+      "bytes": 365
+    },
+    "unity/Assets/Scripts/UI/AutosavePersistence.jslib": {
+      "sha256": "2150c184539b9179c5a9b96eefc54e0fc4f3527027c4941b061fb64f27e2bc78",
+      "bytes": 1796
+    },
+    "unity/Assets/Scripts/UI/DevicePixelRatio.jslib": {
+      "sha256": "8a804e89c8e1586bf9632b0d1d661421f8cce53b5aa4065f16603331ffd9c964",
+      "bytes": 377
+    },
+    "unity/Assets/Scripts/UI/EventCardPresenter.cs": {
+      "sha256": "b8d311d4c9c578dfd286ef85b1ecb32d0b9fe449bb99fc07a3e478916924e4a1",
+      "bytes": 36278
+    },
+    "unity/Assets/Scripts/UI/ExternalLink.jslib": {
+      "sha256": "9383ffd0d8030f8fcc1fd6c3a3e38616193e4786f5dac8244839274e9b993a0b",
+      "bytes": 2404
+    },
+    "unity/Assets/Scripts/UI/GameRoot.cs": {
+      "sha256": "50c946c1fe3903baf3b3fb9a92b716862c17130ef5fc30eb98fcc30d0c6c4b23",
+      "bytes": 66016
+    },
+    "unity/Assets/Scripts/UI/HandCursor.jslib": {
+      "sha256": "977cecc595acc7849718094edc18719231b1eb4ca088041c2da13549d26474bd",
+      "bytes": 304
+    },
+    "unity/Assets/Scripts/UI/MapFocusPresenter.cs": {
+      "bytes": 3511,
+      "sha256": "af04ddb7bcc48670369f77dcb56ad13e237fa1671dc4a4dabd8a45af927b7e33"
+    },
+    "unity/Assets/Scripts/UI/SafeArea.jslib": {
+      "sha256": "517724f378ad573d0cbc6d0db381fa53bbc348feb41f0169c25f7c5b2b534f99",
+      "bytes": 1915
+    },
+    "unity/Assets/Scripts/UI/SafeAreaFit.cs": {
+      "bytes": 4791,
+      "sha256": "267ce215cb9d0378a6cbf9cd7100190d56f1d490cec757b12807a241f5d78f70"
+    },
+    "unity/Assets/Scripts/UI/ScreenNav.cs": {
+      "sha256": "3e208f6bfa68e7c23f934f8de2a9576fe06743f3a90da7ee59e056a86f6c31af",
+      "bytes": 20299
+    },
+    "unity/Assets/Scripts/UI/ShareShot.cs": {
+      "sha256": "989b7ed5abb8b64563dde536bf87aa7bb14be3e05889b7f1a71f427716c0f779",
+      "bytes": 8993
+    },
+    "unity/Assets/Scripts/UI/ShareShot.jslib": {
+      "sha256": "35ab1e853596768c241f98caac0a2c4b36e411cb6dfe751d118630bc2c7b7b6b",
+      "bytes": 6658
+    },
+    "unity/Assets/Scripts/UI/SimBridge.cs": {
+      "sha256": "9655ee1816cbbab5c0d67ed96772ecb86319f915919f3330b131d5eaf06eab78",
+      "bytes": 15573
+    },
+    "unity/Assets/Scripts/UI/ToastPresenter.cs": {
+      "sha256": "c3a1b6822a0af4b285ded03a2783134df4241bb7c5cea9e7cd8527241e016093",
+      "bytes": 2083
+    },
+    "unity/Assets/Scripts/UI/TurnReportPresenter.cs": {
+      "sha256": "10323fce178dc543d19f794dc80c515dc3909f0a300785b8b9995aa3fc758ce7",
+      "bytes": 10289
+    },
+    "unity/Assets/Scripts/UI/UiDirection.cs": {
+      "sha256": "86893a481ce10bd691108d044b1cf7c2590d156773ed7aace313e62d76059c89",
+      "bytes": 4131
+    },
+    "unity/Assets/WebGLTemplates/Statecraft/index.html": {
+      "sha256": "c20dd268e69500e92bb55d08905ae094f897920ffe5c2b7cf4fd9567dd0a02c4",
+      "bytes": 8833
+    }
+  },
+  "runtime_dlls": {
+    "YamlDotNet.dll": {
+      "bytes": 297472,
+      "sha256": "26aa8f90d466518b46811a4eabc3985c8e89c8b9a808633015fc434c5431a28d"
+    },
+    "Statecraft.Sim.dll": {
+      "bytes": 474112,
+      "sha256": "25c71244af58d465b56cec94eb0fc25c26b4ebd3a6e3115850046933a79b9aad"
+    }
+  },
+  "base_player": {
+    "file_count": 113,
+    "receipt_sha256": "e6ff51357a92dc27fc076e0f88a18f5ce6f098ec665ba77ae3af9913209b2e13",
+    "compressed_runtime_files": {
+      "Build/3819e5553f82a81f0a8723d8c806de38.wasm.gz": {
+        "bytes": 14343950,
+        "sha256": "082dcbf97facc03ca70c55d6e41b4f080fcf04a4dea3d5c16ec760f26bddcc8f"
+      },
+      "Build/63b4c10671cf2aaf804d4c00174e8eb9.framework.js.gz": {
+        "bytes": 97719,
+        "sha256": "27e3bda280b2aff0e895c84e9d756699f32e78e02302e7be54c9ff8b7ae52403"
+      },
+      "Build/20e1f7adcfeae4edd67139e2ddfc4659.data.gz": {
+        "bytes": 25696308,
+        "sha256": "4df2277e47f3ec655bb22c489e3a8505086f1215ffbc3f63fa4355b2e70e8c61"
+      }
+    }
+  },
+  "b_player": {
+    "file_count": 113,
+    "receipt_sha256": "f5f0b9254ab085ec84547f35eb7561b8551f9d71cddc50d5dc71738c718927b1",
+    "compressed_runtime_files": {
+      "Build/3ff034e841abd2b048c014f54926bb1d.wasm.gz": {
+        "bytes": 14343739,
+        "sha256": "aabbe371bed34497878b2bb6a703993df737ea0f291c0a5121cec8cbc3d970fe"
+      },
+      "Build/7c7214c172eab8efbc747339ff004217.data.gz": {
+        "bytes": 25696349,
+        "sha256": "7ee3d2a044c5918fb1be32cb4cddb18e68ab5d8d98d75f9eec781171e367198e"
+      },
+      "Build/87b163b20fd4efa713be7a5e54e69f7d.framework.js.gz": {
+        "bytes": 97858,
+        "sha256": "1e62e8341e569e0b6cf7a1957c9ccc2ae45b85c0ba45f85ae3c8f33a93d98762"
+      }
+    }
+  },
+  "environment": {
+    "unity": "6000.3.25f1",
+    "dotnet_sdk": "10.0.401",
+    "macos": "27.0.1 (26A434), arm64",
+    "compression": "gzip",
+    "voiceover": "manual run pending; no automated pass",
+    "headed_browser": "Google Chrome for Testing 156.0.8078.4"
+  },
+  "note": "Hashes pin the unchanged B runtime source and all nine script .jslib bridges, including ShareShot. Later commits through 6fe8dea9543fd7a515dc073a4737485e1c4bade1 change only the browser checkers and the existing template-layout test contract. Complete 113-file player receipts remain in the separate review evidence.",
+  "validation_source_commit": "6fe8dea9543fd7a515dc073a4737485e1c4bade1",
+  "boot_3_cold_runs_cpu4": {
+    "base": {
+      "map_build_median_ms": 4282,
+      "first_frame_median_ms": 15454
+    },
+    "b": {
+      "map_build_median_ms": 4610,
+      "first_frame_median_ms": 17703
+    },
+    "gate": "PASS; existing default allowed growth max(300ms,50%) for each median"
+  }
+}

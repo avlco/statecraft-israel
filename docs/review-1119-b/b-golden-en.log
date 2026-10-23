@@ -1,0 +1,95 @@
+Installed 1 package in 13ms
+viewport 1920x1080 at DPR 1 (expect res=1920x1080)
+console: [UnityCache] 'http://localhost:53365/Build/7c7214c172eab8efbc747339ff004217.data.gz' successfully downloaded and stored in the browser cache
+console: [UnityMemory] Configuration Parameters - Can be set up in boot.config
+console:     "memorysetup-allocator-temp-initial-block-size-main=262144"
+console:     "memorysetup-allocator-temp-initial-block-size-worker=262144"
+console:     "memorysetup-temp-allocator-size-audio-worker=65536"
+console:     "memorysetup-remapper-allocator-initial-capacity=32768"
+console:     "memorysetup-temp-allocator-size-background-worker=32768"
+console:     "memorysetup-bucket-allocator-granularity=16"
+console:     "memorysetup-bucket-allocator-bucket-count=8"
+console:     "memorysetup-bucket-allocator-block-size=4194304"
+console:     "memorysetup-bucket-allocator-block-count=1"
+console:     "memorysetup-main-allocator-block-size=16777216"
+console:     "memorysetup-thread-allocator-block-size=16777216"
+console:     "memorysetup-gfx-main-allocator-block-size=16777216"
+console:     "memorysetup-gfx-thread-allocator-block-size=16777216"
+console:     "memorysetup-cache-allocator-block-size=4194304"
+console:     "memorysetup-typetree-allocator-block-size=2097152"
+console:     "memorysetup-profiler-bucket-allocator-granularity=16"
+console:     "memorysetup-profiler-bucket-allocator-bucket-count=8"
+console:     "memorysetup-profiler-bucket-allocator-block-size=4194304"
+console:     "memorysetup-profiler-bucket-allocator-block-count=1"
+console:     "memorysetup-profiler-allocator-block-size=16777216"
+console:     "memorysetup-profiler-editor-allocator-block-size=1048576"
+console:     "memorysetup-temp-allocator-size-main=4194304"
+console:     "memorysetup-job-temp-allocator-block-size=2097152"
+console:     "memorysetup-job-temp-allocator-block-size-background=1048576"
+console:     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+console: Input System module state changed to: Initialized.
+console: [Physics::Module] Initialized fallback backend.
+console: [Physics::Module] Id: 0xdecafbad
+console: Loading player data from data.unity3d
+console: Initialize engine version: 6000.3.25f1 (e1dba0a9aba4)
+console: [Subsystems] Discovering subsystems at path UnitySubsystems
+console: Creating WebGL 2.0 context.
+console: Renderer: WebKit WebGL
+console: Vendor:   WebKit
+console: Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+console: GLES:     3
+console:  EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_render_snorm EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_mirror_clamp_to_edge EXT_texture_norm16 KHR_parallel_shader_compile NV_shader_noperspective_interpolation OES_draw_buffers_indexed OES_sample_variables OES_shader_multisample_interpolation OES_texture_float_linear WEBGL_blend_func_extended WEBGL_clip_cull_distance WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_compressed_texture_pvrtc WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode WEBGL_provoking_vertex WEBGL_render_shared_exponent WEBGL_stencil_texturing GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_
+console: depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_render_snorm GL_EXT_texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_KHR_parallel_shader_compile GL_NV_shader_noperspective_interpolation GL_OES_draw_buffers_indexed GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_texture_float_linear GL_WEBGL_blend_func_extended GL_WEBGL_clip_cull_distance GL_WEBGL_compressed_texture_astc GL_WEBGL_compressed_texture_etc GL_WEBGL_compressed_texture_etc1 GL_WEBGL_compressed_texture_pvrtc GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode GL_WEBGL_provoking_vertex GL_WEBGL_render_shared_exponent GL_WEBGL_stencil_texturing
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1
+console: [Physics::Module] Selected backend.
+console: [Physics::Module] Name: PhysX
+console: [Physics::Module] Id: 0xf2b8ea05
+console: [Physics::Module] SDK Version: 4.1.2
+console: [Physics::Module] Integration Version: 1.0.0
+console: [Physics::Module] Threading Mode: Single-Threaded
+console: Input System initialize...
+console: UnloadTime: 2.199999 ms
+console: Audio context resumed after 0.694 seconds.
+console: GOLDEN OK hash1950 f3ec68b734a3beb24df9a873e0400f0253aed48f3cde2ea12415f1890dcaa5b0
+console: GOLDEN OK hash1952 6b374f69a0ed276eeea69737e2a8b0e72d26feb930dab35e8f7c50113c4e9c0b
+console: GOLDEN OK smoke5 bc2ab42b43bab8f19eb9b25368a3d4da5f2d3fdfed092b480c8d2738b035a298
+console: GOLDEN OK smoke-orders 9f224bd44792f73f393a8ec8f552f20d3bc3c05ab26d08d1b58762b2bf075114
+console: GOLDEN OK scenario-reckless cb1c96d52d08ec2ca41dc12a87e899b24604d7efe4e22c073dfa46cbcb425e46
+console: GOLDEN OK scenario-cautious f672a0f36fd34752f7a51cbd1698db760b168380e7771c55ef13c7e83ffa5216
+console: GOLDEN OK scenario-mvp-absorb-first 6aa49f62b0c9bce24393a98d8aac1b4da9f7aed58dbee6bf3eae694c31097a76
+console: GOLDEN OK mvp-end 6b374f69a0ed276eeea69737e2a8b0e72d26feb930dab35e8f7c50113c4e9c0b
+console: GOLDEN OK scenario-mvp-defeat 584a828a24355f522b8717646a7173b4567d2c202c111c048461d435fd66ccb1
+console: KITS ground_tint_ms=1.6 places=296
+console: KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=204 plant_ms=71 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+console: BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
+console: Trying to get length of sound which is not loaded yet.
+console: Trying to get length of sound which is not loaded yet.
+console: Trying to get length of sound which is not loaded yet.
+console: PEOPLE: 0 civilian figures placed, 0 not drawn
+console: RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
+console: SEA/AIR: 0 collection craft placed, 0 not drawn
+console: GAME OK 1948-05-15 turn 0 hash 6ef2f4e3df0dbb263752451f5e70b623133713ebf37f12c3e27cb509f50490d3
+console: SEA/AIR: 0 collection craft placed, 0 not drawn
+console: TURN 1 1948-06-15 hash 36b80c4ea1935b6c5058dd811ac1efe764b16a942407db6586d20a38d3164efa
+console: SMOKE turn 1 1948-06-15 refused 0
+console: PEOPLE: 0 civilian figures placed, 0 not drawn
+console: RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
+console: SEA/AIR: 0 collection craft placed, 0 not drawn
+console: TURN 2 1948-07-15 hash 6391f703a557f52472e2ac8cba0cfce87778d1c8ac0ec58e9c2009874b600769
+console: SMOKE turn 2 1948-07-15 refused 0
+console: PEOPLE: 0 civilian figures placed, 0 not drawn
+console: RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
+console: TURN 3 1948-08-15 hash 4b612c96796c9097a63f61c23096e8a9bbc67f93853767ee40bde2eff87ac98d
+console: SMOKE turn 3 1948-08-15 refused 0
+console: TURN 4 1948-09-15 hash 64b11634b2dc67fe65d2174dc970379cd34baf136e76959fddf843b1c60ef427
+console: SMOKE turn 4 1948-09-15 refused 0
+console: TURN 5 1948-10-15 hash bc2ab42b43bab8f19eb9b25368a3d4da5f2d3fdfed092b480c8d2738b035a298
+console: SMOKE turn 5 1948-10-15 refused 0
+console: SMOKE OK 5 turns 1948-10-15 bc2ab42b43bab8f19eb9b25368a3d4da5f2d3fdfed092b480c8d2738b035a298
+PASS: saw GOLDEN OK hash1950 f3ec68b734a3beb24df9a873e0400f0253aed48f3cde2ea12415f1890dcaa5b0, GOLDEN OK hash1952 6b374f69a0ed276eeea69737e2a8b0e72d26feb930dab35e8f7c50113c4e9c0b, GOLDEN OK smoke5 bc2ab42b43bab8f19eb9b25368a3d4da5f2d3fdfed092b480c8d2738b035a298, GOLDEN OK smoke-orders 9f224bd44792f73f393a8ec8f552f20d3bc3c05ab26d08d1b58762b2bf075114, GOLDEN OK scenario-reckless cb1c96d52d08ec2ca41dc12a87e899b24604d7efe4e22c073dfa46cbcb425e46, GOLDEN OK scenario-cautious f672a0f36fd34752f7a51cbd1698db760b168380e7771c55ef13c7e83ffa5216, GOLDEN OK scenario-mvp-absorb-first 6aa49f62b0c9bce24393a98d8aac1b4da9f7aed58dbee6bf3eae694c31097a76, GOLDEN OK mvp-end 6b374f69a0ed276eeea69737e2a8b0e72d26feb930dab35e8f7c50113c4e9c0b, GOLDEN OK scenario-mvp-defeat 584a828a24355f522b8717646a7173b4567d2c202c111c048461d435fd66ccb1, SMOKE OK 5 turns 1948-10-15 bc2ab42b43bab8f19eb9b25368a3d4da5f2d3fdfed092b480c8d2738b035a298

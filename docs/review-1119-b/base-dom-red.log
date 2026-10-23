@@ -1,0 +1,29 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____ test_the_product_renderer_is_safe_read_only_and_only_announces_status _____
+
+tmp_path = PosixPath('/temporary/pytest-of-review/pytest-54/test_the_product_renderer_is_s0')
+
+    @pytest.mark.skipif(not CHROME.exists(), reason="needs installed Chrome for real DOM execution")
+    def test_the_product_renderer_is_safe_read_only_and_only_announces_status(tmp_path):
+        template = TEMPLATE.read_text(encoding="utf-8")
+        match = re.search(r"      function mountCompanion\(\) \{.*?\n      \}", template, re.S)
+>       assert match, "the product template has no read-only companion renderer"
+E       AssertionError: the product template has no read-only companion renderer
+E       assert None
+
+tools/tests/test_accessibility_companion.py:69: AssertionError
+________ test_the_companion_mounts_only_after_the_unity_loader_resolves ________
+
+    def test_the_companion_mounts_only_after_the_unity_loader_resolves():
+        text = TEMPLATE.read_text(encoding="utf-8")
+>       assert re.search(r"\}\)\.then\(function \(\) \{\s*mountCompanion\(\);", text)
+E       assert None
+E        +  where None = <function search at 0x108049580>('\\}\\)\\.then\\(function \\(\\) \\{\\s*mountCompanion\\(\\);', '<!DOCTYPE html>\n<html lang="en-us">\n  <head>\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=...     .then(useCurrentPage)\n        .catch(function () {})\n        .then(start);\n    </script>\n  </body>\n</html>\n')
+E        +    where <function search at 0x108049580> = re.search
+
+tools/tests/test_accessibility_companion.py:82: AssertionError
+=========================== short test summary info ============================
+FAILED tools/tests/test_accessibility_companion.py::test_the_product_renderer_is_safe_read_only_and_only_announces_status
+FAILED tools/tests/test_accessibility_companion.py::test_the_companion_mounts_only_after_the_unity_loader_resolves
+2 failed in 1.36s

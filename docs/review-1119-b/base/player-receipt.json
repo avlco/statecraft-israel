@@ -1,0 +1,457 @@
+{
+  "source": "f9d8371d693c5996399c13fe5513bd225ec2f472",
+  "files": {
+    "favicon.ico": {
+      "bytes": 4331,
+      "sha256": "8a32a2b178b386b020fb2d75ada56fa12ed886c767937f397378001f93747fd4"
+    },
+    "index.html": {
+      "bytes": 4506,
+      "sha256": "aa6d203bfef55706f7afb4f4238dfe8b4f91349a44ca8e66396984512542d6dd"
+    },
+    "event-photos.json": {
+      "bytes": 3795,
+      "sha256": "18779c1d4dda03e56f5f7033c44784c4fb2b94095af74fd69996247c7a73d119"
+    },
+    "StreamingAssets/video/altalena.mp4": {
+      "bytes": 926561,
+      "sha256": "37d2e740653c056c3eb5e682911ee9bb591c0eb94519fbda894ed232c50a2909"
+    },
+    "StreamingAssets/video/frumkin_commission.mp4": {
+      "bytes": 1256529,
+      "sha256": "80c038d76e897362ed15c058513d539458cd9033823b5d03b6dc715f76562975"
+    },
+    "StreamingAssets/video/altalena-outcome.mp4": {
+      "bytes": 796126,
+      "sha256": "3290235920ee9d1dc2359b85effe168ab272140a3c15551323686098aec804a0"
+    },
+    "StreamingAssets/video/operation_yoav.mp4": {
+      "bytes": 630104,
+      "sha256": "023706cf59ede4e3937bc6e3713b19fce6255dde863236633c05ea1b6bb7d507"
+    },
+    "StreamingAssets/video/first_truce.mp4": {
+      "bytes": 926619,
+      "sha256": "eb98b8d679a97a4e74b26e3fd40398c3fc656a2990768a4a07fe86c45fef2356"
+    },
+    "StreamingAssets/video/operation_horev.mp4": {
+      "bytes": 1021550,
+      "sha256": "9bb6c15d62fba4b0612148e305d21623eccc35d580ad36689c39ae558c20fbc5"
+    },
+    "StreamingAssets/video/first_new_yishuv.mp4": {
+      "bytes": 539519,
+      "sha256": "b9dcf95f9f85e7519ed5848d0a95f988e86e072a0a57cb2c60a64aa33598dd2b"
+    },
+    "StreamingAssets/video/hula_drainage-outcome.mp4": {
+      "bytes": 698641,
+      "sha256": "36bf04a1003e2d0f632241bf126399d31f7f78d321a8ea08c7c9e643f9c18332"
+    },
+    "StreamingAssets/video/maabarot_policy.mp4": {
+      "bytes": 1097873,
+      "sha256": "60f7c69437ab7d938eab9a16a0287862decf1439f47f7636b233d8c1d192afd4"
+    },
+    "StreamingAssets/video/austerity_1949.mp4": {
+      "bytes": 503764,
+      "sha256": "a478e52f6348d99b748ab240c56770051fe8ca0eee2d53b3922e66cf7b0f0a9e"
+    },
+    "StreamingAssets/video/operation_horev-outcome.mp4": {
+      "bytes": 648282,
+      "sha256": "34bf30e2144af91402eb1f2ff608dd7fdc337431ce59e739eeebb94cadfbcd31"
+    },
+    "StreamingAssets/video/first_new_yishuv-outcome.mp4": {
+      "bytes": 343386,
+      "sha256": "2cb387974086e75ea7bb671799c4243e2ec17b2e2da41ec3f0e9cbd09f1399a7"
+    },
+    "StreamingAssets/video/ten_days.mp4": {
+      "bytes": 761558,
+      "sha256": "c1a121199fefafaa0ae4af5ef53e1b5e60a005c65e89ffbf61273d725fa1dfff"
+    },
+    "StreamingAssets/video/law_of_return.mp4": {
+      "bytes": 1090127,
+      "sha256": "7de307d0054fcda695fded434fceaacf8f3d20bb4211c369a6f8e2c37a261540"
+    },
+    "StreamingAssets/video/maabarot_policy-outcome.mp4": {
+      "bytes": 638296,
+      "sha256": "479eef410859e096efe635bfc1ad17a2f5dd87183ebfc010cf0c7c7bce53079e"
+    },
+    "StreamingAssets/video/jerusalem_ceasefire.mp4": {
+      "bytes": 372364,
+      "sha256": "5c92dff877abb9d3683f81367a8c5d6056d5af0bb40483ce030ef0d16f4722a1"
+    },
+    "StreamingAssets/video/hula_drainage.mp4": {
+      "bytes": 1508823,
+      "sha256": "3b8dff2b62ebc1c73ce93783511a277fdd851661e0ab3a35db0e661e9199038c"
+    },
+    "StreamingAssets/video/austerity_1949-outcome.mp4": {
+      "bytes": 320142,
+      "sha256": "a67fe90992ccedb57f1d217d881635f9906068076033aa2da2419b485d6b2b67"
+    },
+    "StreamingAssets/video/iraqi_exodus-outcome.mp4": {
+      "bytes": 500469,
+      "sha256": "19ed032b29d947eb1405ad0f18ac7546b13fd157de7c0840745ca1840348e534"
+    },
+    "StreamingAssets/video/latrun_proposal.mp4": {
+      "bytes": 984677,
+      "sha256": "d46f0ca640935bc681abbb8f9cc3607d362700ff4e4f306811fb043f1e211f58"
+    },
+    "StreamingAssets/video/iraqi_exodus.mp4": {
+      "bytes": 783006,
+      "sha256": "6395a6cb62844395102741fe4eed50f4775e40a00b1ac4984f59ed64252fad39"
+    },
+    "StreamingAssets/collection/collection-checks.txt": {
+      "bytes": 523,
+      "sha256": "b7c5daa4afbab521222e1cfa9ef94c8cb1f6da81295a6005fd09e8b2de9f0b2b"
+    },
+    "StreamingAssets/collection/collection-animals": {
+      "bytes": 1623376,
+      "sha256": "e87d74c945ca14db24a36f50d7c33ed507facb608d4967c1125eb8cd69cb6c79"
+    },
+    "StreamingAssets/collection/collection-vehicles": {
+      "bytes": 3460148,
+      "sha256": "3f5d732546142ce437cf50a3c67fc0272f0398cc45339fb28af0c763a496dc51"
+    },
+    "StreamingAssets/collection/collection-towns": {
+      "bytes": 2531232,
+      "sha256": "ed57360947b1dfbbc913766a04b6dcbd04d150cf155fc290e79b1d573f86bdf4"
+    },
+    "StreamingAssets/collection/collection-people": {
+      "bytes": 6309797,
+      "sha256": "e1988743ab115e272450fea2c45c7288b1167945c1ea7214a439eed922b8855b"
+    },
+    "StreamingAssets/collection/collection-special-buildings": {
+      "bytes": 1397357,
+      "sha256": "669b98b7c6bf1a89fcecbe72680e58819a01d20dab7fb07e3b8057a9275b0f4c"
+    },
+    "StreamingAssets/golden/manifest.txt": {
+      "bytes": 1164,
+      "sha256": "4fcb4b737fe16b51c69caf9a7e75e1ac0ff7ee05c2add9d49b20c130f0c9d1ba"
+    },
+    "StreamingAssets/golden/scenarios/reckless.yaml": {
+      "bytes": 494,
+      "sha256": "ea66d62c496f15d19eac63e8aa4ce06dfa0895c8a97805bed7ef9b7124587abd"
+    },
+    "StreamingAssets/golden/scenarios/cautious.yaml": {
+      "bytes": 430,
+      "sha256": "986d9f17ea0c60054879fdeed23a8f6aaeaed5c68473bc9c8fdaa6797b46ba96"
+    },
+    "StreamingAssets/golden/scenarios/mvp-absorb-first.yaml": {
+      "bytes": 2333,
+      "sha256": "5882fd824a648d8f30605cac033fc05e56c673303af204fbc5ab341e844cd7c5"
+    },
+    "StreamingAssets/golden/scenarios/mvp-defeat.yaml": {
+      "bytes": 1481,
+      "sha256": "f64c206d78385e2c1c87d4145aed29c0e58d1a012c56229e165119ac8295debc"
+    },
+    "StreamingAssets/content/offices.yaml": {
+      "bytes": 21603,
+      "sha256": "5f94725b4b84e78d7f468de6735f892d943152a091eb2f85c36e8030c83e32d6"
+    },
+    "StreamingAssets/content/settlement_targets.yaml": {
+      "bytes": 5171,
+      "sha256": "23de085e2b07ee3b2b24866c9701f5ddb3162e16088e957213c1425d99fd12ca"
+    },
+    "StreamingAssets/content/model.yaml": {
+      "bytes": 6180,
+      "sha256": "f310d2f695267799247d4c952fd557ecce2e8da883ae442553097910cf8c7c34"
+    },
+    "StreamingAssets/content/population.yaml": {
+      "bytes": 1361,
+      "sha256": "147df5c4449e6a788b5f5a690a29111a932ba281161b20d507d3850e997f64e8"
+    },
+    "StreamingAssets/content/aliyah.yaml": {
+      "bytes": 2810,
+      "sha256": "0922da1073a6c82b85e44bcf1200a314ee484b0bbeb0c0533a131b80b6f59281"
+    },
+    "StreamingAssets/content/governments.yaml": {
+      "bytes": 18853,
+      "sha256": "fd559d8a12ab0c4990f790cf4449e5ad211cc9a79e1f139e5d8012fa62b0c578"
+    },
+    "StreamingAssets/content/bundle.json": {
+      "bytes": 866081,
+      "sha256": "0175d654fb42b7583e974b9bc76a8328a570d9f89be34e2d091d773f48b0360f"
+    },
+    "StreamingAssets/content/rules.yaml": {
+      "bytes": 34437,
+      "sha256": "2e4b0238ade717942dd41e572376720bd25b45cc3b85f1574a5cf989f80c628f"
+    },
+    "StreamingAssets/content/parties.yaml": {
+      "bytes": 8575,
+      "sha256": "6f7936a667ab2fc9741bab4623aa1208860977ee6011088548ea8e54acadc57d"
+    },
+    "StreamingAssets/content/sites.yaml": {
+      "bytes": 24745,
+      "sha256": "26fc10c2c391d20738a7c4420932e53c4feda200323d4f98082e2e7cce333c0f"
+    },
+    "StreamingAssets/content/projects.yaml": {
+      "bytes": 3142,
+      "sha256": "81eb8a7a9dc86c963038d2df6d01c8e2cd27c73b2dfbd80dbf92c58878e3708f"
+    },
+    "StreamingAssets/content/manifest.json": {
+      "bytes": 2487,
+      "sha256": "642e35b04ab5c2e1e604fcd110e09b0c594885481770ad3ec43524c5c7445f9a"
+    },
+    "StreamingAssets/content/unit_types.yaml": {
+      "bytes": 8012,
+      "sha256": "43a3243851314747150f56a2dc8dd24092f9f9ae5ec41262d1cb2615123cc942"
+    },
+    "StreamingAssets/content/eras.yaml": {
+      "bytes": 1137,
+      "sha256": "e2bbc3ff8f4fe6360ad29e4af1b89b62e54f6b69e4c5e7752762c11f47a9772e"
+    },
+    "StreamingAssets/content/legislatures.yaml": {
+      "bytes": 11586,
+      "sha256": "c3db3ac7cfbebfe991e6c3a8e182ce12686e5407e8d5c01f7ec47c9a7272addf"
+    },
+    "StreamingAssets/content/cities.yaml": {
+      "bytes": 13997,
+      "sha256": "c77dd4f0ae15fb7fbddc7dbb9242c991e919ae1ac18a0765dd94b0ed765c14ee"
+    },
+    "StreamingAssets/content/corridors.yaml": {
+      "bytes": 3964,
+      "sha256": "86fc72ea4d5c266cf2c3c0d6e0ecddb9862ffb44ccf9f51627c58857f83066e8"
+    },
+    "StreamingAssets/content/objectives.yaml": {
+      "bytes": 3681,
+      "sha256": "52b8633c95666076d21ab910c15b982c660b0612564d41c6b181322dfed497d9"
+    },
+    "StreamingAssets/content/people.yaml": {
+      "bytes": 90559,
+      "sha256": "4f82989ea6248a9e017f4c98ab0dff1ce3e5e13d62555dcc343d9dfd2acdfd2a"
+    },
+    "StreamingAssets/content/map/armistice_hexes_1949.yaml": {
+      "bytes": 10502,
+      "sha256": "3419b64df21b4593807f3e9855ebb80aa264e2862082ab5886f9a6e428e14901"
+    },
+    "StreamingAssets/content/map/unit_anchor_hexes.yaml": {
+      "bytes": 1637,
+      "sha256": "51872f92cd5b36cdec93183800a551eba76da9668bfa31095ab315445e9ee1fc"
+    },
+    "StreamingAssets/content/map/subdistrict_hexes_1948.yaml": {
+      "bytes": 17903,
+      "sha256": "d4c4db836f97df72e017d7ac2037298b2448ab924636dca0e1a39a5fd01de44d"
+    },
+    "StreamingAssets/content/map/units_1948.yaml": {
+      "bytes": 120327,
+      "sha256": "8363cac45929433293f8df74e36e202f7161ae7332e2bdbe553cbcd79691a938"
+    },
+    "StreamingAssets/content/map/route_paths_1948.tsv": {
+      "bytes": 29838,
+      "sha256": "b91e99ca6b105229ff38238363e4219b128579e1ced392fdfe652e850be4cce6"
+    },
+    "StreamingAssets/content/map/locations_1948.yaml": {
+      "bytes": 10428,
+      "sha256": "5d72617f6f11cd727f7d75665d6df6c7e86bb8a2a016a672bae2783e29dd34c1"
+    },
+    "StreamingAssets/content/map/control_hexes_1948_49.tsv": {
+      "bytes": 12643,
+      "sha256": "9672e4f8872339b6ef414348ad7a64e78e70b81f132f39284fc681463d591d61"
+    },
+    "StreamingAssets/content/map/overrides.yaml": {
+      "bytes": 106,
+      "sha256": "2bed759457d53f3014e6062cc5e7f6a38755966b4186f72b01905f061852051b"
+    },
+    "StreamingAssets/content/map/localities_1948.tsv": {
+      "bytes": 30715,
+      "sha256": "8fea85b8938888c95d16f71a93342642c1216be6de2393a78e075a4f73900615"
+    },
+    "StreamingAssets/content/map/settlement_population_1945.yaml": {
+      "bytes": 5893,
+      "sha256": "140333a9d60ca38f79d0324097156012c54392aca7d0286dd2a7867c2f8635ae"
+    },
+    "StreamingAssets/content/map/hexes.json": {
+      "bytes": 99961,
+      "sha256": "ea92ac1d56f5b7db12230455aad23dc121b9c1086713136efe1bc28442cb2378"
+    },
+    "StreamingAssets/content/map/settlement_hexes.yaml": {
+      "bytes": 1045,
+      "sha256": "e28db2ad62571661c3d6b848136df60a779c7b55fa08e3c25405ccfef4705e10"
+    },
+    "StreamingAssets/content/map/settlements_1948.yaml": {
+      "bytes": 9419,
+      "sha256": "38a6a2ee291be6c74e1b0e5cf4d031e18074d94f98aa5014422d4d5d10c94c5d"
+    },
+    "StreamingAssets/content/map/subdistrict_hexes_1948.tsv": {
+      "bytes": 10560,
+      "sha256": "d759dcbe53ba7b50e033398c108b45e41c466d35b71d92dec8612decc7ddf2a9"
+    },
+    "StreamingAssets/content/map/route_paths_1948.yaml": {
+      "bytes": 42474,
+      "sha256": "f07916e31a67244acac3b202729a1358a28aafadc914a2e83e27e343e8b75d22"
+    },
+    "StreamingAssets/content/map/armistice_hexes_1949.tsv": {
+      "bytes": 9000,
+      "sha256": "70876b915883693137c4f0a7ce078390186fbd37d564ab778415fd49922775b9"
+    },
+    "StreamingAssets/content/map/control_hexes_1948_49.yaml": {
+      "bytes": 17017,
+      "sha256": "160ec13b26f7d0a31811aefb4c7742c0225baaa1778497bbf32e9de468f5bc4a"
+    },
+    "StreamingAssets/content/events/idf_founding.yaml": {
+      "bytes": 3644,
+      "sha256": "6777150c6f2cdb064cacd181761f8bb80fa25205c9fc25e523a842a825adae58"
+    },
+    "StreamingAssets/content/events/operation_yoav.yaml": {
+      "bytes": 4970,
+      "sha256": "418ea425c461986c0ad2bcf9d493941adc9e22082877506c867b6aab4cf75250"
+    },
+    "StreamingAssets/content/events/sinai_withdrawal.yaml": {
+      "bytes": 4901,
+      "sha256": "29854edb31218257e99417f86f23a6dde91c07a9e66230fa1a1b4a0248b15ac5"
+    },
+    "StreamingAssets/content/events/operation_horev.yaml": {
+      "bytes": 3531,
+      "sha256": "72fb22533fc52e5507502fdce6e84c59cbb0649118b00a1701e5e9b522437678"
+    },
+    "StreamingAssets/content/events/ten_days.yaml": {
+      "bytes": 6602,
+      "sha256": "805500e569a78c2debd27df872614a153730bdba2360ff94b2edb74ea76c56cb"
+    },
+    "StreamingAssets/content/events/hula_drainage.yaml": {
+      "bytes": 2958,
+      "sha256": "0b400fda5ce85e202cf2bf7c2557a2ff612f406f33f2f59b24e943636aaf372e"
+    },
+    "StreamingAssets/content/events/absorb_immigrants.yaml": {
+      "bytes": 2566,
+      "sha256": "56880a2e2a96ed94f9131f71e3be55d8f2b27a8cab7aceda83e7cb6b3dd886de"
+    },
+    "StreamingAssets/content/events/rhodes_talks.yaml": {
+      "bytes": 4802,
+      "sha256": "9ff18db85e108157ab4ff3753fbf42f9933bedb5f021310979d05fae1b731d1c"
+    },
+    "StreamingAssets/content/events/law_of_return.yaml": {
+      "bytes": 1572,
+      "sha256": "d9453c9d4645bfe7b8bd715bbc4aae6d2f5156b72c717317bd6990184b8e61e4"
+    },
+    "StreamingAssets/content/events/bernadotte_assassination.yaml": {
+      "bytes": 10383,
+      "sha256": "9263942438c459aad95b51c2569d1aa89cb2255f7278655e244121044e5755c4"
+    },
+    "StreamingAssets/content/events/education_registration_1951.yaml": {
+      "bytes": 2588,
+      "sha256": "cce6e7f6ca42058ed265da888258cce7fc40407710bba98e028ad7801a351e11"
+    },
+    "StreamingAssets/content/events/first_truce.yaml": {
+      "bytes": 5268,
+      "sha256": "251eaf274e28427c667a1ea46a4d0f3e9f5eefbc4bff8fe1141fc6d8bdf6b378"
+    },
+    "StreamingAssets/content/events/armistice_syria.yaml": {
+      "bytes": 1644,
+      "sha256": "c8424d98187b549a6e7d5d392d9e064bcf6ff0c62d4da3118c940e12ea6300b0"
+    },
+    "StreamingAssets/content/events/operation_hiram.yaml": {
+      "bytes": 5865,
+      "sha256": "77657ee082201710acf8d1ab25979ddb5571261452e3a8c9ccc5d33e783177b7"
+    },
+    "StreamingAssets/content/events/armistice_egypt.yaml": {
+      "bytes": 1822,
+      "sha256": "b85f731749e0636502a8d4a10118fbdd9c21f56a6009d6ccc0857fd5591943bc"
+    },
+    "StreamingAssets/content/events/armistice_jordan.yaml": {
+      "bytes": 1643,
+      "sha256": "d6284502a8b49e7463deabd81ee760181451b732bf12db46ead2e838219e4cd4"
+    },
+    "StreamingAssets/content/events/jerusalem_ceasefire.yaml": {
+      "bytes": 2937,
+      "sha256": "79d875217efb2d614538db27b405d9469d46fb61b5288651766611e5559a4643"
+    },
+    "StreamingAssets/content/events/elections_1949.yaml": {
+      "bytes": 5962,
+      "sha256": "959ae7714c1a53a3df6766e6d191bc3490f3fa5b5d2972dd1b965a855106c110"
+    },
+    "StreamingAssets/content/events/railway_complete.yaml": {
+      "bytes": 1043,
+      "sha256": "8330e03e677a364b2e33699a4811b30e4765303a2f5f562fd00004148ec89d1c"
+    },
+    "StreamingAssets/content/events/burma_road_complete.yaml": {
+      "bytes": 1183,
+      "sha256": "7b567dd02b4839e62350936ed8b0b6756a7567688000d1bf8d79c1eaebefd450"
+    },
+    "StreamingAssets/content/events/austerity_1949.yaml": {
+      "bytes": 3261,
+      "sha256": "f5b0d85ce7fc8772c55f6d235dc8441372083a35e6f51282e63f49b2e17397af"
+    },
+    "StreamingAssets/content/events/second_truce.yaml": {
+      "bytes": 4751,
+      "sha256": "56c2259ad9af32b4d6d43d22044908611e6b43f2836211350beb125e864b1611"
+    },
+    "StreamingAssets/content/events/reparations_claim.yaml": {
+      "bytes": 5008,
+      "sha256": "b9982aae12edd0f6e2d9f8e4e3273d865d2e9106480fae5824728524edfa4139"
+    },
+    "StreamingAssets/content/events/ministry_supply_crisis.yaml": {
+      "bytes": 3119,
+      "sha256": "000d54fdc5198b105f101bfa7816a152e2c7682f01a97da67e97988e5ef141db"
+    },
+    "StreamingAssets/content/events/first_new_yishuv.yaml": {
+      "bytes": 1301,
+      "sha256": "bb401a6e929f8f7e6bbf4c48b245abe62bbebd812a07844e0f396e8b6656205e"
+    },
+    "StreamingAssets/content/events/frumkin_commission.yaml": {
+      "bytes": 5341,
+      "sha256": "e88bc10c1ae0739c3191fa03a3958f98c7136bd3a1de9e93aaf129ddb8fff55c"
+    },
+    "StreamingAssets/content/events/israel_bonds.yaml": {
+      "bytes": 5282,
+      "sha256": "b8f95f2ab683a4b88ca36b8a375d168a4bf5921ccb864e5504c45d66821bea08"
+    },
+    "StreamingAssets/content/events/maabarot_policy.yaml": {
+      "bytes": 3487,
+      "sha256": "de29ffa17fbc70aa7283b833e546a219b449c8b3e0d712e3d158ed18169d592b"
+    },
+    "StreamingAssets/content/events/armistice_lebanon.yaml": {
+      "bytes": 1650,
+      "sha256": "e87a66c9df444b0c039b23d2533956d500ca1c277b3ce4236b534b121c24e87e"
+    },
+    "StreamingAssets/content/events/jerusalem_military_government.yaml": {
+      "bytes": 6291,
+      "sha256": "322585aeedf0c69b9f81722edebaebbdc0d27ebb4e7b67d275e898607d2cd211"
+    },
+    "StreamingAssets/content/events/forex_crisis_1951.yaml": {
+      "bytes": 4753,
+      "sha256": "212a675012c6cfb915b960de96d7a2e2eac9622c9652afd7a6ffd4ee2e1ed304"
+    },
+    "StreamingAssets/content/events/clothing_rationing_1950.yaml": {
+      "bytes": 2802,
+      "sha256": "2e33baac62ea7d12e36b9a5fd5237a128139671b8729c4841c967afdfa6dba60"
+    },
+    "StreamingAssets/content/events/altalena.yaml": {
+      "bytes": 8567,
+      "sha256": "7c70e207bcc8b354e5c137e7c7b15d3db1de10f85303e197495615360de397ca"
+    },
+    "StreamingAssets/content/events/iraqi_exodus.yaml": {
+      "bytes": 2738,
+      "sha256": "62c43ba683f4981951829a72c0cae97b1ac8f11663472cccf73b46cefc1c60f5"
+    },
+    "StreamingAssets/content/events/latrun_proposal.yaml": {
+      "bytes": 3253,
+      "sha256": "f7612a99e1e6f378e6b9a91f36bb4c31e16de465e8bccb2785fea70bfe4e6932"
+    },
+    "StreamingAssets/audio/declaration-1948-isa-00113hj.wav": {
+      "bytes": 1784396,
+      "sha256": "24e7bc48f5d0134bbe28f0f81b3668235398e3a4bfd83d54aa8650aeae2da370"
+    },
+    "StreamingAssets/map/heightmap.json": {
+      "bytes": 445,
+      "sha256": "43b718f0c9e147454c4203666ce39fbd76695fa674677f45a2fac45ac57716b2"
+    },
+    "StreamingAssets/map/heightmap.r16z": {
+      "bytes": 4062705,
+      "sha256": "638721a5cdfc914bb9491213de76764c8fe0961fbc637d201508b62e3e323b32"
+    },
+    "Build/3819e5553f82a81f0a8723d8c806de38.wasm.gz": {
+      "bytes": 14343950,
+      "sha256": "082dcbf97facc03ca70c55d6e41b4f080fcf04a4dea3d5c16ec760f26bddcc8f"
+    },
+    "Build/63b4c10671cf2aaf804d4c00174e8eb9.framework.js.gz": {
+      "bytes": 97719,
+      "sha256": "27e3bda280b2aff0e895c84e9d756699f32e78e02302e7be54c9ff8b7ae52403"
+    },
+    "Build/20e1f7adcfeae4edd67139e2ddfc4659.data.gz": {
+      "bytes": 25696308,
+      "sha256": "4df2277e47f3ec655bb22c489e3a8505086f1215ffbc3f63fa4355b2e70e8c61"
+    },
+    "Build/ae7e1e157d0e66915a37c0cf2e3e969e.loader.js": {
+      "bytes": 26983,
+      "sha256": "c2d015826f6182bab00675300c43b6d8cd95767de615bf99a67c46182e2578c5"
+    }
+  }
+}

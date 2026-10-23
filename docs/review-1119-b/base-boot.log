@@ -1,0 +1,97 @@
+machine_lock: taking the machine lock (exclusive)
+Installed 1 package in 9ms
+CPU 4.0x, run 1 of 3
+    5238 ms  BOOT phase=player started at=3383 ms dt=3383 ms
+    6639 ms  BOOT phase=downloaded 71 files at=4787 ms dt=1404 ms
+    9080 ms  BOOT phase=content parsed and validated at=7229 ms dt=2442 ms
+    9306 ms  BOOT phase=heightmap decoded at=7455 ms dt=226 ms
+    9319 ms  BOOT phase=hexes parsed at=7469 ms dt=14 ms
+    9458 ms  BOOT phase=localities parsed at=7607 ms dt=138 ms
+   11533 ms  BOOT phase=terrain heights set at=9682 ms dt=2075 ms
+   11619 ms  BOOT phase=terrain object created at=9768 ms dt=86 ms
+   11668 ms  BOOT phase=biome texture baked at=9817 ms dt=49 ms
+   11705 ms  BOOT phase=frame at=9854 ms dt=37 ms
+   11743 ms  BOOT phase=terrain water at=9892 ms dt=38 ms
+   11747 ms  BOOT phase=settlements placed at=9897 ms dt=5 ms
+   11765 ms  BOOT phase=route paths read at=9915 ms dt=18 ms
+   11770 ms  BOOT phase=route corridors at=9920 ms dt=5 ms
+   11773 ms  BOOT phase=footprints at=9923 ms dt=3 ms
+   11988 ms  BOOT phase=unit data read at=10138 ms dt=215 ms
+   12111 ms  BOOT phase=units placed at=10260 ms dt=122 ms
+   12944 ms  BOOT phase=kit buildings built at=11083 ms dt=823 ms
+   13228 ms  BOOT phase=kits built at=11377 ms dt=294 ms
+   13296 ms  BOOT phase=routes built at=11445 ms dt=68 ms
+   13309 ms  BOOT phase=map built at=11459 ms dt=14 ms
+   13310 ms  BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
+   13406 ms  BOOT phase=session started (turn 0, replayed) at=11555 ms dt=96 ms
+   13673 ms  BOOT phase=screens wired at=11822 ms dt=267 ms
+   13674 ms  BOOT phase=units layer data read at=11824 ms dt=2 ms
+   13912 ms  BOOT phase=units layer built at=12061 ms dt=237 ms
+   14313 ms  BOOT phase=start screen shown at=12463 ms dt=402 ms
+   14318 ms  BOOT phase=screens ready at=12468 ms dt=5 ms
+   14320 ms  GAME OK 1948-05-15 turn 0 hash f1e5c99ce3de154c15075d4ebc986ca5f5874fa1505b3673a963ed83edbece35
+BOOT map build 4230 ms, first frame 15454 ms
+CPU 4.0x, run 2 of 3
+    5131 ms  BOOT phase=player started at=3407 ms dt=3407 ms
+    6484 ms  BOOT phase=downloaded 71 files at=4761 ms dt=1354 ms
+    8878 ms  BOOT phase=content parsed and validated at=7157 ms dt=2396 ms
+    9101 ms  BOOT phase=heightmap decoded at=7380 ms dt=223 ms
+    9114 ms  BOOT phase=hexes parsed at=7393 ms dt=13 ms
+    9254 ms  BOOT phase=localities parsed at=7534 ms dt=141 ms
+   11334 ms  BOOT phase=terrain heights set at=9612 ms dt=2078 ms
+   11416 ms  BOOT phase=terrain object created at=9695 ms dt=83 ms
+   11461 ms  BOOT phase=biome texture baked at=9740 ms dt=45 ms
+   11499 ms  BOOT phase=frame at=9777 ms dt=37 ms
+   11537 ms  BOOT phase=terrain water at=9815 ms dt=38 ms
+   11542 ms  BOOT phase=settlements placed at=9821 ms dt=6 ms
+   11560 ms  BOOT phase=route paths read at=9838 ms dt=17 ms
+   11565 ms  BOOT phase=route corridors at=9843 ms dt=5 ms
+   11568 ms  BOOT phase=footprints at=9847 ms dt=4 ms
+   11789 ms  BOOT phase=unit data read at=10068 ms dt=221 ms
+   11915 ms  BOOT phase=units placed at=10194 ms dt=126 ms
+   12778 ms  BOOT phase=kit buildings built at=11045 ms dt=851 ms
+   13069 ms  BOOT phase=kits built at=11348 ms dt=303 ms
+   13145 ms  BOOT phase=routes built at=11424 ms dt=76 ms
+   13161 ms  BOOT phase=map built at=11439 ms dt=15 ms
+   13161 ms  BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
+   13259 ms  BOOT phase=session started (turn 0, replayed) at=11538 ms dt=99 ms
+   13506 ms  BOOT phase=screens wired at=11785 ms dt=247 ms
+   13507 ms  BOOT phase=units layer data read at=11786 ms dt=1 ms
+   13741 ms  BOOT phase=units layer built at=12019 ms dt=233 ms
+   14140 ms  BOOT phase=start screen shown at=12418 ms dt=399 ms
+   14145 ms  BOOT phase=screens ready at=12424 ms dt=6 ms
+   14147 ms  GAME OK 1948-05-15 turn 0 hash 3130482827a4ef1350ff4390e9fa7a24c281dfc970dbb99f9c83eb2156f99582
+BOOT map build 4282 ms, first frame 15263 ms
+CPU 4.0x, run 3 of 3
+    5208 ms  BOOT phase=player started at=3423 ms dt=3423 ms
+    6975 ms  BOOT phase=downloaded 71 files at=5194 ms dt=1771 ms
+    9709 ms  BOOT phase=content parsed and validated at=7928 ms dt=2734 ms
+    9935 ms  BOOT phase=heightmap decoded at=8153 ms dt=225 ms
+    9947 ms  BOOT phase=hexes parsed at=8166 ms dt=13 ms
+   10081 ms  BOOT phase=localities parsed at=8299 ms dt=133 ms
+   12190 ms  BOOT phase=terrain heights set at=10408 ms dt=2109 ms
+   12287 ms  BOOT phase=terrain object created at=10505 ms dt=97 ms
+   12348 ms  BOOT phase=biome texture baked at=10567 ms dt=62 ms
+   12386 ms  BOOT phase=frame at=10605 ms dt=38 ms
+   12429 ms  BOOT phase=terrain water at=10648 ms dt=43 ms
+   12434 ms  BOOT phase=settlements placed at=10653 ms dt=5 ms
+   12453 ms  BOOT phase=route paths read at=10672 ms dt=19 ms
+   12459 ms  BOOT phase=route corridors at=10678 ms dt=6 ms
+   12462 ms  BOOT phase=footprints at=10681 ms dt=3 ms
+   12685 ms  BOOT phase=unit data read at=10903 ms dt=222 ms
+   12810 ms  BOOT phase=units placed at=11029 ms dt=126 ms
+   13664 ms  BOOT phase=kit buildings built at=11872 ms dt=843 ms
+   13957 ms  BOOT phase=kits built at=12175 ms dt=303 ms
+   14033 ms  BOOT phase=routes built at=12251 ms dt=76 ms
+   14050 ms  BOOT phase=map built at=12269 ms dt=18 ms
+   14051 ms  BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
+   14149 ms  BOOT phase=session started (turn 0, replayed) at=12367 ms dt=98 ms
+   14412 ms  BOOT phase=screens wired at=12630 ms dt=263 ms
+   14413 ms  BOOT phase=units layer data read at=12632 ms dt=2 ms
+   14654 ms  BOOT phase=units layer built at=12872 ms dt=240 ms
+   15066 ms  BOOT phase=start screen shown at=13284 ms dt=412 ms
+   15071 ms  BOOT phase=screens ready at=13290 ms dt=6 ms
+   15073 ms  GAME OK 1948-05-15 turn 0 hash c37f78fa5f7b5666761cf1b22254a7d600b36f9c148c73b048eb910726088770
+BOOT map build 4341 ms, first frame 16260 ms
+BOOT map_build_ms median=4282 runs=3 cpu=4
+BOOT first_frame_ms median=15454 runs=3 cpu=4
