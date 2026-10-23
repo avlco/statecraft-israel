@@ -291,7 +291,7 @@ public class ArmisticeTests
         var m = Regions(); var t = hebrew ? HeText : Text; var a = m.Armistice!;
         var auja = a.Zones.Single(z => z.Key == "egypt_el_auja_dmz");
         var (q, r) = a.HexesOf(auja).First();
-        StringAssert.Contains(hebrew ? "נפת באר שבע" : "Beersheba Sub-District", InfoPanelPresenter.RegionText(m, t, q, r, Start));
+        StringAssert.Contains(hebrew ? "נפת באר־שבע" : "Beersheba Sub-District", InfoPanelPresenter.RegionText(m, t, q, r, Start));
         Assert.AreEqual(t.Format("info.armistice_zone", hebrew ? auja.NameHe : auja.Name, hebrew ? auja.AgreementHe : auja.Agreement, hebrew ? "\u206724 בפברואר 1949\u2069" : "24 February 1949"),
             InfoPanelPresenter.RegionText(m, t, q, r, Egypt).Split('\n')[0]);
         var leb = a.Lines.Single(l => l.Key == "lebanon_adl");
