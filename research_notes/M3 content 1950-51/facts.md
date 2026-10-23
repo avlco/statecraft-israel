@@ -296,9 +296,43 @@ Researched 2026-10-10. All URLs were checked on that date unless noted.
 - **Sources:** https://www.cbs.gov.il/he/publications/doclib/2023/2.shnatonpopulation/st02_01.pdf (by population group) and https://www.cbs.gov.il/he/publications/doclib/2023/2.shnatonpopulation/st02_02.pdf (by religion). [V, parsed]
 - The end-1949 row reproduces the value already in `population.yaml` (1,013.9k), which validates the parse.
 - **For `population.yaml`:** `1950-12-31 jews: 1203000`, `1951-12-31 jews: 1404400`.
-- **Natural increase:** [GAP] The CBS "sources of population growth" table was not located (tried st02_04/05, both 404).
-  - **Derived, not a CBS figure:** The Jewish increase of 189.1k in 1950 against 170.6k immigrants leaves about 18.5k for natural increase net of emigration and adjustments. The 201.4k increase in 1951 against 175.3k immigrants leaves about 26.1k. Use only as a calibration hint.
-  - he.wiki ma'abarot gives population growth rates of 28.3% (1948–49), 16.7% and 15.2% for the following years [S].
+
+#### Sources of growth, 1950–1951 (CBS SA No. 14; Refs #1407)
+
+- **Source and reading limit:** CBS, *Statistical Abstract of Israel* No. 14 (1963), [official scan](https://www.cbs.gov.il/he/publications/DocLib/shnaton_saruk/shnaton1963_num14.pdf). Chapter B, table 2, printed pp. 16–17 (PDF pp. 45–46); chapter D migration definitions, printed pp. 103–104 (PDF pp. 129–130); table 13, printed p. 121 (PDF p. 146). These passages and images were opened and read by an AI agent on **23 October 2026**, `checked: 2026-10-23`. **[V] here records that source reading, not a person's fact check or sign-off.** Other sources and check dates elsewhere in this note are not renewed by this addition.
+
+**[V] Chapter B, table 2:** "Sources of Increase of the Population (Estimate)". All figures below are **persons**, not thousands or rates. Population-group labels follow this table; its **Others** is not relabelled as the later table's **Arabs** or **Jews (and Others)**.
+
+| Population group as printed | Year | Natural increase | Immigrants | Net movement of residents | Net movement of travellers | Migration balance | Total increase |
+|---|---|---|---|---|---|---|---|
+| Total population | 1950 | 34,482 | 169,720 | −10,036 | +2,057 | +161,741 | 196,223 |
+| Total population | 1951 | 40,322 | 174,014 | −10,017 | +3,412 | +167,409 | 207,731 |
+| Jews | 1950 | 28,962 | 169,405 | −10,599 | +1,354 | +160,160 | 189,122 |
+| Jews | 1951 | 34,540 | 173,901 | −9,601 | +2,559 | +166,859 | 201,399 |
+| Others | 1950 | 5,520 | 315 | +563 | +703 | +1,581 | 7,101 |
+| Others | 1951 | 5,782 | 113 | −416 | +853 | +550 | 6,332 |
+
+**Computed here, checks rather than added CBS observations:** in all six rows, immigrants + net movement of residents + net movement of travellers equals migration balance, and natural increase + migration balance equals total increase. For each year the Jews and Others rows sum to the Total population row in every numerical column above. For example, 1950 totals: 169,720 − 10,036 + 2,057 = 161,741; 34,482 + 161,741 = 196,223.
+
+The same table prints year-end total populations of 1,370,094 and 1,577,825, and Jewish populations of 1,202,993 and 1,404,392, for 1950 and 1951 respectively. **Computed here:** these round to the existing table's 1,370.1 / 1,577.8 and 1,203.0 / 1,404.4 thousands. This checks the numbers' rounding, not equivalence of the two editions' population-group definitions. Table 2's footnote 1 warns that its figures differ slightly from chapter C, table 1, and refers to the introduction; this addition uses table 2 consistently.
+
+**[C] Comparison with the older figures retained above:** section 4a has annual totals of 170,563 and 175,279, whereas SA No. 14 table 2 prints 169,720 and 174,014 in its Total population immigrants column. **Computed here:** the differences are 843 and 1,265. Section 4a's later CBS/JVL sources were not reopened for this addition. The cited 1963 passages do not reconcile these series; the figures and their definitions are kept apart rather than silently replacing, averaging or splicing them.
+
+The earlier **derived hint, not a CBS figure**, is retained as such: the rounded Jewish increase of 189.1k minus 170.6k immigrants gives about 18.5k for 1950; 201.4k minus 175.3k gives about 26.1k for 1951. **Our reading:** this residual mixes a population change with a different immigrant series and net movements, so it is not the printed natural-increase figure. Table 2's Jewish natural increase is 28,962 / 34,540. No calibration value is selected here.
+
+**[V] Gross emigration is a different series.** The migration introduction, p. 104, defines emigrants as "residents leaving the country permanently" and distinguishes people declaring that intention from estimated actual emigrants. For 1948–1951 its estimate counts residents who left during the period and had not returned by the end of 1952, excluding emissaries, diplomats and students. For 1952–1960 it describes a different rough-estimate method. The same page explains tourists settling as visitors granted a status similar to immigrants after permission for permanent residence. This definition does not supply a reconciliation with the later immigrant series. **Our reading:** the two net-movement columns cannot be substituted for gross emigration.
+
+**[V] Table 13, p. 121, 1950 row:**
+
+| Population group | All emigrants (estimate) | Persons declaring emigration |
+|---|---|---|
+| Total | 9,966 | 4,313 |
+| Jews | 9,463 | 3,944 |
+| Others | 503 | 369 |
+
+**Computed here:** 9,463 + 503 = 9,966 and 3,944 + 369 = 4,313. **[GAP] 1951 gross emigration:** table 13 prints 1950 followed by 1952, with no 1951 row. The table 2 net-resident balance is not used to fill it, and no missing gross count is derived from an aggregate or residual. The earlier failed st02_04/05 requests remain access history; the natural-increase/source-of-growth gap is closed only for the table 2 rows actually read above.
+
+- he.wiki ma'abarot gives population growth rates of 28.3% (1948–49), 16.7% and 15.2% for the following years [S]. This older secondary reading was not rechecked for this addition.
 
 ---
 
@@ -563,7 +597,7 @@ Each candidate gives dates, the real choice faced, the historical option taken, 
   - No country-by-year (1950 vs 1951) immigration split. Only 1948–51 country totals.
   - Romania and Poland annual figures missing.
 - **Demography and ma'abarot:**
-  - No natural-increase figure from CBS.
+  - CBS sources-of-growth figures for 1950–1951 are now given in §4d (SA No. 14, table 2). Gross emigration for 1951 remains [GAP]: table 13 has no row for that year; the differing immigrant series remain unreconciled.
   - Ma'abarot end-1951 count and population conflict (123/125 and 227k vs 127 and 250k). The January 1952 figure of 157k conflicts as well.
 - **Economy:**
   - No unemployment rate.
