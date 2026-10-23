@@ -6011,10 +6011,10 @@ SEA/AIR: 0 collection craft placed, 0 not drawn
 GAME OK 1948-05-15 turn 0 hash 87ab4ace00da6bd148fc834f7020ea5c2c151e3059a7edb68a08c24094723a9d
 SEA/AIR: 0 collection craft placed, 0 not drawn
 Autosave could not be written: System.IO.IOException: The file '/temporary/statecraft-scene-f474ea6990a440ada84b4065fa4f7ba1' already exists.
-  at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0 
-  at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0 
-  at Statecraft.Game.SaveStore.WriteAutosave (System.String text) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/SaveStore.cs:31 
-  at Statecraft.Game.UI.GameStart+&lt;&gt;c__DisplayClass4_0.&lt;Autosave&gt;g__Save|0 (System.Collections.Generic.IReadOnlyList`1[T] _) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:71 
+  at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
+  at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
+  at Statecraft.Game.SaveStore.WriteAutosave (System.String text) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/SaveStore.cs:31
+  at Statecraft.Game.UI.GameStart+&lt;&gt;c__DisplayClass4_0.&lt;Autosave&gt;g__Save|0 (System.Collections.Generic.IReadOnlyList`1[T] _) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:71
 TURN 1 1948-06-15 hash a27628d9eb0ec6014ff2b7e95ea05530304d39be9fa7adb946c62fe92b46296d
 </output>
         </test-case>
@@ -6268,9 +6268,9 @@ TURN 1 1948-06-15 hash 1ad127861c2a509e5cff263a272dfa20d28fc697dccbdf7386777783b
           <output>KITS ground_tint_ms=4.2 places=296
 KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1493 build_ms=253 plant_ms=93 localities=271 locality_buildings=2904 camps=64 tents=174 boats=17 draws=64 models=20542 close_vertices=66704
 Autosave rejected: Statecraft.Sim.SaveException: Not a Statecraft save (too short)
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 PEOPLE: 0 civilian figures placed, 0 not drawn
 RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
 SEA/AIR: 0 collection craft placed, 0 not drawn
@@ -8350,7 +8350,7 @@ KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1
           </properties>
           <output>KITS ground_tint_ms=5.4 places=296
 KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1493 build_ms=376 plant_ms=123 localities=271 locality_buildings=2904 camps=64 tents=174 boats=17 draws=64 models=20542 close_vertices=66704
-3704 lots over 303 owners; camps 64, tents 172; places with no lot: 
+3704 lots over 303 owners; camps 64, tents 172; places with no lot:
 0 locality or tent lots reaching a route
 14283 trees, 0 reaching a lot
 </output>
@@ -12856,9 +12856,9 @@ RURAL: 18 rural scenes placed (60 models); 0 models short of 3 scenes
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave rejected: Statecraft.Sim.SaveException: Not a Statecraft save (too short)
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
         </test-case>
         <test-case id="2910" name="ACrashBetweenDeletingAndMovingLosesNothing" fullname="SaveUiTests.ACrashBetweenDeletingAndMovingLosesNothing" methodname="ACrashBetweenDeletingAndMovingLosesNothing" classname="SaveUiTests" runstate="Runnable" seed="598824605" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.128398" asserts="0">
@@ -12882,8 +12882,8 @@ AUTOSAVE OK 40 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave could not be deleted: System.IO.IOException: locked
-  at SaveUiTests+DeleteFailsStore.DeleteAutosave () [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Tests/EditMode/SaveUiTests.cs:382 
-  at Statecraft.Game.UI.NewGamePresenter.Press () [0x00034] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/NewGamePresenter.cs:52 
+  at SaveUiTests+DeleteFailsStore.DeleteAutosave () [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Tests/EditMode/SaveUiTests.cs:382
+  at Statecraft.Game.UI.NewGamePresenter.Press () [0x00034] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/NewGamePresenter.cs:52
 </output>
         </test-case>
         <test-case id="2917" name="AFailingAutosaveWriteNeverStopsATurn" fullname="SaveUiTests.AFailingAutosaveWriteNeverStopsATurn" methodname="AFailingAutosaveWriteNeverStopsATurn" classname="SaveUiTests" runstate="Runnable" seed="1782599852" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.029762" asserts="0">
@@ -12892,10 +12892,10 @@ AUTOSAVE OK 40 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave could not be written: System.IO.IOException: The file '/temporary/statecraft-not-a-folder-45e26283f9ac495daed9b5a693e39417' already exists.
-  at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0 
-  at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0 
-  at Statecraft.Game.SaveStore.WriteAutosave (System.String text) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/SaveStore.cs:31 
-  at Statecraft.Game.UI.GameStart+&lt;&gt;c__DisplayClass4_0.&lt;Autosave&gt;g__Save|0 (System.Collections.Generic.IReadOnlyList`1[T] _) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:71 
+  at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
+  at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
+  at Statecraft.Game.SaveStore.WriteAutosave (System.String text) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/SaveStore.cs:31
+  at Statecraft.Game.UI.GameStart+&lt;&gt;c__DisplayClass4_0.&lt;Autosave&gt;g__Save|0 (System.Collections.Generic.IReadOnlyList`1[T] _) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:71
 </output>
         </test-case>
         <test-case id="2911" name="ALeftOverTmpIsIgnoredWhenTheAutosaveExists" fullname="SaveUiTests.ALeftOverTmpIsIgnoredWhenTheAutosaveExists" methodname="ALeftOverTmpIsIgnoredWhenTheAutosaveExists" classname="SaveUiTests" runstate="Runnable" seed="2021278479" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.036899" asserts="0">
@@ -12976,9 +12976,9 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave rejected: Statecraft.Sim.SaveException: Not a Statecraft save (too short)
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
         </test-case>
         <test-case id="2887" name="AnUnreadableAutosaveIsSetAsideAndANewGameStarts" fullname="SaveUiTests.AnUnreadableAutosaveIsSetAsideAndANewGameStarts" methodname="AnUnreadableAutosaveIsSetAsideAndANewGameStarts" classname="SaveUiTests" runstate="Runnable" seed="929074528" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.022559" asserts="0">
@@ -12987,9 +12987,9 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave rejected: Statecraft.Sim.SaveException: line 1: save schema version 9 is newer than this game (2)
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
         </test-case>
         <test-suite type="ParameterizedMethod" id="2897" name="AnUnreadableSaveShowsOnlyALocalisedReason" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:55Z" duration="1.079948" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
@@ -13000,9 +13000,9 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: line 3: bad seed
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2890" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;damaged line&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;damaged line&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="1309970738" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.018582" asserts="0">
@@ -13011,9 +13011,9 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: line 3: bad seed
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2891" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.en.yaml&quot;,&quot;other ruleset&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.en.yaml&quot;,&quot;other ruleset&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="1827657662" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.018564" asserts="0">
@@ -13022,8 +13022,8 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: This save was made with an earlier version of the game's rules.
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2892" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;other ruleset&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;other ruleset&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="1357672282" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.018547" asserts="0">
@@ -13032,8 +13032,8 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: This save was made with an earlier version of the game's rules.
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2893" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.en.yaml&quot;,&quot;replay differs&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.en.yaml&quot;,&quot;replay differs&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="315104996" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.025493" asserts="0">
@@ -13042,8 +13042,8 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: The replay does not match the saved game: the save is damaged or was edited, or the game has a bug.
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00147] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:74 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00147] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:74
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2894" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;replay differs&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;replay differs&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="683064502" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:54Z" duration="0.025558" asserts="0">
@@ -13052,8 +13052,8 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: The replay does not match the saved game: the save is damaged or was edited, or the game has a bug.
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00147] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:74 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00147] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:74
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2895" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.en.yaml&quot;,&quot;replay throws&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.en.yaml&quot;,&quot;replay throws&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="1473562747" result="Passed" start-time="2026-10-23 10:12:54Z" end-time="2026-10-23 10:12:55Z" duration="0.481590" asserts="0">
@@ -13062,16 +13062,16 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: turn 1: The given key 'buy_arms' was not present in the dictionary. ---&gt; System.Collections.Generic.KeyNotFoundException: The given key 'buy_arms' was not present in the dictionary.
-  at System.Collections.Generic.Dictionary`2[TKey,TValue].get_Item (TKey key) [0x0001e] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0 
-  at Statecraft.Sim.AttentionSystem.Cost (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x0000d] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:29 
-  at Statecraft.Sim.AttentionSystem.TrySpend (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:44 
-  at Statecraft.Sim.Simulation.RunOrders (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.Collections.Generic.IReadOnlyList`1[T] commands, System.Collections.Generic.List`1[T] why, System.Collections.Generic.List`1[T] rejected) [0x000a1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:113 
-  at Statecraft.Sim.Simulation.Step (Statecraft.Sim.Content c, Statecraft.Sim.GameState state, System.Collections.Generic.IReadOnlyList`1[T] commands) [0x000f1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:48 
-  at Statecraft.Sim.GameSession.Step (System.Collections.Generic.IReadOnlyList`1[T] commands) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:34 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000b1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:65 
+  at System.Collections.Generic.Dictionary`2[TKey,TValue].get_Item (TKey key) [0x0001e] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
+  at Statecraft.Sim.AttentionSystem.Cost (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x0000d] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:29
+  at Statecraft.Sim.AttentionSystem.TrySpend (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:44
+  at Statecraft.Sim.Simulation.RunOrders (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.Collections.Generic.IReadOnlyList`1[T] commands, System.Collections.Generic.List`1[T] why, System.Collections.Generic.List`1[T] rejected) [0x000a1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:113
+  at Statecraft.Sim.Simulation.Step (Statecraft.Sim.Content c, Statecraft.Sim.GameState state, System.Collections.Generic.IReadOnlyList`1[T] commands) [0x000f1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:48
+  at Statecraft.Sim.GameSession.Step (System.Collections.Generic.IReadOnlyList`1[T] commands) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:34
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000b1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:65
    --- End of inner exception stack trace ---
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000de] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:67 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000de] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:67
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2896" name="AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;replay throws&quot;)" fullname="SaveUiTests.AnUnreadableSaveShowsOnlyALocalisedReason(&quot;strings.he.yaml&quot;,&quot;replay throws&quot;)" methodname="AnUnreadableSaveShowsOnlyALocalisedReason" classname="SaveUiTests" runstate="Runnable" seed="114227004" result="Passed" start-time="2026-10-23 10:12:55Z" end-time="2026-10-23 10:12:55Z" duration="0.466767" asserts="0">
@@ -13080,16 +13080,16 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: turn 1: The given key 'buy_arms' was not present in the dictionary. ---&gt; System.Collections.Generic.KeyNotFoundException: The given key 'buy_arms' was not present in the dictionary.
-  at System.Collections.Generic.Dictionary`2[TKey,TValue].get_Item (TKey key) [0x0001e] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0 
-  at Statecraft.Sim.AttentionSystem.Cost (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x0000d] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:29 
-  at Statecraft.Sim.AttentionSystem.TrySpend (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:44 
-  at Statecraft.Sim.Simulation.RunOrders (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.Collections.Generic.IReadOnlyList`1[T] commands, System.Collections.Generic.List`1[T] why, System.Collections.Generic.List`1[T] rejected) [0x000a1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:113 
-  at Statecraft.Sim.Simulation.Step (Statecraft.Sim.Content c, Statecraft.Sim.GameState state, System.Collections.Generic.IReadOnlyList`1[T] commands) [0x000f1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:48 
-  at Statecraft.Sim.GameSession.Step (System.Collections.Generic.IReadOnlyList`1[T] commands) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:34 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000b1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:65 
+  at System.Collections.Generic.Dictionary`2[TKey,TValue].get_Item (TKey key) [0x0001e] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
+  at Statecraft.Sim.AttentionSystem.Cost (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x0000d] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:29
+  at Statecraft.Sim.AttentionSystem.TrySpend (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.String kind, System.Nullable`1[T] rung) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/AttentionSystem.cs:44
+  at Statecraft.Sim.Simulation.RunOrders (Statecraft.Sim.Content c, Statecraft.Sim.GameState s, System.Collections.Generic.IReadOnlyList`1[T] commands, System.Collections.Generic.List`1[T] why, System.Collections.Generic.List`1[T] rejected) [0x000a1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:113
+  at Statecraft.Sim.Simulation.Step (Statecraft.Sim.Content c, Statecraft.Sim.GameState state, System.Collections.Generic.IReadOnlyList`1[T] commands) [0x000f1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/Simulation.cs:48
+  at Statecraft.Sim.GameSession.Step (System.Collections.Generic.IReadOnlyList`1[T] commands) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:34
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000b1] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:65
    --- End of inner exception stack trace ---
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000de] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:67 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x000de] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:67
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
         </test-suite>
@@ -13099,8 +13099,8 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave could not be loaded: System.IO.IOException: disk gone
-  at SaveUiTests+FaultyStore.ReadAutosave () [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Tests/EditMode/SaveUiTests.cs:39 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x0000b] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:33 
+  at SaveUiTests+FaultyStore.ReadAutosave () [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Tests/EditMode/SaveUiTests.cs:39
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x0000b] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:33
 </output>
         </test-case>
         <test-case id="2899" name="ARefusalCodeWithNoStringFallsBackToTheShortReason" fullname="SaveUiTests.ARefusalCodeWithNoStringFallsBackToTheShortReason" methodname="ARefusalCodeWithNoStringFallsBackToTheShortReason" classname="SaveUiTests" runstate="Runnable" seed="523670320" result="Passed" start-time="2026-10-23 10:12:55Z" end-time="2026-10-23 10:12:55Z" duration="0.020804" asserts="0">
@@ -13109,8 +13109,8 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave rejected: Statecraft.Sim.SaveException: made by a future version
-  at SaveUiTests+UnknownCodeStore.ReadAutosave () [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Tests/EditMode/SaveUiTests.cs:182 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x0000b] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:33 
+  at SaveUiTests+UnknownCodeStore.ReadAutosave () [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Tests/EditMode/SaveUiTests.cs:182
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x0000b] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:33
 </output>
         </test-case>
         <test-suite type="ParameterizedMethod" id="2902" name="ARefusedSaveIsSaidOnceInThePlayersLanguage" fullname="SaveUiTests.ARefusedSaveIsSaidOnceInThePlayersLanguage" classname="SaveUiTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 10:12:55Z" end-time="2026-10-23 10:12:55Z" duration="0.069296" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
@@ -13121,11 +13121,11 @@ AUTOSAVE OK 41 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: This save was made with an earlier version of the game's rules.
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 Autosave rejected: Statecraft.Sim.SaveException: This save was made with an earlier version of the game's rules.
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:57
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
           <test-case id="2901" name="ARefusedSaveIsSaidOnceInThePlayersLanguage(&quot;ruleset gdd-0.2&quot;,&quot;newer_version&quot;,&quot;newer version of the game&quot;)" fullname="SaveUiTests.ARefusedSaveIsSaidOnceInThePlayersLanguage(&quot;ruleset gdd-0.2&quot;,&quot;newer_version&quot;,&quot;newer version of the game&quot;)" methodname="ARefusedSaveIsSaidOnceInThePlayersLanguage" classname="SaveUiTests" runstate="Runnable" seed="820624613" result="Passed" start-time="2026-10-23 10:12:55Z" end-time="2026-10-23 10:12:55Z" duration="0.033407" asserts="0">
@@ -13134,13 +13134,13 @@ Autosave rejected: Statecraft.Sim.SaveException: This save was made with an earl
               <property name="repeatIteration" value="0" />
             </properties>
             <output>Autosave rejected: Statecraft.Sim.SaveException: line 5: This save was made with a newer version of the game (ruleset 'gdd-0.2').
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 Autosave rejected: Statecraft.Sim.SaveException: line 5: This save was made with a newer version of the game (ruleset 'gdd-0.2').
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
           </test-case>
         </test-suite>
@@ -13164,9 +13164,9 @@ Autosave rejected: Statecraft.Sim.SaveException: line 5: This save was made with
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave rejected: Statecraft.Sim.SaveException: line 4: mode Open is not supported
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
         </test-case>
         <test-case id="2886" name="AutosaveReceiptsKeepTheirGenerationAndSavedState" fullname="SaveUiTests.AutosaveReceiptsKeepTheirGenerationAndSavedState" methodname="AutosaveReceiptsKeepTheirGenerationAndSavedState" classname="SaveUiTests" runstate="Runnable" seed="1294505379" result="Passed" start-time="2026-10-23 10:12:55Z" end-time="2026-10-23 10:12:55Z" duration="0.067196" asserts="0">
@@ -14661,9 +14661,9 @@ KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1
             <property name="repeatIteration" value="0" />
           </properties>
           <output>Autosave rejected: Statecraft.Sim.SaveException: Not a Statecraft save (too short)
-  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185 
-  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53 
-  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35 
+  at Statecraft.Sim.SaveGame.Parse (System.String text) [0x00378] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/SaveGame.cs:185
+  at Statecraft.Sim.GameSession.Load (Statecraft.Sim.Content c, System.String saveText, System.Collections.Generic.IReadOnlyList`1[System.String]&amp; warnings) [0x0000e] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/sim/Statecraft.Sim/GameSession.cs:53
+  at Statecraft.Game.UI.GameStart.Begin (Statecraft.Sim.Content c, Statecraft.Game.SaveStore store, System.Func`1[TResult] newSeed, System.Collections.Generic.List`1[T] notes, Statecraft.Game.UI.UiText text, System.Boolean&amp; resumed, System.Boolean fresh) [0x00028] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/UI/GameStart.cs:35
 </output>
         </test-case>
         <test-case id="3143" name="ASaveFrom1950KeepsTheLiveHudOutOfReach" fullname="StartScreenTests.ASaveFrom1950KeepsTheLiveHudOutOfReach" methodname="ASaveFrom1950KeepsTheLiveHudOutOfReach" classname="StartScreenTests" runstate="Runnable" seed="1600365749" result="Passed" start-time="2026-10-23 10:15:33Z" end-time="2026-10-23 10:15:34Z" duration="0.944792" asserts="0">
@@ -17338,7 +17338,7 @@ Collection: bundle collection-vehicles did not load (not an AssetBundle /tempora
           <output>open: 21 spots, offsets from the home hex (-1, 0) (-1, 1) (0, -1) (0, 0) (1, 0)
 seeded: 21 spots, offsets from the home hex (-1, 0) (-1, 1) (0, -1) (0, 0) (0, 1) (1, -1) (1, 0)
 compact only: 19 spots, offsets from the home hex (-1, 1) (0, -1) (0, 0) (1, -1) (1, 0)
-closed: 0 spots, offsets from the home hex 
+closed: 0 spots, offsets from the home hex
 all grounds: offsets (-1, 0) (-1, 1) (0, -1) (0, 0) (0, 1) (1, -1) (1, 0)
 </output>
         </test-case>
@@ -17832,13 +17832,13 @@ KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1
 1949-05-14 squadron_101@Hatzor:spitfire-mk9e-101sqn-1948x0 flying
 1949-05-21 squadron_101@Hatzor:spitfire-mk9e-101sqn-1948x0 flying
 1949-05-28 squadron_101@Hatzor:spitfire-mk9e-101sqn-1948x0 flying
-1949-06-04 
-1949-06-11 
-1949-06-18 
-1949-06-25 
-1949-07-02 
-1949-07-09 
-1949-07-16 
+1949-06-04
+1949-06-11
+1949-06-18
+1949-06-25
+1949-07-02
+1949-07-09
+1949-07-16
 </output>
         </test-case>
         <test-suite type="ParameterizedMethod" id="3536" name="BadHebrewProseNamesTheProblem" fullname="UnitsInPlayTests.BadHebrewProseNamesTheProblem" classname="UnitsInPlayTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-10-23 10:22:36Z" end-time="2026-10-23 10:22:36Z" duration="0.048295" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
@@ -18406,13 +18406,13 @@ KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1
 1949-03-15 kiryati@Tel Aviv:rifleman-1948-slouch-hatx3[slouch_hat/steel_helmet/slouch_hat],etzioni@Jerusalem:rifleman-1948-slouch-hatx3[slouch_hat/steel_helmet/slouch_hat],squadron_101@Hatzor:spitfire-mk9e-101sqn-1948x0 flying
 1949-04-15 squadron_101@Hatzor:spitfire-mk9e-101sqn-1948x0
 1949-05-15 squadron_101@Hatzor:spitfire-mk9e-101sqn-1948x0
-1949-06-15 
-1949-07-15 
-1949-08-15 
-1949-09-15 
-1949-10-15 
-1949-11-15 
-1949-12-15 
+1949-06-15
+1949-07-15
+1949-08-15
+1949-09-15
+1949-10-15
+1949-11-15
+1949-12-15
 </output>
         </test-case>
         <test-case id="3540" name="TheRoundelIsAFilledStarOfDavidOnAWhiteDiscWithNoRing" fullname="UnitsInPlayTests.TheRoundelIsAFilledStarOfDavidOnAWhiteDiscWithNoRing" methodname="TheRoundelIsAFilledStarOfDavidOnAWhiteDiscWithNoRing" classname="UnitsInPlayTests" runstate="Runnable" seed="76652284" result="Passed" start-time="2026-10-23 10:22:54Z" end-time="2026-10-23 10:22:54Z" duration="0.017663" asserts="0">

@@ -27,7 +27,7 @@ rect = [0, 47, 390, 557], insets = [47, 0, 34, 0], expected = [0, 0, 0, 0]
                                 text=True, capture_output=True, check=True)
 >       assert json.loads(result.stdout) == expected
 E       assert [47, 0, 34, 0] == [0, 0, 0, 0]
-E         
+E
 E         At index 0 diff: 47 != 0
 E         Use -v to get more diff
 
@@ -60,7 +60,7 @@ expected = [37, 10, 20, 24]
                                 text=True, capture_output=True, check=True)
 >       assert json.loads(result.stdout) == expected
 E       assert [47, 30, 34, 44] == [37, 10, 20, 24]
-E         
+E
 E         At index 0 diff: 47 != 37
 E         Use -v to get more diff
 

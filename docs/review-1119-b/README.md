@@ -22,8 +22,8 @@ Unity 6000.3.25f1; SDK 10.0.401; macOS 27.0.1 arm64; Chrome for Testing 156.0.80
   The failed existing `TheTemplateFillsTheWindowAndPersistsSaves` still demanded the old fixed
   full-window canvas. Its contract is updated for the approved separate game region; save/no-alert
   assertions remain. The full unfiltered rerun is pending. The original XML/log remain untouched
-  locally; their SHA-256 hashes are in the summary. Only environment identity/home/temporary paths are
-  removed from the public XML.
+  locally; their SHA-256 hashes are in the summary. Public XML/logs remove environment identity and home/temporary paths and normalize
+  trailing display whitespace; original raw files remain unchanged locally.
 - The four Native skips are two Explicit capture/timing jobs and two optional-art comparisons
   without local sandbox/proto prefabs. No skip is waived or relabelled.
 - [EN goldens/smoke5](b-golden-en.log), [HE goldens/smoke5](b-golden-he.log),

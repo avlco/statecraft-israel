@@ -14,11 +14,11 @@ expected = (1440, 70)
     def test_game_clicks_follow_the_canvas_when_a_companion_resizes_it(point, viewport, rect, expected):
 >       assert wc.canvas_point(point, viewport, rect) == pytest.approx(expected)
 E       assert (1800, 70) == approx((1440 ...70 ± 7.0e-05))
-E         
+E
 E         comparison failed. Mismatched elements: 1 / 2:
 E         Max absolute difference: 360
 E         Max relative difference: 0.2
-E         Index | Obtained | Expected      
+E         Index | Obtained | Expected
 E         0     | 1800     | 1440 ± 0.00144
 
 tools/tests/test_web_check.py:597: AssertionError
@@ -36,11 +36,11 @@ expected = (195, 301.9)
     def test_game_clicks_follow_the_canvas_when_a_companion_resizes_it(point, viewport, rect, expected):
 >       assert wc.canvas_point(point, viewport, rect) == pytest.approx(expected)
 E       assert (195, 422) == approx((195 ±....9 ± 3.0e-04))
-E         
+E
 E         comparison failed. Mismatched elements: 1 / 2:
 E         Max absolute difference: 120.10000000000002
 E         Max relative difference: 0.28459715639810435
-E         Index | Obtained | Expected       
+E         Index | Obtained | Expected
 E         1     | 422      | 301.9 ± 3.0e-04
 
 tools/tests/test_web_check.py:597: AssertionError
