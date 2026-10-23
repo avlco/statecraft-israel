@@ -1,0 +1,56 @@
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.0544299">
+  <test-suite type="TestSuite" id="1000" name="Statecraft Israel" fullname="Statecraft Israel" runstate="Runnable" testcasecount="2356" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.054430" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3629" name="Statecraft.Tests.EditMode.dll" fullname="/redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Library/ScriptAssemblies/Statecraft.Tests.EditMode.dll" runstate="Runnable" testcasecount="1888" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.040040" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70790" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="2612" name="ProjectSettingsTests" fullname="ProjectSettingsTests" classname="ProjectSettingsTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.026469" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="2618" name="LogLinesCarryNoStackTraceButErrorsDo" fullname="ProjectSettingsTests.LogLinesCarryNoStackTraceButErrorsDo" methodname="LogLinesCarryNoStackTraceButErrorsDo" classname="ProjectSettingsTests" runstate="Runnable" seed="1214874464" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.009569" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="2613" name="PlayersUseIl2CppTheStatecraftTemplateAndMapUnityAsTheBootScene" fullname="ProjectSettingsTests.PlayersUseIl2CppTheStatecraftTemplateAndMapUnityAsTheBootScene" methodname="PlayersUseIl2CppTheStatecraftTemplateAndMapUnityAsTheBootScene" classname="ProjectSettingsTests" runstate="Runnable" seed="1463833094" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.002099" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="2617" name="TemplatePackagesAreGone" fullname="ProjectSettingsTests.TemplatePackagesAreGone" methodname="TemplatePackagesAreGone" classname="ProjectSettingsTests" runstate="Runnable" seed="889759358" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.001850" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="2615" name="TheNewSceneTemplateDoesNotPointAtTheDeletedSampleScene" fullname="ProjectSettingsTests.TheNewSceneTemplateDoesNotPointAtTheDeletedSampleScene" methodname="TheNewSceneTemplateDoesNotPointAtTheDeletedSampleScene" classname="ProjectSettingsTests" runstate="Runnable" seed="1085327072" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.001911" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="2616" name="TheTemplateFillsItsGameRegionAndPersistsSaves" fullname="ProjectSettingsTests.TheTemplateFillsItsGameRegionAndPersistsSaves" methodname="TheTemplateFillsItsGameRegionAndPersistsSaves" classname="ProjectSettingsTests" runstate="Runnable" seed="1242443357" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.001228" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="2614" name="WebBuildFilesAreNamedByTheirContentHash" fullname="ProjectSettingsTests.WebBuildFilesAreNamedByTheirContentHash" methodname="WebBuildFilesAreNamedByTheirContentHash" classname="ProjectSettingsTests" runstate="Runnable" seed="2043469339" result="Passed" start-time="2026-10-23 11:58:57Z" end-time="2026-10-23 11:58:57Z" duration="0.000210" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output>Saving results to: /redacted-home/Library/Application Support/Statecraft/Statecraft Israel/TestResults.xml
+</output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

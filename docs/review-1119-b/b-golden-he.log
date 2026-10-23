@@ -1,5 +1,4 @@
 viewport 1920x1080 at DPR 1 (expect res=1920x1080)
-console: [UnityCache] 'http://localhost:53444/Build/7c7214c172eab8efbc747339ff004217.data.gz' successfully downloaded and stored in the browser cache
 console: [UnityMemory] Configuration Parameters - Can be set up in boot.config
 console:     "memorysetup-allocator-temp-initial-block-size-main=262144"
 console:     "memorysetup-allocator-temp-initial-block-size-worker=262144"
@@ -53,8 +52,9 @@ console: [Physics::Module] SDK Version: 4.1.2
 console: [Physics::Module] Integration Version: 1.0.0
 console: [Physics::Module] Threading Mode: Single-Threaded
 console: Input System initialize...
-console: UnloadTime: 2.200000 ms
-console: Audio context resumed after 0.574 seconds.
+console: UnloadTime: 2.000000 ms
+console: Audio context resumed after 0.540 seconds.
+console: [UnityCache] 'http://localhost:57328/Build/50b5e84dcb67404ef9f9dc89b661f148.data.gz' successfully downloaded and stored in the browser cache
 console: GOLDEN OK hash1950 f3ec68b734a3beb24df9a873e0400f0253aed48f3cde2ea12415f1890dcaa5b0
 console: GOLDEN OK hash1952 6b374f69a0ed276eeea69737e2a8b0e72d26feb930dab35e8f7c50113c4e9c0b
 console: GOLDEN OK smoke5 bc2ab42b43bab8f19eb9b25368a3d4da5f2d3fdfed092b480c8d2738b035a298
@@ -64,8 +64,8 @@ console: GOLDEN OK scenario-cautious f672a0f36fd34752f7a51cbd1698db760b168380e77
 console: GOLDEN OK scenario-mvp-absorb-first 6aa49f62b0c9bce24393a98d8aac1b4da9f7aed58dbee6bf3eae694c31097a76
 console: GOLDEN OK mvp-end 6b374f69a0ed276eeea69737e2a8b0e72d26feb930dab35e8f7c50113c4e9c0b
 console: GOLDEN OK scenario-mvp-defeat 584a828a24355f522b8717646a7173b4567d2c202c111c048461d435fd66ccb1
-console: KITS ground_tint_ms=1.5 places=296
-console: KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=201 plant_ms=69 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+console: KITS ground_tint_ms=1.4 places=296
+console: KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=194 plant_ms=67 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
 console: BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
 console: Trying to get length of sound which is not loaded yet.
 console: Trying to get length of sound which is not loaded yet.

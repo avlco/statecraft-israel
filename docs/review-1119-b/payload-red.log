@@ -1,0 +1,31 @@
+{
+  "kind": "historical focused payload/settle check",
+  "raw_source_xml": "payload-red.xml",
+  "raw_source_log": "payload-red.log",
+  "original_xml_sha256": "b5b4133ec394ae466d36f4f82686d30045b2fa47d876dfbc22dda518dfea8c48",
+  "original_editor_log_sha256": "99c09e6f917cde2e7626597a223bcd28f5bcd521842529aeecddfcd2e25d8d13",
+  "counts": {
+    "total": "3",
+    "passed": "0",
+    "failed": "3",
+    "skipped": "0"
+  },
+  "cases": [
+    {
+      "fullname": "AccessibilityCompanionTests.RefusalWithoutChangedAndAppendedNoticesAreReadAfterThePresenters",
+      "result": "Failed",
+      "failure": "  Expected string length 35 but was 0. Strings differ at index 0.\n  Expected: \"Not done: Unknown event\\nsave notice\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheEnglishAndHebrewPayloadReadsTheCardChoicesFocusAndLiteralText",
+      "result": "Failed",
+      "failure": "  Expected string length 8 but was 0. Strings differ at index 0.\n  Expected: \"One Army\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheFinalTurnReportIsReadAndDisposeClearsAndCancelsPendingWork",
+      "result": "Failed",
+      "failure": "  Expected: String containing \"What happened this turn\"\n  But was:  <string.Empty>\n"
+    }
+  ],
+  "publication": "Structured case results only; raw originals preserved locally. Full Editor startup/licensing logs are not published."
+}

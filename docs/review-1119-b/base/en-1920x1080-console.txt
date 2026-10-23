@@ -1,3 +1,4 @@
+[UnityCache] 'http://localhost:8766/Build/20e1f7adcfeae4edd67139e2ddfc4659.data.gz' successfully downloaded and stored in the browser cache
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-allocator-temp-initial-block-size-main=262144"
     "memorysetup-allocator-temp-initial-block-size-worker=262144"
@@ -45,10 +46,9 @@ OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Single-Threaded
 Input System initialize...
-UnloadTime: 2.299999 ms
-[UnityCache] 'http://localhost:8766/Build/20e1f7adcfeae4edd67139e2ddfc4659.data.gz' successfully downloaded and stored in the browser cache
-KITS ground_tint_ms=2.6 places=296
-KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=217 plant_ms=74 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+UnloadTime: 1.900000 ms
+KITS ground_tint_ms=1.5 places=296
+KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=213 plant_ms=70 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
 BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
 Trying to get length of sound which is not loaded yet.
 Trying to get length of sound which is not loaded yet.
@@ -56,6 +56,6 @@ Trying to get length of sound which is not loaded yet.
 PEOPLE: 0 civilian figures placed, 0 not drawn
 RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
 SEA/AIR: 0 collection craft placed, 0 not drawn
-GAME OK 1948-05-15 turn 0 hash 723061cb17eaee6ecebea7ede63ca6b90eb8d182da0bdff4080df146ac4f1cd9
-BOOT event photos ready (on demand) wait=41 ms
-FIRST CARD OK event=idf_founding media=photo wait=51 ms budget=10000 ms
+GAME OK 1948-05-15 turn 0 hash 4a309d9f2490f4f959de3f43ef73f772a2e211f26f0d6a4e0b1a7f49282ff1ca
+BOOT event photos ready (on demand) wait=38 ms
+FIRST CARD OK event=idf_founding media=photo wait=45 ms budget=10000 ms

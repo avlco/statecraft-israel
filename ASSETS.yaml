@@ -56,6 +56,11 @@ rules:
     status: verified
     note: "Decision D-P: the owner confirms the sheets contain only the public-domain portraits and our plain layout. D-P (owner, 17 Oct 2026)."
   # --- Our own captures and drawings: CC BY 4.0 ---
+  - glob: "docs/review-1119-b/*.png"
+    licence: CC-BY-SA-4.0
+    source: "Real WebGL screenshots for draft PR #1230 / #1119, captured 2026-10-23 by tools/companion_check.py through tools/headed.py Browser/CDP in Chrome for Testing 156.0.8078.4, Unity 6000.3.25f1 gzip. Base f9d8371d integrates main a250e295; final B aaa44832; historical-b is the earlier 4d681e5e runtime. Exact viewport, language, game state and per-file hashes are in docs/review-1119-b/README.md and manifest.json. The event photograph retains its visible Meitar Collection / National Library of Israel CC BY 4.0 credit; terrain derives from Copernicus DEM (NOTICE)."
+    status: verified
+    note: "Review-only captures on a separate evidence branch, not shipped assets. Same screenshot licence as docs/images/build-*.jpg: CC BY-SA 4.0 for the D13 bakes under the existing 2026-10-15 coordinator ruling. No new historical image or AI generation; existing game art remains covered by its own ledger rows."
   - glob: "promo/final/09-m2-flythrough.mp4"
     licence: CC-BY-4.0
     source: "In-engine Unity capture of the M2 map (MapCapture.Flythrough); terrain derived from Copernicus DEM (NOTICE)"

@@ -1,0 +1,119 @@
+viewport 1920x1080 at DPR 1 (expect res=1920x1080)
+console: [UnityCache] 'http://localhost:54468/Build/7c7214c172eab8efbc747339ff004217.data.gz' successfully downloaded and stored in the browser cache
+console: [UnityMemory] Configuration Parameters - Can be set up in boot.config
+console:     "memorysetup-allocator-temp-initial-block-size-main=262144"
+console:     "memorysetup-allocator-temp-initial-block-size-worker=262144"
+console:     "memorysetup-temp-allocator-size-audio-worker=65536"
+console:     "memorysetup-remapper-allocator-initial-capacity=32768"
+console:     "memorysetup-temp-allocator-size-background-worker=32768"
+console:     "memorysetup-bucket-allocator-granularity=16"
+console:     "memorysetup-bucket-allocator-bucket-count=8"
+console:     "memorysetup-bucket-allocator-block-size=4194304"
+console:     "memorysetup-bucket-allocator-block-count=1"
+console:     "memorysetup-main-allocator-block-size=16777216"
+console:     "memorysetup-thread-allocator-block-size=16777216"
+console:     "memorysetup-gfx-main-allocator-block-size=16777216"
+console:     "memorysetup-gfx-thread-allocator-block-size=16777216"
+console:     "memorysetup-cache-allocator-block-size=4194304"
+console:     "memorysetup-typetree-allocator-block-size=2097152"
+console:     "memorysetup-profiler-bucket-allocator-granularity=16"
+console:     "memorysetup-profiler-bucket-allocator-bucket-count=8"
+console:     "memorysetup-profiler-bucket-allocator-block-size=4194304"
+console:     "memorysetup-profiler-bucket-allocator-block-count=1"
+console:     "memorysetup-profiler-allocator-block-size=16777216"
+console:     "memorysetup-profiler-editor-allocator-block-size=1048576"
+console:     "memorysetup-temp-allocator-size-main=4194304"
+console:     "memorysetup-job-temp-allocator-block-size=2097152"
+console:     "memorysetup-job-temp-allocator-block-size-background=1048576"
+console:     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+console: Input System module state changed to: Initialized.
+console: [Physics::Module] Initialized fallback backend.
+console: [Physics::Module] Id: 0xdecafbad
+console: Loading player data from data.unity3d
+console: Initialize engine version: 6000.3.25f1 (e1dba0a9aba4)
+console: [Subsystems] Discovering subsystems at path UnitySubsystems
+console: Creating WebGL 2.0 context.
+console: Renderer: WebKit WebGL
+console: Vendor:   WebKit
+console: Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+console: GLES:     3
+console:  EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_render_snorm EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_mirror_clamp_to_edge EXT_texture_norm16 KHR_parallel_shader_compile NV_shader_noperspective_interpolation OES_draw_buffers_indexed OES_sample_variables OES_shader_multisample_interpolation OES_texture_float_linear WEBGL_blend_func_extended WEBGL_clip_cull_distance WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_compressed_texture_pvrtc WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode WEBGL_provoking_vertex WEBGL_render_shared_exponent WEBGL_stencil_texturing GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_
+console: depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_render_snorm GL_EXT_texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_norm16 GL_KHR_parallel_shader_compile GL_NV_shader_noperspective_interpolation GL_OES_draw_buffers_indexed GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_texture_float_linear GL_WEBGL_blend_func_extended GL_WEBGL_clip_cull_distance GL_WEBGL_compressed_texture_astc GL_WEBGL_compressed_texture_etc GL_WEBGL_compressed_texture_etc1 GL_WEBGL_compressed_texture_pvrtc GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode GL_WEBGL_provoking_vertex GL_WEBGL_render_shared_exponent GL_WEBGL_stencil_texturing
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: WebGL: INVALID_ENUM: getInternalformatParameter: invalid internalformat
+console: OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1
+console: [Physics::Module] Selected backend.
+console: [Physics::Module] Name: PhysX
+console: [Physics::Module] Id: 0xf2b8ea05
+console: [Physics::Module] SDK Version: 4.1.2
+console: [Physics::Module] Integration Version: 1.0.0
+console: [Physics::Module] Threading Mode: Single-Threaded
+console: Input System initialize...
+console: UnloadTime: 1.900000 ms
+console: Audio context resumed after 0.558 seconds.
+console: KITS ground_tint_ms=1.4 places=296
+console: KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=195 plant_ms=68 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+console: BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
+console: Trying to get length of sound which is not loaded yet.
+console: Trying to get length of sound which is not loaded yet.
+console: Trying to get length of sound which is not loaded yet.
+console: PEOPLE: 0 civilian figures placed, 0 not drawn
+console: RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
+console: SEA/AIR: 0 collection craft placed, 0 not drawn
+click start-new-game at (780, 966)
+console: GAME OK 1948-05-15 turn 0 hash 21981056acfe64aaf57842e98edd1573d566c56813223a7b5dcaecdbf52c83cd
+console: NAV f=4 t=5534 start buttons start-new-game=0.4063,0.8949 start-star=0.5938,0.8949 start-listen=0.4105,0.8421
+console: UNITS figures: the Collection's figures streamed in
+console: NAV f=28 t=8898 raw mouse left=0 at (624, 113) t=8.892
+console: NAV f=30 t=9008 raw mouse left=1 at (624, 113) t=8.996
+console: NAV f=30 t=9010 map click at (624, 113) overUi=True
+console: NAV f=30 t=9014 ui pointerdown id=0 at (693, 1074) target=start-new-game
+console: NAV f=31 t=9036 raw mouse left=0 at (624, 113) t=9.032
+console: NAV f=31 t=9062 button pointerup at (693, 1074) on=start-new-game inside=True
+console: NAV f=31 t=9063 ui click count=1 target=start-new-game
+console: NAV f=31 t=9063 button capture out on=start-new-game
+console: LANDMARKS: 1 town landmarks placed, 0 not drawn
+console: LANDMARKS: 2 town landmarks placed, 0 not drawn
+console: LANDMARKS: 9 town landmarks placed, 0 not drawn
+console: LANDMARKS: 10 town landmarks placed, 0 not drawn
+console: LANDMARKS: 16 town landmarks placed, 0 not drawn
+console: LANDMARKS: 21 town landmarks placed, 0 not drawn
+console: QUALITY level=1 scale=0.90 tiltshift=on p95_ms=353.00
+console: LANDMARKS: 22 town landmarks placed, 0 not drawn
+console: PEOPLE: 18 civilian figures placed, 0 not drawn
+console: PEOPLE: 36 civilian figures placed, 0 not drawn
+console: PEOPLE: 54 civilian figures placed, 0 not drawn
+console: PEOPLE: 66 civilian figures placed, 0 not drawn
+console: PEOPLE: 71 civilian figures placed, 0 not drawn
+console: PEOPLE: 75 civilian figures placed, 0 not drawn
+console: RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
+console: RURAL: 3 rural scenes placed (6 models); 0 models short of 3 scenes
+console: RURAL: 3 rural scenes placed (6 models); 0 models short of 3 scenes
+console: RURAL: 6 rural scenes placed (12 models); 0 models short of 3 scenes
+console: RURAL: 6 rural scenes placed (12 models); 0 models short of 3 scenes
+console: RURAL: 9 rural scenes placed (18 models); 0 models short of 3 scenes
+console: RURAL: 9 rural scenes placed (18 models); 0 models short of 3 scenes
+console: QUALITY level=2 scale=0.80 tiltshift=on p95_ms=502.00
+console: RURAL: 12 rural scenes placed (48 models); 0 models short of 3 scenes
+console: RURAL: 12 rural scenes placed (48 models); 0 models short of 3 scenes
+console: RURAL: 15 rural scenes placed (54 models); 0 models short of 3 scenes
+console: RURAL: 15 rural scenes placed (54 models); 0 models short of 3 scenes
+console: RURAL: 18 rural scenes placed (60 models); 0 models short of 3 scenes
+console: BUILDINGS: 1 of 1 special buildings placed (latrun_tegart)
+console: SEA/AIR: 1 collection craft placed, 0 not drawn
+console: SEA/AIR: 3 collection craft placed, 0 not drawn
+console: NAV f=112 t=18751 ui submit target=end-turn
+console: BUILDINGS: 1 of 2 special buildings placed (latrun_tegart)
+console: SEA/AIR: 3 collection craft placed, 0 not drawn
+console: AUTOSAVE PENDING 1 1948-06-15 turn 1 hash eae432311bd531837bf6fd0895032226e524f8e4c433a1cab1211dc68d0d3997
+START SCREEN OK New game reached the map: TURN 1 1948-06-15 hash eae432311bd531837bf6fd0895032226e524f8e4c433a1cab1211dc68d0d3997
+console: TURN 1 1948-06-15 hash eae432311bd531837bf6fd0895032226e524f8e4c433a1cab1211dc68d0d3997
+console: QUALITY level=3 scale=0.80 tiltshift=off p95_ms=305.00
+console: BUILDINGS: 2 of 2 special buildings placed (latrun_tegart, tzrifin_barracks)
+console: SEA/AIR: 4 collection craft placed, 0 not drawn
+console: AUTOSAVE OK 1 1948-06-15 turn 1 hash eae432311bd531837bf6fd0895032226e524f8e4c433a1cab1211dc68d0d3997
+PASS: saw the end of the --startscreen new run

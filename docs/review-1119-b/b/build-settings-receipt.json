@@ -1,0 +1,22 @@
+{
+  "unity/Assets/Settings/DefaultVolumeProfile.asset": {
+    "bytes": 24035,
+    "sha256": "463776c51ae49d4fef980e8fd268081b2f505610d79315003faae1acff8f4115"
+  },
+  "unity/Assets/Settings/Mobile_RPAsset.asset": {
+    "bytes": 4648,
+    "sha256": "5f74f2f3007db12c797817bba9f6de57dcf7c8fd16c4bf136993e02472e42731"
+  },
+  "unity/Assets/Settings/PC_RPAsset.asset": {
+    "bytes": 4669,
+    "sha256": "d22fd07b53585b4953f15c3fb088f49ec771d961bc96f7116fde0fd6cd9537aa"
+  },
+  "unity/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset": {
+    "bytes": 26038,
+    "sha256": "7b641709b9cf3d1f1af9ff61489e9bb3a72f648c46e9ada8c2d35b2061e7eab2"
+  },
+  "unity/ProjectSettings/ProjectSettings.asset": {
+    "bytes": 25532,
+    "sha256": "8128df9cf6ab7128173274f9adffeed39a7157ea45cda80fa41365785b06ade7"
+  }
+}

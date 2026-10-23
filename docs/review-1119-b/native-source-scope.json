@@ -1,0 +1,9 @@
+{
+  "full_native_source": "0b41a3a313f5daf250c1c2a337af4a9c0547354d",
+  "final_runtime_source": "aaa44832bf725afff012d1cf30eb3e06e732d3b2",
+  "CSharp_changes_are_comment_only": true,
+  "sim_and_content_unchanged": true,
+  "changed_CSharp_files": [
+    "unity/Assets/Scripts/UI/AccessibilityCompanion.cs"
+  ]
+}

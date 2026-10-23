@@ -1,0 +1,36 @@
+{
+  "kind": "historical focused payload/settle check",
+  "raw_source_xml": "settle-green-5.xml",
+  "raw_source_log": "settle-green-5.log",
+  "original_xml_sha256": "e04bdd092bc3a87c9bf9587e4746d10a36e7052408dff735fe5b75e950e45dc6",
+  "original_editor_log_sha256": "cc081f1d489bcc3f8e00af6779e1a92f9b7350554e49de94de3489746e25567c",
+  "counts": {
+    "total": "4",
+    "passed": "4",
+    "failed": "0",
+    "skipped": "0"
+  },
+  "cases": [
+    {
+      "fullname": "AccessibilityCompanionTests.AShownCardIsReadAfterStylesResolveWithoutAnotherInput",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.RefusalWithoutChangedAndAppendedNoticesAreReadAfterThePresenters",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheEnglishAndHebrewPayloadReadsTheCardChoicesFocusAndLiteralText",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheFinalTurnReportIsReadAndDisposeClearsAndCancelsPendingWork",
+      "result": "Passed",
+      "failure": null
+    }
+  ],
+  "publication": "Structured case results only; raw originals preserved locally. Full Editor startup/licensing logs are not published."
+}

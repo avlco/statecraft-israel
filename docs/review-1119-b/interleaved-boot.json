@@ -1,0 +1,137 @@
+{
+  "order": "base,B,base,B",
+  "runs_per_block": 3,
+  "cpu": 4,
+  "exclusive_lock": true,
+  "blocks": [
+    {
+      "block": 1,
+      "player": "base",
+      "runs": [
+        {
+          "map_build_ms": 4212,
+          "first_frame_ms": 15066
+        },
+        {
+          "map_build_ms": 4344,
+          "first_frame_ms": 16043
+        },
+        {
+          "map_build_ms": 4477,
+          "first_frame_ms": 16640
+        }
+      ],
+      "medians": {
+        "map_build_ms": 4344,
+        "first_frame_ms": 16043
+      }
+    },
+    {
+      "block": 2,
+      "player": "b",
+      "runs": [
+        {
+          "map_build_ms": 4230,
+          "first_frame_ms": 15503
+        },
+        {
+          "map_build_ms": 4216,
+          "first_frame_ms": 15269
+        },
+        {
+          "map_build_ms": 4206,
+          "first_frame_ms": 15297
+        }
+      ],
+      "medians": {
+        "map_build_ms": 4216,
+        "first_frame_ms": 15297
+      }
+    },
+    {
+      "block": 3,
+      "player": "base",
+      "runs": [
+        {
+          "map_build_ms": 4135,
+          "first_frame_ms": 15184
+        },
+        {
+          "map_build_ms": 4185,
+          "first_frame_ms": 15274
+        },
+        {
+          "map_build_ms": 4160,
+          "first_frame_ms": 14962
+        }
+      ],
+      "medians": {
+        "map_build_ms": 4160,
+        "first_frame_ms": 15184
+      }
+    },
+    {
+      "block": 4,
+      "player": "b",
+      "runs": [
+        {
+          "map_build_ms": 4217,
+          "first_frame_ms": 15331
+        },
+        {
+          "map_build_ms": 4140,
+          "first_frame_ms": 15066
+        },
+        {
+          "map_build_ms": 4227,
+          "first_frame_ms": 15392
+        }
+      ],
+      "medians": {
+        "map_build_ms": 4217,
+        "first_frame_ms": 15331
+      }
+    }
+  ],
+  "existing_checker_pair_budgets": [
+    {
+      "base_block": 1,
+      "b_block": 2,
+      "metric": "map_build_ms",
+      "b_median": 4216,
+      "over_existing_budget": false
+    },
+    {
+      "base_block": 1,
+      "b_block": 2,
+      "metric": "first_frame_ms",
+      "b_median": 15297,
+      "over_existing_budget": false
+    },
+    {
+      "base_block": 3,
+      "b_block": 4,
+      "metric": "map_build_ms",
+      "b_median": 4217,
+      "over_existing_budget": false
+    },
+    {
+      "base_block": 3,
+      "b_block": 4,
+      "metric": "first_frame_ms",
+      "b_median": 15331,
+      "over_existing_budget": false
+    }
+  ],
+  "pooled_six_run_medians": {
+    "base": {
+      "map_build_ms": 4198.5,
+      "first_frame_ms": 15229.0
+    },
+    "b": {
+      "map_build_ms": 4216.5,
+      "first_frame_ms": 15314.0
+    }
+  },
+  "conclusion": "The prior +2249ms first-frame gap did not recur. Pair deltas are -746ms and +147ms; pooled B first frame is +85ms. No causal attribution or speculative scheduler change."
+}

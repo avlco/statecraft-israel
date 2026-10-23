@@ -1,4 +1,4 @@
-[UnityCache] 'http://localhost:8766/Build/7c7214c172eab8efbc747339ff004217.data.gz' successfully downloaded and stored in the browser cache
+[UnityCache] 'http://localhost:8766/Build/50b5e84dcb67404ef9f9dc89b661f148.data.gz' successfully downloaded and stored in the browser cache
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-allocator-temp-initial-block-size-main=262144"
     "memorysetup-allocator-temp-initial-block-size-worker=262144"
@@ -46,9 +46,9 @@ OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Single-Threaded
 Input System initialize...
-UnloadTime: 2.600000 ms
-KITS ground_tint_ms=2.8 places=296
-KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=229 plant_ms=76 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+UnloadTime: 2.200000 ms
+KITS ground_tint_ms=1.4 places=296
+KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=198 plant_ms=72 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
 BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
 Trying to get length of sound which is not loaded yet.
 Trying to get length of sound which is not loaded yet.
@@ -56,19 +56,19 @@ Trying to get length of sound which is not loaded yet.
 PEOPLE: 0 civilian figures placed, 0 not drawn
 RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
 SEA/AIR: 0 collection craft placed, 0 not drawn
-GAME OK 1948-05-15 turn 0 hash 290e30be1682b58f48dac59230a83933c556127cfd89d1f12fb001470cd6a62c
-BOOT event photos ready (on demand) wait=42 ms
-FIRST CARD OK event=idf_founding media=photo wait=64 ms budget=10000 ms
+GAME OK 1948-05-15 turn 0 hash 9fe882a99633a087a7de24fe6a00694329f514fd1a60210ebb8b72341b83cf1f
+BOOT event photos ready (on demand) wait=41 ms
+FIRST CARD OK event=idf_founding media=photo wait=52 ms budget=10000 ms
 UNITS figures: the Collection's figures streamed in
-Audio context resumed after 9.658 seconds.
+Audio context resumed after 8.193 seconds.
 LANDMARKS: 1 town landmarks placed, 0 not drawn
 LANDMARKS: 2 town landmarks placed, 0 not drawn
 LANDMARKS: 9 town landmarks placed, 0 not drawn
 LANDMARKS: 10 town landmarks placed, 0 not drawn
 LANDMARKS: 16 town landmarks placed, 0 not drawn
-QUALITY level=1 scale=0.90 tiltshift=on p95_ms=582.00
 LANDMARKS: 21 town landmarks placed, 0 not drawn
 LANDMARKS: 22 town landmarks placed, 0 not drawn
+QUALITY level=1 scale=0.90 tiltshift=on p95_ms=432.00
 PEOPLE: 18 civilian figures placed, 0 not drawn
 PEOPLE: 36 civilian figures placed, 0 not drawn
 PEOPLE: 54 civilian figures placed, 0 not drawn
@@ -79,7 +79,6 @@ RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
 RURAL: 3 rural scenes placed (6 models); 0 models short of 3 scenes
 RURAL: 3 rural scenes placed (6 models); 0 models short of 3 scenes
 RURAL: 6 rural scenes placed (12 models); 0 models short of 3 scenes
-QUALITY level=2 scale=0.80 tiltshift=on p95_ms=487.00
 RURAL: 6 rural scenes placed (12 models); 0 models short of 3 scenes
 RURAL: 9 rural scenes placed (18 models); 0 models short of 3 scenes
 RURAL: 9 rural scenes placed (18 models); 0 models short of 3 scenes
@@ -89,13 +88,14 @@ RURAL: 15 rural scenes placed (54 models); 0 models short of 3 scenes
 RURAL: 15 rural scenes placed (54 models); 0 models short of 3 scenes
 RURAL: 18 rural scenes placed (60 models); 0 models short of 3 scenes
 BUILDINGS: 1 of 1 special buildings placed (latrun_tegart)
+QUALITY level=2 scale=0.80 tiltshift=on p95_ms=389.00
 SEA/AIR: 1 collection craft placed, 0 not drawn
 SEA/AIR: 3 collection craft placed, 0 not drawn
-QUALITY level=3 scale=0.80 tiltshift=off p95_ms=155.00
+QUALITY level=3 scale=0.80 tiltshift=off p95_ms=116.00
 BUILDINGS: 1 of 2 special buildings placed (latrun_tegart)
 SEA/AIR: 3 collection craft placed, 0 not drawn
-AUTOSAVE PENDING 1 1948-06-15 turn 1 hash 38104555c17a9df658843346a9c838156fe1077a238a3fbbb3de47549b39e41b
-TURN 1 1948-06-15 hash 38104555c17a9df658843346a9c838156fe1077a238a3fbbb3de47549b39e41b
-AUTOSAVE OK 1 1948-06-15 turn 1 hash 38104555c17a9df658843346a9c838156fe1077a238a3fbbb3de47549b39e41b
+AUTOSAVE PENDING 1 1948-06-15 turn 1 hash 1b0dee1c070061219ba9b50b1b055b6e38ab9213875e3ac626f19210eb4dd66e
+TURN 1 1948-06-15 hash 1b0dee1c070061219ba9b50b1b055b6e38ab9213875e3ac626f19210eb4dd66e
+AUTOSAVE OK 1 1948-06-15 turn 1 hash 1b0dee1c070061219ba9b50b1b055b6e38ab9213875e3ac626f19210eb4dd66e
 BUILDINGS: 2 of 2 special buildings placed (latrun_tegart, tzrifin_barracks)
 SEA/AIR: 4 collection craft placed, 0 not drawn

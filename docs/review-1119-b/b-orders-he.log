@@ -52,11 +52,11 @@ console: [Physics::Module] SDK Version: 4.1.2
 console: [Physics::Module] Integration Version: 1.0.0
 console: [Physics::Module] Threading Mode: Single-Threaded
 console: Input System initialize...
-console: UnloadTime: 2.000000 ms
-console: Audio context resumed after 0.525 seconds.
-console: [UnityCache] 'http://localhost:53490/Build/7c7214c172eab8efbc747339ff004217.data.gz' successfully downloaded and stored in the browser cache
-console: KITS ground_tint_ms=1.6 places=296
-console: KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=198 plant_ms=71 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+console: UnloadTime: 2.100000 ms
+console: Audio context resumed after 0.542 seconds.
+console: [UnityCache] 'http://localhost:57370/Build/50b5e84dcb67404ef9f9dc89b661f148.data.gz' successfully downloaded and stored in the browser cache
+console: KITS ground_tint_ms=1.3 places=296
+console: KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=208 plant_ms=70 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
 console: BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
 console: Trying to get length of sound which is not loaded yet.
 console: Trying to get length of sound which is not loaded yet.

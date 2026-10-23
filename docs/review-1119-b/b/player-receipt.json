@@ -1,22 +1,21 @@
 {
-  "runtime_source_commit": "4d681e5eaf6f648bab85fb37b9f1fe8b7ffca609",
-  "validation_head": "e27977229fc3b5eb0f37a770f1d09ea8f1094901",
+  "runtime_source_commit": "aaa44832bf725afff012d1cf30eb3e06e732d3b2",
   "files": {
+    "Build/23697bb3ca72e80a75a2eb9d942b913c.framework.js.gz": {
+      "bytes": 97863,
+      "sha256": "f53a6008ba65f0a6a88e61557452ba2bf99a41718cc4bc72ab50d476d4a3d531"
+    },
     "Build/3ff034e841abd2b048c014f54926bb1d.wasm.gz": {
       "bytes": 14343739,
-      "sha256": "aabbe371bed34497878b2bb6a703993df737ea0f291c0a5121cec8cbc3d970fe"
+      "sha256": "d4e72962b8bf5fe9d1569a1149506ddfb68a45365b51bfe213a7f92bc1ce5649"
+    },
+    "Build/50b5e84dcb67404ef9f9dc89b661f148.data.gz": {
+      "bytes": 25695678,
+      "sha256": "3acfcaf89cf744aed53505ed50eb49e0b841b35189b790484cbd809c89e9f503"
     },
     "Build/6979f3f7b089f9075f9de617943c54c1.loader.js": {
       "bytes": 26983,
       "sha256": "638ac3c7e99e4a1c878a2ac808f9d32e6878529b08337c04ef71347a2538e3d7"
-    },
-    "Build/7c7214c172eab8efbc747339ff004217.data.gz": {
-      "bytes": 25696349,
-      "sha256": "7ee3d2a044c5918fb1be32cb4cddb18e68ab5d8d98d75f9eec781171e367198e"
-    },
-    "Build/87b163b20fd4efa713be7a5e54e69f7d.framework.js.gz": {
-      "bytes": 97858,
-      "sha256": "1e62e8341e569e0b6cf7a1957c9ccc2ae45b85c0ba45f85ae3c8f33a93d98762"
     },
     "StreamingAssets/audio/declaration-1948-isa-00113hj.wav": {
       "bytes": 1784396,
@@ -451,8 +450,9 @@
       "sha256": "8a32a2b178b386b020fb2d75ada56fa12ed886c767937f397378001f93747fd4"
     },
     "index.html": {
-      "bytes": 8659,
-      "sha256": "793caa5a576c2a16bc24004767df70544b6438a8c3cae535a62df3a6b7c1c0ec"
+      "bytes": 9265,
+      "sha256": "b18e0b6b444d12cf2c28b3a8b0fb8403cb90c96f22c0e13032230f0e76286517"
     }
-  }
+  },
+  "build_log_sha256": "789be64e1c1d391e2751d47a940a50d50abb59c83dbc99ffa391fbeb6e58bc85"
 }

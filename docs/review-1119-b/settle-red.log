@@ -1,0 +1,36 @@
+{
+  "kind": "historical focused payload/settle check",
+  "raw_source_xml": "settle-red.xml",
+  "raw_source_log": "settle-red.log",
+  "original_xml_sha256": "bef33e908d1ad9824ecaafc62d3e75449a1894d65bbb18fc8a3a51cca511e4d7",
+  "original_editor_log_sha256": "4769dd1b7aa309471df1d515565e811f2a3ed52e98cee67c855ea02399df1052",
+  "counts": {
+    "total": "4",
+    "passed": "3",
+    "failed": "1",
+    "skipped": "0"
+  },
+  "cases": [
+    {
+      "fullname": "AccessibilityCompanionTests.AShownCardIsReadAfterStylesResolveWithoutAnotherInput",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.RefusalWithoutChangedAndAppendedNoticesAreReadAfterThePresenters",
+      "result": "Failed",
+      "failure": "  Expected string length 11 but was 40. Strings differ at index 0.\n  Expected: \"late notice\"\n  But was:  \"\u05dc\u05d0 \u05d1\u05d5\u05e6\u05e2: \u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d6\u05d4\u05d5\u05ea \u05d0\u05d9\u05e8\u05d5\u05e2\\nsave notice\"\n  -----------^\n"
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheEnglishAndHebrewPayloadReadsTheCardChoicesFocusAndLiteralText",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "fullname": "AccessibilityCompanionTests.TheFinalTurnReportIsReadAndDisposeClearsAndCancelsPendingWork",
+      "result": "Passed",
+      "failure": null
+    }
+  ],
+  "publication": "Structured case results only; raw originals preserved locally. Full Editor startup/licensing logs are not published."
+}

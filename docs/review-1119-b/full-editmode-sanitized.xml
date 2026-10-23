@@ -1848,7 +1848,7 @@ Optimized Game Object are not supported for sampling
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>DOMAINPROBE requesting actual reload {"token":"61b4a9801d9646f19a18e55d191c7481","nonce":"c1536bde0d8245078118de71d6fc3dce","boardId":"000Domain-61b4a9801d9646f19a18e55d191c7481","jsonPath":"Assets/Resources/HexTiles/Boards/000Domain-61b4a9801d9646f19a18e55d191c7481.json","materialPath":"Assets/__DomainControl-61b4a9801d9646f19a18e55d191c7481.mat","materialGuid":"d851bede65aff45f4afbc441c4c5d9e0","previewId":-14922,"stateId":-15030,"markerId":-15064,"sharedMeshId":818,"createdControl":{"id":-15068,"name":"__DomainControl-61b4a9801d9646f19a18e55d191c7481","type":"UnityEngine.Material"},"owned":[{"id":-15012,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-0","type":"UnityEngine.Mesh"},{"id":-15014,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-1","type":"UnityEngine.Material"},{"id":-14930,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-2","type":"UnityEngine.TerrainData"},{"id":-15062,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-3","type":"UnityEngine.Material"}]}
+          <output>DOMAINPROBE requesting actual reload {"token":"redacted","nonce":"c1536bde0d8245078118de71d6fc3dce","boardId":"000Domain-61b4a9801d9646f19a18e55d191c7481","jsonPath":"Assets/Resources/HexTiles/Boards/000Domain-61b4a9801d9646f19a18e55d191c7481.json","materialPath":"Assets/__DomainControl-61b4a9801d9646f19a18e55d191c7481.mat","materialGuid":"d851bede65aff45f4afbc441c4c5d9e0","previewId":-14922,"stateId":-15030,"markerId":-15064,"sharedMeshId":818,"createdControl":{"id":-15068,"name":"__DomainControl-61b4a9801d9646f19a18e55d191c7481","type":"UnityEngine.Material"},"owned":[{"id":-15012,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-0","type":"UnityEngine.Mesh"},{"id":-15014,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-1","type":"UnityEngine.Material"},{"id":-14930,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-2","type":"UnityEngine.TerrainData"},{"id":-15062,"name":"DomainOwned-61b4a9801d9646f19a18e55d191c7481-3","type":"UnityEngine.Material"}]}
 DOMAINPROBE actualReload=True oldNonce=c1536bde0d8245078118de71d6fc3dce newNonce=cec1805bd80d4f7daeb00ecfe028cdc3
 DOMAINPROBE afterReload previewAlive=True stateBoardNull=True ownedAlive=DomainOwned-61b4a9801d9646f19a18e55d191c7481-0,DomainOwned-61b4a9801d9646f19a18e55d191c7481-1,DomainOwned-61b4a9801d9646f19a18e55d191c7481-2,DomainOwned-61b4a9801d9646f19a18e55d191c7481-3 sharedBeforeDestroy=True
 DOMAINLIFETIME {"previewAliveAfterReload":true,"stateBoardNull":true,"sharedBeforeDestroy":true,"retained":[],"ownedAliveBeforeDestroy":["DomainOwned-61b4a9801d9646f19a18e55d191c7481-0","DomainOwned-61b4a9801d9646f19a18e55d191c7481-1","DomainOwned-61b4a9801d9646f19a18e55d191c7481-2","DomainOwned-61b4a9801d9646f19a18e55d191c7481-3"]}
@@ -3633,7 +3633,7 @@ BUNDLES StandaloneOSX: 5 bundles, 15008738 bytes -&gt; /redacted-home/Documents/
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>Collection: bundle collection-animals did not load (it does not match the build that made it: /temporary/statecraft-flipped-collection-3d612dded16540299a28d772be0951f4/collection-animals); its models stay off the map.
+          <output>Collection: bundle collection-animals did not load (it does not match the build that made it: /redacted-temp/statecraft-flipped-collection-3d612dded16540299a28d772be0951f4/collection-animals); its models stay off the map.
 </output>
         </test-case>
         <test-case id="1788" name="ABundleIsNeverOpenedWithoutItsLineInTheChecksFile" fullname="CollectionStreamTests.ABundleIsNeverOpenedWithoutItsLineInTheChecksFile" methodname="ABundleIsNeverOpenedWithoutItsLineInTheChecksFile" classname="CollectionStreamTests" runstate="Runnable" seed="1723556830" result="Passed" start-time="2026-10-23 09:52:24Z" end-time="2026-10-23 09:52:24Z" duration="0.008191" asserts="0">
@@ -3641,7 +3641,7 @@ BUNDLES StandaloneOSX: 5 bundles, 15008738 bytes -&gt; /redacted-home/Documents/
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>Collection: bundle collection-animals did not load (no file /temporary/statecraft-unchecked-collection-645cf889bf7448c5a810fda11643d85a/collection-checks.txt); its models stay off the map.
+          <output>Collection: bundle collection-animals did not load (no file /redacted-temp/statecraft-unchecked-collection-645cf889bf7448c5a810fda11643d85a/collection-checks.txt); its models stay off the map.
 Collection: bundle collection-animals did not load (a damaged collection-checks.txt); its models stay off the map.
 Collection: bundle collection-animals did not load (not in collection-checks.txt); its models stay off the map.
 </output>
@@ -3663,8 +3663,8 @@ collection-animals: HTTP/1.1 429 Too Many Requests (http://127.0.0.1:52396/colle
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>Collection: bundle collection-animals did not load (not an AssetBundle /temporary/statecraft-bad-collection-30488ad255e6465ead3cb069cbaf6da0/collection-animals); its models stay off the map.
-Collection: bundle collection-vehicles did not load (a damaged AssetBundle (102 bytes, its header says 4096) /temporary/statecraft-bad-collection-30488ad255e6465ead3cb069cbaf6da0/collection-vehicles); its models stay off the map.
+          <output>Collection: bundle collection-animals did not load (not an AssetBundle /redacted-temp/statecraft-bad-collection-30488ad255e6465ead3cb069cbaf6da0/collection-animals); its models stay off the map.
+Collection: bundle collection-vehicles did not load (a damaged AssetBundle (102 bytes, its header says 4096) /redacted-temp/statecraft-bad-collection-30488ad255e6465ead3cb069cbaf6da0/collection-vehicles); its models stay off the map.
 </output>
         </test-case>
         <test-case id="1784" name="AMissingBundleWarnsOnceAndEveryRequestForItGetsNull" fullname="CollectionStreamTests.AMissingBundleWarnsOnceAndEveryRequestForItGetsNull" methodname="AMissingBundleWarnsOnceAndEveryRequestForItGetsNull" classname="CollectionStreamTests" runstate="Runnable" seed="2140529864" result="Passed" start-time="2026-10-23 09:52:29Z" end-time="2026-10-23 09:52:29Z" duration="0.003704" asserts="0">
@@ -3717,7 +3717,7 @@ Collection: bundle collection-vehicles did not load Assets/Art/Collection/figure
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>Collection: bundle collection-vehicles did not load (no file /temporary/statecraft-no-collection-577685680db84b58a4a8862b18562b85/collection-vehicles); its models stay off the map.
+          <output>Collection: bundle collection-vehicles did not load (no file /redacted-temp/statecraft-no-collection-577685680db84b58a4a8862b18562b85/collection-vehicles); its models stay off the map.
 </output>
         </test-case>
         <test-case id="1791" name="TheEditorSourceServesTheProjectsPrefabs" fullname="CollectionStreamTests.TheEditorSourceServesTheProjectsPrefabs" methodname="TheEditorSourceServesTheProjectsPrefabs" classname="CollectionStreamTests" runstate="Runnable" seed="120263779" result="Passed" start-time="2026-10-23 09:52:29Z" end-time="2026-10-23 09:52:29Z" duration="0.004699" asserts="0">
@@ -5712,15 +5712,15 @@ bundle.json: no data for 1 s (http://127.0.0.1:52519/content/bundle.json); attem
 BOOT FAIL bundle.json: no data for 1 s (http://127.0.0.1:52519/content/bundle.json) after 4 attempts
 IOException: bundle.json: no data for 1 s (http://127.0.0.1:52519/content/bundle.json) after 4 attempts
 Statecraft.Game.Boot.StreamingFetch.Done (Statecraft.Game.Boot.StreamingFetch+IDownload d, System.String name, System.Single stallSeconds) (at Assets/Scripts/Boot/StreamingFetch.cs:149)
-UnityEngine.Awaitable.PropagateExceptionAndRelease () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.cs:229)
+UnityEngine.Awaitable.PropagateExceptionAndRelease () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.cs:229)
 Statecraft.Game.Boot.GameInputs.Text (Statecraft.Game.Boot.StreamingFetch+Download d, System.String name, System.Single stallSeconds) (at Assets/Scripts/Boot/GameInputs.cs:126)
-UnityEngine.Awaitable.PropagateExceptionAndRelease () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.cs:229)
-UnityEngine.Awaitable`1[T].GetResult () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:28)
-UnityEngine.Awaitable`1+Awaiter[T].GetResult () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:93)
+UnityEngine.Awaitable.PropagateExceptionAndRelease () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.cs:229)
+UnityEngine.Awaitable`1[T].GetResult () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:28)
+UnityEngine.Awaitable`1+Awaiter[T].GetResult () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:93)
 Statecraft.Game.Boot.GameInputs.FetchAsync (System.String baseUrl, System.String buildId, System.Single stallSeconds) (at Assets/Scripts/Boot/GameInputs.cs:165)
-UnityEngine.Awaitable.PropagateExceptionAndRelease () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.cs:229)
-UnityEngine.Awaitable`1[T].GetResult () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:28)
-UnityEngine.Awaitable`1+Awaiter[T].GetResult () (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:93)
+UnityEngine.Awaitable.PropagateExceptionAndRelease () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.cs:229)
+UnityEngine.Awaitable`1[T].GetResult () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:28)
+UnityEngine.Awaitable`1+Awaiter[T].GetResult () (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/AwaitableT.cs:93)
 Statecraft.Game.Boot.GameBoot.BootAsync (System.Func`1[TResult] load) (at Assets/Scripts/Boot/GameBoot.cs:48)
 UnityEngine.Debug:LogException(Exception)
 Statecraft.Game.Boot.&lt;BootAsync&gt;d__19:MoveNext() (at Assets/Scripts/Boot/GameBoot.cs:64)
@@ -5730,7 +5730,7 @@ UnityEngine.AwaitableAsyncMethodBuilder`1:SetException(Exception)
 Statecraft.Game.Boot.&lt;Text&gt;d__8:MoveNext() (at Assets/Scripts/Boot/GameInputs.cs:128)
 UnityEngine.Awaitable:RaiseManagedCompletion(Exception)
 Statecraft.Game.Boot.&lt;Done&gt;d__14:MoveNext() (at Assets/Scripts/Boot/StreamingFetch.cs:131)
-UnityEngine.Awaitable:OnUpdate() (at /unity-build/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.DelayedCall.cs:161)
+UnityEngine.Awaitable:OnUpdate() (at /redacted-build-home/build/output/unity/unity/Runtime/Export/Scripting/Awaitable.DelayedCall.cs:161)
 
 </output>
         </test-case>
@@ -5965,8 +5965,8 @@ RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>BOOT FAIL Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
-IOException: Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+          <output>BOOT FAIL Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+IOException: Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
 GameSceneTests+&lt;&gt;c.&lt;AFailingLoadIsCaughtAndShownWithoutLocalPaths&gt;b__43_0 () (at Assets/Tests/EditMode/GameSceneTests.cs:905)
 Statecraft.Game.Boot.GameBoot.BootAsync (System.Func`1[TResult] load) (at Assets/Scripts/Boot/GameBoot.cs:48)
 UnityEngine.Debug:LogException(Exception)
@@ -5974,7 +5974,7 @@ Statecraft.Game.Boot.&lt;BootAsync&gt;d__19:MoveNext() (at Assets/Scripts/Boot/G
 UnityEngine.StateMachineBox`1:DoMoveNext()
 Statecraft.Game.Boot.GameBoot:BootAsync(Func`1)
 &lt;AFailingLoadIsCaughtAndShownWithoutLocalPaths&gt;d__43:MoveNext() (at Assets/Tests/EditMode/GameSceneTests.cs:905)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
         </test-case>
@@ -6010,7 +6010,7 @@ RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
 SEA/AIR: 0 collection craft placed, 0 not drawn
 GAME OK 1948-05-15 turn 0 hash 87ab4ace00da6bd148fc834f7020ea5c2c151e3059a7edb68a08c24094723a9d
 SEA/AIR: 0 collection craft placed, 0 not drawn
-Autosave could not be written: System.IO.IOException: The file '/temporary/statecraft-scene-f474ea6990a440ada84b4065fa4f7ba1' already exists.
+Autosave could not be written: System.IO.IOException: The file '/redacted-temp/statecraft-scene-f474ea6990a440ada84b4065fa4f7ba1' already exists.
   at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
   at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
   at Statecraft.Game.SaveStore.WriteAutosave (System.String text) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/SaveStore.cs:31
@@ -6588,8 +6588,8 @@ corner/centre 0.788 -&gt; 0.602
               <property name="retryIteration" value="0" />
               <property name="repeatIteration" value="0" />
             </properties>
-            <output>BOOT FAIL Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
-IOException: Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+            <output>BOOT FAIL Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+IOException: Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
 HebrewUiTests+&lt;&gt;c.&lt;ABootFailureStaysOnTheLoadingLineInEitherStartOrder&gt;b__31_0 () (at Assets/Tests/EditMode/HebrewUiTests.cs:464)
 Statecraft.Game.Boot.GameBoot.BootAsync (System.Func`1[TResult] load) (at Assets/Scripts/Boot/GameBoot.cs:48)
 UnityEngine.Debug:LogException(Exception)
@@ -6603,10 +6603,10 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
-BOOT FAIL Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
-IOException: Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+BOOT FAIL Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+IOException: Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
 HebrewUiTests+&lt;&gt;c.&lt;ABootFailureStaysOnTheLoadingLineInEitherStartOrder&gt;b__31_0 () (at Assets/Tests/EditMode/HebrewUiTests.cs:464)
 Statecraft.Game.Boot.GameBoot.BootAsync (System.Func`1[TResult] load) (at Assets/Scripts/Boot/GameBoot.cs:48)
 UnityEngine.Debug:LogException(Exception)
@@ -6620,7 +6620,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
           </test-case>
@@ -6629,8 +6629,8 @@ UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/bu
               <property name="retryIteration" value="0" />
               <property name="repeatIteration" value="0" />
             </properties>
-            <output>BOOT FAIL Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
-IOException: Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+            <output>BOOT FAIL Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+IOException: Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
 HebrewUiTests+&lt;&gt;c.&lt;ABootFailureStaysOnTheLoadingLineInEitherStartOrder&gt;b__31_0 () (at Assets/Tests/EditMode/HebrewUiTests.cs:464)
 Statecraft.Game.Boot.GameBoot.BootAsync (System.Func`1[TResult] load) (at Assets/Scripts/Boot/GameBoot.cs:48)
 UnityEngine.Debug:LogException(Exception)
@@ -6644,10 +6644,10 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
-BOOT FAIL Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
-IOException: Could not find file '/redacted-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+BOOT FAIL Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
+IOException: Could not find file '/redacted-fixture-home/Statecraft Israel.app/Contents/Resources/Data/StreamingAssets/map/heightmap.json'.
 HebrewUiTests+&lt;&gt;c.&lt;ABootFailureStaysOnTheLoadingLineInEitherStartOrder&gt;b__31_0 () (at Assets/Tests/EditMode/HebrewUiTests.cs:464)
 Statecraft.Game.Boot.GameBoot.BootAsync (System.Func`1[TResult] load) (at Assets/Scripts/Boot/GameBoot.cs:48)
 UnityEngine.Debug:LogException(Exception)
@@ -6661,7 +6661,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
           </test-case>
@@ -7456,7 +7456,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
           </test-case>
@@ -7485,7 +7485,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
           </test-case>
@@ -7530,7 +7530,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
           </test-case>
@@ -7552,7 +7552,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
           </test-case>
@@ -7589,7 +7589,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 InvalidOperationException: turn-ended presenter failed
 HudTests+&lt;&gt;c.&lt;AThrowingEndTurnSubscriberDoesNotStopTheOthers&gt;b__39_2 (System.Collections.Generic.IReadOnlyList`1[T] _) (at Assets/Tests/EditMode/HudTests.cs:595)
@@ -7612,7 +7612,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
         </test-case>
@@ -10719,7 +10719,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 AUTOSAVE PENDING 39 1950-05-01 turn 1 hash 5700b470223f57a3d308d7f65b3a3f4e186c92786375b2a626b83af7b80c7d0a
 AUTOSAVE OK 39 1950-05-01 turn 1 hash 5700b470223f57a3d308d7f65b3a3f4e186c92786375b2a626b83af7b80c7d0a
@@ -12891,7 +12891,7 @@ AUTOSAVE OK 40 1948-06-15 turn 1 hash b2760842ac35a9ee37d876d1761fe6736458d392d0
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>Autosave could not be written: System.IO.IOException: The file '/temporary/statecraft-not-a-folder-45e26283f9ac495daed9b5a693e39417' already exists.
+          <output>Autosave could not be written: System.IO.IOException: The file '/redacted-temp/statecraft-not-a-folder-45e26283f9ac495daed9b5a693e39417' already exists.
   at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
   at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in &lt;4ac0ee785b7843ea944af6fc649f4ee5&gt;:0
   at Statecraft.Game.SaveStore.WriteAutosave (System.String text) [0x00000] in /redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-israel/unity/Assets/Scripts/SaveStore.cs:31
@@ -17234,10 +17234,10 @@ arab_liberation_army at al-Malikiyya: hex (12,4) Arab on 1948-05-15
             <property name="retryIteration" value="0" />
             <property name="repeatIteration" value="0" />
           </properties>
-          <output>Collection: bundle collection-people did not load (no file /temporary/statecraft-figures-46675b087f0240d9b8ba872117d4e7b2/collection-people); its models stay off the map.
-Collection: bundle collection-vehicles did not load (no file /temporary/statecraft-figures-46675b087f0240d9b8ba872117d4e7b2/collection-vehicles); its models stay off the map.
-Collection: bundle collection-people did not load (not an AssetBundle /temporary/statecraft-figures-5b998a9a52ac464a91396622f53e9209/collection-people); its models stay off the map.
-Collection: bundle collection-vehicles did not load (not an AssetBundle /temporary/statecraft-figures-5b998a9a52ac464a91396622f53e9209/collection-vehicles); its models stay off the map.
+          <output>Collection: bundle collection-people did not load (no file /redacted-temp/statecraft-figures-46675b087f0240d9b8ba872117d4e7b2/collection-people); its models stay off the map.
+Collection: bundle collection-vehicles did not load (no file /redacted-temp/statecraft-figures-46675b087f0240d9b8ba872117d4e7b2/collection-vehicles); its models stay off the map.
+Collection: bundle collection-people did not load (not an AssetBundle /redacted-temp/statecraft-figures-5b998a9a52ac464a91396622f53e9209/collection-people); its models stay off the map.
+Collection: bundle collection-vehicles did not load (not an AssetBundle /redacted-temp/statecraft-figures-5b998a9a52ac464a91396622f53e9209/collection-vehicles); its models stay off the map.
 </output>
         </test-case>
         <test-case id="3358" name="TheFiguresAndVehiclesSwapInWhenTheModelsArrive" fullname="UnitFiguresTests.TheFiguresAndVehiclesSwapInWhenTheModelsArrive" methodname="TheFiguresAndVehiclesSwapInWhenTheModelsArrive" classname="UnitFiguresTests" runstate="Runnable" seed="1593776338" result="Passed" start-time="2026-10-23 10:21:16Z" end-time="2026-10-23 10:21:20Z" duration="3.367982" asserts="0">
@@ -17385,9 +17385,9 @@ UNITS showcase spot 5674 m from TrioAt, plinth reach 1993 m
           <output>KITS ground_tint_ms=4.3 places=296
 KITS buildings=3604 vertices=172717 triangles=92072 trees=14260 route_segments=1493 build_ms=275 plant_ms=91 localities=271 locality_buildings=2904 camps=64 tents=174 boats=17 draws=64 models=20542 close_vertices=66704
 UNITS probe probe_rosh_pinna: ground spread 584 m under the base, the top strays 0.05 m from the lip
-UNITS probe probe_rosh_pinna at 35.613,33.011 saved /temporary/statecraft-unitsrender-probe_rosh_pinna.png
+UNITS probe probe_rosh_pinna at 35.613,33.011 saved /redacted-temp/statecraft-unitsrender-probe_rosh_pinna.png
 UNITS probe probe_shaar_hagai: ground spread 680 m under the base, the top strays 0.02 m from the lip
-UNITS probe probe_shaar_hagai at 34.975,31.790 saved /temporary/statecraft-unitsrender-probe_shaar_hagai.png
+UNITS probe probe_shaar_hagai at 34.975,31.790 saved /redacted-temp/statecraft-unitsrender-probe_shaar_hagai.png
 </output>
         </test-case>
         <test-case id="3394" name="TheBadgeKeepsOffTheFiguresAndTheFlag" fullname="UnitPlinthTests.TheBadgeKeepsOffTheFiguresAndTheFlag" methodname="TheBadgeKeepsOffTheFiguresAndTheFlag" classname="UnitPlinthTests" runstate="Runnable" seed="763372791" result="Passed" start-time="2026-10-23 10:21:45Z" end-time="2026-10-23 10:21:47Z" duration="2.368423" asserts="0">
@@ -17453,9 +17453,9 @@ UNITS base/trio UnitShowcase: 1.44
           </properties>
           <output>KITS ground_tint_ms=4.2 places=296
 KITS buildings=3597 vertices=172547 triangles=91992 trees=14228 route_segments=1494 build_ms=279 plant_ms=98 localities=271 locality_buildings=2902 camps=64 tents=174 boats=17 draws=64 models=20508 close_vertices=66672
-UNITS render harel saved /temporary/statecraft-unitsrender-harel.png; ring box 844-1074 x 562-630, 2156 ring pixels, base at (0.50, 0.57, 26367.89), flag at (0.55, 0.79, 25940.99)
+UNITS render harel saved /redacted-temp/statecraft-unitsrender-harel.png; ring box 844-1074 x 562-630, 2156 ring pixels, base at (0.50, 0.57, 26367.89), flag at (0.55, 0.79, 25940.99)
 UNITS render harel: base 0.244, ring 0.963 (3.94x the base), shirts 0.287 (1.18 of the base), flag white 0.943
-UNITS render UnitShowcase saved /temporary/statecraft-unitsrender-UnitShowcase.png; ring box 850-1069 x 498-554, 1948 ring pixels, base at (0.50, 0.50, 27884.89), flag at (0.55, 0.71, 27153.46)
+UNITS render UnitShowcase saved /redacted-temp/statecraft-unitsrender-UnitShowcase.png; ring box 850-1069 x 498-554, 1948 ring pixels, base at (0.50, 0.50, 27884.89), flag at (0.55, 0.71, 27153.46)
 UNITS render UnitShowcase: base 0.310, ring 0.963 (3.10x the base), shirts 0.282 (0.91 of the base), flag white 0.952
 </output>
         </test-case>
@@ -17466,11 +17466,11 @@ UNITS render UnitShowcase: base 0.310, ring 0.963 (3.10x the base), shirts 0.282
           </properties>
           <output>KITS ground_tint_ms=4.0 places=296
 KITS buildings=3597 vertices=172547 triangles=91992 trees=14228 route_segments=1494 build_ms=250 plant_ms=94 localities=271 locality_buildings=2902 camps=64 tents=174 boats=17 draws=64 models=20508 close_vertices=66672
-UNITS render harel30 saved /temporary/statecraft-unitsfigures-harel30.png
+UNITS render harel30 saved /redacted-temp/statecraft-unitsfigures-harel30.png
 UNITS render harel30 harel: base 0.244, shirts 0.207 (0.85 of the base), lip 0.130 (4.1 px tall, shirts part from it by 0.37), brace 0.287; shirt pixels 0.26,0.24,0.23,0.26,0.24,0.23,0.26,0.24,0.23 | 0.22,0.21,0.19,0.23,0.21,0.20,0.23,0.21,0.20 | 0.13,0.12,0.12,0.14,0.13,0.12,0.14,0.13,0.12
-UNITS render plain30 saved /temporary/statecraft-unitsfigures-plain30.png
+UNITS render plain30 saved /redacted-temp/statecraft-unitsfigures-plain30.png
 UNITS render plain30 UnitShowcase: base 0.310, shirts 0.220 (0.71 of the base), lip 0.131 (3.7 px tall, shirts part from it by 0.40), brace 0.282; shirt pixels 0.27,0.26,0.24,0.27,0.26,0.25,0.28,0.26,0.25 | 0.23,0.22,0.20,0.24,0.22,0.20,0.24,0.22,0.21 | 0.13,0.12,0.12,0.13,0.12,0.12,0.14,0.13,0.12
-UNITS render gameplay03 saved /temporary/statecraft-unitsfigures-gameplay03.png
+UNITS render gameplay03 saved /redacted-temp/statecraft-unitsfigures-gameplay03.png
 UNITS render gameplay03 kiryati: base 0.297, shirts 0.169 (0.57 of the base), lip 0.399 (1.2 px tall, shirts part from it by 0.58), brace 0.249; shirt pixels 0.42,0.28,0.26,0.31,0.28,0.25,0.30,0.27,0.25 | 0.17,0.16,0.16,0.17,0.16,0.17,0.18,0.17,0.17 | 0.15,0.15,0.14,0.15,0.15,0.14,0.15,0.15,0.14
 UNITS render gameplay03 UnitShowcase: base 0.298, shirts 0.200 (0.67 of the base), lip 0.207 (1.8 px tall, shirts part from it by 0.04), brace 0.277; shirt pixels 0.28,0.25,0.22,0.29,0.25,0.23,0.30,0.27,0.24 | 0.23,0.20,0.17,0.24,0.20,0.17,0.25,0.21,0.18 | 0.15,0.13,0.13,0.15,0.13,0.13,0.16,0.14,0.13
 UNITS render gameplay03: 2 army tokens wholly in the frame
@@ -18581,7 +18581,7 @@ NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
 NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
-UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /unity-build/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions() (at /redacted-build-home/build/output/unity/unity/Editor/Mono/EditorApplication.cs:392)
 
 </output>
         </test-case>

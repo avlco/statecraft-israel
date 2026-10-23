@@ -1,0 +1,22 @@
+machine_lock: taking the machine lock (exclusive)
+START boot-1-base
+DONE boot-1-base 0
+START boot-2-b
+DONE boot-2-b 0
+START boot-3-base
+DONE boot-3-base 0
+START boot-4-b
+DONE boot-4-b 0
+START golden-en
+DONE golden-en 0
+START orders-en
+DONE orders-en 0
+START start-en
+DONE start-en 0
+START golden-he
+DONE golden-he 0
+START orders-he
+DONE orders-he 0
+START start-he
+DONE start-he 0
+ALL NEW PLAYER BROWSER GATES PASS

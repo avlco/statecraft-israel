@@ -19,6 +19,27 @@
       "bottom": 1080,
       "left": 0
     },
+    "panel": {
+      "x": 1536,
+      "y": 0,
+      "width": 384,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 1536
+    },
+    "regions": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    },
+    "panelOverflows": false,
     "padding": "0px",
     "overlap": false
   },
@@ -40,6 +61,27 @@
       "bottom": 1080,
       "left": 0
     },
+    "panel": {
+      "x": 1536,
+      "y": 0,
+      "width": 384,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 1536
+    },
+    "regions": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    },
+    "panelOverflows": false,
     "padding": "0px",
     "overlap": false
   },
@@ -62,6 +104,27 @@
       "bottom": 1080,
       "left": 0
     },
+    "panel": {
+      "x": 1536,
+      "y": 0,
+      "width": 384,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 1536
+    },
+    "regions": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    },
+    "panelOverflows": false,
     "padding": "0px",
     "overlap": false
   },
@@ -79,12 +142,253 @@
       "x": 0,
       "y": 47,
       "width": 390,
-      "height": 509.8046875,
+      "height": 585,
       "top": 47,
       "right": 390,
-      "bottom": 556.8046875,
+      "bottom": 632,
       "left": 0
     },
+    "panel": {
+      "x": 0,
+      "y": 632,
+      "width": 390,
+      "height": 178,
+      "top": 632,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 763,
+      "top": 47,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "en-390x844 panel click then Tab",
+    "clicked_active": "companion",
+    "language": "en",
+    "text": "One ArmyMinister of Defense: David Ben-GurionThe Irgun and Lehi still keep their own armed units. David Ben-Gurion proposes an order that establishes the Israel Defense Forces and forbids any armed force other than the IDF.Issue the order and bring every armed force into the IDF (costs 2.0 Attention)Leave the Irgun and Lehi units outside the IDF for now (costs 2.0 Attention)",
+    "title": "One Army",
+    "choice": "Issue the order and bring every armed force into the IDF (costs 2.0 Attention)",
+    "focus": "Cabinet",
+    "status": "",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 585,
+      "top": 47,
+      "right": 390,
+      "bottom": 632,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 632,
+      "width": 390,
+      "height": 178,
+      "top": 632,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 763,
+      "top": 47,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "en-390x844 keyboard result after panel click",
+    "language": "en",
+    "text": "What happened this turn",
+    "title": "What happened this turn",
+    "focus": "Close",
+    "status": "What happened this turn\nWhat changed in the top bar, and the main causes:\nMoney (net): IL -6.1m\nMoney IL -6.7m (tax IL 3.0m, spending IL 5.7m, reserve call-up IL 4.0m)\nMoney IL -0.4m (military upkeep)\nSecurity: +2%\nSecurity +1.5% (One Army)\nSecurity +0.9% (Border villages)\nPublic support: +4%\nSocial cohesion: +8%\nSocial cohesion +8.3% (Homes lift cohesion, Safety lifts cohesion, Work lifts cohesion, Food lifts cohesion)\nForeign currency: $+6.2m\nForeign currency $+6.2m (exports $3.3m, donations and loans $16.7m, imports $13.8m)\nWhat the Arab forces did\nEgyptian Expeditionary Force moved to a new position\nArab Legion moved to a new position\nSyrian Army moved to a new position\nIraqi Expeditionary Force moved to a new position\nArab Liberation Army fortified its position\nShare",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 585,
+      "top": 47,
+      "right": 390,
+      "bottom": 632,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 632,
+      "width": 390,
+      "height": 178,
+      "top": 632,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 763,
+      "top": 47,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "en-375x667 event",
+    "language": "en",
+    "text": "One ArmyMinister of Defense: David Ben-GurionThe Irgun and Lehi still keep their own armed units. David Ben-Gurion proposes an order that establishes the Israel Defense Forces and forbids any armed force other than the IDF.Issue the order and bring every armed force into the IDF (costs 2.0 Attention)Leave the Irgun and Lehi units outside the IDF for now (costs 2.0 Attention)",
+    "title": "One Army",
+    "choice": "Issue the order and bring every armed force into the IDF (costs 2.0 Attention)",
+    "focus": "",
+    "status": "",
+    "active": "",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 538,
+      "top": 47,
+      "right": 375,
+      "bottom": 585,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 585,
+      "width": 375,
+      "height": 128,
+      "top": 585,
+      "right": 375,
+      "bottom": 713,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 586,
+      "top": 47,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "en-375x667 panel click then Tab",
+    "clicked_active": "companion",
+    "language": "en",
+    "text": "One ArmyMinister of Defense: David Ben-GurionThe Irgun and Lehi still keep their own armed units. David Ben-Gurion proposes an order that establishes the Israel Defense Forces and forbids any armed force other than the IDF.Issue the order and bring every armed force into the IDF (costs 2.0 Attention)Leave the Irgun and Lehi units outside the IDF for now (costs 2.0 Attention)",
+    "title": "One Army",
+    "choice": "Issue the order and bring every armed force into the IDF (costs 2.0 Attention)",
+    "focus": "Cabinet",
+    "status": "",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": -33,
+      "width": 375,
+      "height": 538,
+      "top": -33,
+      "right": 375,
+      "bottom": 505,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 505,
+      "width": 375,
+      "height": 128,
+      "top": 505,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 586,
+      "top": 47,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "en-375x667 keyboard result after panel click",
+    "language": "en",
+    "text": "What happened this turn",
+    "title": "What happened this turn",
+    "focus": "Close",
+    "status": "What happened this turn\nWhat changed in the top bar, and the main causes:\nMoney (net): IL -6.1m\nMoney IL -6.7m (tax IL 3.0m, spending IL 5.7m, reserve call-up IL 4.0m)\nMoney IL -0.4m (military upkeep)\nSecurity: +2%\nSecurity +1.5% (One Army)\nSecurity +0.9% (Border villages)\nPublic support: +4%\nSocial cohesion: +8%\nSocial cohesion +8.3% (Homes lift cohesion, Safety lifts cohesion, Work lifts cohesion, Food lifts cohesion)\nForeign currency: $+6.2m\nForeign currency $+6.2m (exports $3.3m, donations and loans $16.7m, imports $13.8m)\nWhat the Arab forces did\nEgyptian Expeditionary Force moved to a new position\nArab Legion moved to a new position\nSyrian Army moved to a new position\nIraqi Expeditionary Force moved to a new position\nArab Liberation Army fortified its position\nShare",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": -33,
+      "width": 375,
+      "height": 538,
+      "top": -33,
+      "right": 375,
+      "bottom": 505,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 505,
+      "width": 375,
+      "height": 128,
+      "top": 505,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 586,
+      "top": 47,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "panelOverflows": true,
     "padding": "47px 0px 34px",
     "overlap": false
   },
@@ -108,6 +412,27 @@
       "bottom": 1080,
       "left": 0
     },
+    "panel": {
+      "x": 1536,
+      "y": 0,
+      "width": 384,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 1536
+    },
+    "regions": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    },
+    "panelOverflows": false,
     "padding": "0px",
     "overlap": false
   },
@@ -129,6 +454,27 @@
       "bottom": 1080,
       "left": 0
     },
+    "panel": {
+      "x": 1536,
+      "y": 0,
+      "width": 384,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 1536
+    },
+    "regions": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    },
+    "panelOverflows": false,
     "padding": "0px",
     "overlap": false
   },
@@ -151,6 +497,27 @@
       "bottom": 1080,
       "left": 0
     },
+    "panel": {
+      "x": 1536,
+      "y": 0,
+      "width": 384,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 1536
+    },
+    "regions": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "top": 0,
+      "right": 1920,
+      "bottom": 1080,
+      "left": 0
+    },
+    "panelOverflows": false,
     "padding": "0px",
     "overlap": false
   },
@@ -168,12 +535,253 @@
       "x": 0,
       "y": 47,
       "width": 390,
-      "height": 509.8046875,
+      "height": 585,
       "top": 47,
       "right": 390,
-      "bottom": 556.8046875,
+      "bottom": 632,
       "left": 0
     },
+    "panel": {
+      "x": 0,
+      "y": 632,
+      "width": 390,
+      "height": 178,
+      "top": 632,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 763,
+      "top": 47,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "he-390x844 panel click then Tab",
+    "clicked_active": "companion",
+    "language": "he",
+    "text": "צבא אחדשר הביטחון: דוד בן-גוריוןאצ\"ל ולח\"י עדיין מחזיקים יחידות חמושות משלהם. הצעת דוד בן-גוריון היא פקודה המקימה את צבא הגנה לישראל ואוסרת על קיומו של כוח מזוין כלשהו מלבד צה\"ל.לפרסם את הפקודה ולשלב כל כוח חמוש בצה\"ל (עולה ‎2.0‎ תשומת לב)להותיר לעת עתה את יחידות האצ\"ל והלח\"י מחוץ לצה\"ל (עולה ‎2.0‎ תשומת לב)",
+    "title": "צבא אחד",
+    "choice": "לפרסם את הפקודה ולשלב כל כוח חמוש בצה\"ל (עולה ‎2.0‎ תשומת לב)",
+    "focus": "ממשלה",
+    "status": "",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 585,
+      "top": 47,
+      "right": 390,
+      "bottom": 632,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 632,
+      "width": 390,
+      "height": 178,
+      "top": 632,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 763,
+      "top": 47,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "he-390x844 keyboard result after panel click",
+    "language": "he",
+    "text": "מה קרה בתור הזה",
+    "title": "מה קרה בתור הזה",
+    "focus": "סגירה",
+    "status": "מה קרה בתור הזה\nמה השתנה בסרגל העליון, ומה הסיבות העיקריות:\nכסף (נטו): שינוי של ‎IL -6.1m‎\nMoney IL -6.7m (tax IL 3.0m, spending IL 5.7m, reserve call-up IL 4.0m)\nMoney IL -0.4m (military upkeep)\nביטחון: שינוי של ‎+2%‎\nSecurity +1.5% (One Army)\nSecurity +0.9% (Border villages)\nתמיכה ציבורית: שינוי של ‎+4%‎\nלכידות חברתית: שינוי של ‎+8%‎\nSocial cohesion +8.3% (Homes lift cohesion, Safety lifts cohesion, Work lifts cohesion, Food lifts cohesion)\nמטבע חוץ: שינוי של ‎$+6.2m‎\nForeign currency $+6.2m (exports $3.3m, donations and loans $16.7m, imports $13.8m)\nמה עשו הכוחות הערביים\nחיל המשלוח המצרי עבר לעמדה חדשה\nהלגיון הערבי עבר לעמדה חדשה\nהצבא הסורי עבר לעמדה חדשה\nחיל המשלוח העיראקי עבר לעמדה חדשה\nצבא ההצלה התבצר בעמדתו\nשיתוף",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 585,
+      "top": 47,
+      "right": 390,
+      "bottom": 632,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 632,
+      "width": 390,
+      "height": 178,
+      "top": 632,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 390,
+      "height": 763,
+      "top": 47,
+      "right": 390,
+      "bottom": 810,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "he-375x667 event",
+    "language": "he",
+    "text": "צבא אחדשר הביטחון: דוד בן-גוריוןאצ\"ל ולח\"י עדיין מחזיקים יחידות חמושות משלהם. הצעת דוד בן-גוריון היא פקודה המקימה את צבא הגנה לישראל ואוסרת על קיומו של כוח מזוין כלשהו מלבד צה\"ל.לפרסם את הפקודה ולשלב כל כוח חמוש בצה\"ל (עולה ‎2.0‎ תשומת לב)להותיר לעת עתה את יחידות האצ\"ל והלח\"י מחוץ לצה\"ל (עולה ‎2.0‎ תשומת לב)",
+    "title": "צבא אחד",
+    "choice": "לפרסם את הפקודה ולשלב כל כוח חמוש בצה\"ל (עולה ‎2.0‎ תשומת לב)",
+    "focus": "",
+    "status": "",
+    "active": "",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 538,
+      "top": 47,
+      "right": 375,
+      "bottom": 585,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 585,
+      "width": 375,
+      "height": 128,
+      "top": 585,
+      "right": 375,
+      "bottom": 713,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 586,
+      "top": 47,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "he-375x667 panel click then Tab",
+    "clicked_active": "companion",
+    "language": "he",
+    "text": "צבא אחדשר הביטחון: דוד בן-גוריוןאצ\"ל ולח\"י עדיין מחזיקים יחידות חמושות משלהם. הצעת דוד בן-גוריון היא פקודה המקימה את צבא הגנה לישראל ואוסרת על קיומו של כוח מזוין כלשהו מלבד צה\"ל.לפרסם את הפקודה ולשלב כל כוח חמוש בצה\"ל (עולה ‎2.0‎ תשומת לב)להותיר לעת עתה את יחידות האצ\"ל והלח\"י מחוץ לצה\"ל (עולה ‎2.0‎ תשומת לב)",
+    "title": "צבא אחד",
+    "choice": "לפרסם את הפקודה ולשלב כל כוח חמוש בצה\"ל (עולה ‎2.0‎ תשומת לב)",
+    "focus": "ממשלה",
+    "status": "",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": -33,
+      "width": 375,
+      "height": 538,
+      "top": -33,
+      "right": 375,
+      "bottom": 505,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 505,
+      "width": 375,
+      "height": 128,
+      "top": 505,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 586,
+      "top": 47,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "panelOverflows": true,
+    "padding": "47px 0px 34px",
+    "overlap": false
+  },
+  {
+    "step": "he-375x667 keyboard result after panel click",
+    "language": "he",
+    "text": "מה קרה בתור הזה",
+    "title": "מה קרה בתור הזה",
+    "focus": "סגירה",
+    "status": "מה קרה בתור הזה\nמה השתנה בסרגל העליון, ומה הסיבות העיקריות:\nכסף (נטו): שינוי של ‎IL -6.1m‎\nMoney IL -6.7m (tax IL 3.0m, spending IL 5.7m, reserve call-up IL 4.0m)\nMoney IL -0.4m (military upkeep)\nביטחון: שינוי של ‎+2%‎\nSecurity +1.5% (One Army)\nSecurity +0.9% (Border villages)\nתמיכה ציבורית: שינוי של ‎+4%‎\nלכידות חברתית: שינוי של ‎+8%‎\nSocial cohesion +8.3% (Homes lift cohesion, Safety lifts cohesion, Work lifts cohesion, Food lifts cohesion)\nמטבע חוץ: שינוי של ‎$+6.2m‎\nForeign currency $+6.2m (exports $3.3m, donations and loans $16.7m, imports $13.8m)\nמה עשו הכוחות הערביים\nחיל המשלוח המצרי עבר לעמדה חדשה\nהלגיון הערבי עבר לעמדה חדשה\nהצבא הסורי עבר לעמדה חדשה\nחיל המשלוח העיראקי עבר לעמדה חדשה\nצבא ההצלה התבצר בעמדתו\nשיתוף",
+    "active": "companion",
+    "targets": 0,
+    "canvas": {
+      "x": 0,
+      "y": -33,
+      "width": 375,
+      "height": 538,
+      "top": -33,
+      "right": 375,
+      "bottom": 505,
+      "left": 0
+    },
+    "panel": {
+      "x": 0,
+      "y": 505,
+      "width": 375,
+      "height": 128,
+      "top": 505,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "regions": {
+      "x": 0,
+      "y": 47,
+      "width": 375,
+      "height": 586,
+      "top": 47,
+      "right": 375,
+      "bottom": 633,
+      "left": 0
+    },
+    "panelOverflows": true,
     "padding": "47px 0px 34px",
     "overlap": false
   }

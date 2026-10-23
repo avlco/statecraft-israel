@@ -1,0 +1,120 @@
+.FFF....F                                                                [100%]
+=================================== FAILURES ===================================
+_ test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges[390x844] _
+
+tmp_path = PosixPath('/redacted-temp/pytest-of-review/pytest-65/test_the_panel_keeps_game_heig1')
+viewport = '390x844'
+
+    @pytest.mark.skipif(CHROME is None or shutil.which("uv") is None, reason="needs Chrome and uv for the existing CDP checker")
+    @pytest.mark.parametrize("viewport", ["1920x1080", "390x844", "375x667", "667x375"])
+    def test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges(tmp_path, viewport):
+        template = TEMPLATE.read_text(encoding="utf-8")
+        renderer = re.search(r"      function mountCompanion\(\) \{.*?\n      \}", template, re.S)
+        assert renderer
+        html = re.sub(r"<script>.*?</script>", "", template, flags=re.S)
+        html = html.replace("</body>", "<script>" + renderer.group(0) + DRIVER + "</script></body>")
+        (tmp_path / "index.html").write_text(html, encoding="utf-8")
+        result = subprocess.run(["uv", "run", str(REPO / "tools/web_check.py"), str(tmp_path),
+                                 "--viewport", viewport, "--expect", "LAYOUT PASS " + viewport,
+                                 "--fail", "LAYOUT FAIL", "--timeout", "30"],
+                                env={**os.environ, "CHROME_PATH": str(CHROME)},
+                                text=True, capture_output=True, timeout=60)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: viewport 390x844 at DPR 1 (expect res=390x844)
+E         console: LAYOUT FAIL Cannot read properties of null (reading 'getBoundingClientRect')
+E         FAIL: LAYOUT FAIL Cannot read properties of null (reading 'getBoundingClientRect')
+E
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['uv', 'run', '/redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-...BoundingClientRect')\nFAIL: LAYOUT FAIL Cannot read properties of null (reading 'getBoundingClientRect')\n", stderr='').returncode
+
+../evidence/phone-layout/test_companion_layout.py:67: AssertionError
+_ test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges[375x667] _
+
+tmp_path = PosixPath('/redacted-temp/pytest-of-review/pytest-65/test_the_panel_keeps_game_heig2')
+viewport = '375x667'
+
+    @pytest.mark.skipif(CHROME is None or shutil.which("uv") is None, reason="needs Chrome and uv for the existing CDP checker")
+    @pytest.mark.parametrize("viewport", ["1920x1080", "390x844", "375x667", "667x375"])
+    def test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges(tmp_path, viewport):
+        template = TEMPLATE.read_text(encoding="utf-8")
+        renderer = re.search(r"      function mountCompanion\(\) \{.*?\n      \}", template, re.S)
+        assert renderer
+        html = re.sub(r"<script>.*?</script>", "", template, flags=re.S)
+        html = html.replace("</body>", "<script>" + renderer.group(0) + DRIVER + "</script></body>")
+        (tmp_path / "index.html").write_text(html, encoding="utf-8")
+        result = subprocess.run(["uv", "run", str(REPO / "tools/web_check.py"), str(tmp_path),
+                                 "--viewport", viewport, "--expect", "LAYOUT PASS " + viewport,
+                                 "--fail", "LAYOUT FAIL", "--timeout", "30"],
+                                env={**os.environ, "CHROME_PATH": str(CHROME)},
+                                text=True, capture_output=True, timeout=60)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: viewport 375x667 at DPR 1 (expect res=375x667)
+E         console: LAYOUT FAIL game lost its minimum height
+E         FAIL: LAYOUT FAIL game lost its minimum height
+E
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['uv', 'run', '/redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-...x667)\nconsole: LAYOUT FAIL game lost its minimum height\nFAIL: LAYOUT FAIL game lost its minimum height\n', stderr='').returncode
+
+../evidence/phone-layout/test_companion_layout.py:67: AssertionError
+_ test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges[667x375] _
+
+tmp_path = PosixPath('/redacted-temp/pytest-of-review/pytest-65/test_the_panel_keeps_game_heig3')
+viewport = '667x375'
+
+    @pytest.mark.skipif(CHROME is None or shutil.which("uv") is None, reason="needs Chrome and uv for the existing CDP checker")
+    @pytest.mark.parametrize("viewport", ["1920x1080", "390x844", "375x667", "667x375"])
+    def test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges(tmp_path, viewport):
+        template = TEMPLATE.read_text(encoding="utf-8")
+        renderer = re.search(r"      function mountCompanion\(\) \{.*?\n      \}", template, re.S)
+        assert renderer
+        html = re.sub(r"<script>.*?</script>", "", template, flags=re.S)
+        html = html.replace("</body>", "<script>" + renderer.group(0) + DRIVER + "</script></body>")
+        (tmp_path / "index.html").write_text(html, encoding="utf-8")
+        result = subprocess.run(["uv", "run", str(REPO / "tools/web_check.py"), str(tmp_path),
+                                 "--viewport", viewport, "--expect", "LAYOUT PASS " + viewport,
+                                 "--fail", "LAYOUT FAIL", "--timeout", "30"],
+                                env={**os.environ, "CHROME_PATH": str(CHROME)},
+                                text=True, capture_output=True, timeout=60)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: viewport 667x375 at DPR 1 (expect res=667x375)
+E         console: LAYOUT FAIL Cannot read properties of null (reading 'getBoundingClientRect')
+E         FAIL: LAYOUT FAIL Cannot read properties of null (reading 'getBoundingClientRect')
+E
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['uv', 'run', '/redacted-home/Documents/Codex/2026-10-23/status-of-my-open-prs-on/statecraft-...BoundingClientRect')\nFAIL: LAYOUT FAIL Cannot read properties of null (reading 'getBoundingClientRect')\n", stderr='').returncode
+
+../evidence/phone-layout/test_companion_layout.py:67: AssertionError
+__ test_the_template_owns_safe_edges_even_after_its_game_region_scrolls[-33] ___
+
+top = -33
+
+    @pytest.mark.skipif(shutil.which("node") is None, reason="needs node for the shipped .jslib")
+    @pytest.mark.parametrize("top", [47, -33])
+    def test_the_template_owns_safe_edges_even_after_its_game_region_scrolls(top):
+        driver = """
+    const fs=require('fs'), vm=require('vm'), library={}, heap=new Float32Array(4);
+    const canvas={getBoundingClientRect:()=>({left:0,top:Number(process.argv[1]),right:390,bottom:552})};
+    const context={LibraryManager:{library}, mergeInto:Object.assign, HEAPF32:heap, Module:{canvas},
+      window:{innerWidth:390,innerHeight:844},
+      document:{getElementById:()=>({contains:node=>node===canvas}),createElement:()=>({style:{}}),
+        body:{appendChild(){},removeChild(){}}},
+      getComputedStyle:()=>({paddingTop:'47',paddingRight:'0',paddingBottom:'34',paddingLeft:'0'})};
+    vm.runInNewContext(fs.readFileSync(process.argv[2],'utf8'),context);
+    library.StatecraftSafeAreaInsets(0);
+    console.log(JSON.stringify([...heap]));
+    """
+        result = subprocess.run(["node", "-e", driver, "--", str(top), str(SOURCE)],
+                                text=True, capture_output=True, check=True)
+>       assert json.loads(result.stdout) == [0, 0, 0, 0]
+E       assert [80, 0, 0, 0] == [0, 0, 0, 0]
+E
+E         At index 0 diff: 80 != 0
+E         Use -v to get more diff
+
+../evidence/phone-layout/test_companion_safe_area.py:53: AssertionError
+=========================== short test summary info ============================
+FAILED ../evidence/phone-layout/test_companion_layout.py::test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges[390x844]
+FAILED ../evidence/phone-layout/test_companion_layout.py::test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges[375x667]
+FAILED ../evidence/phone-layout/test_companion_layout.py::test_the_panel_keeps_game_height_and_can_be_read_inside_phone_safe_edges[667x375]
+FAILED ../evidence/phone-layout/test_companion_safe_area.py::test_the_template_owns_safe_edges_even_after_its_game_region_scrolls[-33]
+4 failed, 5 passed in 11.50s

@@ -1,3 +1,4 @@
+[UnityCache] 'http://localhost:8766/Build/20e1f7adcfeae4edd67139e2ddfc4659.data.gz' successfully downloaded and stored in the browser cache
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-allocator-temp-initial-block-size-main=262144"
     "memorysetup-allocator-temp-initial-block-size-worker=262144"
@@ -45,10 +46,9 @@ OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Single-Threaded
 Input System initialize...
-UnloadTime: 1.900000 ms
-[UnityCache] 'http://localhost:8766/Build/20e1f7adcfeae4edd67139e2ddfc4659.data.gz' successfully downloaded and stored in the browser cache
+UnloadTime: 2.000000 ms
 KITS ground_tint_ms=1.5 places=296
-KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=217 plant_ms=80 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
+KITS buildings=3604 vertices=173209 triangles=92340 trees=14259 route_segments=1493 build_ms=195 plant_ms=68 localities=271 locality_buildings=2903 camps=64 tents=174 boats=17 draws=64 models=20571 close_vertices=67432
 BOOT OK content ad60e5511d8bbbdecb919dc474baea44571a46cbf15e81ed789303c4481ad0fb
 Trying to get length of sound which is not loaded yet.
 Trying to get length of sound which is not loaded yet.
@@ -56,6 +56,6 @@ Trying to get length of sound which is not loaded yet.
 PEOPLE: 0 civilian figures placed, 0 not drawn
 RURAL: 0 rural scenes placed (0 models); 0 models short of 3 scenes
 SEA/AIR: 0 collection craft placed, 0 not drawn
-GAME OK 1948-05-15 turn 0 hash 94f9f46233d07c4b3d9ef3ea9f8303e77493371685734f442aa02faa8935221e
-BOOT event photos ready (on demand) wait=40 ms
-FIRST CARD OK event=idf_founding media=photo wait=48 ms budget=10000 ms
+GAME OK 1948-05-15 turn 0 hash 2971599b8521059a0c9606863e1cbbb7b60fdb0146c4eebb057a3f48412cfeb5
+BOOT event photos ready (on demand) wait=38 ms
+FIRST CARD OK event=idf_founding media=photo wait=46 ms budget=10000 ms

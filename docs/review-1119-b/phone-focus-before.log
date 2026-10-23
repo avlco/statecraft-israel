@@ -1,0 +1,11 @@
+Installed 1 package in 16ms
+(1920, 1080) before {'active': '', 'overflow': False, 'panel': {'x': 1536, 'y': 0, 'width': 384, 'height': 1080, 'top': 0, 'right': 1920, 'bottom': 1080, 'left': 1536}}
+after click {'active': '', 'overflow': False, 'panel': {'x': 1536, 'y': 0, 'width': 384, 'height': 1080, 'top': 0, 'right': 1920, 'bottom': 1080, 'left': 1536}}
+after Tab 0 {'active': '', 'overflow': False, 'panel': {'x': 1536, 'y': 0, 'width': 384, 'height': 1080, 'top': 0, 'right': 1920, 'bottom': 1080, 'left': 1536}}
+after Tab 1 {'active': '', 'overflow': False, 'panel': {'x': 1536, 'y': 0, 'width': 384, 'height': 1080, 'top': 0, 'right': 1920, 'bottom': 1080, 'left': 1536}}
+after Tab 2 {'active': '', 'overflow': False, 'panel': {'x': 1536, 'y': 0, 'width': 384, 'height': 1080, 'top': 0, 'right': 1920, 'bottom': 1080, 'left': 1536}}
+(390, 844) before {'active': '', 'overflow': True, 'panel': {'x': 0, 'y': 632, 'width': 390, 'height': 178, 'top': 632, 'right': 390, 'bottom': 810, 'left': 0}}
+after click {'active': '', 'overflow': True, 'panel': {'x': 0, 'y': 632, 'width': 390, 'height': 178, 'top': 632, 'right': 390, 'bottom': 810, 'left': 0}}
+after Tab 0 {'active': 'companion', 'overflow': True, 'panel': {'x': 0, 'y': 632, 'width': 390, 'height': 178, 'top': 632, 'right': 390, 'bottom': 810, 'left': 0}}
+after Tab 1 {'active': '', 'overflow': True, 'panel': {'x': 0, 'y': 632, 'width': 390, 'height': 178, 'top': 632, 'right': 390, 'bottom': 810, 'left': 0}}
+after Tab 2 {'active': 'companion', 'overflow': True, 'panel': {'x': 0, 'y': 632, 'width': 390, 'height': 178, 'top': 632, 'right': 390, 'bottom': 810, 'left': 0}}
