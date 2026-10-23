@@ -247,6 +247,13 @@ def chrome_flags(profile: str, swiftshader: bool, dpr: float = 1.0) -> list[str]
     return flags
 
 
+def canvas_point(point: tuple[float, float], viewport: tuple[int, int], rect: dict) -> tuple[float, float]:
+    """Game-relative clicks use the full reference viewport; map them into the canvas's current CSS rectangle.
+    The companion can reserve a column/row and hardware insets without changing Unity's normalized button centres."""
+    return (rect["left"] + point[0] / viewport[0] * rect["width"],
+            rect["top"] + point[1] / viewport[1] * rect["height"])
+
+
 class Page:
     """Opens url in a new tab of the Chrome using `profile`, over the DevTools protocol, with the viewport fixed before
     the first load; the connection (and with it the override) is held on a background thread until close()."""
@@ -271,7 +278,7 @@ class Page:
 
     def command(self, name: str) -> None:
         """Runs one action on the page's CDP thread and waits for it: "reload", or "click:X,Y" (a left click at CSS
-        pixels X, Y of the viewport)."""
+        pixels X, Y of the reference viewport, mapped into the game's current canvas rectangle)."""
         done, result = threading.Event(), []
         self.commands.put((name, done, result))
         if not done.wait(10):
@@ -315,6 +322,11 @@ class Page:
                         try:
                             if name.startswith("click:"):
                                 x, y = (float(v) for v in name[len("click:"):].split(","))
+                                bounds = await call("Runtime.evaluate", {
+                                    "expression": "JSON.stringify(document.getElementById('unity-canvas').getBoundingClientRect().toJSON())",
+                                    "returnByValue": True}, sid)
+                                x, y = canvas_point((x, y), (self.metrics["width"], self.metrics["height"]),
+                                                    json.loads(bounds["result"]["value"]))
                                 await call("Input.dispatchMouseEvent", {"type": "mouseMoved", "x": x, "y": y}, sid)
                                 for kind in ("mousePressed", "mouseReleased"):
                                     await call("Input.dispatchMouseEvent", {"type": kind, "x": x, "y": y, "button": "left",

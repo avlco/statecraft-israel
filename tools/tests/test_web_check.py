@@ -586,3 +586,12 @@ def test_commit_timeout_is_polled_while_an_unrelated_expectation_is_still_missin
         wc.watch(queue.Queue(), lambda: None, lambda: None, ["UNRELATED"], re.compile("BOOT FAIL"), 20,
                  now=lambda: clock[0], sleep=lambda seconds: clock.__setitem__(0, clock[0] + 1),
                  complete=lambda: check.done)
+
+
+@pytest.mark.parametrize("point,viewport,rect,expected", [
+    ((1800, 70), (1920, 1080), dict(left=0, top=0, width=1920, height=1080), (1800, 70)),
+    ((1800, 70), (1920, 1080), dict(left=0, top=0, width=1536, height=1080), (1440, 70)),
+    ((195, 422), (390, 844), dict(left=0, top=47, width=390, height=509.8), (195, 301.9)),
+])
+def test_game_clicks_follow_the_canvas_when_a_companion_resizes_it(point, viewport, rect, expected):
+    assert wc.canvas_point(point, viewport, rect) == pytest.approx(expected)
