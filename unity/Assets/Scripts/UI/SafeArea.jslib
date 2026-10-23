@@ -15,6 +15,13 @@ mergeInto(LibraryManager.library, {
       v = [parseFloat(cs.paddingTop) || 0, parseFloat(cs.paddingRight) || 0,
            parseFloat(cs.paddingBottom) || 0, parseFloat(cs.paddingLeft) || 0];
       document.body.removeChild(probe);
+      // #1119: the page can already inset/resize the canvas to make room for the companion. Only pad the part of
+      // the hardware inset that still intersects it; a full-window canvas keeps the original margins unchanged.
+      if (typeof Module !== "undefined" && Module.canvas && typeof Module.canvas.getBoundingClientRect === "function" && typeof window !== "undefined") {
+        var r = Module.canvas.getBoundingClientRect();
+        v = [Math.max(0, v[0] - r.top), Math.max(0, v[1] - (window.innerWidth - r.right)),
+             Math.max(0, v[2] - (window.innerHeight - r.bottom)), Math.max(0, v[3] - r.left)];
+      }
     }
     for (var i = 0; i < 4; i++) HEAPF32[(out >> 2) + i] = v[i];
   },

@@ -2,7 +2,8 @@
 
 Refs #1119. Working draft; real screen-reader diagnostic remains incomplete.
 The owner selected the read-only companion on 23 October 2026 (see the dated update below).
-No product implementation or screen-reader support claim.
+The original observations and proposal below are historical. The [B implementation](1119-read-only-companion.md)
+is documented separately; no completed real screen-reader test or acceptance is claimed.
 
 ## Evidence and limits
 
@@ -106,6 +107,10 @@ inventory; they are not silently covered by that subset. The owner selected B ab
 #1116/#890/#1011 claims remain intact.
 
 ## Proposed payload and transport contract
+
+This is the original proposal, not B's implemented protocol. The [23 October implementation approval](https://github.com/eyalgolan/statecraft-israel/issues/1119#issuecomment-6360904442)
+replaced it with a single read of the UI tree, no generations or sequence numbers,
+and disposal that cancels scheduled work and clears the panel. B has no action callbacks.
 
 After approval, C# can serialize a versioned plain-text snapshot; one guarded WebGL
 `.jslib` entry decodes the UTF-8 string and passes it to a root-scoped DOM renderer.
@@ -213,6 +218,8 @@ This is not connected to the game and does not exercise a Unity runtime or scree
 
 ## Real diagnostic still required
 
+The contributor runs this manually at the Mac, with VoiceOver's caption panel visible
+and a caption-panel screenshot plus notes at every step. Do not automate VoiceOver.
 In a fresh isolated browser session, record VoiceOver version/build, browser version
 and exact player source; enable VoiceOver with visible native controls and retain observed transcript
 or equivalent actual output. In fresh EN and HE profiles check: discover and name New

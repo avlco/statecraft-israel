@@ -25,6 +25,7 @@ public class AccessibilityCompanionTests
         public readonly EventCardPresenter Card;
         public readonly AccessibilityCompanion Companion;
         public readonly List<string> Sent = new List<string>();
+        public readonly List<int> SentFrames = new List<int>();
         readonly List<System.IDisposable> owned = new List<System.IDisposable>();
         public AccessibilityCompanion.Snapshot Last => JsonUtility.FromJson<AccessibilityCompanion.Snapshot>(Sent.Last());
         public Kit(bool he)
@@ -38,7 +39,7 @@ public class AccessibilityCompanionTests
             owned.Add(Card = new EventCardPresenter(Ui.Root, Bridge, text, null));
             owned.Add(new WhyPresenter(Ui.Root, Bridge, text));
             owned.Add(new TurnReportPresenter(Ui.Root, Bridge, text, nav));
-            owned.Add(Companion = new AccessibilityCompanion(Ui.Root, Bridge, text, Sent.Add));
+            owned.Add(Companion = new AccessibilityCompanion(Ui.Root, Bridge, text, s => { Sent.Add(s); SentFrames.Add(Time.frameCount); }));
         }
         public void Dispose() { for (int i = owned.Count - 1; i >= 0; i--) owned[i].Dispose(); Ui.Dispose(); }
     }
@@ -74,6 +75,7 @@ public class AccessibilityCompanionTests
             CollectionAssert.Contains(k.Last.context, "תפקיד \u200eIL 1.2m\u200e");
             Assert.IsFalse(k.Last.choices[0].enabled);
             CollectionAssert.Contains(k.Last.choices.Last().notes, "preview +1");
+            Assert.AreEqual(k.SentFrames.Count, k.SentFrames.Distinct().Count(), "at most one publication per frame");
         }
     }
 

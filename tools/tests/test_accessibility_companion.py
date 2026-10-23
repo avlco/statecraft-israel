@@ -1,12 +1,17 @@
 """#1119 B: execute the shipped renderer in a real browser, separate from actual-game and VoiceOver evidence."""
 import re
+import os
+import shutil
 import subprocess
 from pathlib import Path
 
 import pytest
 
 TEMPLATE = Path(__file__).resolve().parents[2] / "unity/Assets/WebGLTemplates/Statecraft/index.html"
-CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+CHROME = next((Path(p) for p in (os.environ.get("CHROME_PATH"), shutil.which("google-chrome"),
+                               shutil.which("chromium"), shutil.which("chromium-browser"),
+                               "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+               if p and Path(p).is_file()), None)
 
 DRIVER = r"""
 (async function () {
@@ -62,7 +67,7 @@ DRIVER = r"""
 """
 
 
-@pytest.mark.skipif(not CHROME.exists(), reason="needs installed Chrome for real DOM execution")
+@pytest.mark.skipif(CHROME is None, reason="needs installed Chrome for real DOM execution")
 def test_the_product_renderer_is_safe_read_only_and_only_announces_status(tmp_path):
     template = TEMPLATE.read_text(encoding="utf-8")
     match = re.search(r"      function mountCompanion\(\) \{.*?\n      \}", template, re.S)

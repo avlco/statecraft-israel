@@ -28,6 +28,8 @@ DOM = """JSON.stringify({
   status: document.getElementById('companion-status')?.textContent,
   active: document.activeElement?.id,
   targets: document.querySelectorAll('#companion button,#companion a,#companion [tabindex]').length,
+  canvas: document.getElementById('unity-canvas').getBoundingClientRect().toJSON(),
+  padding: document.getElementById('player-layout') ? getComputedStyle(document.getElementById('player-layout')).padding : '',
   overlap: (() => { const c=document.getElementById('unity-canvas').getBoundingClientRect();
     const p=document.getElementById('companion')?.getBoundingClientRect();
     return p ? c.left < p.right && p.left < c.right && c.top < p.bottom && p.top < c.bottom : false; })()
@@ -77,12 +79,16 @@ async def run(args):
             async with Browser(args.build, width=size[0], height=size[1], viewport=size, keep_awake=True) as b:
                 sid = await b.open(f"firstcard&lang={language}")
                 try:
+                    if size[0] == 390:
+                        await b.send("Emulation.setSafeAreaInsetsOverride", {"insets": {"top":47,"right":0,"bottom":34,"left":0}}, session=sid)
                     await b.wait_for(sid, "^FIRST CARD OK", stall=120)
                     if args.baseline:
                         await b.shot(sid, args.out / f"{name}-event.png")
                         continue
                     state = await until(b, sid, lambda p: p.get("choice"), "current event and choices")
                     assert state["language"] == language and not state["overlap"] and state["targets"] == 0, state
+                    if size[0] == 390:
+                        assert state["canvas"]["top"] == 47 and state["padding"] == "47px 0px 34px", state
                     await b.shot(sid, args.out / f"{name}-event.png")
                     receipts.append({"step": name + " event", **state})
                     if size[0] == 390:
