@@ -14,7 +14,7 @@ import json
 import re
 from pathlib import Path
 
-import yaml
+import yaml12
 
 from headed import Browser
 
@@ -54,7 +54,9 @@ async def key(b, sid, name):
     code = {"Tab": 9, "Enter": 13, "Escape": 27}[name]
     for kind in ("keyDown", "keyUp"):
         await b.send("Input.dispatchKeyEvent", {"type": kind, "key": name, "code": name,
-                     "windowsVirtualKeyCode": code, "nativeVirtualKeyCode": code}, session=sid)
+                     "windowsVirtualKeyCode": code}, session=sid)
+        # A zero-duration pulse can begin and end between two WebGL input polls during shader warm-up.
+        if kind == "keyDown": await asyncio.sleep(.25)
     await asyncio.sleep(.15)
 
 
@@ -66,6 +68,9 @@ async def tab_to(b, sid, label):
             return
         seen.append(state["focus"])
         await key(b, sid, "Tab")
+        for _ in range(20):
+            if (await read(b, sid))["focus"] != state["focus"]: break
+            await asyncio.sleep(.1)
     raise AssertionError(f"Tab did not reach {label}: {seen}")
 
 
@@ -73,12 +78,14 @@ async def run(args):
     args.out.mkdir(parents=True, exist_ok=True)
     receipts = []
     for language in ("en", "he"):
-        text = yaml.safe_load((REPO / f"unity/Assets/UI/strings.{language}.yaml").read_text())
+        text = yaml12.load((REPO / f"unity/Assets/UI/strings.{language}.yaml").read_text())
         for size in ((1920, 1080), (390, 844)):
             name = f"{language}-{size[0]}x{size[1]}"
             async with Browser(args.build, width=size[0], height=size[1], viewport=size, keep_awake=True) as b:
                 sid = await b.open(f"firstcard&lang={language}")
                 try:
+                    await b.send("Page.bringToFront", session=sid)
+                    await b.send("Emulation.setFocusEmulationEnabled", {"enabled":True}, session=sid)
                     if size[0] == 390:
                         await b.send("Emulation.setSafeAreaInsetsOverride", {"insets": {"top":47,"right":0,"bottom":34,"left":0}}, session=sid)
                     await b.wait_for(sid, "^FIRST CARD OK", stall=120)
