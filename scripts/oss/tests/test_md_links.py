@@ -103,3 +103,11 @@ def test_link_marker_in_a_target_is_consumed_but_invalid_links_do_not_hide_later
         'docs/a](b).md': 'x\n',
     })
     assert m.dead_links(root) == [('README.md', 'missing.md'), ('README.md', 'missing_after.md')]
+
+
+def test_link_marker_in_a_title_is_consumed_before_the_next_link(make_repo):
+    root = make_repo({
+        'README.md': '[ok](docs/setup_(mac).md "literal](x)") [gone](missing.md)\n',
+        'docs/setup_(mac).md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', 'missing.md')]

@@ -3,7 +3,7 @@
 
 `uv run scripts/oss/md_links.py [--root DIR]`. Ignores code (inline spans, and fences of three or more backticks or tildes), absolute URLs (any `scheme:`),
 `#anchor` and `mailto:` links, and targets with brackets (reference-style leftovers). Anchors after `#` are not checked, only the file.
-Handles a link title (`[a](b "t")`), `<angle>` targets, `%20` escapes and the outer link of a badge (`[![x](img)](page)`).
+Handles a link title (`[a](b "t")`), `<angle>` targets, balanced parentheses, `%20` escapes and the outer link of a badge (`[![x](img)](page)`).
 A target must match a tracked file or directory exactly, so a wrong letter case fails on macOS too (CI's Linux would).
 One line per dead link (file: link); exit 1 if any."""
 import argparse
@@ -11,15 +11,41 @@ import os
 import re
 import subprocess
 import sys
+from collections.abc import Iterator
 from urllib.parse import unquote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-LINK = re.compile(r"\]\(<?([^)\s>]+)>?(?:\s+(?:\"[^\"]*\"|'[^']*'))?\)")
+LINK = re.compile(r"\]\((<?)")
+LINK_END = re.compile(r">?(?:\s+(?:\"[^\"]*\"|'[^']*'))?\)")
 # A fence opens with 3+ backticks or tildes and closes with the same run; an inline span is a backtick run closed by an
 # equal run and may not cross a blank line, so one stray backtick cannot swallow the rest of the file.
 FENCE = re.compile(r"(`{3,}|~{3,}).*?\1", re.S)
 INLINE_CODE = re.compile(r"(?<!`)(`+)(?!`)(?:(?!\n[ \t]*\n).)+?(?<!`)\1(?!`)", re.S)
+
+
+def link_targets(text: str) -> Iterator[str]:
+    """Keep balanced inner parentheses; angle-wrapped targets end at > instead."""
+    consumed = 0
+    for match in LINK.finditer(text):
+        if match.start() < consumed:
+            continue
+        start = end = match.end()
+        angle = bool(match.group(1))
+        depth = 0
+        while end < len(text):
+            char = text[end]
+            if char.isspace() or char == ">" or (char == ")" and depth == 0 and not angle):
+                break
+            if char == "(" and not angle:
+                depth += 1
+            elif char == ")" and not angle:
+                depth -= 1
+            end += 1
+        suffix = LINK_END.match(text, end)
+        if end > start and depth == 0 and suffix:
+            consumed = suffix.end()
+            yield text[start:end]
 
 
 def tracked_markdown(root: Path) -> list[str]:
@@ -42,8 +68,7 @@ def dead_links(root: Path) -> list[tuple[str, str]]:
     known = tracked_paths(root)
     for f in tracked_markdown(root):
         text = INLINE_CODE.sub("", FENCE.sub("", (root / f).read_text(encoding="utf-8")))
-        for m in LINK.finditer(text):
-            target = m.group(1)
+        for target in link_targets(text):
             if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:|#", target) or "[" in target:
                 continue
             path = unquote(target.split("#")[0].split("?")[0])
