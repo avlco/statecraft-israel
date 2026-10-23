@@ -122,8 +122,30 @@ Palestine Potash pans.
 | Draining completed on 30 October 1957; elsewhere on the same page "the years 1951-1959" | [V] Bar-Ilan |
 | **End date** | [C] 1958 (JVL; issue #16's "1951-1958"), 30 October 1957 (Bar-Ilan, completion of the drainage itself); Bar-Ilan's "1951-1959" is the wider project |
 | Works began about 14 February 1951; Syria complained on 21 February; the armistice chairman asked on 7 March that work stop | `content/events/hula_drainage.yaml` (comments and sources: FRUS 1951 v. V doc. 288; JTA). Not re-read for this note |
-| A papyrus swamp of 350 ha (KKL-JNF: about 3,000 dunams) in the south-west of the valley was kept, and became Israel's first nature reserve in 1963 | [V] JVL; [V] KKL-JNF for the 3,000 dunams |
+| Retained Hula reserve: area and declaration year | [C] The original JVL/KKL-JNF readings and the two NPA accounts differ; see the dated source comparison below. No area or date is selected. |
 | After drainage the peat subsided by up to 3 m (JVL), more than 3 m by the early 1990s (KKL-JNF) | [V] both |
+
+**Reserve source comparison — 23 October 2026 (AI reading only).**
+
+The [owner asked that these differences remain a conflict](https://github.com/eyalgolan/statecraft-israel/issues/16#issuecomment-6363093603),
+with the choice left to a person at review. The original note's JVL and KKL-JNF readings are retained below;
+their sources were not reopened for this addition, so their 14 October check is not renewed.
+
+| Attributed source | Area reported | Date reported | Reading scope |
+|---|---|---|---|
+| [JVL, Hula Valley](https://jewishvirtuallibrary.org/hula-valley) | Papyrus swamp of 350 ha retained | First nature reserve in 1963 | Original note's reading, not rechecked here |
+| [KKL-JNF, Rehabilitation of the Hula Valley](https://www.kkl-jnf.org/organization-chief-scientist/water-for-israel/water_activity_hula_valley_rehabilitation/) | About 3,000 dunams | No additional date attributed here | Original note's area reading, not rechecked here |
+| [NPA reserve brochure](https://static.parks.org.il/wp-content/uploads/2025/03/hachula.pdf), PDF p. 2 | 4,300 dunams allocated, later reduced to 3,200 | Formal declaration in 1964 | Text and rendered pages 2–3 read by an AI agent on 23 October 2026 |
+| [Uzi Paz, NPA, 26 June 2024](https://www.parks.org.il/article/hula/) | 4,500 dunams retained, later reduced to 3,180 | Formal declaration in 1964 | Relevant passages read by an AI agent on 23 October 2026 |
+
+**[C]** These are the sources' attributed figures and dates, not an averaged estimate or a chosen replacement.
+The reasons for the different areas and the 1963/1964 dates are not established here. No human fact-check,
+sensitivity approval, drainage-date decision or game-data edit is recorded by this addition.
+
+**[GAP]** A dated original reserve, embankment or declaration plan is still needed for the retained wet-area
+boundary. The brochure's visitor illustration has no printed coordinate grid or scale; its restoration history
+does not establish an unchanged drainage-era water edge. Do not derive the historical polygon from that
+illustration or force an outline to fit any of the area figures above.
 
 **Lake Agmon (modern).** Dug in the former transition between lake and swamps and flooded in April-May 1994; irregular,
 about 1 km², mostly under 1 m deep [V, JVL]; KKL-JNF says 1,000 dunams were reflooded from 1994 [V]. It lies at the
@@ -265,8 +287,9 @@ action its target without dated land flags.
   action have a real map target: (14, 3) for the swamps, (14, 4)/(13, 4)/(13, 5) for the lake. The owner then has to
   rule (D-B4) how they relate: whether the event is the historical path of the same project, whether the player can
   drain it earlier or not at all, and what the map shows if the player halts the works in the event. The sourced
-  facts to keep fixed are the start (1951) and the end (30 October 1957 or 1958 [C]), the 350 ha (about 3,000 dunams)
-  reserve left wet, and Lake Agmon's reflooding in 1994 (outside the game's eras).
+  facts include the start (1951) and the end (30 October 1957 or 1958 [C]), the retained reserve whose area and
+  declaration year remain [C] in section 1.3, and Lake Agmon's reflooding in 1994 (outside the game's eras).
+  No reserve area or declaration year is fixed by this note; a person will decide at review.
 
 ## Sources not reached
 
@@ -406,8 +429,8 @@ preferable to tracing the web tiles because their printed grid, edition text and
   cadastral boundary.
 - The sheets do not identify a season or an exact survey day for the water edge. A single 1948 mask cannot encode the
   seasonal flooded-area range already recorded in section 1.3.
-- No source reached in this pass gives a traceable polygon for the approximately 350 ha Hula reserve left wet after
-  drainage. That remains a separate gap for the drained mask.
+- No source reached in this pass gives a traceable polygon for the Hula reserve left wet after drainage. Its area
+  and declaration year remain [C] (section 1.3); the original dated boundary plan remains [GAP] for the drained mask.
 - The PEF Sheet IV is useful only as an older west-side corroboration. PEF Sheet XXVI is largely blank in the Dead Sea
   area and cannot supply the Lisan or southern-basin outline.
 - Palestine Open Maps publishes georeferenced tiles and sheet bounds, but this pass did not find its original GCP lists
