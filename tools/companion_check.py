@@ -117,6 +117,9 @@ async def run(args):
                     receipts.append({"step": name + " result", **state})
                     await b.shot(sid, args.out / f"{name}-result.png")
                     assert not state["overlap"] and state["targets"] == 0, state
+                except Exception:
+                    await b.shot(sid, args.out / f"{name}-failure.png")
+                    raise
                 finally:
                     lines = b.lines(sid)
                     (args.out / f"{name}-console.txt").write_text("\n".join(lines))

@@ -40,9 +40,9 @@ namespace Statecraft.Game.UI
         readonly EventCallback<FocusOutEvent> onBlur;
         readonly EventCallback<KeyUpEvent> onKey;
         readonly EventCallback<GeometryChangedEvent> onGeometry;
+        readonly EventCallback<ChangeEvent<string>> onText;
         IVisualElementScheduledItem? pending;
         bool disposed;
-        int publishedFrame = -1;
         string? lastJson;
 
         /// <param name="push">EditMode seam: receives the exact serialized payload; null uses the guarded WebGL transport.</param>
@@ -54,6 +54,7 @@ namespace Statecraft.Game.UI
             onClick = _ => Schedule(); onSubmit = _ => Schedule(); onCancel = _ => Schedule();
             onFocus = _ => Schedule(); onBlur = _ => Schedule(); onKey = _ => Schedule();
             onGeometry = _ => Schedule(); // style/visibility changes and non-bridge notices already in the tree
+            onText = e => { if (e.target is TextElement) Schedule(); }; // late media/save notices, without a bridge event
             root.RegisterCallback(onClick, TrickleDown.TrickleDown);
             root.RegisterCallback(onSubmit, TrickleDown.TrickleDown);
             root.RegisterCallback(onCancel, TrickleDown.TrickleDown);
@@ -61,21 +62,27 @@ namespace Statecraft.Game.UI
             root.RegisterCallback(onBlur, TrickleDown.TrickleDown);
             root.RegisterCallback(onKey, TrickleDown.TrickleDown);
             root.RegisterCallback(onGeometry, TrickleDown.TrickleDown);
+            root.RegisterCallback(onText, TrickleDown.TrickleDown);
             bridge.Changed += later; bridge.Refused += onRefused; bridge.TurnEnded += onTurn;
             Schedule(); // first frame, never a synchronous boot-path read
         }
 
         void Schedule()
         {
-            if (!disposed && pending == null) pending = root.schedule.Execute(Publish);
+            if (!disposed && pending == null) pending = root.schedule.Execute(AfterLayout);
+        }
+
+        void AfterLayout()
+        {
+            // Scheduling during a scheduler tick queues the read for the next UI tick, after this tick's style/layout
+            // pass. A single Execute can run before the start screen's new visibility has resolved.
+            pending = disposed ? null : root.schedule.Execute(Publish);
         }
 
         void Publish()
         {
             pending = null;
             if (disposed) return;
-            if (publishedFrame == Time.frameCount) { Schedule(); return; }
-            publishedFrame = Time.frameCount;
             var json = JsonUtility.ToJson(Read());
             if (json == lastJson) return;
             if (Send(json)) lastJson = json;
@@ -164,6 +171,7 @@ namespace Statecraft.Game.UI
             root.UnregisterCallback(onBlur, TrickleDown.TrickleDown);
             root.UnregisterCallback(onKey, TrickleDown.TrickleDown);
             root.UnregisterCallback(onGeometry, TrickleDown.TrickleDown);
+            root.UnregisterCallback(onText, TrickleDown.TrickleDown);
             Send(JsonUtility.ToJson(new Snapshot { language = language }));
         }
 

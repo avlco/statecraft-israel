@@ -25,7 +25,6 @@ public class AccessibilityCompanionTests
         public readonly EventCardPresenter Card;
         public readonly AccessibilityCompanion Companion;
         public readonly List<string> Sent = new List<string>();
-        public readonly List<int> SentFrames = new List<int>();
         readonly List<System.IDisposable> owned = new List<System.IDisposable>();
         public AccessibilityCompanion.Snapshot Last => JsonUtility.FromJson<AccessibilityCompanion.Snapshot>(Sent.Last());
         public Kit(bool he)
@@ -39,11 +38,24 @@ public class AccessibilityCompanionTests
             owned.Add(Card = new EventCardPresenter(Ui.Root, Bridge, text, null));
             owned.Add(new WhyPresenter(Ui.Root, Bridge, text));
             owned.Add(new TurnReportPresenter(Ui.Root, Bridge, text, nav));
-            owned.Add(Companion = new AccessibilityCompanion(Ui.Root, Bridge, text, s => { Sent.Add(s); SentFrames.Add(Time.frameCount); }));
+            owned.Add(Companion = new AccessibilityCompanion(Ui.Root, Bridge, text, Sent.Add));
         }
         public void Dispose() { for (int i = owned.Count - 1; i >= 0; i--) owned[i].Dispose(); Ui.Dispose(); }
     }
-    static IEnumerator Frames() { for (int i = 0; i < 4; i++) yield return null; }
+    // Count UI scheduler ticks: an EditMode coroutine yield is not necessarily a runtime-panel update.
+    static IEnumerator Frames(VisualElement root)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            bool ran = false;
+            var probe = root.schedule.Execute(() => ran = true);
+            var deadline = UnityEditor.EditorApplication.timeSinceStartup + 3;
+            while (!ran && UnityEditor.EditorApplication.timeSinceStartup < deadline)
+            { UnityEditor.EditorApplication.QueuePlayerLoopUpdate(); yield return null; }
+            probe.Pause();
+            Assert.IsTrue(ran, "the runtime panel must advance a UI tick");
+        }
+    }
     static void Submit(VisualElement root) { using var e = NavigationSubmitEvent.GetPooled(); e.target = root; root.SendEvent(e); }
 
     [UnityTest]
@@ -52,7 +64,7 @@ public class AccessibilityCompanionTests
         foreach (var he in new[] { false, true })
         {
             using var k = new Kit(he);
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             var p = k.Last;
             Assert.AreEqual(he ? "he" : "en", p.language);
             Assert.AreEqual(k.Ui.Q<Label>("event-title").text, p.title);
@@ -62,7 +74,7 @@ public class AccessibilityCompanionTests
             CollectionAssert.AreEqual(options.Select(b => b.text), p.choices.Select(c => c.text));
             CollectionAssert.AreEqual(options.Select(b => b.enabledInHierarchy), p.choices.Select(c => c.enabled));
             options[0].Focus();
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             Assert.AreEqual(options[0].text, k.Last.focus);
             Assert.AreSame(options[0], k.Ui.Root.panel.focusController.focusedElement);
             k.Ui.Q<Label>("event-title").text = "<img src=x onerror=alert(1)>";
@@ -70,12 +82,16 @@ public class AccessibilityCompanionTests
             options[0].SetEnabled(false);
             k.Ui.Q<VisualElement>("event-options").Add(new Label("preview +1"));
             Submit(k.Ui.Root);
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             Assert.AreEqual("<img src=x onerror=alert(1)>", k.Last.title);
             CollectionAssert.Contains(k.Last.context, "תפקיד \u200eIL 1.2m\u200e");
             Assert.IsFalse(k.Last.choices[0].enabled);
             CollectionAssert.Contains(k.Last.choices.Last().notes, "preview +1");
-            Assert.AreEqual(k.SentFrames.Count, k.SentFrames.Distinct().Count(), "at most one publication per frame");
+            int before = k.Sent.Count;
+            for (int i = 0; i < 100; i++) k.Ui.Q<Label>("event-title").text = "latest " + i;
+            yield return Frames(k.Ui.Root);
+            Assert.AreEqual(before + 1, k.Sent.Count, "a burst coalesces to one final snapshot");
+            Assert.AreEqual("latest 99", k.Last.title);
         }
     }
 
@@ -85,17 +101,38 @@ public class AccessibilityCompanionTests
         foreach (var he in new[] { false, true })
         {
             using var k = new Kit(he);
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             int changed = 0; k.Bridge.Changed += () => changed++;
             k.Bridge.Refused += _ => k.Toast.Append("save notice");
             var refusal = k.Bridge.Queue(new ChooseEventOption("missing-event", "missing-option"));
             Assert.IsNotNull(refusal);
             Assert.AreEqual(0, changed);
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             Assert.AreEqual(k.Ui.Q<Label>("toast").text, k.Last.status);
             StringAssert.Contains(refusal, k.Last.status);
             StringAssert.EndsWith("save notice", k.Last.status);
+            var late = k.Ui.Q<Label>("toast").text.Replace("save notice", "late notice");
+            k.Toast.Show(late); // same line count, no bridge event/click/focus change
+            yield return Frames(k.Ui.Root);
+            Assert.AreEqual(late, k.Last.status);
         }
+    }
+
+    [UnityTest]
+    public IEnumerator AShownCardIsReadAfterStylesResolveWithoutAnotherInput()
+    {
+        using var k = new Kit(false);
+        yield return Frames(k.Ui.Root);
+        var card = k.Ui.Q<VisualElement>("event-card");
+        card.style.display = DisplayStyle.None;
+        Submit(k.Ui.Root);
+        yield return Frames(k.Ui.Root);
+        Assert.IsEmpty(k.Last.title);
+        card.style.display = DisplayStyle.Flex;
+        Submit(k.Ui.Root); // like closing the start screen: schedule before the new styles have resolved
+        yield return Frames(k.Ui.Root);
+        Assert.AreEqual(k.Ui.Q<Label>("event-title").text, k.Last.title);
+        Assert.IsNotEmpty(k.Last.choices);
     }
 
     [UnityTest]
@@ -104,9 +141,9 @@ public class AccessibilityCompanionTests
         foreach (var he in new[] { false, true })
         {
             using var k = new Kit(he);
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             k.Bridge.EndTurn();
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             Assert.AreEqual(k.Bridge.State.Turn, k.Last.turn);
             StringAssert.Contains(k.Ui.Q<Label>("turn-report-title").text, k.Last.status);
             foreach (var label in k.Ui.Q<VisualElement>("turn-report-rows").Query<Label>().ToList())
@@ -122,7 +159,7 @@ public class AccessibilityCompanionTests
             k.Companion.Dispose();
             k.Bridge.EndTurn();
             Submit(k.Ui.Root);
-            yield return Frames();
+            yield return Frames(k.Ui.Root);
             Assert.AreEqual(sent, k.Sent.Count, "no late publication, or duplicate clearing on a second Dispose");
         }
     }

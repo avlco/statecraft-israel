@@ -8,7 +8,9 @@ The contributor's real VoiceOver pass is still required. B is not a claim of act
 
 `unity/Assets/Scripts/UI/AccessibilityCompanion.cs` reads the existing UI tree on the next
 scheduled frame after `Changed`, `Refused`, `TurnEnded`, pointer/submit/cancel/key and focus
-events. Root geometry changes also request a read. Requests coalesce to at most one
+events, including text-change events for late notices. Root geometry changes also request a read.
+A second scheduled stage leaves a UI style/layout pass before the read, so resolved visibility is current.
+Requests coalesce to at most one
 publication per frame. An identical JSON snapshot is not sent again. Presenters and sim
 rules are untouched; all text, language fallback, costs and enabled states come from the
 rendered elements. The collector reads:
