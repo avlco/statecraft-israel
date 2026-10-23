@@ -1,0 +1,1 @@
+- The WebGL player has a read-only HTML panel beside the game with the current event, ordered choices, keyboard focus and status/result text. The panel takes no focus or game actions; play keeps the existing keyboard controls. Real VoiceOver acceptance remains pending.

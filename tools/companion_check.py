@@ -1,0 +1,128 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["websockets==15.0.1", "pyyaml==6.0.3"]
+# ///
+"""#1119 B headed check: ordinary keyboard play, rendered DOM, and captures. No VoiceOver automation.
+
+uv run tools/companion_check.py --build <gzip-player> --out <evidence-directory>
+--baseline takes matching first-card captures without expecting a companion in that player.
+Uses headed.py's exact server/browser and isolated profiles; no sim state or game command injection.
+"""
+import argparse
+import asyncio
+import json
+import re
+from pathlib import Path
+
+import yaml
+
+from headed import Browser
+
+REPO = Path(__file__).resolve().parents[1]
+DOM = """JSON.stringify({
+  language: document.getElementById('companion')?.lang,
+  text: document.getElementById('companion-reading')?.textContent,
+  title: document.querySelector('#companion-reading h2')?.textContent,
+  choice: document.querySelector('#companion-reading li')?.firstChild?.textContent,
+  focus: document.getElementById('companion-focus')?.textContent,
+  status: document.getElementById('companion-status')?.textContent,
+  active: document.activeElement?.id,
+  targets: document.querySelectorAll('#companion button,#companion a,#companion [tabindex]').length,
+  overlap: (() => { const c=document.getElementById('unity-canvas').getBoundingClientRect();
+    const p=document.getElementById('companion')?.getBoundingClientRect();
+    return p ? c.left < p.right && p.left < c.right && c.top < p.bottom && p.top < c.bottom : false; })()
+})"""
+
+
+async def read(b, sid):
+    result = await b.send("Runtime.evaluate", {"expression": DOM, "returnByValue": True}, session=sid)
+    return json.loads(result["result"]["value"])
+
+
+async def until(b, sid, predicate, what):
+    for _ in range(200):
+        state = await read(b, sid)
+        if predicate(state):
+            return state
+        await asyncio.sleep(.1)
+    raise AssertionError(f"never observed {what}: {state}")
+
+
+async def key(b, sid, name):
+    code = {"Tab": 9, "Enter": 13, "Escape": 27}[name]
+    for kind in ("keyDown", "keyUp"):
+        await b.send("Input.dispatchKeyEvent", {"type": kind, "key": name, "code": name,
+                     "windowsVirtualKeyCode": code, "nativeVirtualKeyCode": code}, session=sid)
+    await asyncio.sleep(.15)
+
+
+async def tab_to(b, sid, label):
+    seen = []
+    for _ in range(90):
+        state = await read(b, sid)
+        if state["focus"] == label:
+            return
+        seen.append(state["focus"])
+        await key(b, sid, "Tab")
+    raise AssertionError(f"Tab did not reach {label}: {seen}")
+
+
+async def run(args):
+    args.out.mkdir(parents=True, exist_ok=True)
+    receipts = []
+    for language in ("en", "he"):
+        text = yaml.safe_load((REPO / f"unity/Assets/UI/strings.{language}.yaml").read_text())
+        for size in ((1920, 1080), (390, 844)):
+            name = f"{language}-{size[0]}x{size[1]}"
+            async with Browser(args.build, width=size[0], height=size[1], viewport=size, keep_awake=True) as b:
+                sid = await b.open(f"firstcard&lang={language}")
+                try:
+                    await b.wait_for(sid, "^FIRST CARD OK", stall=120)
+                    if args.baseline:
+                        await b.shot(sid, args.out / f"{name}-event.png")
+                        continue
+                    state = await until(b, sid, lambda p: p.get("choice"), "current event and choices")
+                    assert state["language"] == language and not state["overlap"] and state["targets"] == 0, state
+                    await b.shot(sid, args.out / f"{name}-event.png")
+                    receipts.append({"step": name + " event", **state})
+                    if size[0] == 390:
+                        continue
+                    # Focus the canvas through a harmless pointer press on the card's backdrop, then use only keys.
+                    await b.click(sid, 5, 100)
+                    await tab_to(b, sid, state["choice"])
+                    before = (await read(b, sid))["active"]
+                    await key(b, sid, "Enter")
+                    await until(b, sid, lambda p: not p.get("choice"), "event choice queued")
+                    await tab_to(b, sid, text["hud.nav.budget"])
+                    await key(b, sid, "Enter")
+                    await tab_to(b, sid, "+")
+                    await key(b, sid, "Enter")
+                    await tab_to(b, sid, text["budget.submit"])
+                    await key(b, sid, "Enter")
+                    state = await until(b, sid, lambda p: bool(p.get("status")), "real budget refusal")
+                    assert state["status"].startswith(text["toast.refused"].split("{0}")[0]), state
+                    assert state["active"] == before, "publication moved document focus"
+                    receipts.append({"step": name + " refusal", **state})
+                    await b.shot(sid, args.out / f"{name}-refusal.png")
+                    await key(b, sid, "Escape")
+                    await tab_to(b, sid, text["hud.end_turn"])
+                    await key(b, sid, "Enter")
+                    state = await until(b, sid, lambda p: text["report.title"] in p.get("status", ""), "End Turn result")
+                    receipts.append({"step": name + " result", **state})
+                    await b.shot(sid, args.out / f"{name}-result.png")
+                    assert not state["overlap"] and state["targets"] == 0, state
+                finally:
+                    lines = b.lines(sid)
+                    (args.out / f"{name}-console.txt").write_text("\n".join(lines))
+                    (args.out / "observations.json").write_text(json.dumps(receipts, ensure_ascii=False, indent=2))
+                    failures = [line for line in lines if re.search(r"BOOT FAIL|FIRST CARD FAIL|SMOKE FAIL|Exception|RuntimeError|out of memory", line)]
+                    assert not failures, failures
+    print("COMPANION HEADED PASS" if not args.baseline else "BASELINE CAPTURES PASS")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--build", type=Path, required=True)
+    parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--baseline", action="store_true")
+    asyncio.run(run(parser.parse_args()))
