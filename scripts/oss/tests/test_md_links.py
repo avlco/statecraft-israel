@@ -94,3 +94,12 @@ def test_angle_targets_keep_a_literal_unpaired_opening_parenthesis(make_repo):
         'docs/setup_(mac.md': 'x\n',
     })
     assert m.dead_links(root) == [('README.md', 'docs/missing_(x.md')]
+
+
+def test_link_marker_in_a_target_is_consumed_but_invalid_links_do_not_hide_later_links(make_repo):
+    root = make_repo({
+        'README.md': '[ok](docs/a](b).md) [gone](missing.md)\n'
+                     '[broken](docs/unclosed_(x.md [after](missing_after.md)\n',
+        'docs/a](b).md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', 'missing.md'), ('README.md', 'missing_after.md')]
