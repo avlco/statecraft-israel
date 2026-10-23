@@ -1,5 +1,5 @@
-# UI strings (Hebrew, #12). GameRoot loads them in place of strings.en.yaml only when Hebrew is asked for by hand
-# ("?lang=he" on the web, "-lang he" on the desktop; UiLanguage, #193); there is no visible switch yet.
+# UI strings (Hebrew, #12). Choose English or Hebrew in Settings; the choice is applied at once and kept (#1036).
+# Web ?lang=he / ?lang=en and desktop -lang he / -lang en override the stored choice for that visit (UiLanguage, #193).
 # Keep logical Hebrew order, never reverse strings. Exact string.Format tokens match strings.en.yaml;
 # money, names, content and most dates still arrive from the current English content/PlayerText paths; the map's line
 # date, the top bar's date and the Budget, Why? and info panel dates come from the date.* strings (#687, #701).
