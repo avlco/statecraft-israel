@@ -86,3 +86,11 @@ def test_parenthesized_targets_do_not_hide_following_links(make_repo):
     })
     assert m.dead_links(root) == [('README.md', 'missing.md'), ('README.md', 'docs/other_(x).md'),
                                   ('README.md', 'last.md')]
+
+
+def test_angle_targets_keep_a_literal_unpaired_opening_parenthesis(make_repo):
+    root = make_repo({
+        'README.md': '[ok](<docs/setup_(mac.md>) [gone](<docs/missing_(x.md>)\n',
+        'docs/setup_(mac.md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', 'docs/missing_(x.md')]
