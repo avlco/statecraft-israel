@@ -40,7 +40,9 @@ namespace Statecraft.Game.UI
         public static void DisableCovered(VisualElement root)
         {
             var r = root.Q("root") ?? root;
-            bool start = r.ClassListContains(StartScreenPresenter.OpenClass);
+            bool opening = r.ClassListContains(OpeningPresenter.OpenClass);
+            bool start = r.ClassListContains(StartScreenPresenter.OpenClass) || opening;
+            r.Q("start-screen")?.SetEnabled(!opening);
             bool screen = r.ClassListContains(ScreenOpenClass);
             bool full = screen && r.ClassListContains(HudPresenter.TwoRowClass);
             bool outcome = r.ClassListContains(OutcomePresenter.OpenClass);   // an End Turn outcome clip covers all but itself

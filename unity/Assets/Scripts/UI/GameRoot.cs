@@ -53,6 +53,7 @@ namespace Statecraft.Game.UI
         MapLabelsPresenter? labels;
         ScreenNav? nav;
         StartScreenPresenter? start;
+        OpeningPresenter? opening;
         EventCardPresenter? card;
         /// <summary>Tests: the decision card of the last Begin.</summary>
         internal EventCardPresenter? Card => card;
@@ -215,6 +216,10 @@ namespace Statecraft.Game.UI
                 (map, nameof(map)), (placements, nameof(placements)), (pointer, nameof(pointer)), (cameraController, nameof(cameraController)) })
                 if (value == null) throw new InvalidOperationException($"GameRoot: {field} is not assigned (run MapCapture.MakeScene)");
             if (map.Terrain == null) throw new InvalidOperationException("GameRoot: the map is not built (GameBoot builds it before Ready)");
+            // Automated EditMode Begin calls keep their existing bypass. A normal player's language rebuild keeps the route.
+            bool enableOpening = smoke == 0 && !StartScreenPresenter.Skipped()
+                && (startScreen || Application.isPlaying || keep != null && opening != null);
+            bool keptResumed = start?.Resumed ?? true;
             Shutdown();
             smokeRun = smoke > 0;
 
@@ -222,7 +227,7 @@ namespace Statecraft.Game.UI
             var store = Store ?? SaveStore.ForPlatform();
             var notes = new List<string>();
             // A smoke run is reproducible: a fresh game with the golden seed, never the player's autosave.
-            bool resumed = true;
+            bool resumed = keptResumed;
             var session = keep?.Session ?? (smoke > 0
                 ? GameStart.Begin(inputs.Content, store, () => GoldenRun.Seed, notes, text, out resumed, fresh: true)
                 : GameStart.Begin(inputs.Content, store, GameStart.NewSeed, notes, text, out resumed));
@@ -370,7 +375,7 @@ namespace Statecraft.Game.UI
             endClosed = false;
 
             // An outcome clip holds the pointer while it shows and in the frame it closes (the skipping click selects no hex).
-            Func<Vector2, bool> overUi = p => outcomes?.HoldsThePointer == true || UiPointer.IsOverUi(root.panel, p, Screen.height);
+            Func<Vector2, bool> overUi = p => opening?.HoldsThePointer == true || outcomes?.HoldsThePointer == true || UiPointer.IsOverUi(root.panel, p, Screen.height);
             var terrain = map.Terrain;
             var size = terrain.terrainData.size;
             var oldBounds = cameraController.Bounds;
@@ -454,6 +459,28 @@ namespace Statecraft.Game.UI
             // The first-turn guide (#42) opens when the start screen closes on a new game (not on Continue). It is made after
             // the screen, so Shutdown disposes it first and the screen's closing then opens nothing.
             FirstTurnGuidePresenter? firstTurn = null;
+            var replayOpening = root.Q<Button>("start-opening-replay");
+            replayOpening.style.display = DisplayStyle.None;
+            if (enableOpening && OpeningContent.Load() is OpeningContent openingSource)
+            {
+                var openingData = openingSource.Read();
+#if UNITY_EDITOR
+                const bool editorPreview = true;   // visibly labelled QA only; never enables drafts in a player
+#else
+                const bool editorPreview = false;
+#endif
+                if (OpeningContent.MayPresent(openingData, editorPreview))
+                {
+                    opening = Own(new OpeningPresenter(root, openingSource, openingData, text,
+                        shown => cameraController.enabled = !shown && start?.IsOpen != true,
+                        replay => { if (!replay) firstTurn?.NewGame(); }));
+                    replayOpening.text = text["opening.replay"];
+                    replayOpening.style.display = DisplayStyle.Flex;
+                    Action replay = () => { if (start?.IsOpen == true) opening?.Show(replay: true); };
+                    replayOpening.clicked += replay;
+                    owned.Add(new Undo(() => replayOpening.clicked -= replay));
+                }
+            }
             // The start screen goes up in the same frame the loading state ends, so the HUD never flashes before it. While it
             // shows, the camera keys are off (keyboard pan would otherwise move the hidden map; plan amendment A4).
             if (showsStart)                                                // newGame is made above whenever smoke == 0
@@ -463,7 +490,7 @@ namespace Statecraft.Game.UI
                 start = Own(new StartScreenPresenter(root, newGame!, resumed, shown =>
                 {
                     if (cam != null) cam.enabled = !shown;
-                    if (!shown && start?.Resumed == false) firstTurn?.NewGame();
+                    if (!shown && start?.Resumed == false && opening == null) firstTurn?.NewGame();
                 }, recording, text));
                 start.Show();
             }
@@ -502,7 +529,17 @@ namespace Statecraft.Game.UI
             };
             guide = firstTurn = Own(new FirstTurnGuidePresenter(root, text, showsStart && !FirstCardCheckRequested() ? SettingsFile() : null,
                 card, showCity, () => nav?.Close(), bridge, keepSelection, showUnit));
-            if (newGame != null) newGame.Started += firstTurn.NewGame;      // New Game in the top bar too; both die with this Begin
+            if (newGame != null)
+            {
+                Action freshGame = () => { if (opening != null) opening.Show(replay: false); else firstTurn?.NewGame(); };
+                newGame.Started += freshGame;
+                if (start != null) start.FreshGameOpened += freshGame;
+                owned.Add(new Undo(() =>
+                {
+                    newGame.Started -= freshGame;
+                    if (start != null) start.FreshGameOpened -= freshGame;
+                }));
+            }
             if (hebrew) Own(new UiDirection(root, bridge));
             root.Q("root")?.RemoveFromClassList("loading");                // ready: the bar, panels and screens may show (P2-1)
             DiagLog.BootPhase("screens ready");
@@ -541,7 +578,15 @@ namespace Statecraft.Game.UI
             if (Bridge == null || smokeRun) return;
             Language = language;
             endClosed = end != null && !end.IsOpen;   // read before Begin disposes it
-            Begin(inputs, 0, keep: Bridge);
+            bool openingShown = opening?.IsOpen == true, replay = opening?.Replay == true;
+            int openingIndex = opening?.Index ?? 0;
+            bool startShown = start?.IsOpen == true;
+            Begin(inputs, 0, startScreen: startShown, keep: Bridge);
+            if (openingShown)
+            {
+                opening?.Restore(openingIndex, replay);
+                return;   // the opening, not Settings behind it, keeps focus and its return destination
+            }
             nav?.Open("settings");
             document.rootVisualElement.Q<Button>("settings-language-" + language)?.Focus();
         }
@@ -615,7 +660,7 @@ namespace Statecraft.Game.UI
             for (int i = owned.Count - 1; i >= 0; i--) owned[i].Dispose();
             owned.Clear();
             if (hoveredCity != null) { hoveredCity = null; HandCursor(false); }   // the next Begin's pills start unlit
-            minimap = null; labels = null; nav = null; start = null; card = null; outcomes = null; report = null; end = null; guide = null; feedback = null; share = null; info = null; rig = null; drawn = null; drawnSites = null; units = null; Regions = null; logCamera = false;
+            minimap = null; labels = null; nav = null; start = null; opening = null; card = null; outcomes = null; report = null; end = null; guide = null; feedback = null; share = null; info = null; rig = null; drawn = null; drawnSites = null; units = null; Regions = null; logCamera = false;
             // A ?profile run cut short (a stopped coroutine never reaches its restore line) must not leave the terrain at the
             // profile's pixel error (Task 24 review M1). Nothing else changes it, so restoring is always right.
             if (map != null && map.Terrain != null) map.Terrain.heightmapPixelError = MapBuilder.TerrainPixelError;
@@ -717,6 +762,9 @@ namespace Statecraft.Game.UI
                 yield break;
             }
             if (!Press(root.Q<Button>("start-new-game"), s => log(s.Replace("SMOKE FAIL", "FIRST CARD FAIL")))) yield break;
+            // A reviewed opening is part of the normal media path: the instrument uses its actual Skip control.
+            if (hud.ClassListContains(OpeningPresenter.OpenClass)
+                && !Press(root.Q<Button>("opening-skip"), s => log(s.Replace("SMOKE FAIL", "FIRST CARD FAIL")))) yield break;
             while (now() - began <= FirstCardBudgetSeconds)
             {
                 var option = root.Q<VisualElement>("event-options")?.Q<Button>();
@@ -758,7 +806,8 @@ namespace Statecraft.Game.UI
             // takes the Cancel event when it has the focus), and so on the open capture dialog (CaptureDialogPresenter.Escape),
             // which shows only while the card does not.
             // The report panel (#1169) and the share panel (#1170) are over everything: their Escape goes no further.
-            if (UnityEngine.InputSystem.Keyboard.current?.escapeKey.wasPressedThisFrame == true && feedback?.Escape() != true && share?.Escape() != true) { bool done = outcomes?.SkipAll() == true || outcomes?.ClosedThisFrame == true; if (!done) done = end?.Close() == true || end?.ClosedThisFrame == true; if (!done) done = report?.Close() == true || report?.ClosedThisFrame == true; done |= start?.Escape() == true; done |= nav?.Close() == true; if (!done) done = guide?.Escape() == true; if (!done && document.rootVisualElement.focusController?.focusedElement == null && capture?.Escape() != true) card?.Escape(); }
+            if (UnityEngine.InputSystem.Keyboard.current?.escapeKey.wasPressedThisFrame == true && feedback?.Escape() != true && share?.Escape() != true
+                && opening?.ClosedThisFrame != true && opening?.Escape() != true) { bool done = outcomes?.SkipAll() == true || outcomes?.ClosedThisFrame == true; if (!done) done = end?.Close() == true || end?.ClosedThisFrame == true; if (!done) done = report?.Close() == true || report?.ClosedThisFrame == true; done |= start?.Escape() == true; done |= nav?.Close() == true; if (!done) done = guide?.Escape() == true; if (!done && document.rootVisualElement.focusController?.focusedElement == null && capture?.Escape() != true) card?.Escape(); }
             // PageUp, PageDown, Home and End, with no modifier, scroll the open screen or the open card's text, with or without
             // focus (KeyScroll; accessibility audit H3), but not under an End Turn outcome clip, which covers them. The arrows
             // stay with the camera (NavigationGuard, B6).

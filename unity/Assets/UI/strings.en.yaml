@@ -580,3 +580,13 @@ event.effect.veteran_halutz: "Veteran Halutzim"
 event.effect.housing_capacity: "housing capacity"
 event.effect.job_slots: "job slots"
 event.effect.condition: "housing condition"
+
+# #530B opening controls only. Agent-checked; native Hebrew review pending (#564). Historical prose stays in opening.yaml.
+opening.replay: "Replay the opening"
+opening.back: "Back"
+opening.next: "Next"
+opening.skip: "Skip the opening"
+opening.begin: "Continue to the map"
+opening.return: "Return to the start screen"
+opening.count: "Step {0} of {1}"
+opening.preview: "Editor preview: draft text; human source checks pending."

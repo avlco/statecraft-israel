@@ -8,6 +8,8 @@ checks this (see `CONTRIBUTING.md`).
 
 ## [Unreleased]
 
+- Add the skippable, replayable opening presentation for New Game, using the existing sourced panels and photographs. Draft text remains an explicitly labelled Editor preview until human review; Continue and automated runs bypass it (refs #530).
+
 ## [0.2.1] - 2026-10-22
 
 ### Fixed
