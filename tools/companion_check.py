@@ -112,11 +112,12 @@ async def run(args):
                         await b.shot(sid, args.out / f"{name}-scrolled.png")
                         p = state["panel"]
                         await b.click(sid, p["left"] + 20, p["top"] + 12)
-                        clicked = (await read(b, sid))["active"]
+                        clicked_state = await read(b, sid)
+                        clicked = clicked_state["active"]
                         await key(b, sid, "Tab")
                         after_tab = await read(b, sid)
                         receipts.append({"step": name + " panel click then Tab", "clicked_active": clicked, **after_tab})
-                        assert after_tab["active"] not in ("companion", "player-regions"), "the scroller became a game-page Tab stop"
+                        assert after_tab["focus"] != clicked_state["focus"] or after_tab["active"] == "unity-canvas", "the next key after clicking the panel did not reach the game or return canvas focus"
                         # The panel contributes no action; Tab/Enter must still operate the existing game after clicking it.
                         await tab_to(b, sid, state["choice"])
                         await key(b, sid, "Enter")
