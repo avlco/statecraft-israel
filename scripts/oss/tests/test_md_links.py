@@ -61,3 +61,28 @@ def test_stray_backtick_and_shorter_fence_run_do_not_hide_real_links(make_repo):
 def test_an_inline_span_does_not_cross_a_blank_line(make_repo):
     root = make_repo({'README.md': 'a ` b\n\n[one](gone1.md)\n\nc ` d\n'})
     assert m.dead_links(root) == [('README.md', 'gone1.md')]
+
+
+def test_balanced_parentheses_keep_the_whole_target(make_repo, capsys):
+    root = make_repo({
+        'README.md': '[guide](docs/setup_(mac).md) [nested](docs/setup_(mac_(arm64)).md)\n'
+                     '[title](docs/setup_(mac).md "Mac setup") [angle](<docs/setup_(mac_(arm64)).md>)\n'
+                     '[gone](docs/missing_(x).md) [nested gone](docs/missing_(x_(y)).md)\n',
+        'docs/setup_(mac).md': 'x\n',
+        'docs/setup_(mac_(arm64)).md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', 'docs/missing_(x).md'),
+                                  ('README.md', 'docs/missing_(x_(y)).md')]
+    assert m.main(['--root', str(root)]) == 1
+    assert capsys.readouterr().out == ('README.md: docs/missing_(x).md\n'
+                                     'README.md: docs/missing_(x_(y)).md\n')
+
+
+def test_parenthesized_targets_do_not_hide_following_links(make_repo):
+    root = make_repo({
+        'README.md': '[ok](docs/setup_(mac_(arm64)).md) [gone](missing.md) '
+                     '[another](docs/other_(x).md) [last](last.md)\n',
+        'docs/setup_(mac_(arm64)).md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', 'missing.md'), ('README.md', 'docs/other_(x).md'),
+                                  ('README.md', 'last.md')]
