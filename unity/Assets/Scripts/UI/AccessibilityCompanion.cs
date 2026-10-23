@@ -53,7 +53,7 @@ namespace Statecraft.Game.UI
             later = Schedule; onRefused = _ => Schedule(); onTurn = _ => Schedule();
             onClick = _ => Schedule(); onSubmit = _ => Schedule(); onCancel = _ => Schedule();
             onFocus = _ => Schedule(); onBlur = _ => Schedule(); onKey = _ => Schedule();
-            onGeometry = _ => Schedule(); // style/visibility changes and non-bridge notices already in the tree
+            onGeometry = _ => Schedule(); // root resizing only: GeometryChangedEvent does not propagate from descendants
             onText = e => { if (e.target is TextElement) Schedule(); }; // late media/save notices, without a bridge event
             root.RegisterCallback(onClick, TrickleDown.TrickleDown);
             root.RegisterCallback(onSubmit, TrickleDown.TrickleDown);
