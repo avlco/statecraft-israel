@@ -29,6 +29,9 @@ DOM = """JSON.stringify({
   active: document.activeElement?.id,
   targets: document.querySelectorAll('#companion button,#companion a,#companion [tabindex]').length,
   canvas: document.getElementById('unity-canvas').getBoundingClientRect().toJSON(),
+  panel: document.getElementById('companion')?.getBoundingClientRect().toJSON(),
+  regions: document.getElementById('player-regions')?.getBoundingClientRect().toJSON(),
+  panelOverflows: (() => {const p=document.getElementById('companion');return p ? p.scrollHeight>p.clientHeight : false;})(),
   padding: document.getElementById('player-layout') ? getComputedStyle(document.getElementById('player-layout')).padding : '',
   overlap: (() => { const c=document.getElementById('unity-canvas').getBoundingClientRect();
     const p=document.getElementById('companion')?.getBoundingClientRect();
@@ -79,14 +82,14 @@ async def run(args):
     receipts = []
     for language in ("en", "he"):
         text = yaml12.load((REPO / f"unity/Assets/UI/strings.{language}.yaml").read_text())
-        for size in ((1920, 1080), (390, 844)):
+        for size in (((1920, 1080), (390, 844)) if args.baseline else ((1920, 1080), (390, 844), (375, 667))):
             name = f"{language}-{size[0]}x{size[1]}"
             async with Browser(args.build, width=size[0], height=size[1], viewport=size, keep_awake=True) as b:
                 sid = await b.open(f"firstcard&lang={language}")
                 try:
                     await b.send("Page.bringToFront", session=sid)
                     await b.send("Emulation.setFocusEmulationEnabled", {"enabled":True}, session=sid)
-                    if size[0] == 390:
+                    if size[0] <= 390:
                         await b.send("Emulation.setSafeAreaInsetsOverride", {"insets": {"top":47,"right":0,"bottom":34,"left":0}}, session=sid)
                     await b.wait_for(sid, "^FIRST CARD OK", stall=120)
                     if args.baseline:
@@ -94,11 +97,35 @@ async def run(args):
                         continue
                     state = await until(b, sid, lambda p: p.get("choice"), "current event and choices")
                     assert state["language"] == language and not state["overlap"] and state["targets"] == 0, state
-                    if size[0] == 390:
+                    if size[0] <= 390:
                         assert state["canvas"]["top"] == 47 and state["padding"] == "47px 0px 34px", state
                     await b.shot(sid, args.out / f"{name}-event.png")
                     receipts.append({"step": name + " event", **state})
-                    if size[0] == 390:
+                    if size[0] <= 390:
+                        assert state["canvas"]["height"] >= min(size[0] * 1.5, size[1] - 47 - 34 - 48) - 1, state
+                        assert state["panelOverflows"], "the real phone event must exercise a scrolling panel"
+                        # Scroll only page layout, keeping the real game state and ordinary keyboard path untouched.
+                        before = state["active"]
+                        await b.send("Runtime.evaluate", {"expression": "document.getElementById('player-regions').scrollTop=1e6"}, session=sid)
+                        state = await read(b, sid)
+                        assert state["active"] == before and state["panel"]["top"] >= 47 and state["panel"]["bottom"] <= size[1]-34+1, state
+                        await b.shot(sid, args.out / f"{name}-scrolled.png")
+                        p = state["panel"]
+                        await b.click(sid, p["left"] + 20, p["top"] + 12)
+                        clicked_state = await read(b, sid)
+                        clicked = clicked_state["active"]
+                        await key(b, sid, "Tab")
+                        after_tab = await read(b, sid)
+                        receipts.append({"step": name + " panel click then Tab", "clicked_active": clicked, **after_tab})
+                        assert after_tab["focus"] != clicked_state["focus"] or after_tab["active"] == "unity-canvas", "the next key after clicking the panel did not reach the game or return canvas focus"
+                        # The panel contributes no action; Tab/Enter must still operate the existing game after clicking it.
+                        await tab_to(b, sid, state["choice"])
+                        await key(b, sid, "Enter")
+                        await until(b, sid, lambda p: not p.get("choice"), "phone event choice queued after panel click")
+                        await tab_to(b, sid, text["hud.end_turn"])
+                        await key(b, sid, "Enter")
+                        state = await until(b, sid, lambda p: text["report.title"] in p.get("status", ""), "phone End Turn after panel click")
+                        receipts.append({"step": name + " keyboard result after panel click", **state})
                         continue
                     # Focus the canvas through a harmless pointer press on the card's backdrop, then use only keys.
                     await b.click(sid, 5, 100)

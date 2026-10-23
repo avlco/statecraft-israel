@@ -4,6 +4,13 @@
 // wasm32 pointers (Unity 6000.3's WebGL target), as WheelInput.jslib.
 mergeInto(LibraryManager.library, {
   StatecraftSafeAreaInsets: function (out) {
+    // The Statecraft template owns and clips both regions inside the hardware margins. Its inner grid can scroll;
+    // scrolling the canvas is not another notch inset and must not move the game's UI padding.
+    var layout = typeof document !== "undefined" && typeof document.getElementById === "function" ? document.getElementById("player-layout") : null;
+    if (layout && typeof Module !== "undefined" && Module.canvas && layout.contains(Module.canvas)) {
+      for (var i = 0; i < 4; i++) HEAPF32[(out >> 2) + i] = 0;
+      return;
+    }
     var v = [0, 0, 0, 0];
     if (typeof document !== "undefined" && document.body) {
       var probe = document.createElement("div");
