@@ -1,6 +1,7 @@
 # H5 WebGL accessibility diagnostic and design proposal
 
-Refs #1119. Working draft; real screen-reader diagnostic and owner design choice pending.
+Refs #1119. Working draft; real screen-reader diagnostic remains incomplete.
+The owner selected the read-only companion on 23 October 2026 (see the dated update below).
 No product implementation or screen-reader support claim.
 
 ## Evidence and limits
@@ -12,7 +13,7 @@ The source revision includes newer main changes than this player; no runtime cla
 Browser: Google Chrome for Testing 156.0.8078.4, headless, macOS 27.0.1 arm64,
 1280 × 720 CSS viewport. Fresh temporary browser profile for each language.
 
-Seven of the nine audited source blobs match runtime507 exactly. GameRoot and ScreenNav differ; new end-screen behavior in3afb is source-only evidence.
+Seven of the nine audited source blobs match runtime `507348f` exactly. GameRoot and ScreenNav differ; new end-screen behavior in `3afb171` is source-only evidence.
 
 The English and Hebrew start screens visibly contain recording and New Game controls.
 Both DOM snapshots instead contain only an unnamed canvas with `tabindex=-1` among
@@ -45,10 +46,26 @@ original off state, the Guest window closed, and the owned local server stopped;
 three cleanup actions were verified. No product source changed.
 
 Unlock is no longer the outstanding requirement. Actual reader output and completion
-of the real diagnostic below remain required before the owner's design choice.
+of the real diagnostic below remain required.
 
 Focus name, event narration, refusal narration, and turn-result narration require the
 real diagnostic below before this issue can be completed.
+
+### Owner decision, recorded 23 October 2026
+
+The owner selected **B: read-only companion**, recorded in [#1119](https://github.com/eyalgolan/statecraft-israel/issues/1119#issuecomment-6359490836)
+and [#1230](https://github.com/eyalgolan/statecraft-israel/pull/1230#issuecomment-6359490537).
+The approved next milestone is an HTML panel beside the game that mirrors the current
+event title, text and choices, the current focus and the status. Play continues through
+the existing game keyboard controls. Whether to proceed to an operable companion (C)
+is decided after a real VoiceOver test of B. The design-choice gate for B is resolved;
+this document does not claim B is implemented or that the real diagnostic passed.
+
+The integration audit below remains pinned to `3afb171` and runtime `507348f`. Main
+`460a8500088331dc35f3da662b0f1316619e0928` also contains `UI/ShareShot.jslib`,
+which was absent from that audit. Before implementation and the real reader run,
+re-audit the integration points and pin the source and player actually tested; the
+newer bridge and template are not covered by the old runtime observations.
 
 ## Verified code integration points
 
@@ -68,7 +85,7 @@ Paths and symbols verified in the named source tree, not inferred from old audit
 `UI/` above is `unity/Assets/Scripts/UI/`. Nine original source blobs and their hashes
 are preserved privately with the source receipt. This audit does not change any source file.
 
-## Alternatives for owner choice
+## Alternatives originally presented for owner choice
 
 | Alternative | Benefit | Cost / unresolved requirement |
 | --- | --- | --- |
@@ -76,16 +93,17 @@ are preserved privately with the source receipt. This audit does not change any 
 | Read-only DOM companion with event body, ordered options, focus summary and status | Simple transport; screen reader can browse real text without every frame being spoken | Does not provide action parity; Unity keyboard capture and assistive-navigation interaction still require real testing |
 | Opt-in DOM companion with native action controls | Can expose discovery, labels, disabled state, and operable event/turn actions | Requires explicit focus ownership, input-capture switching, callback validation and broader parity tests |
 
-Recommendation **for discussion, not authorization to implement**: prove read-only
+Original recommendation, before the 23 October decision: prove read-only
 semantic output first, then select the smallest operable subset explicitly. A mirror
 that only speaks is not a complete accessible game. Do not give the entire page
 `role=application` or promise map/action parity from an output fixture.
 
-Owner decision required: choose notification-only as a clearly limited intermediate
-milestone, read-only companion as a diagnostic milestone, or approve an operable
+The original choices were notification-only as a clearly limited intermediate
+milestone, read-only companion as a diagnostic milestone, or an operable
 subset (start/continue, event choices, End Turn, report close) with an explicit input
 and focus contract. Map navigation, other panels, and media controls need a coverage
-inventory; they are not silently covered by that subset. #1116/#890/#1011 claims remain intact.
+inventory; they are not silently covered by that subset. The owner selected B above.
+#1116/#890/#1011 claims remain intact.
 
 ## Proposed payload and transport contract
 
@@ -135,8 +153,9 @@ Keep the semantic companion outside the canvas and reachable in normal DOM readi
 order: heading/screen, current focus summary, event title, context/body, options in
 source order, current status/result. Use ordinary headings/paragraphs/lists; do not hide
 the companion with `display:none`, `hidden`, `visibility:hidden` or `aria-hidden`.
-An opt-in visible companion also makes its reading position understandable to sighted
-keyboard users. Styling and entry affordance need owner choice before shipping.
+The owner selected a visible companion beside the game on 23 October. Its reading
+position must also be understandable to sighted keyboard users; review the presentation
+with matched screenshots and the real reader diagnostic.
 
 Notification-only mode never moves document focus when UITK focus or a status changes.
 Status uses a pre-existing `role=status` region and plain text. Announce discrete
