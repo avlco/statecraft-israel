@@ -9,6 +9,7 @@ One line per dead link (file: link); exit 1 if any."""
 import argparse
 import os
 import re
+import string
 import subprocess
 import sys
 from collections.abc import Iterator
@@ -18,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 LINK = re.compile(r"\]\((<?)")
 LINK_END = re.compile(r">?(?:\s+(?:\"[^\"]*\"|'[^']*'))?\)")
+BACKSLASH_ESCAPE = re.compile(r"\\([" + re.escape(string.punctuation) + r"])")
 # A fence opens with 3+ backticks or tildes and closes with the same run; an inline span is a backtick run closed by an
 # equal run and may not cross a blank line, so one stray backtick cannot swallow the rest of the file.
 FENCE = re.compile(r"(`{3,}|~{3,}).*?\1", re.S)
@@ -35,6 +37,9 @@ def link_targets(text: str) -> Iterator[str]:
         depth = 0
         while end < len(text):
             char = text[end]
+            if char == "\\" and end + 1 < len(text) and text[end + 1] in string.punctuation:
+                end += 2
+                continue
             if char.isspace() or char == ">" or (char == ")" and depth == 0 and not angle):
                 break
             if char == "(" and not angle:
@@ -69,9 +74,10 @@ def dead_links(root: Path) -> list[tuple[str, str]]:
     for f in tracked_markdown(root):
         text = INLINE_CODE.sub("", FENCE.sub("", (root / f).read_text(encoding="utf-8")))
         for target in link_targets(text):
-            if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:|#", target) or "[" in target:
+            normalized = BACKSLASH_ESCAPE.sub(r"\1", target)
+            if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:|#", normalized) or "[" in normalized:
                 continue
-            path = unquote(target.split("#")[0].split("?")[0])
+            path = unquote(normalized.split("#")[0].split("?")[0])
             if path and os.path.normpath(os.path.join(os.path.dirname(f), path)).replace(os.sep, "/").rstrip("/") not in known:
                 bad.append((f, target))
     return bad
