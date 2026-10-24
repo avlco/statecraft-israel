@@ -2,6 +2,8 @@
 import importlib.util
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[3]
 SPEC = importlib.util.spec_from_file_location('md_links', ROOT / 'scripts/oss/md_links.py')
 m = importlib.util.module_from_spec(SPEC)
@@ -76,6 +78,46 @@ def test_balanced_parentheses_keep_the_whole_target(make_repo, capsys):
     assert m.main(['--root', str(root)]) == 1
     assert capsys.readouterr().out == ('README.md: docs/missing_(x).md\n'
                                      'README.md: docs/missing_(x_(y)).md\n')
+
+
+def test_escaped_opening_parenthesis_keeps_existing_and_missing_targets(make_repo, capsys):
+    root = make_repo({
+        'README.md': r'[ok](docs/setup_\(mac.md) [gone](docs/missing_\(mac.md)' + '\n',
+        'docs/setup_(mac.md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', r'docs/missing_\(mac.md')]
+    assert m.main(['--root', str(root)]) == 1
+    assert capsys.readouterr().out == 'README.md: ' + r'docs/missing_\(mac.md' + '\n'
+
+
+def test_escaped_closing_parenthesis_does_not_end_the_target(make_repo):
+    root = make_repo({
+        'README.md': r'[ok](docs/setup_\)mac.md) [gone](docs/missing_\)mac.md) [after](after.md)' + '\n',
+        'docs/setup_)mac.md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', r'docs/missing_\)mac.md'), ('README.md', 'after.md')]
+
+
+def test_escaped_backslash_does_not_escape_the_next_parenthesis_or_a_letter(make_repo):
+    text = r'[balanced](docs/a\\(x).md) [broken](docs/a\\(x.md) [after](missing.md)'
+    assert list(m.link_targets(text)) == [r'docs/a\\(x).md', 'missing.md']
+    root = make_repo({
+        'README.md': r'[slash](docs/setup_\\(mac).md) [letter](docs/keep\q.md)' + '\n',
+        'docs/setup_(mac).md': 'x\n',
+        'docs/keepq.md': 'x\n',
+    })
+    assert m.dead_links(root) == [('README.md', r'docs/setup_\\(mac).md'), ('README.md', r'docs/keep\q.md')]
+
+
+@pytest.mark.parametrize('link', [
+    r'[fragment](docs/a.md\#part)',
+    r'[query](docs/a.md\?q=1)',
+    r'[anchor](\#part)',
+    r'[external](https\://example.test/page)',
+])
+def test_punctuation_escapes_are_normalized_before_classifying_the_target(make_repo, link):
+    root = make_repo({'README.md': link + '\n', 'docs/a.md': 'x\n'})
+    assert m.dead_links(root) == []
 
 
 def test_parenthesized_targets_do_not_hide_following_links(make_repo):
