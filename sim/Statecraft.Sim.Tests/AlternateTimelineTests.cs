@@ -476,6 +476,32 @@ options:
         Assert.Equal(parent, e.Options.Single(o => o.Id == rejoin).Rejoin);
     }
 
+    // Task 12's fail-open check, R-ALT-005 and R-ALT-009: mutate a disposable copy, never the real content.
+    [Theory]
+    [InlineData("jerusalem_demilitarisation_guard", "jerusalem_military_government", "accept_demilitarisation")]
+    [InlineData("rafah_force_pressure", "sinai_withdrawal", "hold_el_arish")]
+    public void ARealSliceOneCardCannotFollowItsParentsHistoricalOption(string card, string parent, string road)
+    {
+        var source = RealContentTests.ContentRoot();
+        var copy = Fixture.Write();
+        foreach (var file in System.IO.Directory.EnumerateFiles(source, "*", System.IO.SearchOption.AllDirectories))
+        {
+            var destination = System.IO.Path.Combine(copy, System.IO.Path.GetRelativePath(source, file));
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(destination)!);
+            System.IO.File.Copy(file, destination, overwrite: true);
+        }
+        ContentLoader.Load(copy); // The unmodified copy must be valid before testing a refusal.
+        var historical = Assert.Single(Real.Events, e => e.Id == parent).Options.Single(o => o.Historical).Id;
+        var path = System.IO.Path.Combine(copy, "events", card + ".yaml");
+        var yaml = System.IO.File.ReadAllText(path);
+        Assert.Contains("option: " + road, yaml);
+        System.IO.File.WriteAllText(path, yaml.Replace("option: " + road, "option: " + historical));
+        var ex = Assert.Throws<ContentException>(() => ContentLoader.Load(copy));
+        Assert.Equal("events/" + card + ".yaml", ex.File);
+        Assert.StartsWith("events[" + card + "].", ex.Field);
+        Assert.Contains("road", ex.Message);
+    }
+
     // R-ALT-012
     [Fact]
     public void TheHistoricalRunRaisesNoConsequenceCard()
@@ -638,8 +664,8 @@ variants:
     }
 
     /// <summary>Review focus 2: every consequence card in content/ fires in a run that takes its road (and, for a second
-    /// card, the first card's option too), with the reference player's orders everywhere else. Until a content slice adds
-    /// one, there is none; AltRunWalksTheRoadBack pins the helper on fixtures.</summary>
+    /// card, the first card's option too), with the reference player's orders everywhere else.
+    /// AltRunWalksTheRoadBack also pins the helper on fixtures.</summary>
     [Fact]
     public void EveryConsequenceCardFiresWhenItsRoadIsTaken()
     {
