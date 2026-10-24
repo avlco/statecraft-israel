@@ -127,7 +127,7 @@ Palestine Potash pans.
 
 **Reserve source comparison — 23 October 2026 (AI reading only).**
 
-The [owner asked that these differences remain a conflict](https://github.com/eyalgolan/statecraft-israel/issues/16#issuecomment-6363093603),
+The [maintainer's review asked that these differences remain a conflict](https://github.com/eyalgolan/statecraft-israel/issues/16#issuecomment-6363093603),
 with the choice left to a person at review. The original note's JVL and KKL-JNF readings are retained below;
 their sources were not reopened for this addition, so their 14 October check is not renewed.
 
