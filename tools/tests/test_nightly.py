@@ -1,6 +1,7 @@
 import dataclasses
 import json
 import signal
+import shutil
 import subprocess
 import sys
 import time
@@ -1622,7 +1623,10 @@ def test_a_site_failure_after_publish_does_not_roll_itch_back(itch_night, env):
 def stages(night, env, tmp_path, monkeypatch):
     """Every stage replaced by a recorder, so the order and the arguments are what is tested."""
     order = []
-    gz, pages = tmp_path / "Web-gzip", tmp_path / "Web-pages"
+    source_gz, pages = tmp_path / "Web-gzip", tmp_path / "Web-pages"
+    source_gz.mkdir()
+    (source_gz / "index.html").write_text("first player")
+    gz = night.run_dir / "Web-gzip"
     zips = {False: tmp_path / "web.zip", True: tmp_path / "pages.zip"}
     prev = tmp_path / "prev.zip"
 
@@ -1634,7 +1638,7 @@ def stages(night, env, tmp_path, monkeypatch):
 
     rec("run_gates")
     rec("run_editmode")
-    rec("build_web", lambda a, k: pages if k["pages"] else gz)
+    rec("build_web", lambda a, k: pages if k["pages"] else source_gz)
     rec("assert_clean_tree")
     rec("package_zip", lambda a, k: zips[a[3]])
     rec("run_web_checks")
@@ -1643,7 +1647,7 @@ def stages(night, env, tmp_path, monkeypatch):
     rec("publish_night")
     gh = FakeGH()
     gh.baseline = prev
-    return type("S", (), dict(order=order, gz=gz, pages=pages, zips=zips, prev=prev, gh=gh,
+    return type("S", (), dict(order=order, gz=gz, source_gz=source_gz, pages=pages, zips=zips, prev=prev, gh=gh,
                               names=lambda self: [o[0] for o in order]))()
 
 
@@ -1655,8 +1659,12 @@ def test_the_stages_run_in_the_brief_order(night, env, stages, capsys):
                               "measure_boot", "publish_night"]
     builds = [o for o in stages.order if o[0] == "build_web"]
     assert [b[2]["pages"] for b in builds] == [False, True]
+    packages = [o for o in stages.order if o[0] == "package_zip"]
+    assert [p[1][2] for p in packages] == [stages.gz, stages.pages]
     checks = [o for o in stages.order if o[0] == "run_web_checks"]
     assert [c[1][2] for c in checks] == [stages.gz, stages.pages]   # web checks on BOTH builds
+    boot = next(o for o in stages.order if o[0] == "measure_boot")
+    assert boot[1][2] == stages.gz
     sizes = next(o for o in stages.order if o[0] == "check_sizes")
     assert sizes[1][2:5] == (stages.gz, stages.prev, OLD) and sizes[2]["runner"] is env.runner
     assert stages.gh.calls[-1][:3] == ("download", "v0.3.0-nightly.20261027", "*-web.zip")
@@ -1692,6 +1700,8 @@ def test_a_published_night_is_recorded_as_published(env, monkeypatch):
 def test_a_boot_slowdown_refuses_and_a_collecting_baseline_passes(night, env, stages):
     st = ns.State(last_published=last_published(), boot_baseline=[8000.0, 8100.0, 8050.0, 8100.0, 8000.0])
     nightly.run_stages(night, st, env.runner, stages.gh, None, no_publish=True, free_gb=lambda p: 100.0)   # 8200 <= limit
+    # The next simulated night has its own evidence directory in production; discard only this test's completed copy.
+    shutil.rmtree(stages.gz)
     st.boot_baseline = [1000.0, 1000.0, 1000.0, 1000.0, 1000.0]
     with pytest.raises(ns.Refused) as e:
         nightly.run_stages(night, st, env.runner, stages.gh, None, no_publish=True, free_gb=lambda p: 100.0)
@@ -1702,7 +1712,7 @@ def test_a_failed_build_still_checks_the_tree_before_the_refusal(night, env, sta
     def boom(n, r, *, pages, free_gb):
         if pages:
             raise ns.Refused("build-web", "the Unity build exited 1")
-        return stages.gz
+        return stages.source_gz
     monkeypatch.setattr(nightly, "build_web", boom)
     with pytest.raises(ns.Refused) as e:
         nightly.run_stages(night, ns.State(last_published=last_published()), env.runner, stages.gh, None,
@@ -2423,3 +2433,62 @@ def test_second_interrupt_during_grace_still_kills_and_reaps_own_group(tmp_path,
         except ProcessLookupError:
             pass
         original_wait(timeout=5)
+
+
+def test_gzip_player_survives_second_build_deleting_its_bee_artifacts(night, env, monkeypatch):
+    import shutil
+    gz = night.cfg.clone / "unity/Builds/Web-gzip"
+    pages = night.cfg.clone / "unity/Builds/Web-pages"
+    (gz / "Build").mkdir(parents=True)
+    (gz / "Build/player.data.gz").write_bytes(b"first-player-exact-bytes")
+    (gz / "index.html").write_text('dataUrl: "Build/player.data.gz"')
+    (gz / "StreamingAssets/content").mkdir(parents=True)
+    (gz / "StreamingAssets/content/policy.yaml").write_bytes(b"owner-records: unchanged")
+    checks = []
+    def build(n, r, *, pages: bool, free_gb):
+        if pages:
+            assert (gz / "Build/player.data.gz").read_bytes() == b"first-player-exact-bytes"
+            shutil.rmtree(gz / "Build")  # Unity Bee retires the previous target's outputs.
+            return night.cfg.clone / "unity/Builds/Web-pages"
+        return gz
+    monkeypatch.setattr(nightly, "build_web", build)
+    monkeypatch.setattr(nightly, "assert_clean_tree", lambda n, r: checks.append("clean"))
+    saved, second = nightly._build_both(night, env.runner, lambda p: 100.0)
+    assert not (gz / "Build").exists(), "the test must actually retire the first output"
+    assert saved != gz and second == pages
+    assert (saved / "Build/player.data.gz").read_bytes() == b"first-player-exact-bytes"
+    assert (saved / "index.html").read_bytes() == (gz / "index.html").read_bytes()
+    assert (saved / "StreamingAssets/content/policy.yaml").read_bytes() == b"owner-records: unchanged"
+    assert checks == ["clean"]
+
+
+def test_gzip_snapshot_collision_refuses_without_second_build_or_overwrite(night, env, monkeypatch):
+    source = night.cfg.clone / "unity/Builds/Web-gzip"
+    source.mkdir(parents=True)
+    (source / "index.html").write_text("new artifact")
+    existing = night.run_dir / "Web-gzip"
+    existing.mkdir()
+    (existing / "index.html").write_text("prior evidence")
+    builds, checks = [], []
+    def build(n, r, *, pages, free_gb):
+        builds.append(pages)
+        return source
+    monkeypatch.setattr(nightly, "build_web", build)
+    monkeypatch.setattr(nightly, "assert_clean_tree", lambda n, r: checks.append("clean"))
+    with pytest.raises(FileExistsError):
+        nightly._build_both(night, env.runner, lambda p: 100.0)
+    assert builds == [False] and checks == ["clean"]
+    assert (existing / "index.html").read_text() == "prior evidence"
+
+
+def test_a_partial_gzip_copy_cannot_reach_any_consumer_or_publication(night, env, stages, monkeypatch):
+    def partial_copy(source, destination):
+        destination.mkdir()
+        (destination / "index.html").write_text("incomplete evidence")
+        raise OSError("simulated copy failure")
+    monkeypatch.setattr(nightly.shutil, "copytree", partial_copy)
+    with pytest.raises(OSError, match="simulated copy failure"):
+        nightly.run_stages(night, ns.State(last_published=last_published()), env.runner, stages.gh, None,
+                           no_publish=False, free_gb=lambda p: 100.0)
+    assert stages.names() == ["run_gates", "run_editmode", "build_web", "assert_clean_tree"]
+    assert (stages.gz / "index.html").read_text() == "incomplete evidence"
