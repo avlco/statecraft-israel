@@ -100,27 +100,30 @@ if (Array.IndexOf(args, "--release-gate") >= 0)
 // Replay retains the existing save compatibility checks and warnings. It adds no state and never rewrites the save.
 if (coursePath != null)
 {
-    try
-    {
-        var played = GameSession.Load(content, File.ReadAllText(coursePath), out var warnings);
-        var entries = Timeline.Entries(content, played.State);
-        foreach (var warning in warnings) Console.Error.WriteLine("Save warning: " + warning);
-        Console.WriteLine("event\tchosen\thistorical\tdiverged\trejoined_by");
-        foreach (var entry in entries)
-            Console.WriteLine(string.Join("\t", entry.Event, entry.Chosen, entry.Historical == "" ? "-" : entry.Historical,
-                entry.Diverged ? "true" : "false", entry.RejoinedBy == "" ? "-" : entry.RejoinedBy));
-        return 0;
-    }
-    catch (SaveException e)
-    {
-        Console.Error.WriteLine($"Save error{(e.Code != null ? " (" + e.Code + ")" : "")}: {e.Message}");
-        return 1;
-    }
+    string saveText;
+    try { saveText = File.ReadAllText(coursePath); }
     catch (Exception e) when (e is IOException or UnauthorizedAccessException or ArgumentException)
     {
         Console.Error.WriteLine("Save error: the file could not be read.");
         return 1;
     }
+
+    GameSession played;
+    IReadOnlyList<string> warnings;
+    try { played = GameSession.Load(content, saveText, out warnings); }
+    catch (SaveException e)
+    {
+        Console.Error.WriteLine($"Save error{(e.Code != null ? " (" + e.Code + ")" : "")}: {e.Message}");
+        return 1;
+    }
+
+    var entries = Timeline.Entries(content, played.State);
+    foreach (var warning in warnings) Console.Error.WriteLine("Save warning: " + warning);
+    Console.WriteLine("event\tchosen\thistorical\tdiverged\trejoined_by");
+    foreach (var entry in entries)
+        Console.WriteLine(string.Join("\t", entry.Event, entry.Chosen, entry.Historical == "" ? "-" : entry.Historical,
+            entry.Diverged ? "true" : "false", entry.RejoinedBy == "" ? "-" : entry.RejoinedBy));
+    return 0;
 }
 
 // --timeline-report (R-ALT-011): one line per road not taken, in window order: who proposed it (basis), the consequence

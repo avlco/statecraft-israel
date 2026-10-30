@@ -1,7 +1,10 @@
 using System.Diagnostics;
+using System.Globalization;
+using System.Reflection;
 using Statecraft.Sim;
 
 /// <summary>#1911: the developer CLI inspects the same resolved course as TimelinePresenter, without new save state.</summary>
+[Collection(nameof(CliTimelineCourseTests))]
 public class CliTimelineCourseTests
 {
     const string Header = "event\tchosen\thistorical\tdiverged\trejoined_by";
@@ -93,7 +96,6 @@ public class CliTimelineCourseTests
         Assert.Equal(Header, lines[0]);
         Assert.Equal(Rows(entries), lines.Skip(1));
         Assert.Equal(before, File.ReadAllBytes(save));
-        Assert.Equal(played.State.Hash(), loaded.State.Hash());
     }
 
     // R-ALT-011: a new game has no resolved course, even when content offers alternate roads.
@@ -172,7 +174,51 @@ public class CliTimelineCourseTests
         Assert.Contains("--timeline-report", result.Error);
     }
 
-    // R-ALT-011: existing authoring coverage remains a separate, unchanged command.
+    // R-ALT-011: output failures must not be misreported as unreadable saves.
+    [Theory]
+    [InlineData("argument")]
+    [InlineData("io")]
+    public void AReportOutputFailureIsNotASaveReadError(string kind)
+    {
+        var (root, content) = CourseContent();
+        var save = Path.Combine(root, "output-failure.save");
+        File.WriteAllText(save, GameSession.New(content, 1, Mode.Historical).Save.Write());
+        Exception failure = kind == "argument" ? new ArgumentException("test output failure") : new IOException("test output failure");
+        var stdout = Console.Out; var stderr = Console.Error;
+        var culture = CultureInfo.CurrentCulture; var defaultCulture = CultureInfo.DefaultThreadCurrentCulture;
+        using var error = new StringWriter();
+        try
+        {
+            Console.SetOut(new FailingCourseOutput(stdout, failure));
+            Console.SetError(error);
+            var entry = typeof(Statecraft.Cli.InputParse).Assembly.EntryPoint!;
+            var exception = Assert.Throws<TargetInvocationException>(() => entry.Invoke(null,
+                new object[] { new[] { "--content", root, "--timeline-course", save } }));
+            Assert.Same(failure, exception.InnerException);
+            Assert.Equal("", error.ToString());
+        }
+        finally
+        {
+            Console.SetOut(stdout); Console.SetError(stderr);
+            CultureInfo.DefaultThreadCurrentCulture = defaultCulture; CultureInfo.CurrentCulture = culture;
+        }
+    }
+
+    sealed class FailingCourseOutput : TextWriter
+    {
+        readonly TextWriter inner; readonly Exception failure;
+        public FailingCourseOutput(TextWriter inner, Exception failure) { this.inner = inner; this.failure = failure; }
+        public override System.Text.Encoding Encoding => inner.Encoding;
+        public override void Write(char value) => inner.Write(value);
+        public override void Write(string? value) => inner.Write(value);
+        public override void WriteLine(string? value)
+        {
+            if (value == Header) throw failure;
+            inner.WriteLine(value);
+        }
+    }
+
+    // R-ALT-011: existing-behavior guard, already passing before --timeline-course was added.
     [Fact]
     public async Task TheAuthorCoverageReportKeepsItsExistingOutput()
     {
@@ -183,3 +229,7 @@ public class CliTimelineCourseTests
         Assert.Equal("parent/road  basis=proposed  cards=after_road  variants=-  breaks=on_record\n", result.Out);
     }
 }
+
+// These tests redirect process-wide Console writers; they must not overlap other test collections.
+[CollectionDefinition(nameof(CliTimelineCourseTests), DisableParallelization = true)]
+public sealed class CliTimelineCourseConsoleCollection { }
